@@ -1,7 +1,9 @@
+import Development from "@/app/componnent/Development";
+
 const About = () => {
     return (
-        <div className="h-[60vh]">
-            this is about page
+        <div className="">
+            <Development />
         </div>
     )
 }

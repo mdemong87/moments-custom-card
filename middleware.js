@@ -24,13 +24,13 @@ export default async function middleware(req) {
     // Check token validity
     const decoded = token ? await verifyJWT(token) : null;
 
-    console.log('check start');
-    console.log(decoded);
-    console.log('check end');
 
     // Protected routes
     const protectedRoutes = ["/application"];
     const isProtected = protectedRoutes.some(route => path.startsWith(route));
+
+
+    console.log(decoded);
 
     // If not logged in but trying to access protected routes
     if (!decoded && isProtected) {
@@ -39,19 +39,14 @@ export default async function middleware(req) {
 
     // Role-based access
     if (decoded && role) {
-        if (role !== "Admin" && path.startsWith("/admin")) return NextResponse.redirect(new URL("/signin", req.nextUrl));
-        if (role !== "Hr" && path.startsWith("/hr")) return NextResponse.redirect(new URL("/signin", req.nextUrl));
-        if (role !== "Project Manager" && path.startsWith("/projectmanager")) return NextResponse.redirect(new URL("/signin", req.nextUrl));
-        if (role !== "Employee" && path.startsWith("/employee")) return NextResponse.redirect(new URL("/signin", req.nextUrl));
+        if (role !== "Admin" && path.startsWith("/deshboard/admin")) return NextResponse.redirect(new URL("/signin", req.nextUrl));
     }
 
     // If logged in but trying to visit signin page
     if (decoded && path.startsWith("/signin")) {
         const redirects = {
-            "Admin": "/admin",
-            "Hr": "/hr",
-            "Project Manager": "/projectmanager",
-            "Employee": "/employee"
+            "Admin": "/deshboard/admin",
+            "Customer": "/application",
         };
         if (role && redirects[role]) return NextResponse.redirect(new URL(redirects[role], req.nextUrl));
     }

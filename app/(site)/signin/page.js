@@ -29,8 +29,6 @@ const Signin = () => {
 
             setLoading(false);
 
-            console.log(response);
-
             if (response) {
                 setCookie("token", response?.data?.token, 1);
                 setCookie("id", response?.data?.user?.id, 1)
@@ -43,17 +41,8 @@ const Signin = () => {
                     case "Admin":
                         router.push('/deshboard/admin');
                         break;
-                    case "Artist":
-                        router.push('/deshboard/artists');
-                        break;
-                    case "Venue":
-                        router.push('/deshboard/venue');
-                        break;
-                    case "Journalist":
-                        router.push('/deshboard/journalist');
-                        break;
-                    case "Fan":
-                        router.push('/deshboard/fan');
+                    case "Customer":
+                        router.push('/application');
                         break;
                     default:
                         break;

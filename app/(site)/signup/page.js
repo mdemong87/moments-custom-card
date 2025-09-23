@@ -16,7 +16,6 @@ const SignUP = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [role, setrole] = useState('Artist');
     const [res, setres] = useState(false);
 
 
@@ -25,13 +24,13 @@ const SignUP = () => {
         e.preventDefault();
 
 
-        if (name && email && password && role) {
+        if (name && email && password) {
             setLoading(true);
-            const response = await logingandsignupmakepost("api/register", { name, email, password, role });
+            const response = await logingandsignupmakepost("api/register", { name, email, password });
             setLoading(false);
             if (response) {
                 setres(response);
-                router.push('/accountactive');
+                router.push('/signin'); 
             } else {
                 alert("There was a Server side Problem");
             }
