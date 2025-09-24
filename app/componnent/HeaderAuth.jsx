@@ -78,7 +78,7 @@ const HeaderAuth = ({ isOpen, setisOpen }) => {
                                             <div className="flex items-center gap-2 mb-3">
                                                 <MdOutlineAccountCircle className="text-5xl" />
                                                 <div className="flex flex-col gap-0">
-                                                    <div className="font-semibold text-md">{loginUser?.name}</div>
+                                                    <div className="font-semibold text-sm">{loginUser?.name}</div>
                                                     <span className="text-xs bg-green-100 border border-green-200 rounded-md w-fit h-fit px-1">{loginUser?.role}</span>
                                                 </div>
                                             </div>

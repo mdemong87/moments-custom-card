@@ -1,9 +1,9 @@
 "use client";
+import ApplicationSkeleton from "@/app/componnent/ApplicationSkeleton";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import CardPreview from "../../componnent/CardPreview";
 import CardSidebar from "../../componnent/CardSidebar";
-import Loading from "../../componnent/Loading";
 import SideController from "../../componnent/SideController";
 import ViewCard from "../../componnent/ViewCard";
 
@@ -52,7 +52,7 @@ const ProductCustomizer = () => {
     }, []);
 
 
-    if (!product) return <Loading />;
+    if (!product) return <ApplicationSkeleton />;
 
     const activeCard = cards[activeCardIndex];
 

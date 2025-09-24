@@ -50,9 +50,9 @@ body {
 /* HTML: <div class="loader"></div> */
 .loadingWrper {
   position: fixed;
-  top: 75px;
+  top: 0;
   left: 0;
-  background: #fff;
+  background: #00000085;
 }
 
 
@@ -86,4 +86,19 @@ body {
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   z-index: 99;
   background: #ddd;
+}
+
+
+
+
+/* Hide arrows in Chrome, Safari, Edge, and Opera */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide arrows in Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

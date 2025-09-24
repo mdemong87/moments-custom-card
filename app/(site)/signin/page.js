@@ -1,6 +1,5 @@
 'use client'
 
-import Loading from "@/app/componnent/Loading";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import useLoadingStore from "../../../store/useLoadingStore";
@@ -29,8 +28,6 @@ const Signin = () => {
             const response = await logingandsignupmakepost("api/login", { email, password });
 
 
-            setLoading(false);
-
             if (response) {
                 setCookie("token", response?.data?.token, 1);
                 setCookie("id", response?.data?.user?.id, 1)
@@ -43,24 +40,23 @@ const Signin = () => {
                 });
 
                 toast.success(response?.message);
-
+                setLoading(false);
 
                 switch (response?.data?.user?.role?.trim()) {
                     case "Admin":
                         router.push('/deshboard/admin');
                         break;
                     case "Customer":
-                        router.push('/deshboard/customer');
+                        // router.push('/deshboard/customer');
+                        router.push('/application');
                         break;
                     default:
                         break;
                 }
 
-
-
-
             } else {
-                toast.error(response?.message);
+                setLoading(false);
+                toast.error("Something Went Wrong!");
             }
         } else {
             toast.warn("Required All Feilds");
@@ -71,7 +67,6 @@ const Signin = () => {
 
     return (
         <div className="w-screen h-[60vh] flex justify-center items-center bg-gray-100">
-            {isLoading && <Loading />}
             <div className="bg-white p-6 rounded-lg shadow-md w-80 text-center">
                 <h2 className="text-xl text-black font-bold mb-4">Sign IN</h2>
 
@@ -94,14 +89,21 @@ const Signin = () => {
 
 
                     <button
-                        type="submit"
-                        className="w-full bg-sky-400 text-white font-semibold py-2 rounded-md hover:bg-yellow-600 transition cursor-pointer"
+                        disabled={isLoading}
+                        className="w-full bg-sky-400 text-white font-semibold py-2 rounded-md hover:bg-yellow-600 transition cursor-pointer flex items-center justify-center gap-2"
                     >
+
+                        {
+                            isLoading && <div className="w-[20px] h-[20px] rounded-full border-b-3 border-l-3 bordergray-50 animate-spin">
+                            </div>
+                        }
+
+
                         Login
                     </button>
                 </form>
 
-                <Link href="#" className="block mt-3 text-sm text-gray-600 hover:underline">
+                <Link href="/forgotpass" className="block mt-3 text-sm text-gray-600 hover:underline">
                     Forget Password
                 </Link>
 

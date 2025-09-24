@@ -1,6 +1,57 @@
 "use client";
 
+import logingandsignupmakepost from "@/utilis/requestrespose/logingandsignupmakepost";
+import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+
 export default function ContactForm() {
+
+
+
+
+    const [name, setname] = useState('');
+    const [email, setemail] = useState('');
+    const [sub, setsub] = useState('');
+    const [mes, setmes] = useState('');
+    const [isloading, setisloading] = useState(false);
+
+
+
+    /****************** handle submit function here ******************/
+    const handleSubmit = async () => {
+
+
+        if (name && email && mes) {
+
+            setisloading(true);
+
+            const response = await logingandsignupmakepost('api/contact', { name, email, sub, mes });
+
+            setisloading(false);
+
+            if (response?.success) {
+
+                setname('');
+                setemail('');
+                setsub('');
+                setmes('');
+                toast.success(response?.message);
+
+            } else {
+                toast.error("Something went Wrong. Try again Later");
+            }
+        } else {
+            toast.warn("Please Fill Up All Required Fileds");
+        }
+
+
+    }
+
+
+
+
+
+
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-white px-4">
             {/* Title */}
@@ -23,6 +74,7 @@ export default function ContactForm() {
                             Name <span className="text-red-500">*</span>
                         </label>
                         <input
+                            onChange={(e) => { setname(e.target.value) }}
                             type="text"
                             placeholder="Name"
                             className="w-full p-3 rounded-md bg-white border border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all text-gray-700"
@@ -35,6 +87,7 @@ export default function ContactForm() {
                             Email <span className="text-red-500">*</span>
                         </label>
                         <input
+                            onChange={(e) => { setemail(e.target.value) }}
                             type="email"
                             placeholder="Email"
                             className="w-full p-3 rounded-md bg-white border border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all text-gray-700"
@@ -47,6 +100,7 @@ export default function ContactForm() {
                             Subject
                         </label>
                         <input
+                            onChange={(e) => { setsub(e.target.value) }}
                             type="text"
                             placeholder="Subject"
                             className="w-full p-3 rounded-md bg-white border border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all text-gray-700"
@@ -59,6 +113,7 @@ export default function ContactForm() {
                             Message <span className="text-red-500">*</span>
                         </label>
                         <textarea
+                            onChange={(e) => { setmes(e.target.value) }}
                             placeholder="Message"
                             rows="4"
                             className="w-full p-3 rounded-md bg-white border border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all text-gray-700 resize-none"
@@ -66,14 +121,22 @@ export default function ContactForm() {
                     </div>
 
                     {/* Submit Button */}
-                    <button
+                    <button disabled={isloading}
+                        onClick={() => { handleSubmit() }}
                         type="submit"
-                        className="w-full bg-sky-400 hover:bg-blue-600 text-white py-3 rounded-md font-semibold tracking-wide shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer"
+                        className="w-full bg-sky-400 hover:bg-blue-600 text-white py-3 rounded-md font-semibold tracking-wide shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex items-center gap-2 justify-center"
                     >
+                        {
+                            isloading && <div className="w-[20px] h-[20px] rounded-full border-b-2 border-l-2 bordergray-50 animate-spin">
+                            </div>
+                        }
+
+
                         SEND
                     </button>
                 </form>
             </div>
+            <ToastContainer />
         </div>
     );
 }

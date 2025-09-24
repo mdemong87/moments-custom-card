@@ -1,6 +1,5 @@
 'use client'
 
-import Loading from "@/app/componnent/Loading";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -27,11 +26,12 @@ const SignUP = () => {
         if (name && email && password) {
             setLoading(true);
             const response = await logingandsignupmakepost("api/register", { name, email, password });
-            setLoading(false);
             if (response) {
                 setres(response);
-                router.push('/signin'); 
+                setLoading(false);
+                router.push('/signin');
             } else {
+                setLoading(false);
                 alert("There was a Server side Problem");
             }
         } else {
@@ -45,7 +45,6 @@ const SignUP = () => {
 
     return (
         <div className="w-screen h-[60vh] flex justify-center items-center bg-gray-100">
-            {isLoading && <Loading />}
             <div className="bg-white p-6 rounded-lg shadow-md w-80 text-center">
                 <h2 className="text-xl text-black font-bold mb-4">Sign Up</h2>
 
@@ -74,9 +73,14 @@ const SignUP = () => {
                     />
 
                     <button
-                        type="submit"
-                        className="w-full bg-sky-400 text-white font-semibold py-2 rounded-md hover:bg-yellow-600 transition cursor-pointer"
+                        disabled={isLoading}
+                        className="w-full bg-sky-400 text-white font-semibold py-2 rounded-md hover:bg-yellow-600 transition cursor-pointer flex items-center justify-center gap-2"
                     >
+                        {
+                            isLoading && <div className="w-[20px] h-[20px] rounded-full border-b-3 border-l-3 bordergray-50 animate-spin">
+                            </div>
+                        }
+
                         Sign Up
                     </button>
                 </form>
