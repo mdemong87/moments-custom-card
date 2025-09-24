@@ -52,7 +52,7 @@ const Deshboardlayout = ({ children }) => {
 
 
     return (
-        <div className="h-screen text-black">
+        <div className="h-fit text-black">
             {
                 !isSideberOpen && <div onClick={() => { setisSideberOpen(true) }} className={`absolute flex lg:hidden z-50 bg-sky-400 text-white  items-center justify-center rounded-md  p-2 -translate-x-3 mt-4 cursor-pointer`}>
                     <IoMdSettings className="animate-spin" />
@@ -67,7 +67,7 @@ const Deshboardlayout = ({ children }) => {
 
 
                     {
-                        loginUser?.role != "Admin" ? (
+                        loginUser?.role == "Admin" ? (
 
                             <div className="flex flex-col items-start lg:items-center gap-4 lg:gap-2 text-gray-500 mt-3 w-full">
                                 <Link className="font-semibold text-md text-nowrap py-3 px-2 rounded-md lg:px-4 lg:py-3 hover:bg-sky-100 w-full" href={'/deshboard/admin'}>Deshboard</Link>
@@ -98,7 +98,7 @@ const Deshboardlayout = ({ children }) => {
 
                     <button onClick={() => { handlelogout() }} className="bg-sky-400 text-white w-[90%] text-center py-2 rounded-md absolute bottom-24 left-3 cursor-pointer">Log out</button>
                 </div>
-                <div className="px-6 w-full pt-6 pl-[270px]">
+                <div className="px-6 w-full h-fit pt-6 pl-6 lg:pl-[270px]">
                     {children}
                 </div>
             </div>

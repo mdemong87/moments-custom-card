@@ -74,7 +74,7 @@ const SignUP = () => {
 
                     <button
                         disabled={isLoading}
-                        className="w-full bg-sky-400 text-white font-semibold py-2 rounded-md hover:bg-yellow-600 transition cursor-pointer flex items-center justify-center gap-2"
+                        className="w-full bg-sky-400 text-white font-semibold py-2 rounded-md hover:bg-sky-600 transition cursor-pointer flex items-center justify-center gap-2"
                     >
                         {
                             isLoading && <div className="w-[20px] h-[20px] rounded-full border-b-3 border-l-3 bordergray-50 animate-spin">

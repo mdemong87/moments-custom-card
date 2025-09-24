@@ -4,7 +4,10 @@ const MakeDelete = async (endpoint, token) => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/${endpoint}`, {
             method: "DELETE",
             headers: {
+                "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`,
+                "Accept": "application/json",
+
             }
         });
 

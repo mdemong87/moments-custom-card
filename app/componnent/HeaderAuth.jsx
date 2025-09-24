@@ -65,7 +65,7 @@ const HeaderAuth = ({ isOpen, setisOpen }) => {
         <div>
             {
                 loginUser?.token ? (
-                    <div className="flex items-center gap-3 h-full text-gray-500 relative  cursor-pointer">
+                    <div className="flex items-center gap-1 h-full text-gray-500 relative  cursor-pointer">
                         <div className="font-semibold text-md">{loginUser?.name}</div>
                         <div className="group">
                             <MdOutlineAccountCircle className="text-4xl" />
@@ -106,9 +106,9 @@ const HeaderAuth = ({ isOpen, setisOpen }) => {
 
                         {
                             isOpen ? (
-                                <ImCross onClick={() => { setisOpen(false) }} className="block lg:hidden text-2xl ml-2 cursor-pointer hover:rotate-180 transition-all duration-300" />
+                                <ImCross onClick={() => { setisOpen(false) }} className="block lg:hidden text-2xl ml-1 cursor-pointer hover:rotate-180 transition-all duration-300" />
                             ) : (
-                                <FaBars onClick={() => { setisOpen(true) }} className="block lg:hidden text-2xl ml-2 cursor-pointer" />
+                                <FaBars onClick={() => { setisOpen(true) }} className="block lg:hidden text-3xl ml-1 cursor-pointer" />
                             )
                         }
                     </div>
