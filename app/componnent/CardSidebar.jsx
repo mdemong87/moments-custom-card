@@ -13,7 +13,7 @@ const CardSidebar = ({ cards, activeIndex, setActiveIndex, addCard, removeCard }
         </div>
       </div>
     </h3>
-    <div className="w-full lg:w-full flex flex-row lg:flex-col gap-4 items-center h-[100px] lg:h-fit snap-mandatory overflow-x-scroll lg:overflow-y-scroll scrollbar-hide lg:max-h-[77vh] lg:min-h-[77vh] ">
+    <div className="w-full lg:w-full flex flex-row lg:flex-col gap-4 items-center h-[100px] lg:h-fit snap-mandatory overflow-x-scroll cursor-grab lg:overflow-y-scroll scrollbar-hide lg:max-h-[77vh] lg:min-h-[77vh] ">
       {cards.map((card, idx) => (
         <div
           key={idx}

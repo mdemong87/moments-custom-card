@@ -7,6 +7,7 @@ import useLoadingStore from "../../../store/useLoadingStore";
 import setCookie from "../../../utilis/helper/cookie/setcookie";
 import logingandsignupmakepost from "../../../utilis/requestrespose/logingandsignupmakepost";
 
+import useLogedUserStore from "@/store/useLogedUser";
 import { toast, ToastContainer } from "react-toastify";
 
 const { useState } = require("react");
@@ -15,6 +16,7 @@ const Signin = () => {
 
     const router = useRouter();
     const { isLoading, setLoading } = useLoadingStore();
+    const { loginUser, setLoginUser } = useLogedUserStore();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -34,6 +36,12 @@ const Signin = () => {
                 setCookie("id", response?.data?.user?.id, 1)
                 setCookie("name", response?.data?.user?.name, 1);
                 setCookie("role", response?.data?.user?.role, 1);
+                setLoginUser({
+                    name: response?.data?.user?.name,
+                    token: response?.data?.token,
+                    role: response?.data?.user?.role
+                });
+
                 toast.success(response?.message);
 
 
@@ -42,7 +50,7 @@ const Signin = () => {
                         router.push('/deshboard/admin');
                         break;
                     case "Customer":
-                        router.push('/application');
+                        router.push('/deshboard/customer');
                         break;
                     default:
                         break;

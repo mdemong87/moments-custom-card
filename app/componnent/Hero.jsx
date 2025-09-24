@@ -65,7 +65,7 @@ const Hero = () => {
 
     return (
         <>
-            <section className="h-[85vh] relative bg-gray-50 py-16 overflow-hidden">
+            <section className="h-[95vh] lg:h-[90vh] w-screen relative bg-gray-50 py-16 overflow-hidden">
                 {/* Background */}
                 <div className="absolute inset-0">
                     <div
@@ -73,10 +73,10 @@ const Hero = () => {
                     />
                 </div>
                 {/* Content */}
-                <div className="relative max-w-7xl mx-auto px-4 flex flex-col-reverse lg:flex-row items-center gap-10 py-16">
+                <div className="relative max-w-7xl mx-auto px-4 flex flex-col-reverse lg:flex-row items-center justify-center gap-10 py-16 md:py-12">
                     {/* Left Text */}
-                    <div className="w-full lg:w-1/2 flex flex-col items-start space-y-6 text-center lg:text-left">
-                        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-[75px] uppercase text-[#333333]">
+                    <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start space-y-6 md:space-y-4 lg:space-y-6 text-center lg:text-left">
+                        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-[50px] md:leading-[60px] lg:leading-[75px] uppercase text-[#333333]">
                             Turning <br />
                             <span className="text-[#3CA9FF]">Moments</span> <br /> Into Play
                         </h1>
@@ -89,7 +89,7 @@ const Hero = () => {
                         </button>
                     </div>
                     {/* Right Cards */}
-                    <div className="w-full lg:w-1/2 flex justify-center relative h-[60vw] sm:h-[55vw] lg:h-[420px]">
+                    <div className="w-full lg:w-1/2 flex justify-center items-center relative h-[40vw] md:h-[25vw] lg:h-[420px]">
                         {cards.map((src, index) => {
                             const isLast = index === cards.length - 1;
                             const targetRotate = isLast ? 0 : -(cards.length - 1 - index) * 8;
@@ -98,10 +98,9 @@ const Hero = () => {
                             return (
                                 <div
                                     key={index}
-                                    className="absolute transition-transform duration-700 ease-out"
+                                    className="absolute bottom-5 lg:bottom-0 transition-transform duration-700 ease-out"
                                     style={{
-                                        bottom: 0,
-                                        left: "76%",
+                                        left: "60%",
                                         transformOrigin: "bottom left",
                                         transform: mounted
                                             ? `translateX(-50%) rotate(${targetRotate}deg) scale(${scale})`
@@ -125,18 +124,20 @@ const Hero = () => {
                 </div>
             </section>
             {/* Smooth Infinite Ticker */}
-            <div className="bg-[#3CA9FF] text-white py-3 overflow-hidden relative cursor-grab">
-                <div
-                    ref={tickerRef}
-                    className="flex whitespace-nowrap select-none"
-                    style={{ transform: "translateX(0)" }}
-                >
-                    {/* Duplicate content to enable smooth infinite scroll */}
-                    {[...tickerItems, ...tickerItems].map((text, i) => (
-                        <span key={i} className="mx-8 text-lg sm:text-xl lg:text-2xl">
-                            {text}
-                        </span>
-                    ))}
+            <div className="absolute bottom-0 left-0 overflow-hidden w-screen">
+                <div className="block lg:block bg-[#3CA9FF] text-white overflow-hidden  py-3 relative cursor-grab">
+                    <div
+                        ref={tickerRef}
+                        className="flex whitespace-nowrap select-none"
+                        style={{ transform: "translateX(0)" }}
+                    >
+                        {/* Duplicate content to enable smooth infinite scroll */}
+                        {[...tickerItems, ...tickerItems].map((text, i) => (
+                            <span key={i} className="mx-8 text-lg sm:text-xl lg:text-2xl">
+                                {text}
+                            </span>
+                        ))}
+                    </div>
                 </div>
             </div>
         </>

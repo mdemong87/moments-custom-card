@@ -20,7 +20,7 @@ export default function Category() {
         },
     ];
     return (
-        <section className="py-16 max-w-7xl mx-auto">
+        <section className="py-16 w-screen">
             <div className="text-center text-[#333333] font-bold mb-12">
                 <h2 className="text-5xl mb-3">
                     Turn Meaningful Moments <br />into Stunning Cards

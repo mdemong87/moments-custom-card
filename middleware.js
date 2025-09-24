@@ -26,7 +26,7 @@ export default async function middleware(req) {
 
 
     // Protected routes
-    const protectedRoutes = ["/application"];
+    const protectedRoutes = ["/application", '/deshboard'];
     const isProtected = protectedRoutes.some(route => path.startsWith(route));
 
 

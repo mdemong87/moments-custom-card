@@ -27,7 +27,7 @@ export default function Info() {
         },
     ];
     return (
-        <section className="bg-[#EBF6FF] py-16 mt-12">
+        <section className="bg-[#EBF6FF] py-16 mt-12 w-screen">
             <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {cards.map((card, idx) => (
                     <div

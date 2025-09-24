@@ -1,9 +1,9 @@
-import Development from "@/app/componnent/Development";
+import ContactForm from "@/app/componnent/Contact";
 
 const ContactPagte = () => {
     return (
         <div className="">
-            <Development />
+            <ContactForm />
         </div>
     )
 }

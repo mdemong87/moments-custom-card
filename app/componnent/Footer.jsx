@@ -7,7 +7,7 @@ import footerlogo from "../../public/footerlogo.png";
 
 const Footer = () => {
     return (
-        <footer className="bg-white border-0 border-t border-gray-200 h-fit z-20 relative">
+        <footer className="bg-white border-0 border-t border-gray-200 h-fit z-20 relative w-scrren">
             <Image src={footerlogo} alt="footer-logo" className="hidden md:block w-screen h-[92%] opacity-5 absolute top-0 left-0 z-10" />
 
             <div className="px-2 md:px-7 lg:px-12 grid grid-cols-4 items-start justify-center gap-5 my-10 z-20">
