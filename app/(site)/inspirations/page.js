@@ -1,9 +1,11 @@
-import Development from "@/app/componnent/Development";
+import Carousel from "@/app/componnent/Carousel";
+import Testimonial from "@/app/componnent/Testimonial";
 
 const About = () => {
     return (
         <div className="">
-            <Development />
+            <Carousel />
+            <Testimonial />
         </div>
     )
 }

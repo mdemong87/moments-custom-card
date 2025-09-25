@@ -25,7 +25,6 @@ export default function ProfilePage() {
     const fetching = useCallback(async (id, token) => {
         try {
             const response = await MakeGet(`api/profile/${id}`, token);
-            console.log(response);
 
             setname(response?.data?.user?.name);
             setemail(response?.data?.user?.email);
@@ -46,8 +45,6 @@ export default function ProfilePage() {
         fetching(id, token);
 
     }, []);
-
-
 
 
 
@@ -79,9 +76,11 @@ export default function ProfilePage() {
 
     };
 
+
+
     return (
         <div className="flex justify-center items-center">
-            <div className="w-full max-w-full bg-white rounded-2xl shadow-lg p-6">
+            <div className="w-full">
 
                 <div className="flex items-center justify-between">
                     <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
@@ -104,12 +103,7 @@ export default function ProfilePage() {
                 {
                     fetchloading ? (
                         // Skeleton Loading
-                        <div className="space-y-4 animate-pulse">
-                            <div className="h-10 bg-gray-200 rounded"></div>
-                            <div className="h-10 bg-gray-200 rounded"></div>
-                            <div className="h-10 bg-gray-200 rounded"></div>
-                            <div className="h-10 bg-gray-200 rounded"></div>
-                        </div>
+                        <ProfileSkleton />
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-5">
                             {/* Name */}
@@ -145,7 +139,7 @@ export default function ProfilePage() {
                                     type="tel"
                                     name="phone"
                                     disabled={!isedit}
-                                    value={phone}
+                                    value={phone && phone != null ? phone : ""}
                                     onChange={(e) => { setphone(e.target.value) }}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 />
@@ -156,7 +150,7 @@ export default function ProfilePage() {
                                 <label className="block text-gray-700 mb-1">Address</label>
                                 <textarea
                                     name="address"
-                                    value={address}
+                                    value={address && address != null ? address : ""}
                                     disabled={!isedit}
                                     onChange={(e) => { setaddress(e.target.value) }}
                                     rows="6"
@@ -187,6 +181,35 @@ export default function ProfilePage() {
 
 
             </div>
-        </div>
+        </div >
     );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const ProfileSkleton = () => {
+    return (
+        <div className="space-y-4 animate-pulse">
+            <div className="h-12 bg-gray-200 rounded"></div>
+            <div className="h-12 bg-gray-200 rounded"></div>
+            <div className="h-12 bg-gray-200 rounded"></div>
+            <div className="h-40 bg-gray-200 rounded"></div>
+            <div className="flex justify-end">
+                <div className="h-12 w-32 bg-gray-200 rounded"></div>
+            </div>
+        </div>
+    )
 }

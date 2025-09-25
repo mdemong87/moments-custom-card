@@ -3,6 +3,7 @@
 import logingandsignupmakepost from "@/utilis/requestrespose/logingandsignupmakepost";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import SpinLoader from "./SpingLoader";
 
 export default function ContactForm() {
 
@@ -24,6 +25,9 @@ export default function ContactForm() {
         if (name && email && mes) {
 
             setisloading(true);
+
+            console.log({ name, email, sub, mes });
+
 
             const response = await logingandsignupmakepost('api/contact', { name, email, sub, mes });
 
@@ -74,6 +78,7 @@ export default function ContactForm() {
                             Name <span className="text-red-500">*</span>
                         </label>
                         <input
+                            value={name}
                             onChange={(e) => { setname(e.target.value) }}
                             type="text"
                             placeholder="Name"
@@ -87,6 +92,7 @@ export default function ContactForm() {
                             Email <span className="text-red-500">*</span>
                         </label>
                         <input
+                            value={email}
                             onChange={(e) => { setemail(e.target.value) }}
                             type="email"
                             placeholder="Email"
@@ -100,6 +106,7 @@ export default function ContactForm() {
                             Subject
                         </label>
                         <input
+                            value={sub}
                             onChange={(e) => { setsub(e.target.value) }}
                             type="text"
                             placeholder="Subject"
@@ -113,6 +120,7 @@ export default function ContactForm() {
                             Message <span className="text-red-500">*</span>
                         </label>
                         <textarea
+                            value={mes}
                             onChange={(e) => { setmes(e.target.value) }}
                             placeholder="Message"
                             rows="4"
@@ -124,11 +132,10 @@ export default function ContactForm() {
                     <button disabled={isloading}
                         onClick={() => { handleSubmit() }}
                         type="submit"
-                        className="w-full bg-sky-400 hover:bg-blue-600 text-white py-3 rounded-md font-semibold tracking-wide shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex items-center gap-2 justify-center"
+                        className="w-full bg-sky-400 hover:bg-sky-600 text-white py-3 rounded-md font-semibold tracking-wide shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex items-center gap-2 justify-center"
                     >
                         {
-                            isloading && <div className="w-[20px] h-[20px] rounded-full border-b-2 border-l-2 bordergray-50 animate-spin">
-                            </div>
+                            isloading && <SpinLoader />
                         }
 
 

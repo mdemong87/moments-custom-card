@@ -84,7 +84,7 @@ const HeaderAuth = ({ isOpen, setisOpen }) => {
                                             </div>
                                         </div>
 
-                                        <Link href={`${loginUser === "Admin" ? "/deshboard/admin" : "/deshboard/customer"}`} className="text-gray-600 text-md font-semibold hover:bg-gray-200 rounded-md p-2 flex items-center gap-2">
+                                        <Link href={`${loginUser?.role === "Admin" ? "/deshboard/admin" : "/deshboard/customer"}`} className="text-gray-600 text-md font-semibold hover:bg-gray-200 rounded-md p-2 flex items-center gap-2">
                                             <MdDashboard className="text-xl" />
                                             <span>Deshboard</span>
                                         </Link>
@@ -113,8 +113,17 @@ const HeaderAuth = ({ isOpen, setisOpen }) => {
                         }
                     </div>
                 ) : (
-                    <div className="flex items-center gap-3 h-full text-gray-500">
-                        <Link href={'/signin'} className="bg-sky-200 px-2 py-1 rounded-md text-gray-600 font-semibold text-md cursor-pointer">Login</Link>
+                    <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 h-full text-gray-500">
+                            <Link href={'/signin'} className="bg-sky-200 px-2 py-1 rounded-md text-gray-600 font-semibold text-md cursor-pointer">Login</Link>
+                        </div>
+                        {
+                            isOpen ? (
+                                <ImCross onClick={() => { setisOpen(false) }} className="block lg:hidden text-2xl ml-1 cursor-pointer hover:rotate-180 transition-all duration-300 text-gray-700" />
+                            ) : (
+                                <FaBars onClick={() => { setisOpen(true) }} className="block lg:hidden text-3xl ml-1 cursor-pointer text-gray-700" />
+                            )
+                        }
                     </div>
                 )
             }

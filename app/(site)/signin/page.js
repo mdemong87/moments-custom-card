@@ -6,6 +6,7 @@ import useLoadingStore from "../../../store/useLoadingStore";
 import setCookie from "../../../utilis/helper/cookie/setcookie";
 import logingandsignupmakepost from "../../../utilis/requestrespose/logingandsignupmakepost";
 
+import SpinLoader from "@/app/componnent/SpingLoader";
 import useLogedUserStore from "@/store/useLogedUser";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -94,8 +95,7 @@ const Signin = () => {
                     >
 
                         {
-                            isLoading && <div className="w-[20px] h-[20px] rounded-full border-b-3 border-l-3 bordergray-50 animate-spin">
-                            </div>
+                            isLoading && <SpinLoader />
                         }
 
 

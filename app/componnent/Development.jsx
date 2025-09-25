@@ -7,7 +7,7 @@ const Development = () => {
     const router = useRouter();
 
     return (
-        <div className="text-black h-[60vh] flex items-center justify-center">
+        <div className="text-black h-[90vh] flex items-center justify-center">
             <div className="shadow-xl px-10 py-7 rounded-md border border-gray-300">
                 <h2 className="text-2xl">This page is Under Development</h2>
 

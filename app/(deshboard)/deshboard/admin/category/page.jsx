@@ -1,4 +1,5 @@
 "use client";
+import SpinLoader from "@/app/componnent/SpingLoader";
 import useLoadingStore from "@/store/useLoadingStore";
 import getId from "@/utilis/helper/cookie/getid";
 import getCookie from "@/utilis/helper/cookie/gettooken";
@@ -89,10 +90,8 @@ export default function ProfilePage() {
     /*************** handle delete  **************/
     const handleDelect = async (id) => {
         try {
+            setfetchloading(true);
             const response = await MakeDelete(`api/categories/${id}`, token);
-
-
-            console.log(response);
 
             if (response?.success) {
                 toast.success(response?.message);
@@ -113,8 +112,8 @@ export default function ProfilePage() {
 
 
     return (
-        <div className="flex justify-center items-center pb-6">
-            <div className="w-full max-w-full bg-white rounded-2xl shadow-lg p-6">
+        <div className="w-full">
+            <div className="w-full">
 
                 <div className="flex items-center justify-between">
                     <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
@@ -175,12 +174,11 @@ export default function ProfilePage() {
                                 <div className="w-full flex justify-end">
                                     <button
                                         type="submit"
-                                        className="w-fit px-3 bg-sky-400 text-white py-2 rounded-lg hover:bg-sky-600 transition flex items-center justify-center gap-2"
+                                        className="w-fit px-3 bg-sky-400 text-white py-2 rounded-lg hover:bg-sky-600 cursor-pointer transition flex items-center justify-center gap-2"
                                     >
 
                                         {
-                                            isLoading && <div className="w-[20px] h-[20px] rounded-full border-b-3 border-l-3 bordergray-50 animate-spin">
-                                            </div>
+                                            isLoading && <SpinLoader />
                                         }
 
                                         Add Category
@@ -189,7 +187,7 @@ export default function ProfilePage() {
                             </form>
                             <div>
                                 <h1 className="text-2xl font-bold text-gray-800 mb-6 text-left">
-                                    Added Category
+                                    Added Category : <span>{data?.categories?.length}</span>
                                 </h1>
                                 <div>
                                     <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -201,7 +199,7 @@ export default function ProfilePage() {
                                                 <button className="bg-red-700 p-1 text-white rounded-full absolute top-0 right-0 cursor-pointer z-40" onClick={() => { handleDelect(cat?.id) }}>
                                                     <MdDeleteOutline />
                                                 </button>
-                                                <div className="relative w-full h-64">
+                                                <div className="relative w-full h-56">
                                                     <Image
                                                         width={1000}
                                                         height={1000}

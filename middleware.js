@@ -30,11 +30,22 @@ export default async function middleware(req) {
     const isProtected = protectedRoutes.some(route => path.startsWith(route));
 
 
-    console.log(decoded);
 
     // If not logged in but trying to access protected routes
     if (!decoded && isProtected) {
-        return NextResponse.redirect(new URL("/signin", req.nextUrl));
+
+        const res = NextResponse.redirect(new URL("/signin", req.nextUrl));
+
+        // Clear cookies correctly on the response
+        ["id", "role", "token", "name"].forEach(cookieName => {
+            res.cookies.set(cookieName, "", {
+                path: "/",
+                maxAge: 0, // delete cookie
+            });
+        });
+
+        return res;
+
     }
 
     // Role-based access

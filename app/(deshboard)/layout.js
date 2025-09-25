@@ -1,15 +1,17 @@
 'use client'
 
 import usedeshboardsidebercontroller from "@/store/deshboardsidebercontroller";
+import useLoadingStore from "@/store/useLoadingStore";
 import useLogedUserStore from "@/store/useLogedUser";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 import setCookie from "@/utilis/helper/cookie/setcookie";
 import MakePost from "@/utilis/requestrespose/post";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { IoMdSettings } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { toast, ToastContainer } from "react-toastify";
+import DeshboardNavigation from "../componnent/Deshboardnavigation";
+import SpinLoader from "../componnent/SpingLoader";
 
 const Deshboardlayout = ({ children }) => {
 
@@ -17,14 +19,7 @@ const Deshboardlayout = ({ children }) => {
     const router = useRouter();
     const { loginUser, setLoginUser } = useLogedUserStore();
     const { isSideberOpen, setisSideberOpen } = usedeshboardsidebercontroller();
-
-
-
-
-
-
-
-    console.log(isSideberOpen);
+    const { isLoading, setLoading } = useLoadingStore();
 
 
 
@@ -32,18 +27,21 @@ const Deshboardlayout = ({ children }) => {
     /*************** handle logout funciton is here ******************/
     const handlelogout = async () => {
 
+        setLoading(true);
+
         const response = await MakePost('api/auth/logout', {}, token);
 
         if (response.success) {
-
             setCookie("token", '', 1);
             setCookie("id", '', 1)
             setCookie("name", '', 1);
             setCookie("role", '', 1);
             setLoginUser({ name: null, token: null, role: null });
+            setLoading(false);
             router.push('/signin');
             toast.success(response.message);
         } else {
+            setLoading(false);
             toast.error("Somethign went Wrong");
         }
 
@@ -66,40 +64,20 @@ const Deshboardlayout = ({ children }) => {
                     </div>
 
 
-                    {
-                        loginUser?.role == "Admin" ? (
-
-                            <div className="flex flex-col items-start lg:items-center gap-4 lg:gap-2 text-gray-500 mt-3 w-full">
-                                <Link className="font-semibold text-md text-nowrap py-3 px-2 rounded-md lg:px-4 lg:py-3 hover:bg-sky-100 w-full" href={'/deshboard/admin'}>Deshboard</Link>
-                                <Link className="font-semibold text-md text-nowrap py-3 px-2 rounded-md lg:px-4 lg:py-3 hover:bg-sky-100 w-full" href={'/deshboard/admin/orders'}>All Orders</Link>
-                                <Link className="font-semibold text-md text-nowrap py-3 px-2 rounded-md lg:px-4 lg:py-3 hover:bg-sky-100 w-full" href={'/deshboard/admin/category'}>Add Category</Link>
-                                <Link className="font-semibold text-md text-nowrap py-3 px-2 rounded-md lg:px-4 lg:py-3 hover:bg-sky-100 w-full" href={'/deshboard/admin/product'}>Add Product</Link>
-                                <Link className="font-semibold text-md text-nowrap py-3 px-2 rounded-md lg:px-4 lg:py-3 hover:bg-sky-100 w-full" href={'/deshboard/admin/contact'}>Contact</Link>
-                                <Link className="font-semibold text-md text-nowrap py-3 px-2 rounded-md lg:px-4 lg:py-3 hover:bg-sky-100 w-full" href={'/deshboard/profile'}>Profile</Link>
-
-                            </div>
+                    <DeshboardNavigation loginUser={loginUser} />
 
 
-                        ) : (
-
-                            <div className="flex flex-col items-start lg:items-center gap-4 lg:gap-2 text-gray-500 mt-3 w-full">
-                                <Link className="font-semibold text-md text-nowrap py-3 px-2 rounded-md lg:px-4 lg:py-3 hover:bg-sky-100 w-full" href={'/deshboard/customer'}>Deshboard</Link>
-                                <Link className="font-semibold text-md text-nowrap py-3 px-2 rounded-md lg:px-4 lg:py-3 hover:bg-sky-100 w-full" href={'/deshboard/customer/orders'}>My Orders</Link>
-                                <Link className="font-semibold text-md text-nowrap py-3 px-2 rounded-md lg:px-4 lg:py-3 hover:bg-sky-100 w-full" href={'/deshboard/profile'}>Profile</Link>
-                            </div>
-
-                        )
-                    }
-
-
-
-
-
-
-                    <button onClick={() => { handlelogout() }} className="bg-sky-400 text-white w-[90%] text-center py-2 rounded-md absolute bottom-24 left-3 cursor-pointer">Log out</button>
+                    <button onClick={() => { handlelogout() }} className="bg-sky-400 text-white w-[90%] text-center py-2 rounded-md absolute bottom-24 left-3 cursor-pointer flex items-center justify-center gap-2">
+                        {
+                            isLoading && <SpinLoader />
+                        }
+                        Log out
+                    </button>
                 </div>
-                <div className="px-6 w-full h-fit pt-6 pl-6 lg:pl-[270px]">
-                    {children}
+                <div className="px-6 w-full h-fit pt-6 pl-6 lg:pl-[270px] min-h-screen h-fit pb-6">
+                    <div className=" bg-white rounded-2xl shadow-lg p-6 w-full max-w-full">
+                        {children}
+                    </div>
                 </div>
             </div>
             <ToastContainer />
