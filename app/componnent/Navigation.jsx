@@ -14,6 +14,12 @@ const Navigation = ({ isOpen, setisOpen }) => {
             link: "/"
         },
         {
+            name: "About",
+            nested: false,
+            sub: [],
+            link: "/about"
+        },
+        {
             name: "Shop",
             nested: false,
             sub: [],

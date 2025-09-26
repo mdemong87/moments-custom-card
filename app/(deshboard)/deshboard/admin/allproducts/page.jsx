@@ -2,13 +2,10 @@
 import useLoadingStore from "@/store/useLoadingStore";
 import getId from "@/utilis/helper/cookie/getid";
 import getCookie from "@/utilis/helper/cookie/gettooken";
-import MakeDelete from "@/utilis/requestrespose/delete";
 import MakeGet from "@/utilis/requestrespose/get";
-import MakePost from "@/utilis/requestrespose/post";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { toast } from "react-toastify";
 
 
 
@@ -47,68 +44,6 @@ export default function AllProducts() {
     }, []);
 
 
-
-
-
-    /************** handle profile update function here` ******************/
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        setLoading(true);
-
-        const passdata = {
-            name,
-            description: des,
-            image,
-        }
-
-
-        const response = await MakePost(`api/categories`, passdata, token);
-
-        if (response?.success) {
-            toast.success(response?.message);
-            setname('');
-            setimage('');
-            setdes('');
-            fetching(id, token);
-        } else {
-            toast.error('Something went Wrong');
-        }
-
-        setLoading(false);
-
-    };
-
-
-
-
-
-
-    /*************** handle delete  **************/
-    const handleDelect = async (id) => {
-        try {
-            setfetchloading(true);
-            const response = await MakeDelete(`api/categories/${id}`, token);
-
-            if (response?.success) {
-                toast.success(response?.message);
-                fetching(id, token);
-            } else {
-                toast.error("Something Went Wrong");
-            }
-
-            setfetchloading(false);
-        } catch (error) {
-            console.error("Error fetching profile:", error);
-            setfetchloading(false);
-        }
-    }
-
-
-    console.log(data?.data);
-
-
-
     if (fetchloading) return <SkeletonLoader />
 
 
@@ -140,7 +75,7 @@ export default function AllProducts() {
                                         </div>
                                         <div className="p-6">
                                             <h3 className="text-2xl font-semibold mb-2 text-[#333333] line-clamp-1">{cat?.name}</h3>
-                                            <p className="text-gray-600 line-clamp-3">{cat?.description}</p>
+                                            <p className="text-gray-600 line-clamp-3">{cat?.short_description}</p>
                                         </div>
                                     </Link>
                                 ))}

@@ -10,7 +10,7 @@ import { useCallback, useEffect, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import SpinLoader from "./SpingLoader";
 
 const Two = () => {
@@ -76,11 +76,19 @@ const Two = () => {
 
     /********** handle next function **********/
     const handleNext = () => {
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-            setrander(3);
-        }, 900);
+
+        if (productName && productType && productPrice > 0 && productShortDescription && productCategory && productThumbnail) {
+            setLoading(true);
+            setTimeout(() => {
+                setLoading(false);
+                setrander(3);
+            }, 900);
+        } else {
+            toast.warn("Please Fill Up All Required Fileds");
+        }
+
+
+
     }
 
 
@@ -206,7 +214,7 @@ const Two = () => {
                     <div className="col-span-1 md:col-span-4">
                         <div className="w-full border border-gray-300 rounded-md px-4 py-3 sticky top-[100px]">
                             <div>
-                                <label className="block text-gray-700 mb-1">Product Thumbnail</label>
+                                <label className="block text-gray-700 mb-1">Product Thumbnail <span className="text-red-500 text-xl">*</span></label>
                                 <label htmlFor="thamnail_image">
                                     <div className="w-full h-[180px] bg-gray-100 roundede-md flex items-center justify-center cursor-pointer relative">
 
