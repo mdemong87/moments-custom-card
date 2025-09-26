@@ -92,15 +92,15 @@ const Hero = () => {
                     <div className="w-full lg:w-1/2 flex justify-center items-center relative h-[40vw] md:h-[25vw] lg:h-[420px]">
                         {cards.map((src, index) => {
                             const isLast = index === cards.length - 1;
-                            const targetRotate = isLast ? 0 : -(cards.length - 1 - index) * 8;
+                            const targetRotate = isLast ? 0 : -(cards.length - 1 - index) * 13;
                             const step = typeof window !== "undefined" && window.innerWidth < 640 ? 0.03 : 0.05;
-                            const scale = 1 - ((cards.length - 1 - index) * step);
+                            // const scale = 1 - ((cards.length - 1 - index) * step);
+                            const scale = 1 - ((cards.length - 1 + index) * .2 * step);
                             return (
                                 <div
                                     key={index}
-                                    className="absolute bottom-5 lg:bottom-0 transition-transform duration-700 ease-out"
+                                    className="absolute bottom-5 left-[65%] lg:left-[70%] xl:left-[75%] lg:bottom-0 transition-transform duration-700 ease-out"
                                     style={{
-                                        left: "60%",
                                         transformOrigin: "bottom left",
                                         transform: mounted
                                             ? `translateX(-50%) rotate(${targetRotate}deg) scale(${scale})`
@@ -113,7 +113,7 @@ const Hero = () => {
                                             src={src}
                                             alt={`Card ${index + 1}`}
                                             fill
-                                            className="rounded-xl shadow-2xl object-contain"
+                                            className="rounded-xl object-contain"
                                             unoptimized
                                         />
                                     </div>

@@ -7,6 +7,7 @@ const MakePost = async (endpoint, data, token) => {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`,
+                "Accept": "application/json"
             },
             body: JSON.stringify(data),
         });

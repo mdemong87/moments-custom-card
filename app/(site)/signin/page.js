@@ -28,7 +28,6 @@ const Signin = () => {
             setLoading(true);
             const response = await logingandsignupmakepost("api/login", { email, password });
 
-
             if (response) {
                 setCookie("token", response?.data?.token, 1);
                 setCookie("id", response?.data?.user?.id, 1)

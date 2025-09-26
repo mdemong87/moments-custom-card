@@ -40,7 +40,6 @@
     background: rgb(235, 235, 235);
     justify-content: center;
     align-items: center;
-    cursor: pointer;
 }
 
 .icons {
@@ -56,5 +55,4 @@
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
 }

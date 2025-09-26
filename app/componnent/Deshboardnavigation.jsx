@@ -23,6 +23,12 @@ const DeshboardNavigation = ({ loginUser }) => {
             link: "/deshboard/admin/orders"
         },
         {
+            name: "All Products",
+            nested: false,
+            sub: [],
+            link: "/deshboard/admin/allproducts"
+        },
+        {
             name: "Add Category",
             nested: false,
             sub: [],

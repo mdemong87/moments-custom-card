@@ -1,21 +1,22 @@
 'use client'
 
-import useLoadingStore from "@/store/useLoadingStore";
 import useProductUploadStore from "@/store/useProductUploadStore";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 import handleFileChange from "@/utilis/helper/handlefilechange";
+import handleFileChangeMultipul from "@/utilis/helper/handlefilechangemultipul";
 import MakeGet from "@/utilis/requestrespose/get";
-import MakePost from "@/utilis/requestrespose/post";
+import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa6";
-import { toast, ToastContainer } from "react-toastify";
+import { RxCross2 } from "react-icons/rx";
+import { ToastContainer } from "react-toastify";
 import SpinLoader from "./SpingLoader";
 
 const Two = () => {
 
     const token = getCookie();
-    const { isLoading, setLoading } = useLoadingStore();
+    const [isLoading, setLoading] = useState(false);
     const [data, setdata] = useState(null);
     const {
         rander, setrander,
@@ -26,9 +27,11 @@ const Two = () => {
         productShortDescription, setproductShortDescription,
         productofferPrice, setproductofferPrice,
         productCategory, setproductCategory,
+        productCategoryName, setproductCategoryName,
         productTags, setproductTags,
         productStatus, setproductStatus,
         productThumbnail, setproductThumbnail,
+        productSingleImage, setproductSingleImage,
         productImages, setproductImages,
         layerBaseCard, setlayerBaseCard,
         layerSkinTone, setlayerSkinTone,
@@ -62,55 +65,23 @@ const Two = () => {
 
 
 
+    /************* Handle Preview Image gallery Removed *****************/
+    const handleRemove = (index) => {
+        // Create a new array without the clicked item
+        const updatedImages = productImages?.filter((_, i) => i !== index);
+        setproductImages(updatedImages);
+    };
 
-    /************* add new Product functionality *************/
-    const addNewProduct = async (e) => {
-        e.preventDefault();
+
+
+    /********** handle next function **********/
+    const handleNext = () => {
         setLoading(true);
-        try {
-
-            const productState = {
-                rander,
-                productType,
-                productName,
-                productPrice,
-                productDescription,
-                productShortDescription,
-                productofferPrice,
-                productCategory,
-                productTags,
-                productStatus,
-                productThumbnail,
-                productImages,
-                layerBaseCard,
-                layerSkinTone,
-                layerHair,
-                layerNose,
-                layerEyes,
-                layerMouth,
-                layerDress,
-                layerCrown,
-                layerBeard,
-            };
-
-
-            const response = await MakePost(`api/products`, productState, token);
-            console.log(response);
-            if (response?.success) {
-                toast.success(response?.message);
-                setrander(null);
-                fetching(token);
-            } else {
-                toast.error(response?.message);
-            }
-        } catch (error) {
-            console.error("Error fetching profile:", error);
-        } finally {
+        setTimeout(() => {
             setLoading(false);
-        }
+            setrander(3);
+        }, 900);
     }
-
-
 
 
 
@@ -122,7 +93,7 @@ const Two = () => {
 
                         {/* Name */}
                         <div>
-                            <label className="block text-gray-700 mb-1">Name</label>
+                            <label className="block text-gray-700 mb-1">Name <span className="text-red-500 text-xl">*</span></label>
                             <input
                                 type="text"
                                 name="name"
@@ -135,7 +106,7 @@ const Two = () => {
 
                         {/* Type */}
                         <div>
-                            <label className="block text-gray-700 mb-1">Type</label>
+                            <label className="block text-gray-700 mb-1">Type <span className="text-red-500 text-xl">*</span></label>
                             <input
                                 disabled
                                 type="text"
@@ -149,7 +120,7 @@ const Two = () => {
 
                         {/* Price */}
                         <div>
-                            <label className="block text-gray-700 mb-1">Price</label>
+                            <label className="block text-gray-700 mb-1">Price <span className="text-red-500 text-xl">*</span></label>
                             <input
                                 type="number"
                                 name="price"
@@ -173,7 +144,7 @@ const Two = () => {
 
                         {/* Category */}
                         <div>
-                            <label className="block text-gray-700 mb-1">Category</label>
+                            <label className="block text-gray-700 mb-1">Category <span className="text-red-500 text-xl">*</span></label>
                             <select
                                 name="status"
                                 value={productCategory}
@@ -184,7 +155,7 @@ const Two = () => {
                                 {
                                     data?.map((item, index) => {
                                         return (
-                                            <option key={index} value={item?.id}>{item?.name}</option>
+                                            <option key={index} value={JSON.stringify({ id: item?.id, name: item?.name })}>{item?.name}</option>
                                         )
                                     })
                                 }
@@ -201,15 +172,15 @@ const Two = () => {
                                 onChange={(e) => { setproductStatus(e.target.value) }}
                                 className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             >
-                                <option value="Publish">Publish</option>
-                                <option value="Draft">Draft</option>
+                                <option value={true}>Publish</option>
+                                <option value={false}>Draft</option>
                             </select>
                         </div>
 
 
                         {/* Short Description */}
                         <div>
-                            <label className="block text-gray-700 mb-1">Short Description</label>
+                            <label className="block text-gray-700 mb-1">Short Description <span className="text-red-500 text-xl">*</span></label>
                             <textarea
                                 name="short_description"
                                 value={productShortDescription}
@@ -237,8 +208,18 @@ const Two = () => {
                             <div>
                                 <label className="block text-gray-700 mb-1">Product Thumbnail</label>
                                 <label htmlFor="thamnail_image">
-                                    <div className="w-full h-[180px] bg-gray-100 roundede-md flex items-center justify-center cursor-pointer">
-                                        <CiCirclePlus className="text-8xl text-gray-300" />
+                                    <div className="w-full h-[180px] bg-gray-100 roundede-md flex items-center justify-center cursor-pointer relative">
+
+                                        {productThumbnail != null ? (
+                                            <Image src={productThumbnail} alt="Thumbnail_Image" width={1000} height={1000} className="absloute w-full h-full top-0 left-0 object-cover rounded-md border border-gray-200" />
+                                        ) : (
+                                            <CiCirclePlus className="text-8xl text-gray-300" />
+                                        )}
+
+
+
+
+
                                     </div>
                                 </label>
                                 <input onChange={(e) => { handleFileChange(e, setproductThumbnail) }}
@@ -251,51 +232,74 @@ const Two = () => {
                             </div>
 
                             <div className="mt-6">
-                                <label className="block text-gray-700 mb-1">Image Gallery</label>
+                                <label className="block text-gray-700 mb-1">Image Gallerys:
+                                    <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{productImages?.length}</span>
+                                </label>
 
-                                <div className="w-full min-h-[220px] max-h-[300px] bg-gray-100 rounded-md p-2 flex flex-wrap gap-2 overflow-y-auto">
-                                    {/* Upload Button */}
-                                    <label htmlFor="image_taker">
-                                        <div
-                                            className="w-[50px] h-[50px] border border-gray-200 rounded-md flex items-center justify-center cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
-                                        >
-                                            <FaPlus className="text-lg text-gray-500" />
-                                        </div>
-                                    </label>
-                                    <input
-                                        onChange={(e) => { handleFileChange(e, setproductImages) }}
-                                        id="image_taker"
-                                        type="file"
-                                        className="hidden"
-                                        multiple
-                                        accept=" image/png, image/jpeg, image/jpg"
+                                <div className="w-full min-h-[220px] max-h-[300px] bg-gray-100 rounded-md p-2 overflow-y-scroll no-scrollbar">
 
-                                    />
 
-                                    {/* Image Previews */}
-                                    {/* {[].map((src, idx) => (
-                                        <div key={idx} className="relative w-[50px] h-[50px]">
-                                            <Image
-                                                src={src}
-                                                alt={`Preview ${idx}`}
-                                                fill
-                                                className="object-cover rounded-md"
-                                            />
-                                        </div>
-                                    ))} */}
+                                    <div className="flex flex-wrap gap-2">
+                                        {/* Image Previews */}
+                                        {productImages?.map((src, idx) => (
+                                            <div key={idx} className="relative w-[65px] h-[65px] border-gray-200 rounded-md">
+                                                <Image
+                                                    src={src}
+                                                    alt={`Preview ${idx}`}
+                                                    fill
+                                                    className="object-cover rounded-md border-gray-200"
+                                                />
+                                                <div onClick={() => { handleRemove(idx) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
+                                                    <RxCross2 className="text-whtie text-xs" />
+                                                </div>
+                                            </div>
+                                        ))}
+
+
+                                        {/* Upload Button */}
+                                        <label htmlFor="image_taker">
+                                            <div
+                                                className="w-[65px] h-[65px] border border-gray-200 rounded-md flex items-center justify-center cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
+                                            >
+                                                <FaPlus className="text-xl text-gray-500" />
+                                            </div>
+                                        </label>
+                                        <input
+                                            onChange={(e) => { handleFileChangeMultipul(e, setproductImages, productImages) }}
+                                            id="image_taker"
+                                            type="file"
+                                            className="hidden"
+                                            multiple
+                                            accept=" image/png, image/jpeg, image/jpg"
+
+                                        />
+                                    </div>
+
+
+
+
+
                                 </div>
                             </div>
 
 
 
                             {/* Submit */}
-                            <div className="flex justify-start mt-6">
-                                <button onClick={(e) => { addNewProduct(e) }}
+                            <div className="flex justify-start gap-3 mt-6">
+
+                                <button onClick={() => { setrander(1) }}
+                                    type="submit"
+                                    className="bg-gray-400 text-white px-6 py-2 rounded-lg hover:bg-sky-600 transition cursor-pointer"
+                                >
+                                    Back
+                                </button>
+
+                                <button onClick={() => { handleNext() }}
                                     type="submit"
                                     className="bg-sky-400 text-white px-6 py-2 rounded-lg hover:bg-sky-600 transition cursor-pointer flex items-center justify-center gap-2"
                                 >
                                     {isLoading && <SpinLoader />}
-                                    Add Product
+                                    Next
                                 </button>
                             </div>
 
@@ -304,7 +308,7 @@ const Two = () => {
                 </div>
             </div>
             <ToastContainer />
-        </div>
+        </div >
     );
 
 
