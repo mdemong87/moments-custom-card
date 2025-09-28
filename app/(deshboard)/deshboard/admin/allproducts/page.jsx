@@ -46,6 +46,8 @@ export default function AllProducts() {
 
     if (fetchloading) return <SkeletonLoader />
 
+    console.log(data);
+
 
     return (
         <div className="w-full">

@@ -66,10 +66,10 @@ const Two = () => {
 
 
     /************* Handle Preview Image gallery Removed *****************/
-    const handleRemove = (index) => {
+    const handleRemove = (index, images, seterImages) => {
         // Create a new array without the clicked item
-        const updatedImages = productImages?.filter((_, i) => i !== index);
-        setproductImages(updatedImages);
+        const updatedImages = images?.filter((_, i) => i !== index);
+        seterImages(updatedImages);
     };
 
 
@@ -77,17 +77,33 @@ const Two = () => {
     /********** handle next function **********/
     const handleNext = () => {
 
-        if (productName && productType && productPrice > 0 && productShortDescription && productCategory && productThumbnail) {
-            setLoading(true);
-            setTimeout(() => {
-                setLoading(false);
-                setrander(3);
-            }, 900);
+        if (productType === "Customizable") {
+
+            if (productName && productPrice > 0 && productShortDescription && productCategory && productThumbnail && productImages?.length > 0 && layerBaseCard?.length > 0 && layerSkinTone?.length > 0 && layerHair?.length > 0 && layerNose?.length > 0 && layerEyes?.length > 0 && layerMouth?.length > 0 && layerDress?.length > 0 && layerCrown?.length > 0 && layerBeard?.length > 0) {
+                setLoading(true);
+                setTimeout(() => {
+                    setLoading(false);
+                    setrander(3);
+                }, 900);
+            } else {
+                toast.warn("Please Fill Up All Required Fileds");
+            }
+
+
         } else {
-            toast.warn("Please Fill Up All Required Fileds");
+
+
+            if (productName && productPrice > 0 && productShortDescription && productCategory && productThumbnail && productImages?.length > 0) {
+                setLoading(true);
+                setTimeout(() => {
+                    setLoading(false);
+                    setrander(3);
+                }, 900);
+            } else {
+                toast.warn("Please Fill Up All Required Fileds");
+            }
+
         }
-
-
 
     }
 
@@ -210,6 +226,472 @@ const Two = () => {
                             ></textarea>
                         </div>
 
+
+
+
+
+
+                        {/* for customizable product */}
+
+                        {
+                            productType === 'Customizable' && (
+                                <>
+                                    <div className="mt-6">
+                                        <label className="block text-gray-700 mb-1">Base Card:
+                                            <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{layerBaseCard?.length}</span> <span className="text-red-500 text-xl">*</span>
+                                        </label>
+
+                                        <div className="w-full min-h-[170px] max-h-[200px] bg-gray-100 rounded-md p-2 overflow-y-scroll no-scrollbar">
+
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {/* Image Previews */}
+                                                {layerBaseCard?.map((src, idx) => (
+                                                    <div key={idx} className="relative w-[54px] h-[54px] border-gray-200 rounded-md">
+                                                        <Image
+                                                            src={src}
+                                                            alt={`Preview ${idx}`}
+                                                            fill
+                                                            className="object-cover rounded-md border-gray-200"
+                                                        />
+                                                        <div onClick={() => { handleRemove(idx, layerBaseCard, setlayerBaseCard) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
+                                                            <RxCross2 className="text-whtie text-xs" />
+                                                        </div>
+                                                    </div>
+                                                ))}
+
+
+                                                {/* Upload Button */}
+                                                <label htmlFor="image_taker_base_card">
+                                                    <div
+                                                        className="w-[54px] h-[54px] border border-gray-200 rounded-md flex items-center justify-center cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
+                                                    >
+                                                        <FaPlus className="text-xl text-gray-500" />
+                                                    </div>
+                                                </label>
+                                                <input
+                                                    onChange={(e) => { handleFileChangeMultipul(e, setlayerBaseCard, layerBaseCard) }}
+                                                    id="image_taker_base_card"
+                                                    type="file"
+                                                    className="hidden"
+                                                    multiple
+                                                    accept=" image/png, image/jpeg, image/jpg"
+
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div className="mt-6">
+                                        <label className="block text-gray-700 mb-1">Skin Tone Card:
+                                            <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{layerSkinTone?.length}</span> <span className="text-red-500 text-xl">*</span>
+                                        </label>
+
+                                        <div className="w-full min-h-[170px] max-h-[200px] bg-gray-100 rounded-md p-2 overflow-y-scroll no-scrollbar">
+
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {/* Image Previews */}
+                                                {layerSkinTone?.map((src, idx) => (
+                                                    <div key={idx} className="relative w-[54px] h-[54px] border-gray-200 rounded-md">
+                                                        <Image
+                                                            src={src}
+                                                            alt={`Preview ${idx}`}
+                                                            fill
+                                                            className="object-cover rounded-md border-gray-200"
+                                                        />
+                                                        <div onClick={() => { handleRemove(idx, layerSkinTone, setlayerSkinTone) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
+                                                            <RxCross2 className="text-whtie text-xs" />
+                                                        </div>
+                                                    </div>
+                                                ))}
+
+
+                                                {/* Upload Button */}
+                                                <label htmlFor="image_taker_skin_tone">
+                                                    <div
+                                                        className="w-[54px] h-[54px] border border-gray-200 rounded-md flex items-center justify-center cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
+                                                    >
+                                                        <FaPlus className="text-xl text-gray-500" />
+                                                    </div>
+                                                </label>
+                                                <input
+                                                    onChange={(e) => { handleFileChangeMultipul(e, setlayerSkinTone, layerSkinTone) }}
+                                                    id="image_taker_skin_tone"
+                                                    type="file"
+                                                    className="hidden"
+                                                    multiple
+                                                    accept=" image/png, image/jpeg, image/jpg"
+
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div className="mt-6">
+                                        <label className="block text-gray-700 mb-1">Hair Card:
+                                            <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{layerHair?.length}</span> <span className="text-red-500 text-xl">*</span>
+                                        </label>
+
+                                        <div className="w-full min-h-[170px] max-h-[200px] bg-gray-100 rounded-md p-2 overflow-y-scroll no-scrollbar">
+
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {/* Image Previews */}
+                                                {layerHair?.map((src, idx) => (
+                                                    <div key={idx} className="relative w-[54px] h-[54px] border-gray-200 rounded-md">
+                                                        <Image
+                                                            src={src}
+                                                            alt={`Preview ${idx}`}
+                                                            fill
+                                                            className="object-cover rounded-md border-gray-200"
+                                                        />
+                                                        <div onClick={() => { handleRemove(idx, layerHair, setlayerHair) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
+                                                            <RxCross2 className="text-whtie text-xs" />
+                                                        </div>
+                                                    </div>
+                                                ))}
+
+
+                                                {/* Upload Button */}
+                                                <label htmlFor="image_taker_Hair">
+                                                    <div
+                                                        className="w-[54px] h-[54px] border border-gray-200 rounded-md flex items-center justify-center cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
+                                                    >
+                                                        <FaPlus className="text-xl text-gray-500" />
+                                                    </div>
+                                                </label>
+                                                <input
+                                                    onChange={(e) => { handleFileChangeMultipul(e, setlayerHair, layerHair) }}
+                                                    id="image_taker_Hair"
+                                                    type="file"
+                                                    className="hidden"
+                                                    multiple
+                                                    accept=" image/png, image/jpeg, image/jpg"
+
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div className="mt-6">
+                                        <label className="block text-gray-700 mb-1">Nose Card:
+                                            <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{layerNose?.length}</span> <span className="text-red-500 text-xl">*</span>
+                                        </label>
+
+                                        <div className="w-full min-h-[170px] max-h-[200px] bg-gray-100 rounded-md p-2 overflow-y-scroll no-scrollbar">
+
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {/* Image Previews */}
+                                                {layerNose?.map((src, idx) => (
+                                                    <div key={idx} className="relative w-[54px] h-[54px] border-gray-200 rounded-md">
+                                                        <Image
+                                                            src={src}
+                                                            alt={`Preview ${idx}`}
+                                                            fill
+                                                            className="object-cover rounded-md border-gray-200"
+                                                        />
+                                                        <div onClick={() => { handleRemove(idx, layerNose, setlayerNose) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
+                                                            <RxCross2 className="text-whtie text-xs" />
+                                                        </div>
+                                                    </div>
+                                                ))}
+
+
+                                                {/* Upload Button */}
+                                                <label htmlFor="image_taker_nose_card">
+                                                    <div
+                                                        className="w-[54px] h-[54px] border border-gray-200 rounded-md flex items-center justify-center cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
+                                                    >
+                                                        <FaPlus className="text-xl text-gray-500" />
+                                                    </div>
+                                                </label>
+                                                <input
+                                                    onChange={(e) => { handleFileChangeMultipul(e, setlayerNose, layerNose) }}
+                                                    id="image_taker_nose_card"
+                                                    type="file"
+                                                    className="hidden"
+                                                    multiple
+                                                    accept=" image/png, image/jpeg, image/jpg"
+
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div className="mt-6">
+                                        <label className="block text-gray-700 mb-1">Eyes Card:
+                                            <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{layerEyes?.length}</span> <span className="text-red-500 text-xl">*</span>
+                                        </label>
+
+                                        <div className="w-full min-h-[170px] max-h-[200px] bg-gray-100 rounded-md p-2 overflow-y-scroll no-scrollbar">
+
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {/* Image Previews */}
+                                                {layerEyes?.map((src, idx) => (
+                                                    <div key={idx} className="relative w-[54px] h-[54px] border-gray-200 rounded-md">
+                                                        <Image
+                                                            src={src}
+                                                            alt={`Preview ${idx}`}
+                                                            fill
+                                                            className="object-cover rounded-md border-gray-200"
+                                                        />
+                                                        <div onClick={() => { handleRemove(idx, layerEyes, setlayerEyes) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
+                                                            <RxCross2 className="text-whtie text-xs" />
+                                                        </div>
+                                                    </div>
+                                                ))}
+
+
+                                                {/* Upload Button */}
+                                                <label htmlFor="image_taker_Eyes_card">
+                                                    <div
+                                                        className="w-[54px] h-[54px] border border-gray-200 rounded-md flex items-center justify-center cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
+                                                    >
+                                                        <FaPlus className="text-xl text-gray-500" />
+                                                    </div>
+                                                </label>
+                                                <input
+                                                    onChange={(e) => { handleFileChangeMultipul(e, setlayerEyes, layerEyes) }}
+                                                    id="image_taker_Eyes_card"
+                                                    type="file"
+                                                    className="hidden"
+                                                    multiple
+                                                    accept=" image/png, image/jpeg, image/jpg"
+
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div className="mt-6">
+                                        <label className="block text-gray-700 mb-1">Mouth Card:
+                                            <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{layerMouth?.length}</span> <span className="text-red-500 text-xl">*</span>
+                                        </label>
+
+                                        <div className="w-full min-h-[170px] max-h-[200px] bg-gray-100 rounded-md p-2 overflow-y-scroll no-scrollbar">
+
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {/* Image Previews */}
+                                                {layerMouth?.map((src, idx) => (
+                                                    <div key={idx} className="relative w-[54px] h-[54px] border-gray-200 rounded-md">
+                                                        <Image
+                                                            src={src}
+                                                            alt={`Preview ${idx}`}
+                                                            fill
+                                                            className="object-cover rounded-md border-gray-200"
+                                                        />
+                                                        <div onClick={() => { handleRemove(idx, layerMouth, setlayerMouth) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
+                                                            <RxCross2 className="text-whtie text-xs" />
+                                                        </div>
+                                                    </div>
+                                                ))}
+
+
+                                                {/* Upload Button */}
+                                                <label htmlFor="image_taker_mouth_Card">
+                                                    <div
+                                                        className="w-[54px] h-[54px] border border-gray-200 rounded-md flex items-center justify-center cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
+                                                    >
+                                                        <FaPlus className="text-xl text-gray-500" />
+                                                    </div>
+                                                </label>
+                                                <input
+                                                    onChange={(e) => { handleFileChangeMultipul(e, setlayerMouth, layerMouth) }}
+                                                    id="image_taker_mouth_Card"
+                                                    type="file"
+                                                    className="hidden"
+                                                    multiple
+                                                    accept=" image/png, image/jpeg, image/jpg"
+
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                    <div className="mt-6">
+                                        <label className="block text-gray-700 mb-1">Dress Card:
+                                            <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{layerDress?.length}</span> <span className="text-red-500 text-xl">*</span>
+                                        </label>
+
+                                        <div className="w-full min-h-[170px] max-h-[200px] bg-gray-100 rounded-md p-2 overflow-y-scroll no-scrollbar">
+
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {/* Image Previews */}
+                                                {layerDress?.map((src, idx) => (
+                                                    <div key={idx} className="relative w-[54px] h-[54px] border-gray-200 rounded-md">
+                                                        <Image
+                                                            src={src}
+                                                            alt={`Preview ${idx}`}
+                                                            fill
+                                                            className="object-cover rounded-md border-gray-200"
+                                                        />
+                                                        <div onClick={() => { handleRemove(idx, layerDress, setlayerDress) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
+                                                            <RxCross2 className="text-whtie text-xs" />
+                                                        </div>
+                                                    </div>
+                                                ))}
+
+
+                                                {/* Upload Button */}
+                                                <label htmlFor="image_taker_dress_card">
+                                                    <div
+                                                        className="w-[54px] h-[54px] border border-gray-200 rounded-md flex items-center justify-center cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
+                                                    >
+                                                        <FaPlus className="text-xl text-gray-500" />
+                                                    </div>
+                                                </label>
+                                                <input
+                                                    onChange={(e) => { handleFileChangeMultipul(e, setlayerDress, layerDress) }}
+                                                    id="image_taker_dress_card"
+                                                    type="file"
+                                                    className="hidden"
+                                                    multiple
+                                                    accept=" image/png, image/jpeg, image/jpg"
+
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div className="mt-6">
+                                        <label className="block text-gray-700 mb-1">Crown Card:
+                                            <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{layerCrown?.length}</span> <span className="text-red-500 text-xl">*</span>
+                                        </label>
+
+                                        <div className="w-full min-h-[170px] max-h-[200px] bg-gray-100 rounded-md p-2 overflow-y-scroll no-scrollbar">
+
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {/* Image Previews */}
+                                                {layerCrown?.map((src, idx) => (
+                                                    <div key={idx} className="relative w-[54px] h-[54px] border-gray-200 rounded-md">
+                                                        <Image
+                                                            src={src}
+                                                            alt={`Preview ${idx}`}
+                                                            fill
+                                                            className="object-cover rounded-md border-gray-200"
+                                                        />
+                                                        <div onClick={() => { handleRemove(idx, layerCrown, setlayerCrown) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
+                                                            <RxCross2 className="text-whtie text-xs" />
+                                                        </div>
+                                                    </div>
+                                                ))}
+
+
+                                                {/* Upload Button */}
+                                                <label htmlFor="image_taker_crown_card">
+                                                    <div
+                                                        className="w-[54px] h-[54px] border border-gray-200 rounded-md flex items-center justify-center cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
+                                                    >
+                                                        <FaPlus className="text-xl text-gray-500" />
+                                                    </div>
+                                                </label>
+                                                <input
+                                                    onChange={(e) => { handleFileChangeMultipul(e, setlayerCrown, layerCrown) }}
+                                                    id="image_taker_crown_card"
+                                                    type="file"
+                                                    className="hidden"
+                                                    multiple
+                                                    accept=" image/png, image/jpeg, image/jpg"
+
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div className="mt-6">
+                                        <label className="block text-gray-700 mb-1">Beard Card:
+                                            <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{layerBeard?.length}</span> <span className="text-red-500 text-xl">*</span>
+                                        </label>
+
+                                        <div className="w-full min-h-[170px] max-h-[200px] bg-gray-100 rounded-md p-2 overflow-y-scroll no-scrollbar">
+
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {/* Image Previews */}
+                                                {layerBeard?.map((src, idx) => (
+                                                    <div key={idx} className="relative w-[54px] h-[54px] border-gray-200 rounded-md">
+                                                        <Image
+                                                            src={src}
+                                                            alt={`Preview ${idx}`}
+                                                            fill
+                                                            className="object-cover rounded-md border-gray-200"
+                                                        />
+                                                        <div onClick={() => { handleRemove(idx, layerBeard, setlayerBeard) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
+                                                            <RxCross2 className="text-whtie text-xs" />
+                                                        </div>
+                                                    </div>
+                                                ))}
+
+
+                                                {/* Upload Button */}
+                                                <label htmlFor="image_taker_bread_card">
+                                                    <div
+                                                        className="w-[54px] h-[54px] border border-gray-200 rounded-md flex items-center justify-center cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
+                                                    >
+                                                        <FaPlus className="text-xl text-gray-500" />
+                                                    </div>
+                                                </label>
+                                                <input
+                                                    onChange={(e) => { handleFileChangeMultipul(e, setlayerBeard, layerBeard) }}
+                                                    id="image_taker_bread_card"
+                                                    type="file"
+                                                    className="hidden"
+                                                    multiple
+                                                    accept=" image/png, image/jpeg, image/jpg"
+
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </>
+
+                            )
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
                     <div className="col-span-1 md:col-span-4">
                         <div className="w-full border border-gray-300 rounded-md px-4 py-3 sticky top-[100px]">
@@ -241,7 +723,7 @@ const Two = () => {
 
                             <div className="mt-6">
                                 <label className="block text-gray-700 mb-1">Image Gallerys:
-                                    <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{productImages?.length}</span>
+                                    <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{productImages?.length}</span> <span className="text-red-500 text-xl">*</span>
                                 </label>
 
                                 <div className="w-full min-h-[220px] max-h-[300px] bg-gray-100 rounded-md p-2 overflow-y-scroll no-scrollbar">
@@ -257,7 +739,7 @@ const Two = () => {
                                                     fill
                                                     className="object-cover rounded-md border-gray-200"
                                                 />
-                                                <div onClick={() => { handleRemove(idx) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
+                                                <div onClick={() => { handleRemove(idx, productImages, setproductImages) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
                                                     <RxCross2 className="text-whtie text-xs" />
                                                 </div>
                                             </div>

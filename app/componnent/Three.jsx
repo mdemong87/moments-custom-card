@@ -59,7 +59,7 @@ const Three = () => {
                 slug: null,
                 type: productType,
                 price: Number(productPrice),
-                status: productStatus,
+                status: Boolean(productStatus),
                 offer_price: Number(productofferPrice),
                 category_id: Number(JSON.parse(productCategory)?.id),
                 short_description: productShortDescription,
@@ -74,7 +74,7 @@ const Three = () => {
                 slug: null,
                 type: productType,
                 price: Number(productPrice),
-                status: productStatus,
+                status: Boolean(productStatus),
                 offer_price: Number(productofferPrice),
                 category_id: Number(JSON.parse(productCategory)?.id),
                 short_description: productShortDescription,
@@ -93,13 +93,19 @@ const Three = () => {
             };
 
 
+
             const response = await MakePost(`api/products`, productType === "Simple" ? productStateSimple : productStateCustomizable, token);
 
 
 
             if (response?.success) {
                 toast.success(response?.message);
-                router.push('/deshboard/admin/allproducts');
+
+                setTimeout(() => {
+                    router.push('/deshboard/admin/allproducts');
+                }, 1000);
+
+
             } else {
                 toast.error("Something Went Wrong");
             }
@@ -165,7 +171,7 @@ const Three = () => {
                                     alt={`Gallery ${idx}`}
                                     width={80}
                                     height={80}
-                                    className="rounded-md border"
+                                    className="rounded-md border h-[60px] w-[80px]"
                                 />
                             ))}
                         </div>
@@ -187,7 +193,7 @@ const Three = () => {
                             alt="Thumbnail"
                             width={1000}
                             height={1000}
-                            className="w-full rounded-md border"
+                            className="w-full rounded-md border border-gray-200 h-[150px] object-cover"
                         />
                     ) : (
                         <p>No Thumbnail</p>
@@ -195,6 +201,234 @@ const Three = () => {
 
 
                 </div>
+
+
+
+
+
+                {
+                    productType === "Customizable" && (
+                        <>
+
+
+                            <div className="w-full col-span-4">
+                                <h3 className="font-bold mt-4 mb-2">Base Cards</h3>
+                                {productImages?.length > 0 ? (
+                                    <div className="flex flex-wrap gap-2">
+                                        {layerBaseCard.map((img, idx) => (
+                                            <Image
+                                                key={idx}
+                                                src={img}
+                                                alt={`Gallery ${idx}`}
+                                                width={80}
+                                                height={80}
+                                                className="rounded-md border h-[60px] w-[80px]"
+                                            />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No Gallery Images</p>
+                                )}
+                            </div>
+
+
+
+                            <div className="w-full col-span-4">
+                                <h3 className="font-bold mt-4 mb-2">Skin Tone</h3>
+                                {productImages?.length > 0 ? (
+                                    <div className="flex flex-wrap gap-2">
+                                        {layerSkinTone.map((img, idx) => (
+                                            <Image
+                                                key={idx}
+                                                src={img}
+                                                alt={`Gallery ${idx}`}
+                                                width={80}
+                                                height={80}
+                                                className="rounded-md border h-[60px] w-[80px]"
+                                            />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No Gallery Images</p>
+                                )}
+                            </div>
+
+
+
+                            <div className="w-full col-span-4">
+                                <h3 className="font-bold mt-4 mb-2">Hair Layer</h3>
+                                {layerHair?.length > 0 ? (
+                                    <div className="flex flex-wrap gap-2">
+                                        {layerSkinTone.map((img, idx) => (
+                                            <Image
+                                                key={idx}
+                                                src={img}
+                                                alt={`Gallery ${idx}`}
+                                                width={80}
+                                                height={80}
+                                                className="rounded-md border h-[60px] w-[80px]"
+                                            />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No Gallery Images</p>
+                                )}
+                            </div>
+
+
+
+                            <div className="w-full col-span-4">
+                                <h3 className="font-bold mt-4 mb-2">Nose Layer</h3>
+                                {layerNose?.length > 0 ? (
+                                    <div className="flex flex-wrap gap-2">
+                                        {layerSkinTone.map((img, idx) => (
+                                            <Image
+                                                key={idx}
+                                                src={img}
+                                                alt={`Gallery ${idx}`}
+                                                width={80}
+                                                height={80}
+                                                className="rounded-md border h-[60px] w-[80px]"
+                                            />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No Gallery Images</p>
+                                )}
+                            </div>
+
+
+
+
+                            <div className="w-full col-span-4">
+                                <h3 className="font-bold mt-4 mb-2">Eyes Layer</h3>
+                                {layerEyes?.length > 0 ? (
+                                    <div className="flex flex-wrap gap-2">
+                                        {layerSkinTone.map((img, idx) => (
+                                            <Image
+                                                key={idx}
+                                                src={img}
+                                                alt={`Gallery ${idx}`}
+                                                width={80}
+                                                height={80}
+                                                className="rounded-md border h-[60px] w-[80px]"
+                                            />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No Gallery Images</p>
+                                )}
+                            </div>
+
+
+
+
+                            <div className="w-full col-span-4">
+                                <h3 className="font-bold mt-4 mb-2">Mouth Layer</h3>
+                                {layerMouth?.length > 0 ? (
+                                    <div className="flex flex-wrap gap-2">
+                                        {layerSkinTone.map((img, idx) => (
+                                            <Image
+                                                key={idx}
+                                                src={img}
+                                                alt={`Gallery ${idx}`}
+                                                width={80}
+                                                height={80}
+                                                className="rounded-md border h-[60px] w-[80px]"
+                                            />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No Gallery Images</p>
+                                )}
+                            </div>
+
+
+
+
+                            <div className="w-full col-span-4">
+                                <h3 className="font-bold mt-4 mb-2">Dress Layer</h3>
+                                {layerDress?.length > 0 ? (
+                                    <div className="flex flex-wrap gap-2">
+                                        {layerSkinTone.map((img, idx) => (
+                                            <Image
+                                                key={idx}
+                                                src={img}
+                                                alt={`Gallery ${idx}`}
+                                                width={80}
+                                                height={80}
+                                                className="rounded-md border h-[60px] w-[80px]"
+                                            />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No Gallery Images</p>
+                                )}
+                            </div>
+
+
+
+
+
+                            <div className="w-full col-span-4">
+                                <h3 className="font-bold mt-4 mb-2">Crown Layer</h3>
+                                {layerCrown?.length > 0 ? (
+                                    <div className="flex flex-wrap gap-2">
+                                        {layerSkinTone.map((img, idx) => (
+                                            <Image
+                                                key={idx}
+                                                src={img}
+                                                alt={`Gallery ${idx}`}
+                                                width={80}
+                                                height={80}
+                                                className="rounded-md border h-[60px] w-[80px]"
+                                            />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No Gallery Images</p>
+                                )}
+                            </div>
+
+
+
+
+
+                            <div className="w-full col-span-4">
+                                <h3 className="font-bold mt-4 mb-2">Beard Layer</h3>
+                                {layerHair?.length > 0 ? (
+                                    <div className="flex flex-wrap gap-2">
+                                        {layerBeard.map((img, idx) => (
+                                            <Image
+                                                key={idx}
+                                                src={img}
+                                                alt={`Gallery ${idx}`}
+                                                width={80}
+                                                height={80}
+                                                className="rounded-md border h-[60px] w-[80px]"
+                                            />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No Gallery Images</p>
+                                )}
+                            </div>
+
+
+
+                        </>
+                    )
+                }
+
+
+
+
+
+
+
+
+
+
             </div>
             <ToastContainer />
         </div>
