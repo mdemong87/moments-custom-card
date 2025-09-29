@@ -261,7 +261,7 @@ const Three = () => {
                                 <h3 className="font-bold mt-4 mb-2">Hair Layer</h3>
                                 {layerHair?.length > 0 ? (
                                     <div className="flex flex-wrap gap-2">
-                                        {layerSkinTone.map((img, idx) => (
+                                        {layerHair.map((img, idx) => (
                                             <Image
                                                 key={idx}
                                                 src={img}
@@ -283,7 +283,7 @@ const Three = () => {
                                 <h3 className="font-bold mt-4 mb-2">Nose Layer</h3>
                                 {layerNose?.length > 0 ? (
                                     <div className="flex flex-wrap gap-2">
-                                        {layerSkinTone.map((img, idx) => (
+                                        {layerNose.map((img, idx) => (
                                             <Image
                                                 key={idx}
                                                 src={img}
@@ -306,7 +306,7 @@ const Three = () => {
                                 <h3 className="font-bold mt-4 mb-2">Eyes Layer</h3>
                                 {layerEyes?.length > 0 ? (
                                     <div className="flex flex-wrap gap-2">
-                                        {layerSkinTone.map((img, idx) => (
+                                        {layerEyes.map((img, idx) => (
                                             <Image
                                                 key={idx}
                                                 src={img}
@@ -329,7 +329,7 @@ const Three = () => {
                                 <h3 className="font-bold mt-4 mb-2">Mouth Layer</h3>
                                 {layerMouth?.length > 0 ? (
                                     <div className="flex flex-wrap gap-2">
-                                        {layerSkinTone.map((img, idx) => (
+                                        {layerMouth.map((img, idx) => (
                                             <Image
                                                 key={idx}
                                                 src={img}
@@ -352,7 +352,7 @@ const Three = () => {
                                 <h3 className="font-bold mt-4 mb-2">Dress Layer</h3>
                                 {layerDress?.length > 0 ? (
                                     <div className="flex flex-wrap gap-2">
-                                        {layerSkinTone.map((img, idx) => (
+                                        {layerDress.map((img, idx) => (
                                             <Image
                                                 key={idx}
                                                 src={img}
@@ -376,7 +376,7 @@ const Three = () => {
                                 <h3 className="font-bold mt-4 mb-2">Crown Layer</h3>
                                 {layerCrown?.length > 0 ? (
                                     <div className="flex flex-wrap gap-2">
-                                        {layerSkinTone.map((img, idx) => (
+                                        {layerCrown.map((img, idx) => (
                                             <Image
                                                 key={idx}
                                                 src={img}
