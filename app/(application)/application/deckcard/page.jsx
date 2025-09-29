@@ -2,10 +2,10 @@
 import ApplicationSkeleton from "@/app/componnent/ApplicationSkeleton";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import CardPreview from "../../componnent/CardPreview";
-import CardSidebar from "../../componnent/CardSidebar";
-import SideController from "../../componnent/SideController";
-import ViewCard from "../../componnent/ViewCard";
+import CardPreview from "../../../componnent/CardPreview";
+import CardSidebar from "../../../componnent/CardSidebar";
+import SideController from "../../../componnent/SideController";
+import ViewCard from "../../../componnent/ViewCard";
 
 const layers = [
     "dresses", "heads", "hairstyles", "crowns",

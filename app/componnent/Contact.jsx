@@ -19,14 +19,14 @@ export default function ContactForm() {
 
 
     /****************** handle submit function here ******************/
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+
+        e.preventDefault();
 
 
         if (name && email && mes) {
 
             setisloading(true);
-
-            console.log({ name, email, sub, mes });
 
 
             const response = await logingandsignupmakepost('api/contact', { name, email, sub, mes });
@@ -130,8 +130,7 @@ export default function ContactForm() {
 
                     {/* Submit Button */}
                     <button disabled={isloading}
-                        onClick={() => { handleSubmit() }}
-                        type="submit"
+                        onClick={(e) => { handleSubmit(e) }}
                         className="w-full bg-sky-400 hover:bg-sky-600 text-white py-3 rounded-md font-semibold tracking-wide shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex items-center gap-2 justify-center"
                     >
                         {

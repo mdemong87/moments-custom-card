@@ -2,10 +2,14 @@
 import useLoadingStore from "@/store/useLoadingStore";
 import getId from "@/utilis/helper/cookie/getid";
 import getCookie from "@/utilis/helper/cookie/gettooken";
+import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
+import MakeDelete from "@/utilis/requestrespose/delete";
 import MakeGet from "@/utilis/requestrespose/get";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { MdDeleteOutline } from "react-icons/md";
 
 
 
@@ -13,6 +17,7 @@ export default function AllProducts() {
 
     const id = getId();
     const token = getCookie();
+    const router = useRouter();
     const { isLoading, setLoading } = useLoadingStore();
     const [fetchloading, setfetchloading] = useState(true);
     const [isedit, setisedit] = useState(false);
@@ -49,6 +54,24 @@ export default function AllProducts() {
     console.log(data);
 
 
+
+    /*************** hanlde delect function is here ****************/
+    async function handleDelete(id) {
+        setLoading(true);
+        const response = await MakeDelete(`api/products/${id}`, token);
+        if (response?.success) {
+            router?.push('/deshboard/admin/allproducts');
+        }
+        setLoading(false);
+    }
+
+
+
+
+
+
+
+
     return (
         <div className="w-full">
             <div className="w-full">
@@ -66,13 +89,19 @@ export default function AllProducts() {
                                         key={idx}
                                         className="text-center bg-gray-50 rounded-xl shadow-sm overflow-hidden hover:scale-102 transform transition duration-300 relative"
                                     >
-                                        <div className="relative w-full h-56">
+
+                                        <div onClick={() => { handleDelete(cat?.id) }} className="absolute top-0 right-0 text-lg rounded-full bg-red-600 text-white w-6 h-6 flex items-center justify-center z-30">
+                                            <MdDeleteOutline className="text-whtie" />
+                                        </div>
+
+
+                                        <div className="relative w-full h-56 z-20">
                                             <Image
                                                 width={1000}
                                                 height={1000}
-                                                src={cat?.image}
+                                                src={ImageLinkMaker(cat?.image)}
                                                 alt={cat?.name}
-                                                className="w-full h-full object-cover"
+                                                className="w-full h-full object-cover z-20"
                                             />
                                         </div>
                                         <div className="p-6">

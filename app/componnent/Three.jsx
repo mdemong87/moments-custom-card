@@ -93,6 +93,8 @@ const Three = () => {
             };
 
 
+            console.log(productType === "Simple" ? productStateSimple : productStateCustomizable);
+
 
             const response = await MakePost(`api/products`, productType === "Simple" ? productStateSimple : productStateCustomizable, token);
 
@@ -419,14 +421,6 @@ const Three = () => {
                         </>
                     )
                 }
-
-
-
-
-
-
-
-
 
 
             </div>

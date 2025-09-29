@@ -2,6 +2,7 @@
 
 import SingleProductSkeleton from "@/app/componnent/skelaton/SingleProductSkeleton ";
 import getCookie from "@/utilis/helper/cookie/gettooken";
+import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import MakeDelete from "@/utilis/requestrespose/delete";
 import MakeGet from "@/utilis/requestrespose/get";
 import Image from "next/image";
@@ -110,6 +111,10 @@ const SingleProduct = () => {
     }
 
 
+
+    console.log(data);
+
+
     if (fetchloading) return <SingleProductSkeleton />
 
 
@@ -153,8 +158,8 @@ const SingleProduct = () => {
                             {data?.gallery_images?.map((img, idx) => (
                                 <Image
                                     key={idx}
-                                    src={img?.url}
-                                    alt={img?.alt}
+                                    src={ImageLinkMaker(img?.url)}
+                                    alt={`Gallery ${idx}`}
                                     width={80}
                                     height={80}
                                     className="rounded-md bg-gray-200"
@@ -168,23 +173,23 @@ const SingleProduct = () => {
 
 
                     {
-                        data?.type != 'simple' && (
+                        data?.type == 'customizable' && (
 
                             <>
 
 
                                 <div className="w-full col-span-4">
                                     <h3 className="font-bold mt-4 mb-2">Base Cards</h3>
-                                    {productImages?.length > 0 ? (
+                                    {data?.customizations?.base_cards?.length > 0 ? (
                                         <div className="flex flex-wrap gap-2">
-                                            {data?.base_cards.map((img, idx) => (
+                                            {data?.customizations?.base_cards.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={img}
+                                                    src={ImageLinkMaker(img?.image)}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md border h-[60px] w-[80px]"
+                                                    className="rounded-md h-[60px] w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -197,16 +202,16 @@ const SingleProduct = () => {
 
                                 <div className="w-full col-span-4">
                                     <h3 className="font-bold mt-4 mb-2">Skin Tone</h3>
-                                    {productImages?.length > 0 ? (
+                                    {data?.customizations?.skin_tones?.length > 0 ? (
                                         <div className="flex flex-wrap gap-2">
-                                            {data?.base_cards.map((img, idx) => (
+                                            {data?.customizations?.skin_tones.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={img}
+                                                    src={ImageLinkMaker(img?.image)}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md border h-[60px] w-[80px]"
+                                                    className="rounded-md h-[60px] w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -219,16 +224,16 @@ const SingleProduct = () => {
 
                                 <div className="w-full col-span-4">
                                     <h3 className="font-bold mt-4 mb-2">Hair Layer</h3>
-                                    {layerHair?.length > 0 ? (
+                                    {data?.customizations?.hairs?.length > 0 ? (
                                         <div className="flex flex-wrap gap-2">
-                                            {data?.base_cards.map((img, idx) => (
+                                            {data?.customizations?.hairs.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={img}
+                                                    src={ImageLinkMaker(img?.image)}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md border h-[60px] w-[80px]"
+                                                    className="rounded-md h-[60px] w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -241,16 +246,16 @@ const SingleProduct = () => {
 
                                 <div className="w-full col-span-4">
                                     <h3 className="font-bold mt-4 mb-2">Nose Layer</h3>
-                                    {layerNose?.length > 0 ? (
+                                    {data?.customizations?.noses?.length > 0 ? (
                                         <div className="flex flex-wrap gap-2">
-                                            {data?.base_cards.map((img, idx) => (
+                                            {data?.customizations?.noses?.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={img}
+                                                    src={ImageLinkMaker(img?.image)}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md border h-[60px] w-[80px]"
+                                                    className="rounded-md h-[60px] w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -264,16 +269,16 @@ const SingleProduct = () => {
 
                                 <div className="w-full col-span-4">
                                     <h3 className="font-bold mt-4 mb-2">Eyes Layer</h3>
-                                    {layerEyes?.length > 0 ? (
+                                    {data?.customizations?.eyes?.length > 0 ? (
                                         <div className="flex flex-wrap gap-2">
-                                            {data?.base_cards.map((img, idx) => (
+                                            {data?.customizations?.eyes?.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={img}
+                                                    src={ImageLinkMaker(img?.image)}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md border h-[60px] w-[80px]"
+                                                    className="rounded-md h-[60px] w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -287,16 +292,16 @@ const SingleProduct = () => {
 
                                 <div className="w-full col-span-4">
                                     <h3 className="font-bold mt-4 mb-2">Mouth Layer</h3>
-                                    {layerMouth?.length > 0 ? (
+                                    {data?.customizations?.mouths?.length > 0 ? (
                                         <div className="flex flex-wrap gap-2">
-                                            {data?.base_cards.map((img, idx) => (
+                                            {data?.customizations?.mouths?.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={img}
+                                                    src={ImageLinkMaker(img?.image)}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md border h-[60px] w-[80px]"
+                                                    className="rounded-md h-[60px] w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -310,16 +315,16 @@ const SingleProduct = () => {
 
                                 <div className="w-full col-span-4">
                                     <h3 className="font-bold mt-4 mb-2">Dress Layer</h3>
-                                    {layerDress?.length > 0 ? (
+                                    {data?.customizations?.dresses?.length > 0 ? (
                                         <div className="flex flex-wrap gap-2">
-                                            {data?.base_cards.map((img, idx) => (
+                                            {data?.customizations?.dresses?.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={img}
+                                                    src={ImageLinkMaker(img?.image)}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md border h-[60px] w-[80px]"
+                                                    className="rounded-md h-[60px] w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -334,16 +339,16 @@ const SingleProduct = () => {
 
                                 <div className="w-full col-span-4">
                                     <h3 className="font-bold mt-4 mb-2">Crown Layer</h3>
-                                    {layerCrown?.length > 0 ? (
+                                    {data?.customizations?.crowns?.length > 0 ? (
                                         <div className="flex flex-wrap gap-2">
-                                            {data?.base_cards.map((img, idx) => (
+                                            {data?.customizations?.crowns?.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={img}
+                                                    src={ImageLinkMaker(img?.image)}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md border h-[60px] w-[80px]"
+                                                    className="rounded-md h-[60px] w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -358,16 +363,16 @@ const SingleProduct = () => {
 
                                 <div className="w-full col-span-4">
                                     <h3 className="font-bold mt-4 mb-2">Beard Layer</h3>
-                                    {layerHair?.length > 0 ? (
+                                    {data?.customizations?.beards?.length > 0 ? (
                                         <div className="flex flex-wrap gap-2">
-                                            {data?.base_cards.map((img, idx) => (
+                                            {data?.customizations?.beards?.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={img}
+                                                    src={ImageLinkMaker(img?.image)}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md border h-[60px] w-[80px]"
+                                                    className="rounded-md h-[60px] w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -394,7 +399,7 @@ const SingleProduct = () => {
                     <h3 className="font-bold mb-2">Thumbnail</h3>
                     {data?.image ? (
                         <Image
-                            src={data?.image}
+                            src={ImageLinkMaker(data?.image)}
                             alt="Thumbnail"
                             width={1000}
                             height={1000}

@@ -156,6 +156,15 @@ export default function ProfilePage() {
                                 </div>
 
 
+                                {
+                                    image && (
+                                        <div className="w-full flex items-center justify-start">
+                                            <Image className="border border-gray-200 rounded-lg w-[300px] h-[230px] object-cover" src={image} alt="Image" width={200} height={200} />
+                                        </div>
+                                    )
+                                }
+
+
 
                                 {/* Address */}
                                 <div>
