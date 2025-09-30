@@ -1,7 +1,8 @@
+import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import Image from "next/image";
 
 const layers = [
-  "dresses", "heads", "hairstyles", "crowns",
+  "dresses", "skin_tones", "hairs", "crowns",
   "beards", "eyes", "mouths", "noses"
 ];
 
@@ -13,18 +14,17 @@ const LayerSelector = ({ product, activeCard, selectLayer }) => (
           {layer === "heads" ? "Skin Tone" : layer.replace("_", " ")}
         </h3>
         <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-          {(product.acf?.[layer] || []).map((image, idx) => {
-            const url = image.url || image;
-            const isSelected = activeCard?.selectedLayers[layer] === url;
+          {(product?.customizations?.[layer])?.map((image, idx) => {
+            const isSelected = activeCard?.selectedLayers[layer] === ImageLinkMaker(image?.image);
             return (
               <Image
                 width={1000}
                 height={1000}
                 key={idx}
-                src={url}
+                src={ImageLinkMaker(image?.image)}
                 alt={`${layer} ${idx + 1}`}
                 className={`w-[60px] h-[80px] aspect-[4/3] object-cover cursor-pointer rounded-lg p-1 ${isSelected ? "border border-2 border-sky-500 bg-sky-200" : "border border-2 border-gray-300"}`}
-                onClick={() => selectLayer(layer, url)}
+                onClick={() => selectLayer(layer, ImageLinkMaker(image?.image))}
               />
             );
           })}

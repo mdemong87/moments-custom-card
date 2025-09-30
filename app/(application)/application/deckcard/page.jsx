@@ -1,14 +1,18 @@
 "use client";
 import ApplicationSkeleton from "@/app/componnent/ApplicationSkeleton";
+import getCookie from "@/utilis/helper/cookie/gettooken";
+import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
+import MakeGet from "@/utilis/requestrespose/get";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import CardPreview from "../../../componnent/CardPreview";
 import CardSidebar from "../../../componnent/CardSidebar";
 import SideController from "../../../componnent/SideController";
 import ViewCard from "../../../componnent/ViewCard";
 
 const layers = [
-    "dresses", "heads", "hairstyles", "crowns",
+    "dresses", "skin_tones", "hairs", "crowns",
     "beards", "eyes", "mouths", "noses"
 ];
 
@@ -20,15 +24,20 @@ const ProductCustomizer = () => {
     const [cards, setCards] = useState([]);
     const [activeCardIndex, setActiveCardIndex] = useState(0);
     const router = useRouter();
+    const token = getCookie();
 
     /************** Fetch product & load saved cards **************/
     useEffect(() => {
         const fetchProduct = async () => {
-            const res = await fetch(
-                `https://momentocardgames.com/wp-json/wc/v3/products/87?consumer_key=${process.env.NEXT_PUBLIC_WC_KEY}&consumer_secret=${process.env.NEXT_PUBLIC_WC_SECRET}`
-            );
-            const data = await res.json();
-            setProduct(data);
+            const res = await MakeGet('api/products/customizable-traditional-playing-cards-2940', token);
+
+            if (!res.success) {
+                toast.error("There was a server side Problem");
+                return;
+            }
+
+
+            setProduct(res?.data);
 
             const savedCards = localStorage.getItem("customCards");
             if (savedCards) {
@@ -37,12 +46,14 @@ const ProductCustomizer = () => {
                 return;
             }
 
-            const base = data.acf?.base_images?.[0]?.url || data.acf?.base_images?.[0];
+            const basebar = res?.data?.customizations?.base_cards?.[0];
+            const base = ImageLinkMaker(basebar?.image);
             const initialLayers = {};
             layers.forEach(layer => {
                 if (layer === "beards") return;
-                const items = data.acf?.[layer] || [];
-                if (items.length > 0) initialLayers[layer] = items[0].url || items[0];
+                const items = res?.data?.customizations?.[layer];
+                console.log(items);
+                if (items.length > 0) initialLayers[layer] = ImageLinkMaker(items[0]?.image);
             });
 
             setCards([{ baseImage: base, selectedLayers: initialLayers }]);
@@ -53,7 +64,6 @@ const ProductCustomizer = () => {
 
 
     if (!product) return <ApplicationSkeleton />;
-
     const activeCard = cards[activeCardIndex];
 
     /******* Selected Layer Image Function ********/
@@ -76,15 +86,22 @@ const ProductCustomizer = () => {
 
     /******* Add New Card Function ********/
     const addNewCard = () => {
-        const base = product.acf?.base_images?.[0]?.url || product.acf?.base_images?.[0];
-        const initialLayers = {};
+
+        const basebartwo = product?.customizations?.base_cards?.[0];
+        const baseTwo = ImageLinkMaker(basebartwo?.image);
+        const initialLayersTwo = {};
         layers.forEach(layer => {
             if (layer === "beards") return;
-            const items = product.acf?.[layer] || [];
-            if (items.length > 0) initialLayers[layer] = items[0].url || items[0];
+            const items = product?.customizations?.[layer];
+
+            console.log(items);
+
+            if (items.length > 0) initialLayersTwo[layer] = ImageLinkMaker(items[0]?.image);
         });
-        setCards([...cards, { baseImage: base, selectedLayers: initialLayers }]);
+
+        setCards([...cards, { baseImage: baseTwo, selectedLayers: initialLayersTwo }]);
         setActiveCardIndex(cards.length);
+
     };
 
     /******* Removed Card Function ********/

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const layers = [
-  "dresses", "heads", "hairstyles", "crowns",
+  "dresses", "skin_tones", "hairs", "crowns",
   "beards", "eyes", "mouths", "noses"
 ];
 
