@@ -42,6 +42,8 @@ const Two = () => {
         layerDress, setlayerDress,
         layerCrown, setlayerCrown,
         layerBeard, setlayerBeard,
+        tredingFrontBase, settredingFrontBase,
+        tredingBackBase, settredingBackBase,
     } = useProductUploadStore();
 
 
@@ -80,6 +82,20 @@ const Two = () => {
         if (productType === "Customizable") {
 
             if (productName && productPrice > 0 && productShortDescription && productCategory && productThumbnail && productImages?.length > 0 && layerBaseCard?.length > 0 && layerSkinTone?.length > 0 && layerHair?.length > 0 && layerNose?.length > 0 && layerEyes?.length > 0 && layerMouth?.length > 0 && layerDress?.length > 0 && layerCrown?.length > 0 && layerBeard?.length > 0) {
+                setLoading(true);
+                setTimeout(() => {
+                    setLoading(false);
+                    setrander(3);
+                }, 900);
+            } else {
+                toast.warn("Please Fill Up All Required Fileds");
+            }
+
+
+        } else if (productType === "Treding") {
+
+
+            if (productName && productPrice > 0 && productShortDescription && productCategory && productThumbnail && productImages?.length > 0 && tredingFrontBase?.length > 0 && tredingBackBase?.length > 0) {
                 setLoading(true);
                 setTimeout(() => {
                     setLoading(false);
@@ -679,6 +695,108 @@ const Two = () => {
 
 
 
+
+
+                        {
+                            productType === 'Treding' && (
+                                <>
+
+                                    <div className="mt-6">
+                                        <label className="block text-gray-700 mb-1">Treding Card Front Base Card:
+                                            <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{tredingFrontBase?.length}</span> <span className="text-red-500 text-xl">*</span>
+                                        </label>
+
+                                        <div className="w-full min-h-[170px] max-h-[200px] bg-gray-100 rounded-md p-2 overflow-y-scroll no-scrollbar">
+
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {/* Image Previews */}
+                                                {tredingFrontBase?.map((src, idx) => (
+                                                    <div key={idx} className="relative w-[54px] h-[54px] border-gray-200 rounded-md">
+                                                        <Image
+                                                            src={src}
+                                                            alt={`Preview ${idx}`}
+                                                            fill
+                                                            className="object-cover rounded-md border-gray-200"
+                                                        />
+                                                        <div onClick={() => { handleRemove(idx, tredingFrontBase, settredingFrontBase) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
+                                                            <RxCross2 className="text-whtie text-xs" />
+                                                        </div>
+                                                    </div>
+                                                ))}
+
+
+                                                {/* Upload Button */}
+                                                <label htmlFor="image_taker_treding_front_base_card">
+                                                    <div
+                                                        className="w-[54px] h-[54px] border border-gray-200 rounded-md flex items-center justify-center cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
+                                                    >
+                                                        <FaPlus className="text-xl text-gray-500" />
+                                                    </div>
+                                                </label>
+                                                <input
+                                                    onChange={(e) => { handleFileChangeMultipul(e, settredingFrontBase, tredingFrontBase) }}
+                                                    id="image_taker_treding_front_base_card"
+                                                    type="file"
+                                                    className="hidden"
+                                                    multiple
+                                                    accept=" image/png, image/jpeg, image/jpg"
+
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div className="mt-6">
+                                        <label className="block text-gray-700 mb-1">Treding Card Back Base Card:
+                                            <span className="px-1 py-0.5 text-sm rounded-md bg-sky-300 text-white">{tredingBackBase?.length}</span> <span className="text-red-500 text-xl">*</span>
+                                        </label>
+
+                                        <div className="w-full min-h-[170px] max-h-[200px] bg-gray-100 rounded-md p-2 overflow-y-scroll no-scrollbar">
+
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {/* Image Previews */}
+                                                {tredingBackBase?.map((src, idx) => (
+                                                    <div key={idx} className="relative w-[54px] h-[54px] border-gray-200 rounded-md">
+                                                        <Image
+                                                            src={src}
+                                                            alt={`Preview ${idx}`}
+                                                            fill
+                                                            className="object-cover rounded-md border-gray-200"
+                                                        />
+                                                        <div onClick={() => { handleRemove(idx, tredingBackBase, settredingBackBase) }} className="bg-sky-800 text-white w-4 h-4 rounded-full flex items-center justify-center absolute top-0 right-0 cursor-pointer">
+                                                            <RxCross2 className="text-whtie text-xs" />
+                                                        </div>
+                                                    </div>
+                                                ))}
+
+
+                                                {/* Upload Button */}
+                                                <label htmlFor="image_taker_treding_back_base_card">
+                                                    <div
+                                                        className="w-[54px] h-[54px] border border-gray-200 rounded-md flex items-center justify-center cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
+                                                    >
+                                                        <FaPlus className="text-xl text-gray-500" />
+                                                    </div>
+                                                </label>
+                                                <input
+                                                    onChange={(e) => { handleFileChangeMultipul(e, settredingBackBase, tredingBackBase) }}
+                                                    id="image_taker_treding_back_base_card"
+                                                    type="file"
+                                                    className="hidden"
+                                                    multiple
+                                                    accept=" image/png, image/jpeg, image/jpg"
+
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </>
+                            )
+                        }
 
 
 

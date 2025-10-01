@@ -29,7 +29,7 @@ const Navigation = ({ isOpen, setisOpen }) => {
             name: "Card Customization",
             nested: false,
             sub: [],
-            link: "/application"
+            link: "/card-customization"
         },
         {
             name: "Inspirations",

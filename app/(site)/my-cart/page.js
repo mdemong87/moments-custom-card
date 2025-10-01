@@ -15,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const MyCart = () => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
-    const { addToCart, cart, removeFromCart } = useCartStore();
+    const { addToCart, cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCartStore();
 
 
 
@@ -76,6 +76,10 @@ const MyCart = () => {
         }, 1500);
     };
 
+
+
+
+
     return (
         <main className="py-14 pb-20 bg-gray-50 h-fit">
             {isLoading && <Loading />}
@@ -115,17 +119,42 @@ const MyCart = () => {
                                     <div className="flex-1 min-w-[200px]">
                                         <p className="text-gray-700 font-semibold">{item?.productName}</p>
                                     </div>
-                                    <div className='flex gap-6'>
-                                        <p className="text-lg font-semibold text-gray-800">
-                                            {item.productQuantity}</p>
-                                        <p className="text-lg font-semibold text-gray-800">${item.productUnitPrice}</p>
-                                        <p className="text-lg font-semibold text-gray-800">${item.productQuantity * item.productUnitPrice}.00</p>
+                                    <div className='flex items-center gap-6'>
+
+
+                                        <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-md p-1 w-fit">
+                                            {/* Decrease Button */}
+                                            <button
+                                                onClick={() => { decreaseQuantity(item?.productId) }}
+                                                className="w-10 h-10 flex items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 text-2xl font-bold text-gray-600 cursor-pointer transition"
+                                            >
+                                                -
+                                            </button>
+
+                                            {/* Quantity Display */}
+                                            <span className="min-w-[22px] text-center text-xl font-semibold text-gray-800 select-none">
+                                                {item.productQuantity}
+                                            </span>
+
+                                            {/* Increase Button */}
+                                            <button
+                                                onClick={() => { increaseQuantity(item?.productId) }}
+                                                className="w-10 h-10 flex items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 text-2xl font-bold text-gray-600 transition cursor-pointer"
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+                                        <div className='bg-white border border-gray-200 rounded-md p-1 text-lg px-2 text-black flex items-center gap-2'>
+                                            <div className="bg-gray-100 rounded-md p-1 text-lg px-2 text-black">${item.productUnitPrice}</div>
+
+                                            <div className="bg-gray-100 rounded-md p-1 text-lg px-2 text-black">${item.productQuantity * item.productUnitPrice}.00</div>
+                                        </div>
                                     </div>
                                     <button
                                         onClick={() => removeFromCart(item?.productId)}
                                         className="bg-red-500 hover:bg-red-600 p-2 rounded-md text-white cursor-pointer"
                                     >
-                                        <RxCross2 className="text-xl" />
+                                        <RxCross2 className="text-2xl" />
                                     </button>
                                 </div>
                             ))

@@ -1,21 +1,26 @@
+import Image from "next/image";
+import TredingOne from "../../public/tredingOne.png";
+import TredingThree from "../../public/TredingThree.png";
+import TredingTwo from "../../public/tredingTwo.png";
+
 export default function Category() {
     const categories = [
         {
             title: "Momento Play Deck",
             description: "Classic playing cards with personalized faces and themes",
-            image: "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/traditional-deck-group.png?w=800&ssl=1",
+            image: TredingOne,
             href: "/",
         },
         {
             title: "Momento Game Deck",
             description: "Tailor-made for unique gameplay, strategy, and storytelling",
-            image: "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/game-deck-group-1.png?w=800&ssl=1",
+            image: TredingTwo,
             href: "/",
         },
         {
             title: "Momento Trading Cards",
             description: "Custom collectibles designed for creators, fans, and collectors.",
-            image: "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/trading.png?w=800&ssl=1",
+            image: TredingThree,
             href: "/",
         },
     ];
@@ -29,17 +34,17 @@ export default function Category() {
                     Explore the three types of Momento Cards
                 </span>
             </div>
-            <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="w-full max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {categories.map((cat, idx) => (
                     <div
                         key={idx}
                         className="text-center bg-white rounded-xl shadow-lg overflow-hidden hover:scale-102 transform transition duration-300"
                     >
                         <div className="relative w-full h-64">
-                            <img
+                            <Image
                                 src={cat.image}
                                 alt={cat.title}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover bg-[#d9eefd]"
                             />
                         </div>
                         <div className="p-6">

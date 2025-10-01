@@ -2,6 +2,7 @@
 
 import SingleProductSkeleton from "@/app/componnent/skelaton/SingleProductSkeleton ";
 import SpinLoader from "@/app/componnent/SpingLoader";
+import ViewCart from "@/app/componnent/ViewCart";
 import useCartStore from "@/store/useCartStore";
 import generateUserId from "@/utilis/helper/generateUserId";
 import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
@@ -59,8 +60,6 @@ const SingleProduct = () => {
         fetching(slug);
     }, []);
 
-    console.log(cart);
-
 
 
     // handle add to cart
@@ -76,11 +75,10 @@ const SingleProduct = () => {
             productQuantity: 1,
             productImage: data?.image,
         };
-        addToCart(product);
 
         setTimeout(() => {
+            addToCart(product);
             setbtnLoading(false);
-            router.push('/my-cart');
         }, 1000);
     };
 
@@ -94,32 +92,35 @@ const SingleProduct = () => {
 
 
 
+
     if (fetchloading) return <SingleProductSkeleton />
 
 
     return (
         <div className="h-fit my-8 mx-8 border border-gray-200 rounded-lg relative">
-            <div className="pb-8 items-center flex justify-between sticky top-[70px] bg-white py-4 px-8 rounded-lg">
+            <div className="pb-8 items-center flex justify-between sticky top-[70px] bg-white py-2 px-5 rounded-lg border">
                 {/* <span className="text-2xl font-bold text-gray-700">Card Overview</span> */}
-                <div className="flex justify-end gap-4 mt-3">
+                <div className="flex justify-between gap-4 mt-3 w-full">
                     <Link href={'/shop'}
                         className="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-sky-300 transition cursor-pointer flex items-center gap-1 justify-center"
                     >
                         <FaArrowLeft />
                         Back
                     </Link>
+
+                    <ViewCart />
                 </div>
             </div>
 
-            <div className="grid bg-white grid-cols-1 md:grid-cols-5 gap-8 px-8 text-gray-700 pb-8 rounded-b-lg">
+            <div className="grid bg-white grid-cols-1 md:grid-cols-5 gap-8 px-8 text-gray-700 pb-8 pt-5 rounded-b-lg">
 
                 <div className="w-full col-span-2">
                     <Image
                         src={ImageLinkMaker(data?.image)}
                         alt="Thumbnail"
-                        width={1000}
-                        height={1000}
-                        className="w-full rounded-md bg-gray-200 border border-gray-200 rounded-md"
+                        width={300}
+                        height={300}
+                        className="w-auto h-auto rounded-lg bg-gray-200 border border-gray-200 rounded-md"
                     />
                     <div className="flex flex-wrap gap-2 mt-4">
                         {data?.gallery_images?.map((img, idx) => (
@@ -149,6 +150,7 @@ const SingleProduct = () => {
                     <div>
                         <button
                             onClick={(e) => { { data?.type === "customizable" ? handleaddToCustomizable(e) : handleaddToCart(e) } }}
+                            disabled={btnLoading}
                             className="flex-1 inline-flex justify-center items-center gap-2 rounded-md bg-sky-500 text-white py-2 px-4 text-md font-semibold shadow-lg hover:brightness-105 transition cursor-pointer flex items-center justify-center gap-2"
                         >
                             {
@@ -168,7 +170,7 @@ const SingleProduct = () => {
                     <RxCross2 className="text-2xl" />
                 </div>
 
-                <div className="absolute -top-3 left-[50%] bg-sky-400 text-whtie rounded-xl flex items-center justify-center text-white cursor-pointer border border-sky-400 hover:border hover:border-white transition-all duration-300 ease-in-out hover:rotate-360 px-1 py-0">
+                <div className="absolute -top-3 left-[50%] bg-sky-400 text-whtie rounded-xl flex items-center justify-center text-white cursor-pointer border border-sky-400 hover:border hover:border-white transition-all duration-300 ease-in-out px-1 py-0">
                     {currentIndex}/{data?.gallery_images?.length}
                 </div>
 
@@ -184,9 +186,9 @@ const SingleProduct = () => {
                                     key={idx}
                                     src={ImageLinkMaker(img?.url)}
                                     alt={`Gallery ${idx}`}
-                                    width={80}
-                                    height={80}
-                                    className="rounded-md cursor-pointer w-full h-full object-contain"
+                                    width={500}
+                                    height={500}
+                                    className="rounded-md cursor-pointer w-auto h-auto object-contain"
                                 />
                             )
                         )}

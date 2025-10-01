@@ -119,9 +119,7 @@ const ProductCustomizer = () => {
                                     </div>
                                 </div>
                                 {/* color picker end */}
-
                             </div>
-
                             <ViewCard goToFinalView={goToFinalView} />
                         </div>
                     </div>

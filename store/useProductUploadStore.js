@@ -50,6 +50,12 @@ const useProductUploadStore = create((set) => ({
     setlayerBeard: (product) => set({ layerBeard: product }),
 
 
+    tredingFrontBase: [],
+    settredingFrontBase: (product) => set({ tredingFrontBase: product }),
+    tredingBackBase: [],
+    settredingBackBase: (product) => set({ tredingBackBase: product }),
+
+
 }));
 
 export default useProductUploadStore;

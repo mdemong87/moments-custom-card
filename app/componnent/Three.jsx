@@ -38,6 +38,8 @@ const Three = () => {
         layerDress,
         layerCrown,
         layerBeard,
+        tredingFrontBase,
+        tredingBackBase
     } = useProductUploadStore();
 
 
@@ -90,6 +92,8 @@ const Three = () => {
                 crowns: layerCrown,
                 base_cards: layerBaseCard,
                 beards: layerBeard,
+                TradingFront: tredingFrontBase,
+                TradingBack: tredingBackBase
             };
 
 
@@ -215,7 +219,7 @@ const Three = () => {
 
                             <div className="w-full col-span-4">
                                 <h3 className="font-bold mt-4 mb-2">Base Cards</h3>
-                                {productImages?.length > 0 ? (
+                                {layerBaseCard?.length > 0 ? (
                                     <div className="flex flex-wrap gap-2">
                                         {layerBaseCard.map((img, idx) => (
                                             <Image
@@ -237,7 +241,7 @@ const Three = () => {
 
                             <div className="w-full col-span-4">
                                 <h3 className="font-bold mt-4 mb-2">Skin Tone</h3>
-                                {productImages?.length > 0 ? (
+                                {layerSkinTone?.length > 0 ? (
                                     <div className="flex flex-wrap gap-2">
                                         {layerSkinTone.map((img, idx) => (
                                             <Image
@@ -417,6 +421,56 @@ const Three = () => {
                             </div>
 
 
+
+                        </>
+                    )
+                }
+
+
+
+                {
+                    productType === "Treding" && (
+                        <>
+
+                            <div className="w-full col-span-4">
+                                <h3 className="font-bold mt-4 mb-2">Treding Card Front Base Card</h3>
+                                {tredingFrontBase?.length > 0 ? (
+                                    <div className="flex flex-wrap gap-2">
+                                        {tredingFrontBase.map((img, idx) => (
+                                            <Image
+                                                key={idx}
+                                                src={img}
+                                                alt={`Gallery ${idx}`}
+                                                width={80}
+                                                height={80}
+                                                className="rounded-md border h-[60px] w-[80px]"
+                                            />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No Gallery Images</p>
+                                )}
+                            </div>
+
+                            <div className="w-full col-span-4">
+                                <h3 className="font-bold mt-4 mb-2">Treding Card Back Base Card</h3>
+                                {tredingBackBase?.length > 0 ? (
+                                    <div className="flex flex-wrap gap-2">
+                                        {tredingBackBase.map((img, idx) => (
+                                            <Image
+                                                key={idx}
+                                                src={img}
+                                                alt={`Gallery ${idx}`}
+                                                width={80}
+                                                height={80}
+                                                className="rounded-md border h-[60px] w-[80px]"
+                                            />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No Gallery Images</p>
+                                )}
+                            </div>
 
                         </>
                     )

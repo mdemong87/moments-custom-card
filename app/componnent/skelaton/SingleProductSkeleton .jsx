@@ -4,8 +4,9 @@ const SingleProductSkeleton = () => {
     return (
         <div className="h-fit my-8 mx-8 border border-gray-200 rounded-lg relative animate-pulse">
             {/* Header */}
-            <div className="pb-8 items-center flex justify-between sticky top-[70px] bg-white py-4 px-8 rounded-lg">
-                <div className="flex justify-end gap-4 mt-3">
+            <div className="pb-8 items-center flex justify-between sticky top-[70px] bg-white py-4 px-8 rounded-lg ">
+                <div className="flex justify-between items-center gap-4 mt-3 w-full">
+                    <div className="bg-gray-200 h-10 w-28 rounded-lg"></div>
                     <div className="bg-gray-200 h-10 w-28 rounded-lg"></div>
                 </div>
             </div>
