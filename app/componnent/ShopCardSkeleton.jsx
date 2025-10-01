@@ -3,7 +3,7 @@
 export default function ShopCardSkeleton() {
     return (
 
-        <div className="py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-8">
+        <div className="py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-8 max-w-7xl mx-auto">
             {
                 Array.from({ length: 8 }).map((_, idx) => {
                     return (

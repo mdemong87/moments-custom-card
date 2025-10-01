@@ -4,14 +4,8 @@ import { useEffect, useState } from "react";
 import { BiLeftArrowAlt } from "react-icons/bi";
 
 const layers = [
-    "dresses",
-    "heads",
-    "hairstyles",
-    "crowns",
-    "beards",
-    "eyes",
-    "mouths",
-    "noses"
+    "dresses", "skin_tones", "hairs", "crowns",
+    "beards", "eyes", "mouths", "noses"
 ];
 
 
@@ -35,7 +29,7 @@ const FinalCardsPage = () => {
     if (!cards.length) return <div>No cards found.</div>;
 
     return (
-        <div className="text-black" style={{ padding: "2rem" }}>
+        <div className="text-black max-w-7xl mx-auto" style={{ padding: "2rem" }}>
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 mb-4">
                     <button onClick={() => { router.back() }} className="border border-gray-200 bg-white p-2 rounded-md shadow-md cursor-pointer hover:bg-gray-100 transition duration-100">

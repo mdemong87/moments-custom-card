@@ -24,35 +24,12 @@ const MyCart = () => {
 
 
 
+    // calculate total price
+    const calculateTotalPrice = () => {
+        return cart.reduce((total, item) => total + item.productUnitPrice * item.productQuantity, 0);
+    };
 
 
-
-    // ✅ Demo Cart Data
-    const [myCart, setMyCart] = useState([
-        {
-            id: 1,
-            allinfo: {
-                title: 'Wedding Photography',
-                fullname: 'John Doe',
-                eventtype: 'Wedding',
-                image: 'https://via.placeholder.com/150'
-            },
-            price: 120
-        },
-        {
-            id: 2,
-            allinfo: {
-                title: 'Birthday Photography',
-                fullname: 'Jane Smith',
-                eventtype: 'Birthday',
-                image: 'https://via.placeholder.com/150'
-            },
-            price: 90
-        }
-    ]);
-
-    // ✅ Total Price Calculation
-    const totalPrice = myCart.reduce((total, item) => total + Math.round(item.price), 0);
 
     // ✅ Remove Item
     const removeItem = (index) => {
@@ -61,6 +38,8 @@ const MyCart = () => {
         setMyCart(updatedCart);
         toast.success('Item removed successfully!');
     };
+
+
 
     // ✅ Checkout Function (Demo)
     const handleCheckout = async () => {
@@ -83,7 +62,7 @@ const MyCart = () => {
     return (
         <main className="py-14 pb-20 bg-gray-50 h-fit">
             {isLoading && <Loading />}
-            <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto px-4">
                 <div className="grid grid-cols-12 gap-6">
                     {/* Cart Items Section */}
                     <div className="bg-white rounded-xl shadow-md col-span-12 lg:col-span-8 p-6">
@@ -177,14 +156,13 @@ const MyCart = () => {
                             <h3 className="text-2xl font-semibold text-gray-800 mb-4">Order Summary</h3>
                             <div className="bg-red-50 border border-red-200 p-3 rounded-md mb-6">
                                 <p className="text-sm text-gray-700">
-                                    <b className="text-red-600">Important:</b> After successful payment, you will see a
-                                    Download button for your purchases.
+                                    <b className="text-red-600">Important:</b> After successful Order, We will Contact with you very Soon.
                                 </p>
                             </div>
 
                             <div className="border-b py-2 flex justify-between text-gray-600">
                                 <span>Subtotal</span>
-                                <span>${totalPrice}.00</span>
+                                <span>${calculateTotalPrice()}.00</span>
                             </div>
                             <div className="border-b py-2 flex justify-between text-gray-600">
                                 <span>Discount</span>
@@ -192,7 +170,7 @@ const MyCart = () => {
                             </div>
                             <div className="py-2 flex justify-between text-lg font-bold text-gray-800">
                                 <span>Total</span>
-                                <span>${totalPrice}.00</span>
+                                <span>${calculateTotalPrice()}.00</span>
                             </div>
                         </div>
 

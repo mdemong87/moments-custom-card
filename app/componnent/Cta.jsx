@@ -3,7 +3,7 @@ import bgCards from "../../public/club.png"; // example bg image
 
 export default function Cta() {
     return (
-        <div className="relative py-20 max-w-7xl mx-auto my-16 rounded-2xl text-center flex flex-col justify-center items-center overflow-hidden">
+        <div className="relative py-20 max-w-7xl mx-2 xl:mx-auto my-16 rounded-2xl text-center flex flex-col justify-center items-center overflow-hidden">
             {/* Background Image */}
             <Image
                 src={bgCards}

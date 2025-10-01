@@ -73,7 +73,7 @@ const Hero = () => {
                     />
                 </div>
                 {/* Content */}
-                <div className="relative max-w-7xl mx-auto px-4 flex flex-col-reverse lg:flex-row items-center justify-center gap-10 py-16 md:py-12">
+                <div className="relative max-w-7xl mx-auto px-4 flex flex-col-reverse lg:flex-row items-center justify-center gap-10 py-16 md:py-12 translate-y-[50px] lg:translate-y-[70px]">
                     {/* Left Text */}
                     <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start space-y-6 md:space-y-4 lg:space-y-6 text-center lg:text-left">
                         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-[50px] md:leading-[60px] lg:leading-[75px] uppercase text-[#333333]">

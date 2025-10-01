@@ -11,7 +11,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { BsStars } from "react-icons/bs";
 import { FaArrowLeft } from "react-icons/fa6";
+import { FiShoppingCart } from "react-icons/fi";
 import { RiArrowLeftFill, RiArrowRightFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
 import { ToastContainer } from "react-toastify";
@@ -33,10 +35,7 @@ const SingleProduct = () => {
     const [data, setdata] = useState(null);
     const [btnLoading, setbtnLoading] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
-
     const { addToCart, cart, removeFromCart } = useCartStore();
-
-
 
 
 
@@ -97,71 +96,75 @@ const SingleProduct = () => {
 
 
     return (
-        <div className="h-fit my-8 mx-8 border border-gray-200 rounded-lg relative">
-            <div className="pb-8 items-center flex justify-between sticky top-[70px] bg-white py-2 px-5 rounded-lg border">
-                {/* <span className="text-2xl font-bold text-gray-700">Card Overview</span> */}
-                <div className="flex justify-between gap-4 mt-3 w-full">
-                    <Link href={'/shop'}
-                        className="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-sky-300 transition cursor-pointer flex items-center gap-1 justify-center"
-                    >
-                        <FaArrowLeft />
-                        Back
-                    </Link>
+        <div className="h-fit w-full max-w-7xl mx-auto my-8 mx-8 border border-gray-200 rounded-lg relative">
+            <div>
+                <div className="pb-8 items-center flex justify-between sticky top-[70px] bg-white py-2 px-5 rounded-lg border">
+                    {/* <span className="text-2xl font-bold text-gray-700">Card Overview</span> */}
+                    <div className="flex justify-between gap-4 mt-3 w-full">
+                        <Link href={'/shop'}
+                            className="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-sky-300 transition cursor-pointer flex items-center gap-1 justify-center"
+                        >
+                            <FaArrowLeft />
+                            Back
+                        </Link>
 
-                    <ViewCart />
+                        <ViewCart />
+                    </div>
                 </div>
-            </div>
 
-            <div className="grid bg-white grid-cols-1 md:grid-cols-5 gap-8 px-8 text-gray-700 pb-8 pt-5 rounded-b-lg">
+                <div className="grid bg-white grid-cols-1 md:grid-cols-5 gap-8 px-8 text-gray-700 pb-8 pt-5">
 
-                <div className="w-full col-span-2">
-                    <Image
-                        src={ImageLinkMaker(data?.image)}
-                        alt="Thumbnail"
-                        width={300}
-                        height={300}
-                        className="w-auto h-auto rounded-lg bg-gray-200 border border-gray-200 rounded-md"
-                    />
-                    <div className="flex flex-wrap gap-2 mt-4">
+                    <div className="w-full col-span-2 flex justify-center">
+                        <Image
+                            src={ImageLinkMaker(data?.image)}
+                            alt="Thumbnail"
+                            width={250}
+                            height={300}
+                            className="w-auto h-auto rounded-lg bg-gray-200 border border-gray-200 rounded-md"
+                        />
+                    </div>
+
+
+                    <div className="space-y-4 col-span-3">
+                        <p><strong>Name:</strong> {data?.name}</p>
+                        <p><strong>Type:</strong> {data?.type}</p>
+                        <p><strong>Price:</strong> ${data?.price}</p>
+                        <p><strong>Offer Price:</strong> ${data?.offer_price}</p>
+                        <p><strong>Status:</strong> {data?.status ? "Published" : "Draft"}</p>
+                        <p><strong>Category:</strong> {data?.category?.name}</p>
+                        <p className="line-clamp-2"><strong>Short Description:</strong> {data?.short_description}</p>
+
+                        <div>
+                            <button
+                                onClick={(e) => { { data?.type === "customizable" ? handleaddToCustomizable(e) : handleaddToCart(e) } }}
+                                disabled={btnLoading}
+                                className="flex-1 inline-flex justify-center items-center gap-2 rounded-md bg-sky-500 text-white py-2 px-4 text-md font-semibold shadow-lg hover:brightness-105 transition cursor-pointer flex items-center justify-center gap-2"
+                            >
+                                {
+                                    btnLoading ? <SpinLoader /> : data?.type === "customizable" ? <BsStars className="text-white text-xl" /> : <FiShoppingCart className="text-xl text-white" />
+                                }
+                                {data?.type === "customizable" ? "Customize" : "Add to Cart"}
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div className="bg-white py-2 pb-6 px-5 rounded-b-lg">
+                    <div className="flex flex-wrap gap-4 mt-4">
                         {data?.gallery_images?.map((img, idx) => (
                             <Image
                                 onClick={() => { setmodelopen(true), setCurrentIndex(idx + 1) }}
                                 key={idx}
                                 src={ImageLinkMaker(img?.url)}
                                 alt={`Gallery ${idx}`}
-                                width={80}
+                                width={70}
                                 height={80}
-                                className="rounded-md bg-gray-200 cursor-pointer"
+                                className="rounded-md bg-gray-200 cursor-pointer border border-gray-200"
                             />
                         ))}
                     </div>
                 </div>
-
-
-                <div className="space-y-4 col-span-3">
-                    <p><strong>Name:</strong> {data?.name}</p>
-                    <p><strong>Type:</strong> {data?.type}</p>
-                    <p><strong>Price:</strong> ${data?.price}</p>
-                    <p><strong>Offer Price:</strong> ${data?.offer_price}</p>
-                    <p><strong>Status:</strong> {data?.status ? "Published" : "Draft"}</p>
-                    <p><strong>Category:</strong> {data?.category?.name}</p>
-                    <p className="line-clamp-2"><strong>Short Description:</strong> {data?.short_description}</p>
-
-                    <div>
-                        <button
-                            onClick={(e) => { { data?.type === "customizable" ? handleaddToCustomizable(e) : handleaddToCart(e) } }}
-                            disabled={btnLoading}
-                            className="flex-1 inline-flex justify-center items-center gap-2 rounded-md bg-sky-500 text-white py-2 px-4 text-md font-semibold shadow-lg hover:brightness-105 transition cursor-pointer flex items-center justify-center gap-2"
-                        >
-                            {
-                                btnLoading && <SpinLoader />
-                            }
-                            {data?.type === "customizable" ? "Customize" : "Add to Cart"}
-                        </button>
-                    </div>
-
-                </div>
-
             </div>
             <ToastContainer />
 
@@ -186,8 +189,8 @@ const SingleProduct = () => {
                                     key={idx}
                                     src={ImageLinkMaker(img?.url)}
                                     alt={`Gallery ${idx}`}
-                                    width={500}
-                                    height={500}
+                                    width={250}
+                                    height={300}
                                     className="rounded-md cursor-pointer w-auto h-auto object-contain"
                                 />
                             )
@@ -204,3 +207,5 @@ const SingleProduct = () => {
 }
 
 export default SingleProduct;
+
+

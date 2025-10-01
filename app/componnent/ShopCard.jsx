@@ -2,7 +2,7 @@
 
 import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BsStars } from "react-icons/bs";
 import SpinLoader from "./SpingLoader";
@@ -10,31 +10,33 @@ import SpinLoader from "./SpingLoader";
 export default function ShopCard({ product }) {
 
 
-    console.log(product?.type === "customizable");
-
-
 
     const [btnLoading, setBtnLoading] = useState(false);
+    const router = useRouter();
 
 
 
 
     /************ add to card function is here *************/
-    const addToCart = (e, product) => {
+    const gotoLink = (e, link) => {
 
         e.preventDefault();
         setBtnLoading(true);
 
         setTimeout(() => {
             setBtnLoading(false);
+            router.push(link);
         }, 1000);
 
     }
 
 
 
+
+
+
     return (
-        <article className="max-w-xs w-full bg-white rounded-2xl shadow-lg overflow-hidden transform transition">
+        <article className="w-full bg-white rounded-2xl shadow-lg overflow-hidden transform transition">
             {/* Product Image */}
             <div className="relative h-60 w-full overflow-hidden group">
                 <Image
@@ -67,11 +69,11 @@ export default function ShopCard({ product }) {
             {/* Product Info */}
             <div className="p-4 flex flex-col gap-3">
                 <div>
-                    <Link href={`/shop/${product?.slug}`}>
-                        <h3 className="text-lg font-bold text-gray-800 line-clamp-2 underline">
+                    <div>
+                        <h3 className="text-lg font-bold text-gray-800 line-clamp-1">
                             {product?.name}
                         </h3>
-                    </Link>
+                    </div>
                     <div className="mt-2 flex items-center gap-3">
                         <div className="flex items-center gap-1">
                             <span className="text-sm font-bold text-gray-900">
@@ -89,13 +91,11 @@ export default function ShopCard({ product }) {
                 {/* Action Buttons */}
                 <div className="flex items-center justify-between">
                     <button
-                        onClick={(e) => addToCart(e, product)}
+                        onClick={(e) => { gotoLink(e, `/shop/${product?.slug}`) }}
                         className="flex-1 inline-flex justify-center items-center gap-2 rounded-md bg-sky-500 text-white py-2 px-4 text-md font-semibold shadow-lg hover:brightness-105 transition cursor-pointer flex items-center justify-center gap-2"
                     >
-                        {
-                            btnLoading && <SpinLoader />
-                        }
-                        {product?.type === "customizable" ? "Customize" : "Add to Cart"}
+                        {btnLoading && <SpinLoader />}
+                        Explore Card
                     </button>
 
                 </div>

@@ -4,7 +4,7 @@ import Right from "../../public/aboutright.png";
 export default function AboutPage() {
     return (
         <section className="bg-[#E6F0F8] py-20">
-            <div className="h-[68vh] max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div className="h-fit lg:h-[68vh] max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12">
                 {/* Left Side */}
                 <div className="flex-1 text-center lg:text-left">
                     <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-snug">
