@@ -26,6 +26,7 @@ const ProductCustomizer = () => {
     const router = useRouter();
     const token = getCookie();
 
+
     /************** Fetch product & load saved cards **************/
     useEffect(() => {
         const fetchProduct = async () => {
