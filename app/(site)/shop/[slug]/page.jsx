@@ -85,8 +85,14 @@ const SingleProduct = () => {
 
     // handle customizatio cart
     const handleaddToCustomizable = (e) => {
+
         e.preventDefault();
-        console.log('sdf');
+        setbtnLoading(true);
+
+        setTimeout(() => {
+            setbtnLoading(false);
+            router.push('/application/deckcard');
+        }, 1000);
     }
 
 
@@ -185,7 +191,6 @@ const SingleProduct = () => {
                         {data?.gallery_images?.map((img, idx) =>
                             currentIndex - 1 === idx && (
                                 <Image
-                                    onClick={() => { setmodelopen(true); setCurrentIndex(idx); }}
                                     key={idx}
                                     src={ImageLinkMaker(img?.url)}
                                     alt={`Gallery ${idx}`}
