@@ -698,7 +698,7 @@ const Two = () => {
 
 
                         {
-                            productType === 'Treding' && (
+                            productType === 'Trading' && (
                                 <>
 
                                     <div className="mt-6">
