@@ -20,7 +20,7 @@ const One = () => {
                     Customizable Deck Product
                 </div>
 
-                <div onClick={() => setproductType("Treding")} className={`border border-gray-300 px-6 py-6 rounded-md text-white text-2xl w-[260px] text-center h-[110px] flex items-center justify-center cursor-pointer ${productType === "Treding" ? "bg-sky-400" : "bg-gray-400"}`}>
+                <div onClick={() => setproductType("Trading")} className={`border border-gray-300 px-6 py-6 rounded-md text-white text-2xl w-[260px] text-center h-[110px] flex items-center justify-center cursor-pointer ${productType === "Trading" ? "bg-sky-400" : "bg-gray-400"}`}>
                     Customizable Treding Product
                 </div>
 
