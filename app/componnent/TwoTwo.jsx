@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Twos from "../../public/two.png";
 
 export default function Two() {
@@ -24,9 +25,11 @@ export default function Two() {
                     <p className="mt-6 text-xl text-gray-700">
                         At Momento Cards, we believe the best memories aren’t just made—they’re shared. Whether it’s a family game night, a team challenge, or a milestone celebration, our cards bring people together through fun, creativity, and connection.
                     </p>
-                    <button className="mt-8 inline-block px-6 py-3 bg-sky-500 text-white font-semibold rounded-sm shadow-md hover:brightness-110 transition">
-                        Shop Now
-                    </button>
+                    <div className="mt-8">
+                        <Link href={"/shop"} className="inline-block px-6 py-3 bg-sky-500 text-white font-semibold rounded-sm shadow-md hover:brightness-110 transition">
+                            Shop Now
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

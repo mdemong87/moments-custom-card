@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { BsCheck2Square } from "react-icons/bs";
 import giftImage from "../../public/gift.jpg";
 
@@ -33,9 +34,9 @@ export default function GiftSection() {
                         </ul>
 
                         {/* Button */}
-                        <button className="bg-[#3CA9FF] hover:bg-[#2f91e0] text-white font-bold uppercase px-6 py-3 rounded-lg transition">
+                        <Link href={'/shop'} className="bg-[#3CA9FF] hover:bg-[#2f91e0] text-white font-bold px-6 py-4 rounded-lg transition">
                             Customize & Gift a Deck
-                        </button>
+                        </Link>
                     </div>
                 </div>
 

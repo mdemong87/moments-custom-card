@@ -1,4 +1,5 @@
-import { FaPaintRoller, FaGamepad } from "react-icons/fa";
+import Link from "next/link";
+import { FaGamepad, FaPaintRoller } from "react-icons/fa";
 
 export default function Four() {
     return (
@@ -24,9 +25,11 @@ export default function Four() {
                 </div>
 
                 {/* CTA Button */}
-                <button className="mt-10 px-8 py-3 bg-[#00A6F4] text-white text-lg font-semibold rounded-md shadow-md hover:brightness-110 transition">
-                    Start Customizing
-                </button>
+                <div className="mt-10">
+                    <Link href="/shop" className="px-8 py-3 bg-[#00A6F4] text-white text-lg font-semibold rounded-md shadow-md hover:brightness-110 transition">
+                        Start Customizing
+                    </Link>
+                </div>
             </div>
         </section>
     );

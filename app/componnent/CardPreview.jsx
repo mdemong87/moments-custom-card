@@ -38,7 +38,9 @@ const CardPreview = ({ activeCard }) => {
                                 paddingTop: "30px"
                             }}
                         />
-                        <img
+                        <Image
+                            width={1000}
+                            height={1000}
                             src={activeCard.selectedLayers[layer]}
                             alt={`${layer}-mirrored`}
                             style={{

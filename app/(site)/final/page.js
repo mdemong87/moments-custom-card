@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BiLeftArrowAlt } from "react-icons/bi";
@@ -78,7 +79,9 @@ const FinalCardsPage = () => {
                                 card.selectedLayers[layer] && (
                                     <div key={layer}>
                                         {/* Top half */}
-                                        <img
+                                        <Image
+                                            width={1000}
+                                            height={1000}
                                             src={card.selectedLayers[layer]}
                                             alt={layer}
                                             style={{
@@ -89,11 +92,13 @@ const FinalCardsPage = () => {
                                                 width: "55%",
                                                 height: "60%",
                                                 objectFit: "contain",
-                                                paddingTop: "55px"
+                                                paddingTop: "10px"
                                             }}
                                         />
                                         {/* Bottom half mirrored */}
-                                        <img
+                                        <Image
+                                            width={1000}
+                                            height={1000}
                                             src={card.selectedLayers[layer]}
                                             alt={`${layer}-mirrored`}
                                             style={{
@@ -104,7 +109,7 @@ const FinalCardsPage = () => {
                                                 width: "55%",
                                                 height: "60%",
                                                 objectFit: "contain",
-                                                paddingTop: "55px"
+                                                paddingTop: "10px"
                                             }}
                                         />
                                     </div>

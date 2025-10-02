@@ -17,7 +17,7 @@ const CardSidebar = ({ cards, activeIndex, setActiveIndex, addCard, removeCard }
       {cards.map((card, idx) => (
         <div
           key={idx}
-          className={`w-[80px] lg:w-full relative rounded-md p-1 z-0 snap-start ${idx === activeIndex ? "border-2 border-sky-400" : "border-2 border-gray-200"}`}
+          className={`w-[80px] lg:w-full relative rounded-xl p-1 z-0 snap-start ${idx === activeIndex ? "border-2 border-sky-400" : "border-2 border-gray-200"}`}
         >
           <CardThumbnail
             card={card}

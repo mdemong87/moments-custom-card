@@ -71,7 +71,7 @@ export default function CustomizationWork() {
                     );
                 })}
             </div>
-            <Link href={'/customization'} className="mt-12 inline-block bg-[#3CA9FF] text-white py-3 px-6 rounded-md 
+            <Link href={'/shop'} className="mt-12 inline-block bg-[#3CA9FF] text-white py-3 px-6 rounded-md 
                         font-medium shadow-md hover:bg-[#FF6F3C] transition duration-300">Start Customizing now</Link>
         </section>
     );

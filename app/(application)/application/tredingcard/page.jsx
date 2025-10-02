@@ -1,4 +1,5 @@
 "use client";
+import handleFileChange from "@/utilis/helper/handlefilechange";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { HexColorPicker } from "react-colorful";
@@ -6,10 +7,6 @@ import { CiCirclePlus } from "react-icons/ci";
 import CardSidebar from "../../../componnent/CardSidebar";
 import ViewCard from "../../../componnent/ViewCard";
 
-const layers = [
-    "dresses", "heads", "hairstyles", "crowns",
-    "beards", "eyes", "mouths", "noses"
-];
 
 
 
@@ -82,7 +79,6 @@ const ProductCustomizer = () => {
                                         <label className="block text-gray-700 mb-1">Upload Image <span className="text-red-500 text-xl">*</span></label>
                                         <label htmlFor="thamnail_image">
                                             <div className="w-full h-[180px] bg-gray-100 roundede-md flex items-center justify-center cursor-pointer relative">
-
 
                                                 <CiCirclePlus className="text-8xl text-gray-300" />
 

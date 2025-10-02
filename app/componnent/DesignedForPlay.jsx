@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaCheckSquare } from "react-icons/fa";
 import CardsMerged from "../../public/three.png"; // merged right-side image
 
@@ -34,12 +35,12 @@ export default function DesignedForPlay() {
 
                     {/* Buttons */}
                     <div className="mt-8 flex gap-4">
-                        <button className="px-6 py-3 bg-sky-500 text-white font-semibold rounded-md shadow-md hover:brightness-110 transition">
+                        <Link href={"/shop"} className="px-6 py-3 bg-sky-500 text-white font-semibold rounded-md shadow-md hover:brightness-110 transition">
                             START CUSTOMIZING
-                        </button>
-                        <button className="px-6 py-3 border border-sky-500 text-sky-500 font-semibold rounded-md shadow-md hover:bg-sky-50 transition">
+                        </Link>
+                        <Link href={"/shop"} className="px-6 py-3 border border-sky-500 text-sky-500 font-semibold rounded-md shadow-md hover:bg-sky-50 transition">
                             EXPLORE PRE-MADE DECK
-                        </button>
+                        </Link>
                     </div>
                 </div>
 

@@ -21,7 +21,7 @@ export default function CustomOne() {
                             we make it simple to bring your vision to life.
                         </p>
                         <Link
-                            href="/customization"
+                            href="/shop"
                             className="inline-block bg-[#3CA9FF] text-white py-3 px-6 rounded-md 
                         font-medium shadow-md hover:bg-[#FF6F3C] transition duration-300"
                         >
@@ -39,8 +39,6 @@ export default function CustomOne() {
                             draggable={false}
                             className="rounded-xl object-cover w-full h-[400px] transform transition-transform duration-500 group-hover:scale-105"
                         />
-                        {/* Decorative gradient overlay (optional) */}
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
                     </div>
                 </div>
             </div>

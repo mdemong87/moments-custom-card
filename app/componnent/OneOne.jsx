@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Right from "../../public/aboutright.png";
 
 export default function AboutPage() {
@@ -16,9 +17,11 @@ export default function AboutPage() {
                         groups together, personalizing play, or designing collectible
                         keepsakes.
                     </p>
-                    <button className="mt-8 inline-block px-6 py-3 bg-sky-500 text-white font-semibold rounded-sm shadow-md hover:brightness-110 transition">
-                        EXPLORE CUSTOMIZATION
-                    </button>
+                    <div className="mt-8">
+                        <Link href="/shop" className="inline-block px-6 py-3 bg-sky-500 text-white font-semibold rounded-sm shadow-md hover:brightness-110 transition">
+                            EXPLORE CUSTOMIZATION
+                        </Link>
+                    </div>
                 </div>
 
                 {/* Right Side (Diamond Grid Image) */}

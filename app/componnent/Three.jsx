@@ -92,8 +92,8 @@ const Three = () => {
                 crowns: layerCrown,
                 base_cards: layerBaseCard,
                 beards: layerBeard,
-                TradingFront: tredingFrontBase,
-                TradingBack: tredingBackBase
+                trading_fronts: tredingFrontBase,
+                trading_backs: tredingBackBase
             };
 
 
