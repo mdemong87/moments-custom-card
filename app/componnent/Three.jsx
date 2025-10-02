@@ -97,6 +97,11 @@ const Three = () => {
             };
 
 
+
+
+
+
+
             console.log(productType === "Simple" ? productStateSimple : productStateCustomizable);
 
 
@@ -429,7 +434,7 @@ const Three = () => {
 
 
                 {
-                    productType === "Treding" && (
+                    productType === "Trading" && (
                         <>
 
                             <div className="w-full col-span-4">
