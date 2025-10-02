@@ -84,14 +84,20 @@ const SingleProduct = () => {
 
 
     // handle customizatio cart
-    const handleaddToCustomizable = (e) => {
+    const handleaddToCustomizable = (e, type) => {
 
         e.preventDefault();
         setbtnLoading(true);
 
         setTimeout(() => {
             setbtnLoading(false);
-            router.push('/application/deckcard');
+
+            if (type == "customizable") {
+                router.push('/application/deckcard');
+            } else {
+                router.push('/application/tradingcard');
+            }
+
         }, 1000);
     }
 
@@ -142,14 +148,14 @@ const SingleProduct = () => {
 
                         <div>
                             <button
-                                onClick={(e) => { { data?.type === "customizable" ? handleaddToCustomizable(e) : handleaddToCart(e) } }}
+                                onClick={(e) => { { data?.type === "customizable" || data?.type === "trading" ? handleaddToCustomizable(e, data?.type) : handleaddToCart(e) } }}
                                 disabled={btnLoading}
                                 className="flex-1 inline-flex justify-center items-center gap-2 rounded-md bg-sky-500 text-white py-2 px-4 text-md font-semibold shadow-lg hover:brightness-105 transition cursor-pointer flex items-center justify-center gap-2"
                             >
                                 {
                                     btnLoading ? <SpinLoader /> : data?.type === "customizable" ? <BsStars className="text-white text-xl" /> : <FiShoppingCart className="text-xl text-white" />
                                 }
-                                {data?.type === "customizable" ? "Customize" : "Add to Cart"}
+                                {data?.type === "customizable" || data?.type === "trading" ? "Customize" : "Add to Cart"}
                             </button>
                         </div>
 
