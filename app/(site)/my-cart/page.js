@@ -1,12 +1,13 @@
 'use client';
 
-import Loading from '@/app/componnent/Loading';
+import SpinLoader from '@/app/componnent/SpingLoader';
 import useCartStore from '@/store/useCartStore';
 import ImageLinkMaker from '@/utilis/helper/ImageLinkMaker';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { ImNotification } from "react-icons/im";
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import { RxCross2 } from 'react-icons/rx';
 import { ToastContainer, toast } from 'react-toastify';
@@ -43,8 +44,8 @@ const MyCart = () => {
 
     // ✅ Checkout Function (Demo)
     const handleCheckout = async () => {
-        if (!myCart.length) {
-            toast.error('Cart is empty!');
+        if (!cart.length) {
+            toast.warn('Cart is empty!');
             return;
         }
         setIsLoading(true);
@@ -61,7 +62,6 @@ const MyCart = () => {
 
     return (
         <main className="py-14 pb-20 bg-gray-50 h-fit">
-            {isLoading && <Loading />}
             <div className="max-w-7xl mx-auto px-4">
                 <div className="grid grid-cols-12 gap-6">
                     {/* Cart Items Section */}
@@ -155,8 +155,11 @@ const MyCart = () => {
                         <div>
                             <h3 className="text-2xl font-semibold text-gray-800 mb-4">Order Summary</h3>
                             <div className="bg-red-50 border border-red-200 p-3 rounded-md mb-6">
-                                <p className="text-sm text-gray-700">
-                                    <b className="text-red-600">Important:</b> After successful Order, We will Contact with you very Soon.
+                                <p className="text-sm text-gray-700 flex items-center gap-2">
+                                    <ImNotification className='text-5xl text-red-300' />
+                                    <span className='text-gray-500'>
+                                        <b className="text-red-300">Important:</b> After successful Order, We will Contact with you very Soon.
+                                    </span>
                                 </p>
                             </div>
 
@@ -176,8 +179,11 @@ const MyCart = () => {
 
                         <button
                             onClick={handleCheckout}
-                            className="mt-6 bg-sky-400 hover:bg-green-600 text-white font-bold text-lg py-3 rounded-md transition"
+                            className="mt-6 bg-sky-400 hover:bg-sky-500 text-white font-bold text-lg py-3 rounded-md transition flex items-center justify-center gap-2 cursor-pointer"
                         >
+                            {
+                                isLoading && <SpinLoader />
+                            }
                             Proceed to Checkout
                         </button>
                     </div>

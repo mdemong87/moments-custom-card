@@ -69,10 +69,13 @@ const SingleProduct = () => {
 
         const product = {
             productId: generateUserId(),
+            productSlug: data?.slug,
             productName: data?.name,
+            productType: data?.type,
             productUnitPrice: data?.price,
             productQuantity: 1,
             productImage: data?.image,
+            productDescription: data?.description,
         };
 
         setTimeout(() => {
