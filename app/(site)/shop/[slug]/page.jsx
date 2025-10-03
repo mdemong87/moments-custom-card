@@ -87,7 +87,7 @@ const SingleProduct = () => {
 
 
     // handle customizatio cart
-    const handleaddToCustomizable = (e, type) => {
+    const handleaddToCustomizable = (e, type, slug) => {
 
         e.preventDefault();
         setbtnLoading(true);
@@ -96,9 +96,9 @@ const SingleProduct = () => {
             setbtnLoading(false);
 
             if (type == "customizable") {
-                router.push('/application/deckcard');
+                router.push(`/application/deckcard/${slug}`);
             } else {
-                router.push('/application/tradingcard');
+                router.push(`/application/tradingcard/${slug}`);
             }
 
         }, 1000);
@@ -151,7 +151,7 @@ const SingleProduct = () => {
 
                         <div>
                             <button
-                                onClick={(e) => { { data?.type === "customizable" || data?.type === "trading" ? handleaddToCustomizable(e, data?.type) : handleaddToCart(e) } }}
+                                onClick={(e) => { { data?.type === "customizable" || data?.type === "trading" ? handleaddToCustomizable(e, data?.type, data?.slug) : handleaddToCart(e) } }}
                                 disabled={btnLoading}
                                 className="flex-1 inline-flex justify-center items-center gap-2 rounded-md bg-sky-500 text-white py-2 px-4 text-md font-semibold shadow-lg hover:brightness-105 transition cursor-pointer flex items-center justify-center gap-2"
                             >

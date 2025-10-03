@@ -3,13 +3,13 @@ import ApplicationSkeleton from "@/app/componnent/ApplicationSkeleton";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import MakeGet from "@/utilis/requestrespose/get";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import CardPreview from "../../../componnent/CardPreview";
-import CardSidebar from "../../../componnent/CardSidebar";
-import SideController from "../../../componnent/SideController";
-import ViewCard from "../../../componnent/ViewCard";
+import CardPreview from "../../../../componnent/CardPreview";
+import CardSidebar from "../../../../componnent/CardSidebar";
+import SideController from "../../../../componnent/SideController";
+import ViewCard from "../../../../componnent/ViewCard";
 
 const layers = [
     "dresses", "skin_tones", "hairs", "crowns",
@@ -20,6 +20,10 @@ const layers = [
 
 /**************** Main Component Here ******************/
 const ProductCustomizer = () => {
+
+
+    const { slug } = useParams();
+
     const [product, setProduct] = useState(null);
     const [cards, setCards] = useState([]);
     const [activeCardIndex, setActiveCardIndex] = useState(0);
@@ -29,8 +33,8 @@ const ProductCustomizer = () => {
 
     /************** Fetch product & load saved cards **************/
     useEffect(() => {
-        const fetchProduct = async () => {
-            const res = await MakeGet('api/products/customizable-traditional-playing-cards-2940', token);
+        const fetchProduct = async (slug) => {
+            const res = await MakeGet(`api/shop/${slug}`);
 
             if (!res.success) {
                 toast.error("There was a server side Problem");
@@ -60,8 +64,8 @@ const ProductCustomizer = () => {
             setCards([{ baseImage: base, selectedLayers: initialLayers }]);
             setActiveCardIndex(0);
         };
-        fetchProduct();
-    }, []);
+        fetchProduct(slug);
+    }, [slug]);
 
 
     if (!product) return <ApplicationSkeleton />;

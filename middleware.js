@@ -28,13 +28,14 @@ export default async function middleware(req) {
 
 
     // Protected routes
-    const protectedRoutes = ["/application", '/deshboard'];
+    const protectedRoutes = ['/deshboard'];
     const isProtected = protectedRoutes.some(route => path.startsWith(route));
 
 
 
-    // If not logged in but trying to access protected routes
-    if (!decoded && isProtected) {
+
+
+    if (!decoded) {
 
         const res = NextResponse.redirect(new URL("/signin", req.nextUrl));
 
@@ -45,7 +46,14 @@ export default async function middleware(req) {
                 maxAge: 0, // delete cookie
             });
         });
+    }
 
+
+
+    // If not logged in but trying to access protected routes
+    if (!decoded && isProtected) {
+
+        const res = NextResponse.redirect(new URL("/signin", req.nextUrl));
         return res;
 
     }

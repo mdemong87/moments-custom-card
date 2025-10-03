@@ -3,17 +3,23 @@ import TradingCardApplicationSkelaton from "@/app/componnent/TradingCardApplicat
 import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import MakeGet from "@/utilis/requestrespose/get";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { HexColorPicker } from "react-colorful";
 import { CiCirclePlus } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Rnd } from "react-rnd";
-import ViewCard from "../../../componnent/ViewCard";
+import ViewCard from "../../../../componnent/ViewCard";
 
 const fonts = ["Arial", "Poppins", "Times New Roman", "Courier New", "Comic Sans MS"];
 
 export default function ProductCustomizer() {
+
+
+    const { slug } = useParams();;
+
+
     // replace these with real image URLs or keep as keys and map to your assets
     const [frontImages, setfrontImages] = useState(null);
     const [backImages, setbackImages] = useState(null);
@@ -33,28 +39,21 @@ export default function ProductCustomizer() {
 
 
 
-
-
-
-
     const getBaseTrading = useCallback(async (slug) => {
         setfetchingDataLoading(true);
         const res = await MakeGet(`api/shop/${slug}`);
         setfrontImages(res?.data?.customizations?.trading_fronts);
         setbackImages(res?.data?.customizations?.trading_backs);
+        setBaseFront(ImageLinkMaker(res?.data?.customizations?.trading_fronts?.[0]?.image));
+        setBaseBack(ImageLinkMaker(res?.data?.customizations?.trading_backs?.[0]?.image));
         setfetchingData(res?.data);
         setfetchingDataLoading(false);
     })
 
 
     useEffect(() => {
-        getBaseTrading("customizable-momento-trading-cards-9507");
-    }, []);
-
-
-
-
-
+        getBaseTrading(slug);
+    }, [slug]);
 
 
 
@@ -141,15 +140,10 @@ export default function ProductCustomizer() {
             {/* Left Sidebar (kept simple as in your last snippet) */}
             <div className="col-span-12 lg:col-span-3 w-full h-full bg-white">
                 {/* replace this with <CardSidebar /> when available */}
-                <div className="p-3">fdsfasdf</div>
-            </div>
+                <div className="p-3 w-full h-full">
 
-            {/* Middle area (contains canvas and right-panel inside it like your original layout) */}
-            <div className="col-span-12 lg:col-span-9 h-screen w-full">
-                <div className="grid grid-cols-10 h-full mt-2 lg:mt-0">
-                    {/* Canvas column (middle) */}
-                    <div className="col-span-10 lg:col-span-6 flex items-center justify-center lg:-translate-y-[50px] w-screen lg:w-full">
-                        <div className="border border-gray-200 rounded-md bg-white w-[60%] h-[60%] relative overflow-hidden">
+                    <div className="w-full h-[83vh]">
+                        <div className="border border-gray-200 rounded-md bg-white w-3/4 h-[270px] relative overflow-hidden">
                             {/* Uploaded images (zIndex:1) - draggable & resizable */}
                             {uploads.map((img) => (
                                 <Rnd
@@ -193,7 +187,7 @@ export default function ProductCustomizer() {
                             ))}
 
                             {/* Front base (zIndex:2) */}
-                            {baseFront && (
+                            {baseFront && workingcard === "front" && (
                                 <Image
                                     src={baseFront}
                                     width={1000}
@@ -205,7 +199,137 @@ export default function ProductCustomizer() {
                             )}
 
                             {/* Back base (zIndex:2) */}
-                            {baseBack && (
+                            {baseBack && workingcard === "back" && (
+                                <Image
+                                    src={baseBack}
+                                    height={1000}
+                                    width={1000}
+                                    alt="back-base"
+                                    className="absolute inset-0 object-cover w-full h-full"
+                                    style={{ zIndex: 2, pointerEvents: "none" }}
+                                />
+                            )}
+
+                            {/* Text layers (zIndex:4) */}
+                            {/* Texts draggable */}
+                            {texts?.map((t) => (
+                                <Rnd
+
+
+                                    resizeHandleStyles={{
+                                        topLeft: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
+                                        topRight: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
+                                        bottomLeft: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
+                                        bottomRight: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
+                                    }}
+                                    style={{
+                                        border: activeText === t.id ? "2px dashed #3b82f6" : "none",
+                                        borderRadius: "4px",
+                                        padding: "0px 1px",
+                                        zIndex: 99
+                                    }}
+
+                                    key={t.id}
+                                    default={{
+                                        x: t.x,
+                                        y: t.y,
+                                        width: "fit-content", // give a default width so dragging works
+                                        height: "auto",
+                                    }}
+                                    bounds="parent"
+                                    enableResizing={false} // disable resize if you only want dragging
+                                    onClick={() => setActiveText(t.id)}
+                                    onDragStop={(e, d) => {
+                                        // update position in state
+                                        setTexts((prev) =>
+                                            prev.map((item) =>
+                                                item.id === t.id ? { ...item, x: d.x, y: d.y } : item
+                                            )
+                                        );
+                                    }}
+                                >
+                                    <div
+                                        style={{
+                                            fontSize: `${t.size}px`,
+                                            fontFamily: t.font,
+                                            color: t.color,
+                                            cursor: "move",
+                                            whiteSpace: "nowrap",
+                                            zIndex: 99
+                                        }}
+                                    >
+                                        {t.text}
+                                    </div>
+                                </Rnd>
+                            ))}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            {/* Middle area (contains canvas and right-panel inside it like your original layout) */}
+            <div className="col-span-12 lg:col-span-9 h-screen w-full">
+                <div className="grid grid-cols-10 h-full mt-2 lg:mt-0">
+                    {/* Canvas column (middle) */}
+                    <div className="col-span-10 lg:col-span-6 flex items-center justify-center lg:-translate-y-[50px] w-screen lg:w-full">
+                        <div className="border border-gray-200 rounded-md bg-white w-[390px] h-[570px] relative overflow-hidden">
+                            {/* Uploaded images (zIndex:1) - draggable & resizable */}
+                            {uploads.map((img) => (
+                                <Rnd
+
+                                    resizeHandleStyles={{
+                                        topLeft: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
+                                        topRight: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
+                                        bottomLeft: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
+                                        bottomRight: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
+                                    }}
+                                    style={{
+                                        border: activeText === img.id || activeImage === img?.id ? "2px dashed #3b82f6" : "none",
+                                        borderRadius: "4px",
+                                    }}
+
+
+                                    key={img.id}
+                                    bounds="parent"
+                                    size={{ width: img.width, height: img.height }}
+                                    position={{ x: img.x, y: img.y }}
+                                    onDragStop={(_, d) => updateUploadPosition(img.id, d.x, d.y)}
+                                    onResizeStop={(_, __, ref, ___, pos) => {
+                                        updateUploadSize(img.id, parseInt(ref.style.width, 10), parseInt(ref.style.height, 10));
+                                        updateUploadPosition(img.id, pos.x, pos.y);
+                                    }}
+                                    onMouseDown={() => {
+                                        setActiveImage(img.id);
+                                        setActiveText(null);
+                                    }}
+                                    style={{ zIndex: 1 }}
+                                >
+                                    <Image
+                                        width={1000}
+                                        height={1000}
+                                        src={img.url}
+                                        alt="upload"
+                                        className="w-full h-full object-contain rounded"
+                                        draggable={false}
+                                    />
+                                </Rnd>
+                            ))}
+
+                            {/* Front base (zIndex:2) */}
+                            {baseFront && workingcard === "front" && (
+                                <Image
+                                    src={baseFront}
+                                    width={1000}
+                                    height={1000}
+                                    alt="front-base"
+                                    className="absolute inset-0 object-cover w-full h-full"
+                                    style={{ zIndex: 2, pointerEvents: "none" }}
+                                />
+                            )}
+
+                            {/* Back base (zIndex:2) */}
+                            {baseBack && workingcard === "back" && (
                                 <Image
                                     src={baseBack}
                                     height={1000}
