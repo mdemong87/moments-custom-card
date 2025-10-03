@@ -1,10 +1,13 @@
 "use client";
 import TradingCardApplicationSkelaton from "@/app/componnent/TradingCardApplicationSkelaton";
+import TradingCardSidebar from "@/app/componnent/TradingCardSidebar";
+import useTradingFinalPreview from "@/store/useTradingFinalPreview";
+import CaptureScreenshort from "@/utilis/helper/CaptureScreenshort";
 import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import MakeGet from "@/utilis/requestrespose/get";
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { HexColorPicker } from "react-colorful";
 import { CiCirclePlus } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";
@@ -17,8 +20,9 @@ const fonts = ["Arial", "Poppins", "Times New Roman", "Courier New", "Comic Sans
 export default function ProductCustomizer() {
 
 
-    const { slug } = useParams();;
+    const { slug } = useParams();
 
+    const previewCardNodeRef = useRef(null);
 
     // replace these with real image URLs or keep as keys and map to your assets
     const [frontImages, setfrontImages] = useState(null);
@@ -34,6 +38,13 @@ export default function ProductCustomizer() {
     const [workingcard, setworkingcard] = useState("front");
     const [fetchingData, setfetchingData] = useState(null);
     const [fetchingDataLoading, setfetchingDataLoading] = useState(false);
+
+    const [cards, setCards] = useState([]);
+    const [activeCardIndex, setActiveCardIndex] = useState(0);
+    const [editmood, seteidtmood] = useState(true);
+    const router = useRouter();
+
+    const { addToCart } = useTradingFinalPreview();
 
 
 
@@ -131,6 +142,102 @@ export default function ProductCustomizer() {
     }
 
 
+
+
+
+    // start from here
+
+    const activeCard = cards[activeCardIndex];
+
+    /******* Selected Layer Image Function ********/
+    const selectLayerImage = (layer, url) => {
+        setCards(prev =>
+            prev.map((card, i) => {
+                if (i !== activeCardIndex) return card;
+                const updatedLayers = { ...card.selectedLayers };
+                if (updatedLayers[layer] === url) delete updatedLayers[layer];
+                else updatedLayers[layer] = url;
+                return { ...card, selectedLayers: updatedLayers };
+            })
+        );
+    };
+
+
+
+    /******* Add New Card Function ********/
+    const addNewCard = () => {
+
+        const basebartwo = data?.customizations?.base_cards?.[0];
+        const baseTwo = ImageLinkMaker(basebartwo?.image);
+        const initialLayersTwo = {};
+        layers.forEach(layer => {
+            if (layer === "beards") return;
+            const items = product?.customizations?.[layer];
+
+            console.log(items);
+
+            if (items.length > 0) initialLayersTwo[layer] = ImageLinkMaker(items[0]?.image);
+        });
+
+        setCards([...cards, { baseImage: baseTwo, selectedLayers: initialLayersTwo }]);
+        setActiveCardIndex(cards.length);
+
+    };
+
+    /******* Removed Card Function ********/
+    const removeCard = (index) => {
+        setCards(prev => {
+            const updated = prev.filter((_, i) => i !== index);
+            let newActive = activeCardIndex;
+            if (updated.length === 0) newActive = 0;
+            else if (index < activeCardIndex) newActive -= 1;
+            else if (index === activeCardIndex) newActive = Math.min(activeCardIndex, updated.length - 1);
+            setActiveCardIndex(newActive);
+            return updated;
+        });
+    };
+
+
+    /******* Selected Layer Image Function ********/
+    const goToFinalView = () => {
+        localStorage.setItem("tradingCards", JSON.stringify(cards));
+
+
+        const product = {
+            productId: fetchingData?.id,
+            productSlug: fetchingData?.slug,
+            productName: fetchingData?.name,
+            productType: fetchingData?.type,
+            productUnitPrice: fetchingData?.offer_price > 0 ? fetchingData?.offer_price : fetchingData?.price,
+            productQuantity: 1,
+            productImage: fetchingData?.image,
+            productGalary: fetchingData?.images,
+            productDescription: fetchingData?.description,
+            FinalProduct: cards
+        };
+
+
+        addToCart(product);
+
+
+        router.push("/final/trading");
+    };
+    // end from here
+
+
+
+
+
+
+
+
+    const Done = async () => {
+        await CaptureScreenshort(previewCardNodeRef, cards, setCards);
+    }
+
+
+
+
     if (fetchingDataLoading) return <TradingCardApplicationSkelaton />
 
 
@@ -138,142 +245,21 @@ export default function ProductCustomizer() {
     return (
         <div className="grid grid-cols-12 gap-2 h-screen w-screen fixed bg-gray-100">
             {/* Left Sidebar (kept simple as in your last snippet) */}
-            <div className="col-span-12 lg:col-span-3 w-full h-full bg-white">
+            <div className="col-span-12 lg:col-span-2 w-full h-full bg-white">
                 {/* replace this with <CardSidebar /> when available */}
-                <div className="p-3 w-full h-full">
+                <div className="w-full h-full">
 
-                    <div className="w-full h-[83vh]">
-                        <div className="border border-gray-200 rounded-md bg-white w-3/4 h-[270px] relative overflow-hidden">
-                            {/* Uploaded images (zIndex:1) - draggable & resizable */}
-                            {uploads.map((img) => (
-                                <Rnd
-
-                                    resizeHandleStyles={{
-                                        topLeft: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
-                                        topRight: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
-                                        bottomLeft: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
-                                        bottomRight: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
-                                    }}
-                                    style={{
-                                        border: activeText === img.id || activeImage === img?.id ? "2px dashed #3b82f6" : "none",
-                                        borderRadius: "4px",
-                                    }}
-
-
-                                    key={img.id}
-                                    bounds="parent"
-                                    size={{ width: img.width, height: img.height }}
-                                    position={{ x: img.x, y: img.y }}
-                                    onDragStop={(_, d) => updateUploadPosition(img.id, d.x, d.y)}
-                                    onResizeStop={(_, __, ref, ___, pos) => {
-                                        updateUploadSize(img.id, parseInt(ref.style.width, 10), parseInt(ref.style.height, 10));
-                                        updateUploadPosition(img.id, pos.x, pos.y);
-                                    }}
-                                    onMouseDown={() => {
-                                        setActiveImage(img.id);
-                                        setActiveText(null);
-                                    }}
-                                    style={{ zIndex: 1 }}
-                                >
-                                    <Image
-                                        width={1000}
-                                        height={1000}
-                                        src={img.url}
-                                        alt="upload"
-                                        className="w-full h-full object-contain rounded"
-                                        draggable={false}
-                                    />
-                                </Rnd>
-                            ))}
-
-                            {/* Front base (zIndex:2) */}
-                            {baseFront && workingcard === "front" && (
-                                <Image
-                                    src={baseFront}
-                                    width={1000}
-                                    height={1000}
-                                    alt="front-base"
-                                    className="absolute inset-0 object-cover w-full h-full"
-                                    style={{ zIndex: 2, pointerEvents: "none" }}
-                                />
-                            )}
-
-                            {/* Back base (zIndex:2) */}
-                            {baseBack && workingcard === "back" && (
-                                <Image
-                                    src={baseBack}
-                                    height={1000}
-                                    width={1000}
-                                    alt="back-base"
-                                    className="absolute inset-0 object-cover w-full h-full"
-                                    style={{ zIndex: 2, pointerEvents: "none" }}
-                                />
-                            )}
-
-                            {/* Text layers (zIndex:4) */}
-                            {/* Texts draggable */}
-                            {texts?.map((t) => (
-                                <Rnd
-
-
-                                    resizeHandleStyles={{
-                                        topLeft: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
-                                        topRight: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
-                                        bottomLeft: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
-                                        bottomRight: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
-                                    }}
-                                    style={{
-                                        border: activeText === t.id ? "2px dashed #3b82f6" : "none",
-                                        borderRadius: "4px",
-                                        padding: "0px 1px",
-                                        zIndex: 99
-                                    }}
-
-                                    key={t.id}
-                                    default={{
-                                        x: t.x,
-                                        y: t.y,
-                                        width: "fit-content", // give a default width so dragging works
-                                        height: "auto",
-                                    }}
-                                    bounds="parent"
-                                    enableResizing={false} // disable resize if you only want dragging
-                                    onClick={() => setActiveText(t.id)}
-                                    onDragStop={(e, d) => {
-                                        // update position in state
-                                        setTexts((prev) =>
-                                            prev.map((item) =>
-                                                item.id === t.id ? { ...item, x: d.x, y: d.y } : item
-                                            )
-                                        );
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            fontSize: `${t.size}px`,
-                                            fontFamily: t.font,
-                                            color: t.color,
-                                            cursor: "move",
-                                            whiteSpace: "nowrap",
-                                            zIndex: 99
-                                        }}
-                                    >
-                                        {t.text}
-                                    </div>
-                                </Rnd>
-                            ))}
-                        </div>
-                    </div>
+                    <TradingCardSidebar cards={cards} addCard={addNewCard} Done={Done} removeCard={removeCard} editmood={editmood} seteidtmood={seteidtmood} />
 
                 </div>
             </div>
 
             {/* Middle area (contains canvas and right-panel inside it like your original layout) */}
-            <div className="col-span-12 lg:col-span-9 h-screen w-full">
+            <div className="col-span-12 lg:col-span-10 h-screen w-full">
                 <div className="grid grid-cols-10 h-full mt-2 lg:mt-0">
                     {/* Canvas column (middle) */}
                     <div className="col-span-10 lg:col-span-6 flex items-center justify-center lg:-translate-y-[50px] w-screen lg:w-full">
-                        <div className="border border-gray-200 rounded-md bg-white w-[390px] h-[570px] relative overflow-hidden">
+                        <div ref={previewCardNodeRef} className="border border-gray-200 rounded-md bg-white w-[390px] h-[570px] relative overflow-hidden">
                             {/* Uploaded images (zIndex:1) - draggable & resizable */}
                             {uploads.map((img) => (
                                 <Rnd
@@ -538,7 +524,7 @@ export default function ProductCustomizer() {
                         </div>
 
                         {/* Bottom Button */}
-                        <ViewCard />
+                        <ViewCard goToFinalView={goToFinalView} />
                     </div>
                 </div>
             </div>

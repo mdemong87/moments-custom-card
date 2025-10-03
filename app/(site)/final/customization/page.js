@@ -1,4 +1,6 @@
 "use client";
+import useCartStore from "@/store/useCartStore";
+import useDeckFinalPreview from "@/store/useDeckFinalPreview";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -14,6 +16,9 @@ const layers = [
 const FinalCardsPage = () => {
 
     const [cards, setCards] = useState([]);
+    const { addToCart } = useCartStore();
+    const { deckcart } = useDeckFinalPreview();
+
 
     useEffect(() => {
         const saved = localStorage.getItem("customCards");
@@ -22,10 +27,22 @@ const FinalCardsPage = () => {
 
     const router = useRouter();
 
-    const previousPage = () => {
-        localStorage.setItem("customCards", JSON.stringify(cards));
-        router.push("/");
-    };
+
+
+
+
+    const adddeckcart = (e) => {
+        e.preventDefault();
+
+        console.log(deckcart[0]);
+
+        addToCart(deckcart[0]);
+    }
+
+
+
+
+
 
     if (!cards.length) return <div>No cards found.</div>;
 
@@ -39,7 +56,7 @@ const FinalCardsPage = () => {
                     <h1 className="text-xl text-gray-600">Your Customized Cards</h1>
                 </div>
                 <div>
-                    <button onClick={() => { router.back() }} className="border border-gray-200 bg-sky-400 text-white p-2 rounded-md shadow-md cursor-pointer hover:bg-gray-100 transition duration-100">
+                    <button onClick={(e) => { adddeckcart(e) }} className="border border-gray-200 bg-sky-400 text-white p-2 rounded-md shadow-md cursor-pointer hover:bg-gray-100 transition duration-100">
                         Add to Cart
                     </button>
                 </div>

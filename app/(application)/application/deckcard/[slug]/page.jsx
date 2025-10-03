@@ -1,5 +1,6 @@
 "use client";
 import ApplicationSkeleton from "@/app/componnent/ApplicationSkeleton";
+import useDeckFinalPreview from "@/store/useDeckFinalPreview";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import MakeGet from "@/utilis/requestrespose/get";
@@ -29,6 +30,10 @@ const ProductCustomizer = () => {
     const [activeCardIndex, setActiveCardIndex] = useState(0);
     const router = useRouter();
     const token = getCookie();
+
+    const { addToCart } = useDeckFinalPreview();
+
+
 
 
     /************** Fetch product & load saved cards **************/
@@ -122,10 +127,28 @@ const ProductCustomizer = () => {
         });
     };
 
+
+
     /******* Selected Layer Image Function ********/
     const goToFinalView = () => {
         localStorage.setItem("customCards", JSON.stringify(cards));
-        router.push("/final");
+
+        const producted = {
+            productId: product?.id,
+            productSlug: product?.slug,
+            productName: product?.name,
+            productType: product?.type,
+            productUnitPrice: product?.offer_price > 0 ? product?.offer_price : product?.price,
+            productQuantity: 1,
+            productImage: product?.image,
+            productGalary: product?.images,
+            productDescription: product?.description,
+            FinalProduct: cards
+        };
+
+
+        addToCart(producted);
+        router.push("/final/customization");
     };
 
 
