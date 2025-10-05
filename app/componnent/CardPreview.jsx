@@ -7,16 +7,15 @@ const layers = [
 
 
 
-const CardPreview = ({ activeCard }) => {
+const CardPreview = ({ activeCard, previewCardNodeRef }) => {
 
-    console.log(activeCard);
 
 
     return (
-        <div className="flex-1 items-center justify-center relative w-[270px] h-[370px] lg:w-[400px] lg:h-[750px] rounded-[12px] overflow-hidden">
+        <div ref={previewCardNodeRef} className="flex items-center justify-center relative w-[270px] h-[370px] lg:w-[400px] lg:h-[600px] rounded-4xl border-2 border-gray-100">
             {activeCard?.baseImage && (
                 <Image
-                    width={1000} height={1000} src={activeCard.baseImage} alt="Base Card" className="absolute top-0 left-0 w-full h-full object-contain"
+                    width={1000} height={1000} src={activeCard.baseImage} alt="Base Card" className=" w-full h-full object-contain"
                 />
             )}
             {layers.map(layer =>
@@ -29,11 +28,11 @@ const CardPreview = ({ activeCard }) => {
                             alt={layer}
                             style={{
                                 position: "absolute",
-                                top: 0,
+                                top: 93,
                                 left: "50%",
                                 transform: "translateX(-50%)",
                                 width: "55%",
-                                height: "50%",
+                                height: "35%",
                                 objectFit: "contain",
                                 paddingTop: "30px"
                             }}
@@ -45,11 +44,11 @@ const CardPreview = ({ activeCard }) => {
                             alt={`${layer}-mirrored`}
                             style={{
                                 position: "absolute",
-                                bottom: 0,
+                                bottom: 93,
                                 left: "50%",
                                 transform: "translateX(-50%) scaleY(-1)",
                                 width: "55%",
-                                height: "50%",
+                                height: "35%",
                                 objectFit: "contain",
                                 paddingTop: "30px"
                             }}

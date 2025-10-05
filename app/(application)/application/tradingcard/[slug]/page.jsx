@@ -3,7 +3,9 @@ import TradingCardApplicationSkelaton from "@/app/componnent/TradingCardApplicat
 import TradingCardSidebar from "@/app/componnent/TradingCardSidebar";
 import useTradingFinalPreview from "@/store/useTradingFinalPreview";
 import CaptureScreenshort from "@/utilis/helper/CaptureScreenshort";
+import generateUserId from "@/utilis/helper/generateUserId";
 import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
+import { pdfGanarator } from "@/utilis/helper/pdfGanarator";
 import MakeGet from "@/utilis/requestrespose/get";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
@@ -42,6 +44,7 @@ export default function ProductCustomizer() {
     const [cards, setCards] = useState([]);
     const [activeCardIndex, setActiveCardIndex] = useState(0);
     const [editmood, seteidtmood] = useState(true);
+    const [spinloading, setspinloading] = useState(false);
     const router = useRouter();
 
     const { addToCart } = useTradingFinalPreview();
@@ -199,11 +202,15 @@ export default function ProductCustomizer() {
 
 
     /******* Selected Layer Image Function ********/
-    const goToFinalView = () => {
+    const goToFinalView = async () => {
+
+        setspinloading(true);
+
         localStorage.setItem("tradingCards", JSON.stringify(cards));
 
 
         const product = {
+            id: generateUserId(),
             productId: fetchingData?.id,
             productSlug: fetchingData?.slug,
             productName: fetchingData?.name,
@@ -213,14 +220,17 @@ export default function ProductCustomizer() {
             productImage: fetchingData?.image,
             productGalary: fetchingData?.images,
             productDescription: fetchingData?.description,
-            FinalProduct: cards
+            FinalProduct: cards,
+            FinalPDf: await pdfGanarator(cards)
         };
 
 
         addToCart(product);
 
-
-        router.push("/final/trading");
+        setTimeout(() => {
+            setspinloading(false);
+            router.push("/final/trading");
+        }, 900);
     };
     // end from here
 
@@ -524,7 +534,7 @@ export default function ProductCustomizer() {
                         </div>
 
                         {/* Bottom Button */}
-                        <ViewCard goToFinalView={goToFinalView} />
+                        <ViewCard isLoading={spinloading} goToFinalView={goToFinalView} />
                     </div>
                 </div>
             </div>

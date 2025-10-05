@@ -3,12 +3,10 @@ import Image from "next/image";
 
 const TradingCardThumnail = ({ card, onClick, shot }) => {
 
-    console.log(card);
-
 
     return (
         <div
-            className="w-[70px] lg:w-full h-[90px] lg:h-[190px] relative h-auto rounded-lg overflow-hidden cursor-pointer border border-gray-300 p-1"
+            className="w-[70px] lg:w-full relative h-auto rounded-lg overflow-hidden cursor-pointer border border-gray-300 p-1"
             onClick={onClick}
         >
             <Image

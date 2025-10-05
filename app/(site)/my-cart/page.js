@@ -1,7 +1,9 @@
 'use client';
 
+import CheckoutAuth from '@/app/componnent/CheckoutAuth';
 import SpinLoader from '@/app/componnent/SpingLoader';
 import useCartStore from '@/store/useCartStore';
+import useLogedUserStore from '@/store/useLogedUser';
 import ImageLinkMaker from '@/utilis/helper/ImageLinkMaker';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,14 +19,7 @@ const MyCart = () => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const { addToCart, cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCartStore();
-
-
-
-    console.log(cart);
-
-
-
-
+    const { loginUser } = useLogedUserStore();
     // calculate total price
     const calculateTotalPrice = () => {
         return cart.reduce((total, item) => total + item.productUnitPrice * item.productQuantity, 0);
@@ -50,10 +45,12 @@ const MyCart = () => {
         }
         setIsLoading(true);
 
+        console.log(cart);
+
         setTimeout(() => {
             setIsLoading(false);
-            toast.success('Checkout successful! Redirecting...');
-        }, 1500);
+            router.push('my-cart/checkout');
+        }, 900);
     };
 
 
@@ -105,7 +102,7 @@ const MyCart = () => {
                                         <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-md p-1 w-fit">
                                             {/* Decrease Button */}
                                             <button
-                                                onClick={() => { decreaseQuantity(item?.productId) }}
+                                                onClick={() => { decreaseQuantity(item?.id) }}
                                                 className="w-10 h-10 flex items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 text-2xl font-bold text-gray-600 cursor-pointer transition"
                                             >
                                                 -
@@ -118,7 +115,7 @@ const MyCart = () => {
 
                                             {/* Increase Button */}
                                             <button
-                                                onClick={() => { increaseQuantity(item?.productId) }}
+                                                onClick={() => { increaseQuantity(item?.id) }}
                                                 className="w-10 h-10 flex items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 text-2xl font-bold text-gray-600 transition cursor-pointer"
                                             >
                                                 +
@@ -131,7 +128,7 @@ const MyCart = () => {
                                         </div>
                                     </div>
                                     <button
-                                        onClick={() => removeFromCart(item?.productId)}
+                                        onClick={() => removeFromCart(item?.id)}
                                         className="bg-red-500 hover:bg-red-600 p-2 rounded-md text-white cursor-pointer"
                                     >
                                         <RxCross2 className="text-2xl" />
@@ -190,8 +187,17 @@ const MyCart = () => {
                     </div>
                 </div>
             </div>
-
             <ToastContainer autoClose={2000} />
+
+            {
+                !loginUser?.token && <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-[#00000096] pb-10 z-90'>
+                    <div className='shadow-2xl w-fit h-fit'>
+                        <CheckoutAuth />
+                    </div>
+                </div>
+            }
+
+
         </main>
     );
 };

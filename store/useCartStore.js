@@ -7,7 +7,7 @@ const useCartStore = create((set, get) => ({
     // Remove item from cart by product id or name
     removeFromCart: (id) =>
         set((state) => ({
-            cart: state.cart.filter((item, index) => item.productId !== id),
+            cart: state.cart.filter((item, index) => item.id !== id),
         })),
 
 
@@ -17,7 +17,7 @@ const useCartStore = create((set, get) => ({
     increaseQuantity: (id) =>
         set((state) => ({
             cart: state.cart.map((item) =>
-                item.productId === id
+                item.id === id
                     ? { ...item, productQuantity: item.productQuantity + 1 }
                     : item
             ),
@@ -31,7 +31,7 @@ const useCartStore = create((set, get) => ({
     decreaseQuantity: (id) =>
         set((state) => ({
             cart: state.cart.map((item) =>
-                item.productId === id && item.productQuantity > 1
+                item.id === id && item.productQuantity > 1
                     ? { ...item, productQuantity: item.productQuantity - 1 }
                     : item
             ),

@@ -1,11 +1,14 @@
 "use client";
 import ApplicationSkeleton from "@/app/componnent/ApplicationSkeleton";
 import useDeckFinalPreview from "@/store/useDeckFinalPreview";
+import CaptureScreenshort from "@/utilis/helper/CaptureScreenshort";
 import getCookie from "@/utilis/helper/cookie/gettooken";
+import generateUserId from "@/utilis/helper/generateUserId";
 import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
+import { pdfGanarator } from "@/utilis/helper/pdfGanarator";
 import MakeGet from "@/utilis/requestrespose/get";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import CardPreview from "../../../../componnent/CardPreview";
 import CardSidebar from "../../../../componnent/CardSidebar";
@@ -24,13 +27,14 @@ const ProductCustomizer = () => {
 
 
     const { slug } = useParams();
-
+    const previewCardNodeRef = useRef(null);
     const [product, setProduct] = useState(null);
     const [cards, setCards] = useState([]);
+    const [finalCards, setfinalCards] = useState([]);
     const [activeCardIndex, setActiveCardIndex] = useState(0);
     const router = useRouter();
     const token = getCookie();
-
+    const [spinloading, setspinloading] = useState(false);
     const { addToCart } = useDeckFinalPreview();
 
 
@@ -62,7 +66,6 @@ const ProductCustomizer = () => {
             layers.forEach(layer => {
                 if (layer === "beards") return;
                 const items = res?.data?.customizations?.[layer];
-                console.log(items);
                 if (items.length > 0) initialLayers[layer] = ImageLinkMaker(items[0]?.image);
             });
 
@@ -103,9 +106,6 @@ const ProductCustomizer = () => {
         layers.forEach(layer => {
             if (layer === "beards") return;
             const items = product?.customizations?.[layer];
-
-            console.log(items);
-
             if (items.length > 0) initialLayersTwo[layer] = ImageLinkMaker(items[0]?.image);
         });
 
@@ -116,7 +116,7 @@ const ProductCustomizer = () => {
 
     /******* Removed Card Function ********/
     const removeCard = (index) => {
-        setCards(prev => {
+        setfinalCards(prev => {
             const updated = prev.filter((_, i) => i !== index);
             let newActive = activeCardIndex;
             if (updated.length === 0) newActive = 0;
@@ -130,10 +130,14 @@ const ProductCustomizer = () => {
 
 
     /******* Selected Layer Image Function ********/
-    const goToFinalView = () => {
+    const goToFinalView = async () => {
+
+        setspinloading(true);
+
         localStorage.setItem("customCards", JSON.stringify(cards));
 
         const producted = {
+            id: generateUserId(),
             productId: product?.id,
             productSlug: product?.slug,
             productName: product?.name,
@@ -143,13 +147,24 @@ const ProductCustomizer = () => {
             productImage: product?.image,
             productGalary: product?.images,
             productDescription: product?.description,
-            FinalProduct: cards
+            FinalProduct: finalCards,
+            FinalPDf: await pdfGanarator(finalCards)
         };
 
-
         addToCart(producted);
-        router.push("/final/customization");
+
+        setTimeout(() => {
+            setspinloading(false);
+            router.push("/final/customization");
+        }, 900);
     };
+
+
+    const Done = async () => {
+        await CaptureScreenshort(previewCardNodeRef, finalCards, setfinalCards);
+    }
+
+
 
 
     return (
@@ -157,7 +172,7 @@ const ProductCustomizer = () => {
             <div className="grid grid-cols-12 gap-2 h-screen w-screen fixed bg-gray-100">
                 <div className="col-span-12 lg:col-span-2 w-full h-full">
                     <CardSidebar
-                        cards={cards}
+                        finalCards={finalCards} Done={Done}
                         activeIndex={activeCardIndex}
                         setActiveIndex={setActiveCardIndex}
                         addCard={addNewCard}
@@ -167,11 +182,11 @@ const ProductCustomizer = () => {
                 <div className="col-span-10 h-screen w-full">
                     <div className="grid grid-cols-10 h-full mt-2 lg:mt-0">
                         <div className="col-span-10 lg:col-span-6 flex items-center justify-center lg:-translate-y-[50px] w-screen lg:w-full">
-                            <CardPreview activeCard={activeCard} />
+                            <CardPreview activeCard={activeCard} previewCardNodeRef={previewCardNodeRef} />
                         </div>
                         <div className="col-span-10 lg:col-span-4 w-screen lg:w-full h-full bg-white border-t lg:border-l border-gray-200 px-2 md:px-7 lg:px-6 mt-2 lg:mt-0">
                             <SideController product={product} activeCard={activeCard} selectBase={selectBaseImage} selectLayer={selectLayerImage} />
-                            <ViewCard goToFinalView={goToFinalView} />
+                            <ViewCard isLoading={spinloading} goToFinalView={goToFinalView} />
                         </div>
                     </div>
                 </div>

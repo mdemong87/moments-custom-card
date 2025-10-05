@@ -4,6 +4,7 @@ import SingleProductSkeleton from "@/app/componnent/skelaton/SingleProductSkelet
 import SpinLoader from "@/app/componnent/SpingLoader";
 import ViewCart from "@/app/componnent/ViewCart";
 import useCartStore from "@/store/useCartStore";
+import generateUserId from "@/utilis/helper/generateUserId";
 import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import MakeGet from "@/utilis/requestrespose/get";
 import Image from "next/image";
@@ -67,6 +68,7 @@ const SingleProduct = () => {
         setbtnLoading(true);
 
         const product = {
+            id: generateUserId(),
             productId: data?.id,
             productSlug: data?.slug,
             productName: data?.name,
