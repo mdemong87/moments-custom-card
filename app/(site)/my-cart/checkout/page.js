@@ -120,27 +120,27 @@ export default function CheckoutPage() {
           <div className="">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Order Summary</h2>
             <ul className="space-y-4 text-gray-700">
-              {[].map((item) => (
-                <li key={''} className="flex justify-between">
+              {[].map((item, i) => (
+                <li key={i} className="flex justify-between">
                   <span>
-                    {''} <span className="text-sm">('')</span>
+                    .. <span className="text-sm">.</span>
                   </span>
-                  <span>''</span>
+                  <span>...</span>
                 </li>
               ))}
             </ul>
             <hr className="my-6 border-t border-gray-700" />
             <div className="flex justify-between mb-2 text-gray-800">
               <span>Subtotal</span>
-              <span>${''}</span>
+              <span>${'88'}</span>
             </div>
             <div className="flex justify-between mb-2 text-gray-800">
               <span>Shipping</span>
-              <span>${''}</span>
+              <span>${'00'}</span>
             </div>
             <div className="flex justify-between font-bold text-xl mt-4 text-gray-800">
               <span>Total</span>
-              <span>${''}</span>
+              <span>${'88'}</span>
             </div>
           </div>
         </div>
