@@ -5,7 +5,7 @@ import TrandingAddNewCardBtn from "./TradnigAddNewBtn";
 
 
 
-const TradingCardSidebar = ({ cards, addCard, Done, removeCard, editmood, seteidtmood }) => {
+const TradingCardSidebar = ({ cards, addCard, Done, removeCard, editmood, seteidtmood, doneloading }) => {
     return (
         <div className="w-full border-b lg:border-r border-gray-200 bg-white h-full shawow-md px-2 md:px-7 lg:px-8 py-2 z-20">
             <h3 className="text-gray-700 font-semibold text-2xl pb-4 flex items-center justify-between">
@@ -36,7 +36,7 @@ const TradingCardSidebar = ({ cards, addCard, Done, removeCard, editmood, seteid
 
             </div>
             <div className="w-full bg-white py-4 hidden lg:block">
-                <TrandingAddNewCardBtn addCard={addCard} Done={Done} editmood={editmood} seteidtmood={seteidtmood} />
+                <TrandingAddNewCardBtn addCard={addCard} Done={Done} editmood={editmood} seteidtmood={seteidtmood} doneloading={doneloading} />
             </div>
         </div>
 

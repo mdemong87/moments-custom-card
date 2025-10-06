@@ -46,7 +46,7 @@ export default function ProductCustomizer() {
     const [editmood, seteidtmood] = useState(true);
     const [spinloading, setspinloading] = useState(false);
     const router = useRouter();
-
+    const [doneloading, setdoneloading] = useState(false);
     const { addToCart } = useTradingFinalPreview();
 
 
@@ -242,7 +242,11 @@ export default function ProductCustomizer() {
 
 
     const Done = async () => {
+        setdoneloading(true);
         await CaptureScreenshort(previewCardNodeRef, cards, setCards);
+        setTimeout(() => {
+            setdoneloading(false);
+        }, [600])
     }
 
 
@@ -259,7 +263,7 @@ export default function ProductCustomizer() {
                 {/* replace this with <CardSidebar /> when available */}
                 <div className="w-full h-full">
 
-                    <TradingCardSidebar cards={cards} addCard={addNewCard} Done={Done} removeCard={removeCard} editmood={editmood} seteidtmood={seteidtmood} />
+                    <TradingCardSidebar cards={cards} addCard={addNewCard} Done={Done} removeCard={removeCard} editmood={editmood} seteidtmood={seteidtmood} doneloading={doneloading} />
 
                 </div>
             </div>

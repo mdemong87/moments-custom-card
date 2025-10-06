@@ -1,33 +1,58 @@
 "use client";
 
 import SpinLoader from "@/app/componnent/SpingLoader";
+import useCartStore from "@/store/useCartStore";
+import getCookie from "@/utilis/helper/cookie/gettooken";
+import MakePost from "@/utilis/requestrespose/post";
 import { useState } from "react";
 
 export default function CheckoutPage() {
 
+
+  const token = getCookie();
   const [loading, setloading] = useState(false);
-  const [cartItems] = useState([
-    { id: 1, name: "Product One", price: 50, qty: 2 },
-    { id: 2, name: "Product Two", price: 30, qty: 1 },
-  ]);
-
   const [paymentMethod, setPaymentMethod] = useState("cod");
+  const [name, setname] = useState("");
+  const [email, setemail] = useState("");
+  const [phone, setphone] = useState("");
+  const [City, setCity] = useState("");
+  const [address, setaddress] = useState("");
+  const { cart } = useCartStore();
 
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
-  const shipping = 10;
-  const total = subtotal + shipping;
 
-  const handleCheckout = (e) => {
+  console.log(cart);
+
+
+
+
+  const handleCheckout = async (e) => {
     e.preventDefault();
 
     setloading(true);
 
 
 
-    setTimeout(() => {
-      alert(`Order placed with ${paymentMethod.toUpperCase()} 🚀`);
-      setloading(false);
-    }, 3000);
+    const roundTotolPrice = cart[0]?.productQuantity * productUnitPrice;
+
+
+    // Create FormData
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('City', City);
+    formData.append('address', address);
+    formData.append('payment_method', paymentMethod);
+    formData.append("order_items", cart);
+
+
+
+    // Send the form data to the server
+    const res = await MakePost("api/customer-orders", formData, token);
+
+    console.log(res);
+    setloading(false);
+
 
   };
 
@@ -49,12 +74,12 @@ export default function CheckoutPage() {
           <p className="text-sm text-gray-700">Fill in your billing & shipping details.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <input type="text" placeholder="Full Name" className={inputStyle} required />
-            <input type="email" placeholder="Email Address" className={inputStyle} required />
-            <input type="text" placeholder="Phone Number" className={inputStyle} required />
-            <input type="text" placeholder="City" className={inputStyle} required />
+            <input onChange={(e) => { setname(e.target.value) }} type="text" placeholder="Full Name" className={inputStyle} required />
+            <input onChange={(e) => { setemail(e.target.value) }} type="email" placeholder="Email Address" className={inputStyle} required />
+            <input onChange={(e) => { setphone(e.target.value) }} type="text" placeholder="Phone Number" className={inputStyle} required />
+            <input onChange={(e) => { setCity(e.target.value) }} type="text" placeholder="City" className={inputStyle} required />
           </div>
-          <textarea placeholder="Shipping Address" className={inputStyle} rows="3" required></textarea>
+          <textarea onChange={(e) => { setaddress(e.target.value) }} placeholder="Shipping Address" className={inputStyle} rows="3" required></textarea>
 
           {/* Payment Method */}
           <div className="space-y-4">
@@ -95,27 +120,27 @@ export default function CheckoutPage() {
           <div className="">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Order Summary</h2>
             <ul className="space-y-4 text-gray-700">
-              {cartItems.map((item) => (
-                <li key={item.id} className="flex justify-between">
+              {[].map((item) => (
+                <li key={''} className="flex justify-between">
                   <span>
-                    {item.name} <span className="text-sm">(x{item.qty})</span>
+                    {''} <span className="text-sm">('')</span>
                   </span>
-                  <span>${item.price * item.qty}</span>
+                  <span>''</span>
                 </li>
               ))}
             </ul>
             <hr className="my-6 border-t border-gray-700" />
             <div className="flex justify-between mb-2 text-gray-800">
               <span>Subtotal</span>
-              <span>${subtotal}</span>
+              <span>${''}</span>
             </div>
             <div className="flex justify-between mb-2 text-gray-800">
               <span>Shipping</span>
-              <span>${shipping}</span>
+              <span>${''}</span>
             </div>
             <div className="flex justify-between font-bold text-xl mt-4 text-gray-800">
               <span>Total</span>
-              <span>${total}</span>
+              <span>${''}</span>
             </div>
           </div>
         </div>

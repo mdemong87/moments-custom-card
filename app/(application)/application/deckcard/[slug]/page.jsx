@@ -35,6 +35,7 @@ const ProductCustomizer = () => {
     const router = useRouter();
     const token = getCookie();
     const [spinloading, setspinloading] = useState(false);
+    const [doneloading, setdoneloading] = useState(false);
     const { addToCart } = useDeckFinalPreview();
 
 
@@ -134,8 +135,6 @@ const ProductCustomizer = () => {
 
         setspinloading(true);
 
-        localStorage.setItem("customCards", JSON.stringify(cards));
-
         const producted = {
             id: generateUserId(),
             productId: product?.id,
@@ -161,7 +160,11 @@ const ProductCustomizer = () => {
 
 
     const Done = async () => {
+        setdoneloading(true);
         await CaptureScreenshort(previewCardNodeRef, finalCards, setfinalCards);
+        setTimeout(() => {
+            setdoneloading(false);
+        }, [600])
     }
 
 
@@ -177,6 +180,7 @@ const ProductCustomizer = () => {
                         setActiveIndex={setActiveCardIndex}
                         addCard={addNewCard}
                         removeCard={removeCard}
+                        doneloading={doneloading}
                     />
                 </div>
                 <div className="col-span-10 h-screen w-full">
