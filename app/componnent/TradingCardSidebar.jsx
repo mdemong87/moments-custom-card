@@ -13,7 +13,7 @@ const TradingCardSidebar = ({ cards, addCard, Done, removeCard, editmood, seteid
                 <div className="flex flex-row items-center gap-2">
                     <span className="text-gray-500">{cards?.length}</span>
                     <div className="block lg:hidden">
-                        <AddNewCardBtn addCard={addCard} />
+                        <AddNewCardBtn addCard={addCard} Done={Done} doneloading={doneloading} />
                     </div>
                 </div>
             </h3>
@@ -25,6 +25,8 @@ const TradingCardSidebar = ({ cards, addCard, Done, removeCard, editmood, seteid
                     >
                         <TradingCardThumnail
                             card={card}
+                            Done={Done}
+                            doneloading={doneloading}
                             onClick={() => setActiveIndex(idx)}
                         />
 
