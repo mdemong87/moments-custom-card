@@ -96,7 +96,7 @@ const MyCart = () => {
                                         <p className="text-gray-700 font-semibold">{item?.productName}</p>
                                         <p className="text-gray-500">{item?.productType}</p>
                                     </div>
-                                    <div className='flex items-center gap-6'>
+                                    <div className='flex flex-col md:flex-row items-center gap-6'>
 
 
                                         <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-md p-1 w-fit">
