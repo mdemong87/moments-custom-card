@@ -9,19 +9,19 @@ export default function Category() {
             title: "Momento Play Deck",
             description: "Classic playing cards with personalized faces and themes",
             image: TredingOne,
-            href: "/",
+            href: "/shop",
         },
         {
             title: "Momento Game Deck",
             description: "Tailor-made for unique gameplay, strategy, and storytelling",
             image: TredingTwo,
-            href: "/",
+            href: "/shop",
         },
         {
             title: "Momento Trading Cards",
             description: "Custom collectibles designed for creators, fans, and collectors.",
             image: TredingThree,
-            href: "/",
+            href: "/shop",
         },
     ];
     return (

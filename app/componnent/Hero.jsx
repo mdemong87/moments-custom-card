@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 const cards = [
     "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/trading-3.png?w=1050&ssl=1",
@@ -84,9 +85,9 @@ const Hero = () => {
                             Every deck holds a purpose, every design tells a story, and every card reflects a moment.
                             Momento Cards isn’t just a game—it’s a way to preserve memories, craft experiences, and turn moments into play.
                         </p>
-                        <button className="bg-[#3CA9FF] text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-[#FF6F3C] transition">
+                        <Link href={'/shop'} className="bg-[#3CA9FF] text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-[#FF6F3C] transition">
                             Explore Cards
-                        </button>
+                        </Link>
                     </div>
                     {/* Right Cards */}
                     <div className="w-full lg:w-1/2 flex justify-center items-center relative h-[40vw] md:h-[25vw] lg:h-[420px]">

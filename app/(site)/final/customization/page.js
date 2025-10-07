@@ -56,12 +56,12 @@ const FinalCardsPage = () => {
                     </button>
                 </div>
             </div>
-            <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap", padding: "2rem", margin: "45px 0px" }}>
+            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", padding: "2rem", margin: "45px 0px" }}>
 
                 {
                     deckcart[0]?.FinalProduct?.map((card, idx) => (
 
-                        <div key={idx} className="w-[290px] h-[400px] flex items-center justify-center ">
+                        <div key={idx} className="w-[170px] h-[280px] lg:w-[290px] lg:h-[400px] flex items-center justify-center ">
                             <Image className="object-contain z-10" src={card} width={1000} height={1000} key={idx} alt="final-cards" />
                         </div>
 
