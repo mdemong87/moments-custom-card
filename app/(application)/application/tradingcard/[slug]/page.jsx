@@ -262,9 +262,9 @@ export default function ProductCustomizer() {
 
 
     return (
-        <div className="grid grid-cols-12 gap-2 h-screen w-screen fixed bg-gray-100">
+        <div className="grid grid-cols-12 grid-rows-12 gap-0 lg:gap-2 h-screen w-screen fixed bg-gray-100">
             {/* Left Sidebar (kept simple as in your last snippet) */}
-            <div className="col-span-12 lg:col-span-2 w-full h-full bg-white">
+            <div className="col-span-12 row-span-2 lg:row-span-12 lg:col-span-2 w-full h-full bg-white">
                 {/* replace this with <CardSidebar /> when available */}
                 <div className="w-full h-full">
 
@@ -274,11 +274,11 @@ export default function ProductCustomizer() {
             </div>
 
             {/* Middle area (contains canvas and right-panel inside it like your original layout) */}
-            <div className="col-span-12 lg:col-span-10 h-screen w-full">
-                <div className="grid grid-cols-10 h-full mt-2 lg:mt-0">
+            <div className="col-span-12 row-span-10 lg:row-span-12 lg:col-span-10 h-full lg:h-screen w-full">
+                <div className="grid grid-cols-10 grid-rows-10 h-full w-full mt-2 lg:mt-0">
                     {/* Canvas column (middle) */}
-                    <div className="col-span-10 lg:col-span-6 flex items-center justify-center lg:-translate-y-[50px] w-screen lg:w-full">
-                        <div ref={previewCardNodeRef} className="border border-gray-200 rounded-md bg-white w-[390px] h-[570px] relative overflow-hidden">
+                    <div className="col-span-10 row-span-4 lg:row-span-10 lg:col-span-6 flex items-center justify-center lg:-translate-y-[50px] w-screen lg:w-full h-full lg:h-full">
+                        <div ref={previewCardNodeRef} className="border border-gray-200 rounded-md bg-white w-[190px] lg:w-[390px] h-[300px] lg:h-[570px] relative overflow-hidden">
                             {/* Uploaded images (zIndex:1) - draggable & resizable */}
                             {uploads.map((img) => (
                                 <Rnd
@@ -406,8 +406,8 @@ export default function ProductCustomizer() {
                     </div>
 
                     {/* Right Controls column (inside the middle wrapper as your original) */}
-                    <div className="col-span-10 lg:col-span-4 w-screen lg:w-full h-full bg-white border-t lg:border-l border-gray-200 px-2 md:px-6 lg:px-6 mt-2 lg:mt-0">
-                        <div className="h-[83vh] overflow-y-scroll mt-2 space-y-4">
+                    <div className="col-span-10 row-span-6 lg:row-span-10 lg:col-span-4 w-screen lg:w-full h-full bg-white border-t lg:border-l border-gray-200 px-2 md:px-6 lg:px-6 mt-2 lg:mt-0">
+                        <div className="h-full lg:h-[83vh] overflow-y-scroll mt-2 space-y-4">
 
                             <div>
                                 <label className="block text-gray-700 mb-1">Select Base Card *</label>
@@ -462,12 +462,11 @@ export default function ProductCustomizer() {
                                 </div>
                             }
 
-
                             {/* Upload Image */}
                             <div>
                                 <label className="block text-gray-700 mb-1">Upload Image *</label>
                                 <label htmlFor="uploadImage">
-                                    <div className="w-full h-[150px] bg-gray-100 rounded-md flex items-center justify-center cursor-pointer">
+                                    <div className=" w-[80px] h-[80px] lg:w-full lg:h-[150px] bg-gray-100 rounded-md flex items-center justify-center cursor-pointer">
                                         <CiCirclePlus className="text-8xl text-gray-300" />
                                     </div>
                                 </label>
@@ -488,7 +487,6 @@ export default function ProductCustomizer() {
                                     </button>
                                 </div>
                             </div>
-
 
 
                             {/* Text Controls */}

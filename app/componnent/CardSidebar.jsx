@@ -13,15 +13,14 @@ const CardSidebar = ({ finalCards, activeIndex, Done, setActiveIndex, addCard, r
         </div>
       </div>
     </h3>
-    <div className="w-full lg:w-full flex flex-row lg:flex-col gap-4 items-center h-[100px] lg:h-fit snap-mandatory overflow-x-scroll cursor-grab lg:overflow-y-scroll scrollbar-hide lg:max-h-[77vh] lg:min-h-[77vh] bg-gray-50 rounded-md border border-gray-100">
+    <div className="w-full lg:w-full flex flex-row lg:flex-col gap-4 items-center h-[80px] p-1 lg:h-fit snap-mandatory overflow-x-scroll cursor-grab lg:overflow-y-scroll scrollbar-hide lg:max-h-[77vh] lg:min-h-[77vh] bg-gray-50 rounded-md border border-gray-100">
       {finalCards.map((finalCard, idx) => (
         <div
           key={idx}
-          className={`w-[75px] lg:w-full relative rounded-xl p-1 z-0 snap-start ${idx === activeIndex ? "border-2 border-sky-400" : "border-2 border-gray-200"}`}
+          className={`w-[60px] h-full lg:h-fit lg:w-full relative flex items-cemter justify-center rounded-xl z-0 snap-start  border-2 border-gray-200}`}
         >
           <CardThumbnail
             finalCard={finalCard}
-            onClick={() => setActiveIndex(idx)}
           />
 
           <button className="bg-sky-600 absolute top-[-3px] right-[-3px] border-3 border-white tranlate-y-full text-white rounded-full w-fit h-fit cursor-pointer flex items-center justify-center" onClick={(e) => { e.stopPropagation(); removeCard(idx); }}>

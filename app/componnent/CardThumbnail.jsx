@@ -9,7 +9,7 @@ const CardThumbnail = ({ finalCard, onClick }) => {
 
   return (
     <div
-      className="w-[65px] h-[85px] lg:w-full lg:h-[180px] xl:h-[200px] relative rounded-lg cursor-pointer"
+      className="w-[50px] h-full md:h-auto lg:w-full lg:h-[180px] xl:h-[200px] relative rounded-lg cursor-pointer"
       onClick={onClick}
     >
 

@@ -6,7 +6,7 @@ const TradingCardThumnail = ({ card, onClick, shot }) => {
 
     return (
         <div
-            className="w-[70px] lg:w-full relative h-auto rounded-lg overflow-hidden cursor-pointer border border-gray-300 p-1"
+            className="w-[60px] lg:w-full relative h-auto rounded-lg overflow-hidden cursor-pointer border border-gray-300 p-1"
             onClick={onClick}
         >
             <Image
