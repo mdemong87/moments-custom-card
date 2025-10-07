@@ -20,20 +20,12 @@ export default function CheckoutPage() {
   const { cart } = useCartStore();
 
 
-  console.log(cart);
-
-
-
-
   const handleCheckout = async (e) => {
     e.preventDefault();
 
     setloading(true);
 
-
-
     const roundTotolPrice = cart[0]?.productQuantity * productUnitPrice;
-
 
     // Create FormData
     const formData = new FormData();
@@ -45,6 +37,8 @@ export default function CheckoutPage() {
     formData.append('payment_method', paymentMethod);
     formData.append("order_items", cart);
 
+
+    console.log(formData);
 
 
     // Send the form data to the server
