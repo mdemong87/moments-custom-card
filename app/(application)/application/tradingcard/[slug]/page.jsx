@@ -15,6 +15,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Rnd } from "react-rnd";
+import { toast, ToastContainer } from "react-toastify";
 import ViewCard from "../../../../componnent/ViewCard";
 
 const fonts = ["Arial", "Poppins", "Times New Roman", "Courier New", "Comic Sans MS"];
@@ -47,7 +48,7 @@ export default function ProductCustomizer() {
     const [spinloading, setspinloading] = useState(false);
     const router = useRouter();
     const [doneloading, setdoneloading] = useState(false);
-    const { addToCart } = useTradingFinalPreview();
+    const { addToCart, clearCart } = useTradingFinalPreview();
 
 
 
@@ -204,11 +205,15 @@ export default function ProductCustomizer() {
     /******* Selected Layer Image Function ********/
     const goToFinalView = async () => {
 
+
+        if (cards.length < 1) {
+            toast.warn('Please Customize at least one card');
+            return;
+        }
+
+
+        clearCart();
         setspinloading(true);
-
-        localStorage.setItem("tradingCards", JSON.stringify(cards));
-
-
         const product = {
             id: generateUserId(),
             productId: fetchingData?.id,
@@ -542,6 +547,7 @@ export default function ProductCustomizer() {
                     </div>
                 </div>
             </div>
+            <ToastContainer position="bottom-center" />
         </div>
     );
 }

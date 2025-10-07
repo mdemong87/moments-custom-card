@@ -19,10 +19,13 @@ const FinalCardsPage = () => {
 
     const [cards, setCards] = useState([]);
     const { addToCart } = useCartStore();
-    const { deckcart } = useDeckFinalPreview();
+    const { deckcart, removeFromCart } = useDeckFinalPreview();
     const [loading, setloading] = useState(false);
     const router = useRouter();
 
+
+
+    console.log(deckcart);
 
 
     const adddeckcart = (e) => {
@@ -54,13 +57,19 @@ const FinalCardsPage = () => {
                 </div>
             </div>
             <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap", padding: "2rem", margin: "45px 0px" }}>
-                {deckcart[0]?.FinalProduct?.map((card, idx) => (
 
-                    <div key={idx} className="w-[290px] h-[400px] flex items-center justify-center">
-                        <Image className="object-contain" src={card} width={1000} height={1000} key={idx} alt="final-cards" />
-                    </div>
+                {
+                    deckcart[0]?.FinalProduct?.map((card, idx) => (
 
-                ))}
+                        <div key={idx} className="w-[290px] h-[400px] flex items-center justify-center ">
+                            <Image className="object-contain z-10" src={card} width={1000} height={1000} key={idx} alt="final-cards" />
+                        </div>
+
+                    ))
+                }
+
+
+
             </div>
         </div>
     );

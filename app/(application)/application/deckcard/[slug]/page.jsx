@@ -9,7 +9,7 @@ import { pdfGanarator } from "@/utilis/helper/pdfGanarator";
 import MakeGet from "@/utilis/requestrespose/get";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import CardPreview from "../../../../componnent/CardPreview";
 import CardSidebar from "../../../../componnent/CardSidebar";
 import SideController from "../../../../componnent/SideController";
@@ -36,7 +36,7 @@ const ProductCustomizer = () => {
     const token = getCookie();
     const [spinloading, setspinloading] = useState(false);
     const [doneloading, setdoneloading] = useState(false);
-    const { addToCart } = useDeckFinalPreview();
+    const { addToCart, clearCart } = useDeckFinalPreview();
 
 
 
@@ -133,6 +133,13 @@ const ProductCustomizer = () => {
     /******* Selected Layer Image Function ********/
     const goToFinalView = async () => {
 
+
+        if (finalCards.length < 1) {
+            toast.warn('Please Customize at least one card');
+            return;
+        }
+
+        clearCart();
         setspinloading(true);
 
         const producted = {
@@ -194,7 +201,7 @@ const ProductCustomizer = () => {
                         </div>
                     </div>
                 </div>
-
+                <ToastContainer position="bottom-center" />
             </div>
         </>
     );

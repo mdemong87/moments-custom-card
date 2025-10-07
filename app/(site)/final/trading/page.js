@@ -49,9 +49,11 @@ const FinalCardsPage = () => {
                 </div>
             </div>
             <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap", marginTop: "45px" }}>
+
                 {tradingcart[0]?.FinalProduct.map((card, idx) => (
                     <Image className="rounded-lg h-[280px] w-[185px] border border-gray-200" src={card} width={1000} height={1000} key={idx} alt="Final-Image-Card" />
                 ))}
+
             </div>
         </div>
     );

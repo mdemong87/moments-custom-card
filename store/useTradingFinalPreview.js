@@ -11,6 +11,11 @@ const useTradingFinalPreview = create((set, get) => ({
         })),
 
 
+
+
+    // Empty the entire cart
+    clearCart: () => set({ tradingcart: [] }),
+
 }));
 
 export default useTradingFinalPreview;

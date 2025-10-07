@@ -11,6 +11,10 @@ const useDeckFinalPreview = create((set, get) => ({
         })),
 
 
+    // Empty the entire cart
+    clearCart: () => set({ deckcart: [] }),
+
+
 }));
 
 export default useDeckFinalPreview;
