@@ -12,7 +12,7 @@ const CardPreview = ({ activeCard, previewCardNodeRef }) => {
 
 
     return (
-        <div ref={previewCardNodeRef} className="flex items-center justify-center relative w-[270px] h-[370px] lg:w-[400px] lg:h-[600px] rounded-4xl border-2 border-gray-100">
+        <div ref={previewCardNodeRef} className="flex items-center justify-center relative w-[160px] h-auto md:w-[270px] md:h-[370px] lg:w-[400px] lg:h-[600px] rounded-4xl border-2 border-gray-100">
             {activeCard?.baseImage && (
                 <Image
                     width={1000} height={1000} src={activeCard.baseImage} alt="Base Card" className=" w-full h-full object-contain"
@@ -26,34 +26,14 @@ const CardPreview = ({ activeCard, previewCardNodeRef }) => {
                             height={1000}
                             src={activeCard.selectedLayers[layer]}
                             alt={layer}
-                            className="absolute top-[32px] lg:top-[92px] left-1/2 -translate-x-1/2 w-[65%] h-[42%] lg:w-[55%] lg:h-[35%] object-contain pt-[30px]"
-                        // style={{
-                        //     position: "absolute",
-                        //     top: 93,
-                        //     left: "50%",
-                        //     transform: "translateX(-50%)",
-                        //     width: "55%",
-                        //     height: "35%",
-                        //     objectFit: "contain",
-                        //     paddingTop: "30px"
-                        // }}
+                            className="absolute top-[10px] md:top-[32px] lg:top-[92px] left-1/2 -translate-x-1/2 w-[70%] h-[47%] md:w-[65%] md:h-[42%] lg:w-[55%] lg:h-[35%] object-contain pt-[30px]"
                         />
                         <Image
                             width={1000}
                             height={1000}
                             src={activeCard.selectedLayers[layer]}
                             alt={`${layer}-mirrored`}
-                            className="absolute bottom-[32px] lg:bottom-[92px] left-1/2 -translate-x-1/2 scale-y-[-1] w-[65%] h-[42%] lg:w-[55%] lg:h-[35%] object-contain pt-[30px]"
-                        // style={{
-                        //     position: "absolute",
-                        //     bottom: 93,
-                        //     left: "50%",
-                        //     transform: "translateX(-50%) scaleY(-1)",
-                        //     width: "55%",
-                        //     height: "35%",
-                        //     objectFit: "contain",
-                        //     paddingTop: "30px"
-                        // }}
+                            className="absolute bottom-[10px] md:bottom-[32px] lg:bottom-[92px] left-1/2 -translate-x-1/2 scale-y-[-1] w-[70%] h-[47%] md:w-[65%] md:h-[42%] lg:w-[55%] lg:h-[35%] object-contain pt-[30px]"
                         />
                     </div>
                 )
