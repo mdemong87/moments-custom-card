@@ -39,7 +39,7 @@ const FinalCardsPage = () => {
                     <button onClick={() => { router.back() }} className="border border-gray-200 bg-white p-2 rounded-md shadow-md cursor-pointer hover:bg-gray-100 transition duration-100">
                         <BiLeftArrowAlt className="text-2xl" />
                     </button>
-                    <h1 className="text-xl text-gray-600">Your Customized Cards</h1>
+                    <h1 className="text-xl text-gray-600 hidden md:block">Your Customized Cards</h1>
                 </div>
                 <div>
                     <button onClick={(e) => { addtocartMainCart(e) }} className="border border-gray-200 bg-sky-400 text-white p-2 rounded-md shadow-md cursor-pointer hover:bg-sky-500 transition duration-100 flex items-center gap-2">
