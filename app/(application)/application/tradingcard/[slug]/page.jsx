@@ -278,7 +278,7 @@ export default function ProductCustomizer() {
                 <div className="grid grid-cols-10 grid-rows-10 h-full w-full mt-2 lg:mt-0">
                     {/* Canvas column (middle) */}
                     <div className="col-span-10 row-span-4 lg:row-span-10 lg:col-span-6 flex items-center justify-center lg:-translate-y-[50px] w-screen lg:w-full h-full lg:h-full">
-                        <div ref={previewCardNodeRef} className="border border-gray-200 rounded-md bg-white w-[190px] lg:w-[390px] h-[300px] lg:h-[570px] relative overflow-hidden">
+                        <div ref={previewCardNodeRef} className="border border-gray-200 rounded-md bg-white w-[140px] md:w-[190px] lg:w-[390px] h-[200px] md:h-[300px] lg:h-[570px] relative overflow-hidden">
                             {/* Uploaded images (zIndex:1) - draggable & resizable */}
                             {uploads.map((img) => (
                                 <Rnd
