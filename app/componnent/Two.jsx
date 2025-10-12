@@ -81,7 +81,7 @@ const Two = () => {
 
         if (productType === "Customizable") {
 
-            if (productName && productPrice > 0 && productShortDescription && productCategory && productThumbnail && productImages?.length > 0 && layerBaseCard?.length > 0 && layerSkinTone?.length > 0 && layerHair?.length > 0 && layerNose?.length > 0 && layerEyes?.length > 0 && layerMouth?.length > 0 && layerDress?.length > 0 && layerCrown?.length > 0 && layerBeard?.length > 0) {
+            if (productName && productPrice > 0 && productShortDescription && productCategory && productThumbnail && productImages?.length > 0 && layerBaseCard?.length > 0 && layerSkinTone?.length > 0) {
                 setLoading(true);
                 setTimeout(() => {
                     setLoading(false);
@@ -122,9 +122,6 @@ const Two = () => {
         }
 
     }
-
-
-    console.log(productStatus);
 
 
 
