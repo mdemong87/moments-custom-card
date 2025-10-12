@@ -17,6 +17,12 @@ const DeshboardNavigation = ({ loginUser }) => {
             link: "/deshboard/admin"
         },
         {
+            name: "All Users",
+            nested: false,
+            sub: [],
+            link: "/deshboard/admin/alluser"
+        },
+        {
             name: "All Orders",
             nested: false,
             sub: [],

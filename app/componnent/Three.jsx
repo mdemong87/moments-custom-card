@@ -44,12 +44,6 @@ const Three = () => {
 
 
 
-    const onBack = () => {
-        console.log('sdf');
-    }
-
-
-
     /************* add new Product functionality *************/
     const onConfirm = async (e) => {
         e.preventDefault();
@@ -166,7 +160,7 @@ const Three = () => {
                     <p><strong>Type:</strong> {productType}</p>
                     <p><strong>Price:</strong> ${productPrice}</p>
                     <p><strong>Offer Price:</strong> ${productofferPrice}</p>
-                    <p><strong>Status:</strong> {productStatus ? "Published" : "Draft"}</p>
+                    <p><strong>Status:</strong> {productStatus === "true" ? "Published" : "Draft"}</p>
                     <p><strong>Category:</strong> {JSON.parse(productCategory)?.name}</p>
                     <p><strong>Short Description:</strong> {productShortDescription}</p>
                     <p><strong>Description:</strong> {productDescription}</p>

@@ -20,7 +20,7 @@ const useProductUploadStore = create((set) => ({
     setproductCategory: (product) => set({ productCategory: product }),
     productTags: 0,
     setproductTags: (product) => set({ productTags: product }),
-    productStatus: true,
+    productStatus: false,
     setproductStatus: (product) => set({ productStatus: product }),
     productThumbnail: null,
     setproductThumbnail: (product) => set({ productThumbnail: product }),

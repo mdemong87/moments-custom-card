@@ -7,6 +7,7 @@ import useCartStore from "@/store/useCartStore";
 import generateUserId from "@/utilis/helper/generateUserId";
 import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import MakeGet from "@/utilis/requestrespose/get";
+import MakePost from "@/utilis/requestrespose/post";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
@@ -14,9 +15,10 @@ import { useCallback, useEffect, useState } from "react";
 import { BsStars } from "react-icons/bs";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FiShoppingCart } from "react-icons/fi";
+import { ImCross } from "react-icons/im";
 import { RiArrowLeftFill, RiArrowRightFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 
 
@@ -26,7 +28,10 @@ const SingleProduct = () => {
 
     const { slug } = useParams();
     const router = useRouter();
+    const [subcribeloading, setsubcribeloading] = useState(false);
     const [modelopen, setmodelopen] = useState(false);
+    const [subemail, setsubemail] = useState('');
+    const [SubcriptionModal, setSubcriptionModal] = useState(false);
     const [fetchloading, setfetchloading] = useState(true);
     const [isedit, setisedit] = useState(false);
     const [name, setname] = useState('');
@@ -65,30 +70,36 @@ const SingleProduct = () => {
     const handleaddToCart = (e) => {
 
         e.preventDefault();
-        setbtnLoading(true);
-
-        const product = {
-            id: generateUserId(),
-            productId: data?.id,
-            productSlug: data?.slug,
-            productName: data?.name,
-            productType: data?.type,
-            productUnitPrice: data?.offer_price > 0 ? data?.offer_price : data?.price,
-            productQuantity: 1,
-            productImage: data?.image,
-            productDescription: data?.description,
-
-            FinalProduct: data?.images
-        };
 
         setTimeout(() => {
-            addToCart(product);
-            setbtnLoading(false);
+
+            if (data?.status) {
+
+                setbtnLoading(true);
+
+                const product = {
+                    id: generateUserId(),
+                    productId: data?.id,
+                    productSlug: data?.slug,
+                    productName: data?.name,
+                    productType: data?.type,
+                    productUnitPrice: data?.offer_price > 0 ? data?.offer_price : data?.price,
+                    productQuantity: 1,
+                    productImage: data?.image,
+                    productDescription: data?.description,
+                    FinalProduct: data?.images
+                };
+
+
+                addToCart(product);
+                setbtnLoading(false);
+            } else {
+                setSubcriptionModal(true);
+            }
+
         }, 1000);
     };
 
-
-    console.log(data);
 
 
     // handle customizatio cart
@@ -100,16 +111,49 @@ const SingleProduct = () => {
         setTimeout(() => {
             setbtnLoading(false);
 
-            if (type == "customizable") {
-                router.push(`/application/deckcard/${slug}`);
+
+            if (data?.status) {
+
+                if (type == "customizable") {
+                    router.push(`/application/deckcard/${slug}`);
+                } else {
+                    router.push(`/application/tradingcard/${slug}`);
+                }
+
             } else {
-                router.push(`/application/tradingcard/${slug}`);
+
+                setSubcriptionModal(true);
             }
 
         }, 1000);
     }
 
 
+
+
+    // handle subscribes function
+    const subcribes = async (e) => {
+        e.preventDefault();
+
+        if (subemail) {
+            setsubcribeloading(true);
+            const res = await MakePost('api/subscribers', { email: subemail });
+            setsubcribeloading(false);
+
+            if (res?.success) {
+                setSubcriptionModal(false);
+                toast.success("Thank you for Subscribe.");
+            } else {
+                toast.error("Something Went Wrong! Please Try Again.");
+            }
+        } else {
+            toast.warn("Email is Required");
+        }
+
+
+
+
+    }
 
 
     if (fetchloading) return <SingleProductSkeleton />
@@ -220,6 +264,31 @@ const SingleProduct = () => {
                     </div>
                 </div>
             </div>
+
+
+            {
+                SubcriptionModal && <div className="absolute top-0 left-0 w-full rounded-md h-full bg-[#0000006e] z-50 flex items-center justify-center">
+                    <div className="bg-white text-gray-800 py-3 px-6 w-fit h-fit rounded-md shadow-md text-center flex flex-col items-center py-6 relative">
+                        <div onClick={() => { setSubcriptionModal(false) }} className="absolute top-[-10px] cursor-pointer right-[-10px] bg-sky-400 text-white p-1 rounded-full">
+                            <ImCross className="text-sm" />
+                        </div>
+                        <div className="px-2 py-1 bg-red-100 border border-red-200 rounded-md mb-4">
+                            <h4>This product isn’t Opened yet</h4>
+                        </div>
+                        <h3 className="text-2xl font-semibold mb-2">Stay Updated!</h3>
+                        <p className="text-gray-500 text-sm mb-6">
+                            Enter your email below to get notified as soon as this product goes live.
+                        </p>
+                        <div className="flex item-center gap-2 h-[40px] mt-3">
+                            <input onChange={(e) => { setsubemail(e.target.value) }} type="email" className="border border-gray-200 p-2 rounded-md h-full" placeholder="Your Email" />
+                            <button onClick={(e) => { subcribes(e) }} className="text-white bg-sky-400 px-3 py-2 rounded-md cursor-pointer flex items-center gap-2">
+                                {subcribeloading && <SpinLoader />}
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
 
         </div >
     )

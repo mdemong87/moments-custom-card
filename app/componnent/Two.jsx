@@ -124,6 +124,9 @@ const Two = () => {
     }
 
 
+    console.log(productStatus);
+
+
 
     return (
         <div className="flex justify-center px-2">
