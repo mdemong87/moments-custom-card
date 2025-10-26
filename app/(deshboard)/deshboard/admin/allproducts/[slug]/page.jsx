@@ -5,6 +5,7 @@ import getCookie from "@/utilis/helper/cookie/gettooken";
 import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import MakeDelete from "@/utilis/requestrespose/delete";
 import MakeGet from "@/utilis/requestrespose/get";
+import MakePost from "@/utilis/requestrespose/post";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
@@ -72,7 +73,7 @@ const SingleProduct = () => {
             setname('');
             setimage('');
             setdes('');
-            fetching(id, token);
+            fetching(slug, token);
         } else {
             toast.error('Something went Wrong');
         }
@@ -114,6 +115,34 @@ const SingleProduct = () => {
 
     console.log(data);
 
+    const handleStatusUpdater = async (e, id, status) => {
+
+
+        e.preventDefault();
+
+
+        try {
+            setfetchloading(true);
+            const response = await MakePost(`api/updateproduct`, {
+                id: id,
+                status: status ? 0 : 1
+            }, token);
+            if (response?.success) {
+
+                toast.success(response?.message);
+                fetching(slug, token);
+            } else {
+                toast.error("Something Went Wrong");
+            }
+
+            setfetchloading(false);
+        } catch (error) {
+            console.error("Error fetching profile:", error);
+            setfetchloading(false);
+        }
+    }
+
+
 
     if (fetchloading) return <SingleProductSkeleton />
 
@@ -123,12 +152,16 @@ const SingleProduct = () => {
             <div className="mb-7 items-center flex justify-between sticky top-[70px] bg-white py-4 pt-0">
                 <span className="text-2xl font-bold ">Product Overview</span>
                 <div className="flex justify-end gap-4 mt-6">
+
+
+
                     <Link href={'/deshboard/admin/allproducts'}
                         className="bg-sky-200 px-4 py-2 rounded-lg hover:bg-sky-300 transition cursor-pointer flex items-center gap-1 justify-center"
                     >
                         <FaArrowLeft />
                         Back
                     </Link>
+                    <button onClick={(e) => { handleStatusUpdater(e, data?.id, data?.status) }} className="bg-blue-900 px-2 text-white rounded-md cursor-pointer">Mark as {data?.status ? "Draft" : "Published"}</button>
                     <button
                         onClick={(e) => { handleDelect(e, data?.id) }}
                         className="bg-red-300 text-black px-4 py-2 rounded-lg hover:bg-red-400 transition flex items-center gap-2 justify-center cursor-pointer flex items-center gap-0 justify-center"
