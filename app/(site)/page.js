@@ -8,6 +8,10 @@ import Tradition from "../componnent/Tradition";
 
 const Homepage = () => {
 
+
+  console.log(process.env.NEXT_PUBLIC_API_BASE_URL);
+
+
   return (
     <main className="h-fit">
       <Hero />
