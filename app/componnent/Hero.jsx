@@ -2,12 +2,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import hero1 from "../../public/hero1.png";
+import hero2 from "../../public/hero2.png";
+import hero3 from "../../public/hero3.png";
+import hero4 from "../../public/hero4.png";
+import hero5 from "../../public/hero5.png";
 const cards = [
-    "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/trading-3.png?w=1050&ssl=1",
-    "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/king-heart.png?w=995&ssl=1",
-    "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/green-skip.png?w=960&ssl=1",
-    "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/Pick-Next-Card-1.png?w=961&ssl=1",
-    "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/back.png?w=995&ssl=1",
+    hero5,
+    hero4,
+    hero3,
+    hero2,
+    hero1,
 ];
 const tickerItems = ["Free Delivery", "Premium Quality", "Long Lasting", "Easily Customizable"];
 
