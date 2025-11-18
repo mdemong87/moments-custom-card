@@ -150,9 +150,6 @@ const SingleProduct = () => {
             toast.warn("Email is Required");
         }
 
-
-
-
     }
 
 

@@ -32,6 +32,10 @@ const SingleProduct = () => {
 
 
 
+    console.log(data);
+
+
+
 
     const fetching = useCallback(async (slug, token) => {
         try {
@@ -288,7 +292,7 @@ const SingleProduct = () => {
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md h-[60px] w-[80px]"
+                                                    className="rounded-md w-[80px] h-fit"
                                                 />
                                             ))}
                                         </div>

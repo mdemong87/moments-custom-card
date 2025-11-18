@@ -26,26 +26,9 @@ const About = () => {
 
     };
 
-
-
-    console.log(products);
-
-
     useEffect(() => {
         fetchProducts();
     }, []);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     if (loading) return <ShopCardSkeleton />;

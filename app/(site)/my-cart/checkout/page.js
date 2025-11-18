@@ -5,6 +5,7 @@ import useCartStore from "@/store/useCartStore";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 import MakePost from "@/utilis/requestrespose/post";
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function CheckoutPage() {
 
@@ -20,39 +21,49 @@ export default function CheckoutPage() {
   const { cart } = useCartStore();
 
 
+
+  // calculate the total price
+  const calculateTotalPrice = () => {
+    return cart.reduce((total, item) => total + item.productUnitPrice * item.productQuantity, 0);
+  };
+
+
+
+  // handle checkout funtionh here
   const handleCheckout = async (e) => {
     e.preventDefault();
 
     setloading(true);
 
-    const roundTotolPrice = cart[0]?.productQuantity * productUnitPrice;
 
-    // Create FormData
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('phone', phone);
-    formData.append('City', City);
-    formData.append('address', address);
-    formData.append('payment_method', paymentMethod);
-    formData.append("order_items", cart);
-
-
-    console.log(formData);
+    const paymentPassingData = {
+      paymentMethod,
+      name,
+      email,
+      phone,
+      City,
+      address,
+      roundTotolPrice: calculateTotalPrice()
+    }
 
 
-    // Send the form data to the server
-    const res = await MakePost("api/customer-orders", formData, token);
+    if (name && email && phone && City && address) {
 
-    console.log(res);
-    setloading(false);
 
+      // Send the form data to the server
+      const res = await MakePost("api/customer-orders", paymentPassingData, token);
+
+      console.log(res);
+      setloading(false);
+    } else {
+      toast.warn("Required All Feilds");
+    }
 
   };
 
   return (
     <section className="min-h-[80vh] relative bg-gray-50 py-0 overflow-hidden">
-
+      <ToastContainer />
       {/* Glassy blurred background for the entire section */}
       <div className="absolute inset-0 bg-white/70 backdrop-blur-xl -z-10"></div>
       <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 opacity-30 blur-3xl -z-20"></div>
@@ -61,7 +72,6 @@ export default function CheckoutPage() {
 
         {/* Checkout Form */}
         <form
-          onSubmit={handleCheckout}
           className="col-span-2 bg-white/30 backdrop-blur-lg border border border-gray-200 rounded-lg shadow-lg p-10 space-y-8"
         >
           <h2 className="text-3xl font-extrabold text-gray-900">Checkout</h2>
@@ -101,7 +111,7 @@ export default function CheckoutPage() {
           </div>
 
           <button
-            type="submit"
+            onClick={(e) => { handleCheckout(e) }}
             className="mt-6 bg-sky-400 text-white px-10 py-4 rounded-lg font-bold shadow-xl hover:opacity-90 transition w-full cursor-pointer flex items-center justify-center gap-4"
           >
             {loading && <SpinLoader />}
@@ -126,15 +136,15 @@ export default function CheckoutPage() {
             <hr className="my-6 border-t border-gray-700" />
             <div className="flex justify-between mb-2 text-gray-800">
               <span>Subtotal</span>
-              <span>${'88'}</span>
+              <span>${calculateTotalPrice()}</span>
             </div>
             <div className="flex justify-between mb-2 text-gray-800">
               <span>Shipping</span>
-              <span>${'00'}</span>
+              <span>${calculateTotalPrice()}</span>
             </div>
             <div className="flex justify-between font-bold text-xl mt-4 text-gray-800">
               <span>Total</span>
-              <span>${'88'}</span>
+              <span>${calculateTotalPrice()}</span>
             </div>
           </div>
         </div>

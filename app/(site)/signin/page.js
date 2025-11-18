@@ -48,7 +48,7 @@ const Signin = () => {
                         break;
                     case "Customer":
                         // router.push('/deshboard/customer');
-                        router.push('/application');
+                        router.push('/shop');
                         break;
                     default:
                         break;

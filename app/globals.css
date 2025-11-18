@@ -109,6 +109,13 @@ body {
 
 
 
+/* hero background pata image here */
+.heroBgPataImage {
+  background: url('../public/pata.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 
 .tooltipscostom::before {
@@ -162,4 +169,25 @@ input[type=number] {
   width: 12px;
   height: inherit;
   border-radius: 0;
+}
+
+
+
+
+/* screenshort resizer border line manipulate css here */
+.capture-clean-mode,
+.capture-clean-mode * {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  user-select: none !important;
+  caret-color: transparent !important;
+  cursor: default !important;
+}
+
+.capture-clean-mode::before,
+.capture-clean-mode::after,
+.capture-clean-mode *::before,
+.capture-clean-mode *::after {
+  content: none !important;
 }

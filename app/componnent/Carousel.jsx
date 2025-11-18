@@ -1,13 +1,20 @@
 "use client";
 import Image from "next/image";
 import Slider from "react-slick";
+import hero1 from "../../public/hero1.png";
+import hero2 from "../../public/hero2.png";
+import hero3 from "../../public/hero3.png";
+import hero4 from "../../public/hero4.png";
+import hero5 from "../../public/hero5.png";
+
+
 
 export default function Carousel() {
     const settings = {
         dots: true,
         infinite: true,
         speed: 2000,
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 1000,
@@ -24,11 +31,11 @@ export default function Carousel() {
 
 
     const items = [
-        { id: 1, img: "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/traditional-deck-group.png?w=800&ssl=1", title: "Family Game Night Deck", desc: "“Custom cards for every family member—turned our gatherings into a tradition!”" },
-        { id: 2, img: "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/traditional-deck-group.png?w=800&ssl=1", title: "Family Game Night Deck", desc: "“Custom cards for every family member—turned our gatherings into a tradition!”" },
-        { id: 3, img: "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/traditional-deck-group.png?w=800&ssl=1", title: "Family Game Night Deck", desc: "“Custom cards for every family member—turned our gatherings into a tradition!”" },
-        { id: 4, img: "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/traditional-deck-group.png?w=800&ssl=1", title: "Family Game Night Deck", desc: "“Custom cards for every family member—turned our gatherings into a tradition!”" },
-        { id: 5, img: "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/traditional-deck-group.png?w=800&ssl=1", title: "Family Game Night Deck", desc: "“Custom cards for every family member—turned our gatherings into a tradition!”" },
+        { id: 1, img: hero5, title: "Family Game Night Deck", desc: "“Custom cards for every family member—turned our gatherings into a tradition!”" },
+        { id: 2, img: hero4, title: "Family Game Night Deck", desc: "“Custom cards for every family member—turned our gatherings into a tradition!”" },
+        { id: 3, img: hero3, title: "Family Game Night Deck", desc: "“Custom cards for every family member—turned our gatherings into a tradition!”" },
+        { id: 4, img: hero2, title: "Family Game Night Deck", desc: "“Custom cards for every family member—turned our gatherings into a tradition!”" },
+        { id: 5, img: hero1, title: "Family Game Night Deck", desc: "“Custom cards for every family member—turned our gatherings into a tradition!”" },
 
     ];
 
@@ -55,7 +62,7 @@ export default function Carousel() {
                                         alt={item.title}
                                         width={500}
                                         height={400}
-                                        className="w-full h-80 object-cover"
+                                        className="w-full h-80 object-contain bg-sky-100 p-5"
                                     />
                                     <div className="p-5 text-center">
                                         <h2 className="text-xl font-bold text-[#333]">{item.title}</h2>

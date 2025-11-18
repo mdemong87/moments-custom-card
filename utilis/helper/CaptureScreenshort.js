@@ -9,5 +9,6 @@ const CaptureScreenshort = async (nodeRef, state, seterState) => {
     }
 }
 
-
 export default CaptureScreenshort;
+
+

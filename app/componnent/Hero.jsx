@@ -75,7 +75,7 @@ const Hero = () => {
                 {/* Background */}
                 <div className="absolute inset-0">
                     <div
-                        className="w-full h-full bg-[url('https://momentocardgames.com/wp-content/uploads/2025/06/spade-icon.svg')] bg-no-repeat bg-top bg-cover opacity-10"
+                        className={`w-full h-full opacity-10 heroBgPataImage`}
                     />
                 </div>
                 {/* Content */}

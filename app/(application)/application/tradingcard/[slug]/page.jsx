@@ -248,6 +248,9 @@ export default function ProductCustomizer() {
 
     const Done = async () => {
         setdoneloading(true);
+
+        console.log(previewCardNodeRef.current);
+
         await CaptureScreenshort(previewCardNodeRef, cards, setCards);
         setTimeout(() => {
             setdoneloading(false);

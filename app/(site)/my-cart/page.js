@@ -58,7 +58,7 @@ const MyCart = () => {
 
 
     return (
-        <main className="py-14 pb-20 bg-gray-50 h-fit">
+        <main className="py-14 pb-20 bg-gray-50 min-h-[60vh] h-fit">
             <div className="max-w-7xl mx-auto px-4">
                 <div className="grid grid-cols-12 gap-6">
                     {/* Cart Items Section */}

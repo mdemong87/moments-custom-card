@@ -1,6 +1,9 @@
 "use client";
 import Slider from "react-slick";
 
+import hero1 from "../../public/hero1.png";
+
+
 export default function Testimonial() {
     const settings = {
         dots: true,
@@ -26,28 +29,28 @@ export default function Testimonial() {
             name: "Alice Johnson",
             position: "Creative Designer",
             feedback: "Amazing experience! Loved the quality and design of the cards.",
-            img: "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/traditional-deck-group.png?w=800&ssl=1"
+            img: hero1
         },
         {
             id: 2,
             name: "Mark Williams",
             position: "Event Organizer",
             feedback: "Customer service was fantastic. Highly recommend!",
-            img: "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/traditional-deck-group.png?w=800&ssl=1"
+            img: hero1
         },
         {
             id: 3,
             name: "Sophia Lee",
             position: "Photographer",
             feedback: "The cards were stunning. Everyone loved them!",
-            img: "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/traditional-deck-group.png?w=800&ssl=1"
+            img: hero1
         },
         {
             id: 4,
             name: "John Doe",
             position: "Designer",
             feedback: "High-quality prints and fast delivery.",
-            img: "https://i0.wp.com/momentocardgames.com/wp-content/uploads/2025/06/traditional-deck-group.png?w=800&ssl=1"
+            img: hero1
         },
     ];
 
@@ -80,7 +83,7 @@ export default function Testimonial() {
                                     <div className="mt-12">
                                         <h3 className="font-bold text-lg text-[#333]">{t.name}</h3>
                                         <p className="text-sm text-[#3CA9FF] mb-4">{t.position}</p>
-                                        <p className="text-gray-600 text-sm">{t.feedback}</p>
+                                        <p className="text-gray-600 text-sm line-clamp-1">{t.feedback}</p>
                                     </div>
                                 </div>
                             </div>
