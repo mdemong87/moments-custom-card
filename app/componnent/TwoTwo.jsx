@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import Twos from "../../public/two.png";
+import Twos from "../../public/twos.png";
 
 export default function Two() {
     return (
-        <div className="mt-8 py-8 max-w-7xl mx-auto">
+        <div className="mt-8 py-8 max-w-7xl mx-auto my-14">
             <div className="flex flex-col lg:flex-row justify-around items-center gap-5 px-4 lg:px-0">
                 {/* left */}
                 <div className="flex items-center justify-center group overflow-hidden rounded-lg">

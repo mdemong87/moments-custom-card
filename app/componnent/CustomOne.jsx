@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import customOnes from "../../public/customOneImage .png";
+import customOnes from "../../public/allcardstucture.png";
 
 export default function CustomOne() {
     return (
@@ -34,10 +34,10 @@ export default function CustomOne() {
                         <Image
                             src={customOnes}
                             alt="Customization Preview"
-                            width={600}
-                            height={400}
+                            width={1000}
+                            height={1000}
                             draggable={false}
-                            className="rounded-xl object-cover w-full h-[400px] transform transition-transform duration-500 group-hover:scale-105"
+                            className="rounded-xl object-contain w-full h-[500px] transform transition-transform duration-500 group-hover:scale-105"
                         />
                     </div>
                 </div>

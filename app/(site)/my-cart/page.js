@@ -45,8 +45,6 @@ const MyCart = () => {
         }
         setIsLoading(true);
 
-        console.log(cart);
-
         setTimeout(() => {
             setIsLoading(false);
             router.push('my-cart/checkout');

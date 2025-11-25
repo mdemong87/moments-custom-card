@@ -8,11 +8,11 @@ export default function Tradition() {
         <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
             {/* Left Content */}
             <div className="space-y-6">
-                <h1 className="text-4xl md:text-3xl font-extrabold text-gray-800 uppercase">
-                    Traditional Playing Cards
+                <h1 className="text-4xl md:text-3xl font-extrabold text-gray-800">
+                    Momento Trading Cards
                 </h1>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                    Create your own set of traditional playing cards with fully customizable faces and themes. Perfect for game nights, gifts, or making every shuffle personal.
+                    Create your own set of Trading Card with fully customizable faces and themes. Perfect for game nights, gifts, or making every shuffle personal.
                 </p>
                 <p className="text-lg text-gray-600 leading-relaxed">
                     <FaRegSquareCheck className="inline mr-2 pb-1 text-[#3CA9FF]" />

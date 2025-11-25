@@ -1,5 +1,5 @@
 import Image from "next/image";
-import TredingOne from "../../public/tredingOne.png";
+import TredingOne from "../../public/tranding.png";
 import TredingThree from "../../public/TredingThree.png";
 import TredingTwo from "../../public/tredingTwo.png";
 

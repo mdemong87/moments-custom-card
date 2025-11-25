@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaCheckSquare } from "react-icons/fa";
-import CardsMerged from "../../public/three.png"; // merged right-side image
+import CardsMerged from "../../public/aboutHerobangladesh.png"; // merged right-side image
 
 export default function DesignedForPlay() {
     return (
@@ -45,11 +45,11 @@ export default function DesignedForPlay() {
                 </div>
 
                 {/* Right side (single merged image) */}
-                <div className="h-[500px] w-full bg-[#E6F0F8] rounded-md flex-1 flex justify-center lg:justify-center items-center">
+                <div className="h-[500px] w-full rounded-md flex-1 flex justify-center lg:justify-center items-center">
                     <Image
                         src={CardsMerged}
                         alt="Stacked Cards"
-                        className="w-[600px] lg:w-[650px] h-[400px] transition-transform duration-500 hover:scale-105 object-cover "
+                        className=" transition-transform duration-500 hover:scale-105 object-container"
                     />
                 </div>
             </div>

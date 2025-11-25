@@ -25,8 +25,6 @@ const FinalCardsPage = () => {
 
 
 
-    console.log(deckcart);
-
 
     const adddeckcart = (e) => {
         e.preventDefault();

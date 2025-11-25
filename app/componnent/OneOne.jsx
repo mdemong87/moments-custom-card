@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Right from "../../public/aboutright.png";
+import Right from "../../public/ele.png";
 
 export default function AboutPage() {
     return (
@@ -29,9 +29,9 @@ export default function AboutPage() {
                     <Image
                         src={Right}
                         alt="Diamond"
-                        width={500}
-                        height={500}
-                        className="h-[500px] w-[500px] object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-110"
+                        width={1000}
+                        height={1000}
+                        className="h-[500px] w-[500px] object-container transform transition-transform duration-500 ease-in-out group-hover:scale-110"
                     />
                 </div>
             </div>

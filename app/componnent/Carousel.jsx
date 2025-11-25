@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
 import Slider from "react-slick";
-import hero1 from "../../public/hero1.png";
+import hero3 from "../../public/ele.png";
 import hero2 from "../../public/hero2.png";
-import hero3 from "../../public/hero3.png";
-import hero4 from "../../public/hero4.png";
-import hero5 from "../../public/hero5.png";
+import hero4 from "../../public/ronaldo.webp";
+import hero1 from "../../public/tranding.png";
+import hero5 from "../../public/tredingTwo.png";
 
 
 

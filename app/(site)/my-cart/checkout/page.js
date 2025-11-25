@@ -3,7 +3,6 @@
 import SpinLoader from "@/app/componnent/SpingLoader";
 import useCartStore from "@/store/useCartStore";
 import getCookie from "@/utilis/helper/cookie/gettooken";
-import MakePost from "@/utilis/requestrespose/post";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -17,6 +16,7 @@ export default function CheckoutPage() {
   const [email, setemail] = useState("");
   const [phone, setphone] = useState("");
   const [City, setCity] = useState("");
+  const [zipcode, setzipcode] = useState("");
   const [address, setaddress] = useState("");
   const { cart } = useCartStore();
 
@@ -36,25 +36,56 @@ export default function CheckoutPage() {
     setloading(true);
 
 
+
+    const allproductImage = [];
+
+    cart.forEach((item) => {
+      item?.FinalProduct?.forEach((image) => {
+        allproductImage.push(image);
+      })
+    });
+
+
+
     const paymentPassingData = {
-      paymentMethod,
+      payment_method: paymentMethod,
       name,
       email,
       phone,
+      zipcode,
       City,
       address,
-      roundTotolPrice: calculateTotalPrice()
+      roundTotolPrice: calculateTotalPrice(),
+      AllProductImage: allproductImage
     }
+
 
 
     if (name && email && phone && City && address) {
 
 
       // Send the form data to the server
-      const res = await MakePost("api/customer-orders", paymentPassingData, token);
+      // const res = await MakePost("myorders", paymentPassingData, token);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/myorders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(paymentPassingData),
+      });
 
       console.log(res);
       setloading(false);
+
+
+      if (res?.success) {
+        toast.success(res?.message);
+      } else {
+        toast.error(res?.message);
+      }
+
     } else {
       toast.warn("Required All Feilds");
     }
@@ -81,9 +112,11 @@ export default function CheckoutPage() {
             <input onChange={(e) => { setname(e.target.value) }} type="text" placeholder="Full Name" className={inputStyle} required />
             <input onChange={(e) => { setemail(e.target.value) }} type="email" placeholder="Email Address" className={inputStyle} required />
             <input onChange={(e) => { setphone(e.target.value) }} type="text" placeholder="Phone Number" className={inputStyle} required />
-            <input onChange={(e) => { setCity(e.target.value) }} type="text" placeholder="City" className={inputStyle} required />
+            <input onChange={(e) => { setzipcode(e.target.value) }} type="number" placeholder="Zip Code" className={inputStyle} required />
           </div>
+          <input onChange={(e) => { setCity(e.target.value) }} type="text" placeholder="City" className={inputStyle} required />
           <textarea onChange={(e) => { setaddress(e.target.value) }} placeholder="Shipping Address" className={inputStyle} rows="3" required></textarea>
+
 
           {/* Payment Method */}
           <div className="space-y-4">

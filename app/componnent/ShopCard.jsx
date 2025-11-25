@@ -38,16 +38,18 @@ export default function ShopCard({ product }) {
     return (
         <article className="w-full bg-white rounded-2xl shadow-lg overflow-hidden transform transition">
             {/* Product Image */}
-            <div className="relative h-60 w-full overflow-hidden group">
-                <Image
-                    width={1000}
-                    height={1000}
-                    draggable={false}
-                    title={product.name}
-                    src={ImageLinkMaker(product?.image)}
-                    alt={product.name}
-                    className="h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-                />
+            <div className="relative h-80 w-full overflow-hidden group">
+                <div className="bg-[#c9e7fd] p-4">
+                    <Image
+                        width={1000}
+                        height={1000}
+                        draggable={false}
+                        title={product.name}
+                        src={ImageLinkMaker(product?.image)}
+                        alt={product.name}
+                        className="h-auto w-auto rounded-xl object-container transform transition-transform duration-500 ease-in-out group-hover:scale-110"
+                    />
+                </div>
 
                 {/* Other badges */}
                 <div className="absolute top-3 left-3 flex gap-2">

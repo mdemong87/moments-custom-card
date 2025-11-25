@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import bgCards from "../../public/club.png"; // example bg image
 
 export default function Cta() {
@@ -22,9 +23,11 @@ export default function Cta() {
                 <p className="text-lg text-white mt-4">
                     Start creating, sharing, and playing with purpose.
                 </p>
-                <button className="mt-10 px-8 py-3 bg-[#FF6F3C] text-[#ffffff] text-lg font-semibold rounded-md shadow-md hover:brightness-110 transition">
-                    Start Customizing
-                </button>
+                <div className="pt-10">
+                    <Link href={'/shop'} className="mt-10 px-8 py-3 bg-[#FF6F3C] text-[#ffffff] text-lg font-semibold rounded-md shadow-md hover:brightness-110 transition cursor-pointer">
+                        Start Customizing
+                    </Link>
+                </div>
             </div>
         </div>
     );
