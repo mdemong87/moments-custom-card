@@ -159,7 +159,7 @@ export default function ProfilePage() {
                                 {
                                     image && (
                                         <div className="w-full flex items-center justify-start">
-                                            <Image className="border border-gray-200 rounded-lg w-[300px] h-[230px] object-cover" src={image} alt="Image" width={200} height={200} />
+                                            <Image className="border border-gray-200 rounded-lg w-[300px] h-[230px] object-contain" src={image} alt="Image" width={200} height={200} />
                                         </div>
                                     )
                                 }
@@ -214,7 +214,7 @@ export default function ProfilePage() {
                                                         height={1000}
                                                         src={cat?.image}
                                                         alt={cat?.name}
-                                                        className="w-full h-full object-cover"
+                                                        className="w-full h-full object-contain"
                                                     />
                                                 </div>
                                                 <div className="p-6">

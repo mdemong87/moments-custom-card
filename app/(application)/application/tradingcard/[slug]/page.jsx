@@ -11,6 +11,7 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { HexColorPicker } from "react-colorful";
+import { BsCreditCard2Back } from "react-icons/bs";
 import { CiCirclePlus } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -412,13 +413,17 @@ export default function ProductCustomizer() {
                     <div className="col-span-10 row-span-6 lg:row-span-10 lg:col-span-4 w-screen lg:w-full h-full bg-white border-t lg:border-l border-gray-200 px-2 md:px-6 lg:px-6 mt-2 lg:mt-0">
                         <div className="h-full lg:h-[83vh] overflow-y-scroll mt-2 space-y-4">
 
-                            <div>
-                                <label className="block text-gray-700 mb-1">Select Base Card *</label>
-                                <select onChange={(e) => { setworkingcard(e.target.value) }} value={workingcard} className="w-full border border-gray-200 rounded-md p-2 text-gray-500 focus:outline-none" name="baseCard" id="">
-                                    <option value="front">Front</option>
-                                    <option value="back">Back</option>
-                                </select>
+                            <div className="flex items-center justify-center gap-4 bg-gray-100 rounded-md p-4 mt-4 mb-4">
+                                <button onClick={() => { setworkingcard('front') }} className={`text-lg text-semibold text-white flex items-center gap-2 px-2 py-2 rounded-md w-full justify-center cursor-pointer ${workingcard === "front" ? "bg-sky-400" : "bg-gray-400"}`}>
+                                    <BsCreditCard2Back className="text-xl" />
+                                    <span>Front Side</span>
+                                </button>
+                                <button onClick={() => { setworkingcard('back') }} className={`text-lg text-semibold text-white flex items-center gap-2 px-2 py-2 rounded-md w-full justify-center cursor-pointer ${workingcard === "back" ? "bg-sky-400" : "bg-gray-400"}`}>
+                                    <BsCreditCard2Back className="text-xl" />
+                                    <span>Back Side</span>
+                                </button>
                             </div>
+
 
 
                             {/* Front Base Card */}

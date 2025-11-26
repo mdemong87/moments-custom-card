@@ -11,4 +11,4 @@ const SideController = ({ product, activeCard, selectBase, selectLayer }) => {
     )
 }
 
-export default SideController;
+export default SideController; 

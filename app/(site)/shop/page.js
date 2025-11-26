@@ -34,7 +34,7 @@ const About = () => {
     if (loading) return <ShopCardSkeleton />;
 
     return (
-        <div className="py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 px-8 max-w-7xl mx-auto">
+        <div className="py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-8 max-w-7xl mx-auto">
             {products?.data?.map((product) => (
                 <ShopCard
                     key={product.id}
