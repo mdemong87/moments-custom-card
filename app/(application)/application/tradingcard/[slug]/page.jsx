@@ -1,8 +1,8 @@
 "use client";
+import { BackOne, FrontFour, FrontOne, FrontThree, FrontTwo } from "@/app/componnent/TextOverlayer";
 import TradingCardApplicationSkelaton from "@/app/componnent/TradingCardApplicationSkelaton";
 import TradingCardSidebar from "@/app/componnent/TradingCardSidebar";
 import useTradingFinalPreview from "@/store/useTradingFinalPreview";
-import CaptureScreenshort from "@/utilis/helper/CaptureScreenshort";
 import generateUserId from "@/utilis/helper/generateUserId";
 import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import { pdfGanarator } from "@/utilis/helper/pdfGanarator";
@@ -10,15 +10,13 @@ import MakeGet from "@/utilis/requestrespose/get";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { HexColorPicker } from "react-colorful";
 import { BsCreditCard2Back } from "react-icons/bs";
 import { CiCirclePlus } from "react-icons/ci";
-import { FaPlus } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 import { Rnd } from "react-rnd";
 import { toast, ToastContainer } from "react-toastify";
 import ViewCard from "../../../../componnent/ViewCard";
 
+import CaptureScreenshort from "../../../../../utilis/helper/CaptureScreenshort";
 const fonts = ["Arial", "Poppins", "Times New Roman", "Courier New", "Comic Sans MS"];
 
 export default function ProductCustomizer() {
@@ -52,6 +50,16 @@ export default function ProductCustomizer() {
     const { addToCart, clearCart } = useTradingFinalPreview();
 
 
+
+
+    //text state is here
+    const [cardti, setcardti] = useState('Card Title');
+    const [carddes, setcarddes] = useState('Card Description');
+    const [name, setname] = useState('Name One');
+    const [name2, setname2] = useState('Name Two');
+    const [acarddate, setacarddate] = useState('Card Date');
+
+    const [cardfinder, setcardfinder] = useState(1);
 
 
 
@@ -96,30 +104,7 @@ export default function ProductCustomizer() {
         setActiveText(null);
     }
 
-    /******** Add New Text ********/
-    function addText() {
-        const id = Date.now();
-        const item = {
-            id,
-            text: "Edit me",
-            font: "Arial",
-            size: 20,
-            color: "#000000",
-            x: 40,
-            y: 40,
-            width: 180,
-        };
-        setTexts((s) => [...s, item]);
-        setActiveText(id);
-        setActiveImage(null);
-    }
 
-    /******** Update Active Text ********/
-    function updateActiveText(field, value) {
-        setTexts((prev) =>
-            prev.map((t) => (t.id === activeText ? { ...t, [field]: value } : t))
-        );
-    }
 
     /******** Helpers to update positions & sizes ********/
     function updateUploadPosition(id, x, y) {
@@ -133,17 +118,6 @@ export default function ProductCustomizer() {
     }
     function updateTextSize(id, width) {
         setTexts((prev) => prev.map((t) => (t.id === id ? { ...t, width } : t)));
-    }
-
-    function deleteActive() {
-        if (activeText) {
-            setTexts((p) => p.filter((t) => t.id !== activeText));
-            setActiveText(null);
-        }
-        if (activeImage) {
-            setUploads((p) => p.filter((u) => u.id !== activeImage));
-            setActiveImage(null);
-        }
     }
 
 
@@ -253,6 +227,7 @@ export default function ProductCustomizer() {
         console.log(previewCardNodeRef.current);
 
         await CaptureScreenshort(previewCardNodeRef, cards, setCards);
+        //await captureNodeScreenshotForTranding(previewCardNodeRef, cards, setCards);
         setTimeout(() => {
             setdoneloading(false);
         }, [600])
@@ -350,57 +325,43 @@ export default function ProductCustomizer() {
                             )}
 
                             {/* Text layers (zIndex:4) */}
-                            {/* Texts draggable */}
-                            {texts?.map((t) => (
-                                <Rnd
 
 
-                                    resizeHandleStyles={{
-                                        topLeft: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
-                                        topRight: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
-                                        bottomLeft: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
-                                        bottomRight: { border: "3px solid #3b82f6", width: "10px", height: "10px", background: "white" },
-                                    }}
-                                    style={{
-                                        border: activeText === t.id ? "2px dashed #3b82f6" : "none",
-                                        borderRadius: "4px",
-                                        padding: "0px 1px",
-                                        zIndex: 99
-                                    }}
+                            {/* ......................................................
 
-                                    key={t.id}
-                                    default={{
-                                        x: t.x,
-                                        y: t.y,
-                                        width: "fit-content", // give a default width so dragging works
-                                        height: "auto",
-                                    }}
-                                    bounds="parent"
-                                    enableResizing={false} // disable resize if you only want dragging
-                                    onClick={() => setActiveText(t.id)}
-                                    onDragStop={(e, d) => {
-                                        // update position in state
-                                        setTexts((prev) =>
-                                            prev.map((item) =>
-                                                item.id === t.id ? { ...item, x: d.x, y: d.y } : item
-                                            )
-                                        );
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            fontSize: `${t.size}px`,
-                                            fontFamily: t.font,
-                                            color: t.color,
-                                            cursor: "move",
-                                            whiteSpace: "nowrap",
-                                            zIndex: 99
-                                        }}
-                                    >
-                                        {t.text}
-                                    </div>
-                                </Rnd>
-                            ))}
+...........................................................*/
+
+
+                                <div className="absolute top-0 left-0 w-full h-screen z-50 pointer-events-none">
+
+                                    {
+                                        workingcard === "front" ? (
+                                            <>
+                                                {cardfinder == 0 && <FrontOne cardti={cardti} carddes={carddes} name={name} name2={name2} acarddate={acarddate} />}
+                                                {cardfinder == 1 && <FrontTwo cardti={cardti} carddes={carddes} name={name} name2={name2} acarddate={acarddate} />}
+                                                {cardfinder == 2 && <FrontThree cardti={cardti} carddes={carddes} name={name} name2={name2} acarddate={acarddate} />}
+                                                {cardfinder == 3 && <FrontFour cardti={cardti} carddes={carddes} name={name} name2={name2} acarddate={acarddate} />}
+                                            </>
+                                        ) : (
+                                            <BackOne cardti={cardti} carddes={carddes} name={name} name2={name2} acarddate={acarddate} />
+                                        )
+                                    }
+
+                                </div>
+
+
+
+
+/*......................................................................
+
+
+..................................................................................... */}
+
+
+
+                            {/* Text layers (zIndex:4) */}
+
+
 
                             {/* small helper overlay when nothing selected */}
                             {!uploads.length && !baseFront && !baseBack && !texts.length && (
@@ -439,7 +400,7 @@ export default function ProductCustomizer() {
                                                 height={1000}
                                                 alt={`front-${idx}`}
                                                 onClick={() => setBaseFront(ImageLinkMaker(img?.image))}
-                                                className={`w-16 h-20 cursor-pointer rounded ${baseFront === ImageLinkMaker(img?.image) ? "border-3 border-sky-700" : "border-2 border-gray-200"}`}
+                                                className={`w-16 h-20 cursor-pointer rounded ${baseFront === ImageLinkMaker(img?.image) ? "border-5 p-1 border-sky-400" : "border-2 border-gray-200"}`}
                                             />
                                         ))}
                                     </div>
@@ -463,7 +424,7 @@ export default function ProductCustomizer() {
                                                 height={1000}
                                                 alt={`back-${idx}`}
                                                 onClick={() => setBaseBack(ImageLinkMaker(img?.image))}
-                                                className={`w-16 h-20 cursor-pointer rounded ${baseBack === ImageLinkMaker(img?.image) ? "border-3 border-sky-700" : "border-2 border-gray-200"}`}
+                                                className={`w-16 h-20 cursor-pointer rounded ${baseBack === ImageLinkMaker(img?.image) ? "border-5 p-1 border-sky-400" : "border-2 border-gray-200"}`}
                                             />
                                         ))}
                                     </div>
@@ -471,80 +432,63 @@ export default function ProductCustomizer() {
                             }
 
                             {/* Upload Image */}
-                            <div>
+                            <div className="my-6">
                                 <label className="block text-gray-700 mb-1">Upload Image *</label>
-                                <label htmlFor="uploadImage">
-                                    <div className=" w-[80px] h-[80px] lg:w-full lg:h-[150px] bg-gray-100 rounded-md flex items-center justify-center cursor-pointer">
-                                        <CiCirclePlus className="text-8xl text-gray-300" />
-                                    </div>
-                                </label>
-                                <input onChange={handleUpload} id="uploadImage" type="file" className="hidden" accept="image/*" />
+                                <div className="flex gap-2 items-center">
+                                    <label className="" htmlFor="uploadImage">
+                                        <div className=" w-[80px] h-[80px] lg:w-[80px] lg:h-[80px] bg-gray-100 rounded-md flex items-center justify-center cursor-pointer">
+                                            <CiCirclePlus className="text-6xl text-gray-300" />
+                                        </div>
+
+                                    </label>
+                                    {activeImage && (
+                                        <div className="space-y-2 text-gray-700">
+                                            <div className="text-sm font-medium">Image selected</div>
+                                            <div className="text-sm">You can drag / resize directly on canvas</div>
+                                        </div>
+                                    )}
+                                    <input onChange={handleUpload} id="uploadImage" type="file" className="hidden" accept="image/*" />
+                                </div>
                             </div>
 
+
+
+                            {/* text control start here */}
 
                             {/* Add Text */}
-                            <div className="flex items-center justify-between">
-                                <label className="block text-gray-700 mb-1">Add Text</label>
-                                <div>
-                                    <button onClick={addText} className="px-2 py-2 bg-sky-400 text-white rounded">
-                                        <FaPlus />
-                                    </button>
-                                    {/* Delete button for active item */}
-                                    <button onClick={deleteActive} className="ml-2 px-2 py-2 bg-red-400 text-white rounded" disabled={!activeText && !activeImage}>
-                                        <MdDelete />
-                                    </button>
+                            <div>
+                                <div className="">
+                                    <label className="block text-gray-700 mb-1">Edit Text *</label>
+                                    <div className="flex items-center gap-3">
+                                        <div>
+                                            <label className="text-gray-500 mb-1 text-sm">Card Title: *</label>
+                                            <input value={cardti} onChange={(e) => { setcardti(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none w-full" />
+                                        </div>
+                                        <div>
+                                            <label className="text-gray-500 mb-1 text-sm">Card Descriptions: *</label>
+                                            <input value={carddes} onChange={(e) => { setcarddes(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none  w-full" />
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-3 my-3">
+                                        <div>
+                                            <label className="text-gray-500 mb-1 text-sm">Name One: *</label>
+                                            <input value={name} onChange={(e) => { setname(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none  w-full" />
+                                        </div>
+                                        <div>
+                                            <label className="text-gray-500 mb-1 text-sm">Name Two: *</label>
+                                            <input value={name2} onChange={(e) => { setname2(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none  w-full" />
+                                        </div>
+                                    </div>
+                                    <div className="">
+                                        <div className="flex flex-col">
+                                            <label className="text-gray-500 mb-1 text-sm">About Card Date: *</label>
+                                            <input value={acarddate} onChange={(e) => { setacarddate(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            {/* text control end here */}
 
-
-                            {/* Text Controls */}
-                            {activeText && (
-                                <div className="space-y-2 pt-3 mt-3 text-gray-700">
-                                    <label className="block text-sm">Text</label>
-                                    <input
-                                        type="text"
-                                        value={texts.find((t) => t.id === activeText)?.text || ""}
-                                        onChange={(e) => updateActiveText("text", e.target.value)}
-                                        className="border border-gray-200 rounded w-full px-2 py-1"
-                                    />
-
-                                    <label className="block text-sm">Font</label>
-                                    <select
-                                        value={texts.find((t) => t.id === activeText)?.font || ""}
-                                        onChange={(e) => updateActiveText("font", e.target.value)}
-                                        className="border border-gray-200 rounded w-full px-2 py-1"
-                                    >
-                                        {fonts.map((f) => (
-                                            <option key={f} value={f}>
-                                                {f}
-                                            </option>
-                                        ))}
-                                    </select>
-
-                                    <label className="block text-sm">Size</label>
-                                    <input
-                                        type="number"
-                                        value={texts.find((t) => t.id === activeText)?.size || ""}
-                                        onChange={(e) => updateActiveText("size", parseInt(e.target.value || "0", 10) || 0)}
-                                        className="border border-gray-200 rounded w-full px-2 py-1"
-                                    />
-
-                                    <label className="block text-gray-700 mb-1 mt-3">Color</label>
-                                    <HexColorPicker color={texts.find((t) => t.id === activeText)?.color || "#000"} onChange={(c) => updateActiveText("color", c)} />
-                                </div>
-                            )}
-
-
-
-
-
-                            {/* Image controls (when an upload is active) */}
-                            {activeImage && (
-                                <div className="space-y-2 text-gray-700 border-t pt-3 mt-3">
-                                    <div className="text-sm font-medium">Image selected</div>
-                                    <div className="text-sm">You can drag / resize directly on canvas</div>
-                                </div>
-                            )}
 
                         </div>
 

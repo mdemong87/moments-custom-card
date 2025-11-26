@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Custom team Card Designer",
+  title: "Momento Cards - Customize Your Own Cards",
   description: "Design your own custom cards with ease.",
 };
 
