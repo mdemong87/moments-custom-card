@@ -16,7 +16,7 @@ import { Rnd } from "react-rnd";
 import { toast, ToastContainer } from "react-toastify";
 import ViewCard from "../../../../componnent/ViewCard";
 
-import CaptureScreenshort from "../../../../../utilis/helper/CaptureScreenshort";
+import captureNodeScreenshotForTranding from "@/utilis/helper/captureNodeScreenshotForTranding";
 const fonts = ["Arial", "Poppins", "Times New Roman", "Courier New", "Comic Sans MS"];
 
 export default function ProductCustomizer() {
@@ -57,10 +57,10 @@ export default function ProductCustomizer() {
     const [carddes, setcarddes] = useState('Card Description');
     const [name, setname] = useState('Name One');
     const [name2, setname2] = useState('Name Two');
-    const [acarddate, setacarddate] = useState('Card Date');
+    const [name3, setname3] = useState('Name Three');
+    const [acarddate, setacarddate] = useState('CLASS OF 2025');
 
-    const [cardfinder, setcardfinder] = useState(1);
-
+    const [cardfinder, setcardfinder] = useState(0);
 
 
     const getBaseTrading = useCallback(async (slug) => {
@@ -75,9 +75,36 @@ export default function ProductCustomizer() {
     })
 
 
+
+    function hanldeInputUpdater() {
+
+
+
+        if (workingcard == 'front') {
+            setcardti('Card Title');
+            setcarddes('Card Description');
+            setname('Name One');
+            setname2('Name Two');
+            setname3('Name Three');
+            setacarddate('CLASS OF 2025');
+        } else {
+            setcardti('Profile');
+            setcarddes('This Trading Card Customization is easy to customize, if your want the Try Out. You will enjoy!');
+            setname('Achievements');
+            setname2('Lorem Ipsum 10, This Momento card Customization One of the best Placeform');
+            setname3('Awards');
+            setacarddate('Lorem Ipsum 10, This Momento card Customization One of the best Placeform');
+
+        }
+    }
+
+
+
+
     useEffect(() => {
         getBaseTrading(slug);
-    }, [slug]);
+        hanldeInputUpdater();
+    }, [slug, workingcard]);
 
 
 
@@ -224,10 +251,7 @@ export default function ProductCustomizer() {
     const Done = async () => {
         setdoneloading(true);
 
-        console.log(previewCardNodeRef.current);
-
-        await CaptureScreenshort(previewCardNodeRef, cards, setCards);
-        //await captureNodeScreenshotForTranding(previewCardNodeRef, cards, setCards);
+        await captureNodeScreenshotForTranding(previewCardNodeRef.current, cards, setCards);
         setTimeout(() => {
             setdoneloading(false);
         }, [600])
@@ -337,13 +361,13 @@ export default function ProductCustomizer() {
                                     {
                                         workingcard === "front" ? (
                                             <>
-                                                {cardfinder == 0 && <FrontOne cardti={cardti} carddes={carddes} name={name} name2={name2} acarddate={acarddate} />}
-                                                {cardfinder == 1 && <FrontTwo cardti={cardti} carddes={carddes} name={name} name2={name2} acarddate={acarddate} />}
-                                                {cardfinder == 2 && <FrontThree cardti={cardti} carddes={carddes} name={name} name2={name2} acarddate={acarddate} />}
-                                                {cardfinder == 3 && <FrontFour cardti={cardti} carddes={carddes} name={name} name2={name2} acarddate={acarddate} />}
+                                                {cardfinder == 0 && <FrontOne cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} />}
+                                                {cardfinder == 1 && <FrontTwo cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} />}
+                                                {cardfinder == 2 && <FrontThree cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} />}
+                                                {cardfinder == 3 && <FrontFour cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} />}
                                             </>
                                         ) : (
-                                            <BackOne cardti={cardti} carddes={carddes} name={name} name2={name2} acarddate={acarddate} />
+                                            <BackOne cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} />
                                         )
                                     }
 
@@ -375,11 +399,11 @@ export default function ProductCustomizer() {
                         <div className="h-full lg:h-[83vh] overflow-y-scroll mt-2 space-y-4">
 
                             <div className="flex items-center justify-center gap-4 bg-gray-100 rounded-md p-4 mt-4 mb-4">
-                                <button onClick={() => { setworkingcard('front') }} className={`text-lg text-semibold text-white flex items-center gap-2 px-2 py-2 rounded-md w-full justify-center cursor-pointer ${workingcard === "front" ? "bg-sky-400" : "bg-gray-400"}`}>
+                                <button onClick={() => { setworkingcard('front'); hanldeInputUpdater() }} className={`text-lg text-semibold text-white flex items-center gap-2 px-2 py-2 rounded-md w-full justify-center cursor-pointer ${workingcard === "front" ? "bg-sky-400" : "bg-gray-400"}`}>
                                     <BsCreditCard2Back className="text-xl" />
                                     <span>Front Side</span>
                                 </button>
-                                <button onClick={() => { setworkingcard('back') }} className={`text-lg text-semibold text-white flex items-center gap-2 px-2 py-2 rounded-md w-full justify-center cursor-pointer ${workingcard === "back" ? "bg-sky-400" : "bg-gray-400"}`}>
+                                <button onClick={() => { setworkingcard('back'); hanldeInputUpdater() }} className={`text-lg text-semibold text-white flex items-center gap-2 px-2 py-2 rounded-md w-full justify-center cursor-pointer ${workingcard === "back" ? "bg-sky-400" : "bg-gray-400"}`}>
                                     <BsCreditCard2Back className="text-xl" />
                                     <span>Back Side</span>
                                 </button>
@@ -399,7 +423,7 @@ export default function ProductCustomizer() {
                                                 width={1000}
                                                 height={1000}
                                                 alt={`front-${idx}`}
-                                                onClick={() => setBaseFront(ImageLinkMaker(img?.image))}
+                                                onClick={() => { setBaseFront(ImageLinkMaker(img?.image)); setcardfinder(idx); hanldeInputUpdater() }}
                                                 className={`w-16 h-20 cursor-pointer rounded ${baseFront === ImageLinkMaker(img?.image) ? "border-5 p-1 border-sky-400" : "border-2 border-gray-200"}`}
                                             />
                                         ))}
@@ -433,7 +457,7 @@ export default function ProductCustomizer() {
 
                             {/* Upload Image */}
                             <div className="my-6">
-                                <label className="block text-gray-700 mb-1">Upload Image *</label>
+                                <label className="block text-gray-700 mb-1">Upload Image * <span className="text-gray-500 bg-yellow-200 px-1.5 rounded-md text-xs">900 x 1300</span></label>
                                 <div className="flex gap-2 items-center">
                                     <label className="" htmlFor="uploadImage">
                                         <div className=" w-[80px] h-[80px] lg:w-[80px] lg:h-[80px] bg-gray-100 rounded-md flex items-center justify-center cursor-pointer">
@@ -479,8 +503,12 @@ export default function ProductCustomizer() {
                                             <input value={name2} onChange={(e) => { setname2(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none  w-full" />
                                         </div>
                                     </div>
-                                    <div className="">
-                                        <div className="flex flex-col">
+                                    <div className="flex items-center gap-3 my-3">
+                                        <div>
+                                            <label className="text-gray-500 mb-1 text-sm">Name Three: *</label>
+                                            <input value={name3} onChange={(e) => { setname3(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none  w-full" />
+                                        </div>
+                                        <div className="">
                                             <label className="text-gray-500 mb-1 text-sm">About Card Date: *</label>
                                             <input value={acarddate} onChange={(e) => { setacarddate(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none" />
                                         </div>
