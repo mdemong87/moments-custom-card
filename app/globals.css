@@ -191,3 +191,13 @@ input[type=number] {
 .capture-clean-mode *::after {
   content: none !important;
 }
+
+
+
+
+
+
+.bebas {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 700;
+}

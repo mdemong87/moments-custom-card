@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bebas_Neue, Geist, Geist_Mono } from "next/font/google";
 import Header from "./componnent/Header";
 import "./globals.css";
 
@@ -12,6 +12,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const bebas = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+});
+
 export const metadata = {
   title: "Momento Cards - Customize Your Own Cards",
   description: "Design your own custom cards with ease.",
@@ -21,7 +26,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${bebas.variable} antialiased`}
       >
         <Header />
         <div className="pt-[75px] bg-gray-100">

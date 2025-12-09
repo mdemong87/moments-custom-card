@@ -396,7 +396,7 @@ export default function ProductCustomizer() {
 
                     {/* Right Controls column (inside the middle wrapper as your original) */}
                     <div className="col-span-10 row-span-6 lg:row-span-10 lg:col-span-4 w-screen lg:w-full h-full bg-white border-t lg:border-l border-gray-200 px-2 md:px-6 lg:px-6 mt-2 lg:mt-0">
-                        <div className="h-full lg:h-[83vh] overflow-y-scroll mt-2 space-y-4">
+                        <div className="h-full lg:h-[83vh] overflow-y-scroll mt-2 space-y-4 pb-32 lg:pb-0">
 
                             <div className="flex items-center justify-center gap-4 bg-gray-100 rounded-md p-4 mt-4 mb-4">
                                 <button onClick={() => { setworkingcard('front'); hanldeInputUpdater() }} className={`text-lg text-semibold text-white flex items-center gap-2 px-2 py-2 rounded-md w-full justify-center cursor-pointer ${workingcard === "front" ? "bg-sky-400" : "bg-gray-400"}`}>
@@ -474,9 +474,6 @@ export default function ProductCustomizer() {
                                     <input onChange={handleUpload} id="uploadImage" type="file" className="hidden" accept="image/*" />
                                 </div>
                             </div>
-
-
-
                             {/* text control start here */}
 
                             {/* Add Text */}

@@ -40,7 +40,6 @@ const ProductCustomizer = () => {
 
 
 
-
     /************** Fetch product & load saved cards **************/
     useEffect(() => {
         const fetchProduct = async (slug) => {
@@ -179,7 +178,7 @@ const ProductCustomizer = () => {
 
     return (
         <>
-            <div className="grid grid-cols-12 grid-rows-12 gap-2 h-screen w-screen fixed bg-gray-100">
+            <div className="grid grid-cols-12 grid-rows-12 gap-2 min-h-screen w-screen fixed bg-gray-100">
                 <div className="col-span-12 row-span-2 lg:row-span-12 lg:col-span-2 w-full h-full">
                     <CardSidebar
                         finalCards={finalCards} Done={Done}
@@ -194,8 +193,9 @@ const ProductCustomizer = () => {
                     <div className="grid grid-cols-10 grid-rows-10 h-full w-full mt-2 lg:mt-0">
                         <div className="col-span-10 row-span-4 lg:row-span-10 lg:col-span-6 flex items-center justify-center lg:-translate-y-[50px] w-screen lg:w-full">
                             <CardPreview activeCard={activeCard} previewCardNodeRef={previewCardNodeRef} />
+
                         </div>
-                        <div className="col-span-10 row-span-6 lg:row-span-10 lg:col-span-4 w-screen lg:w-full h-full bg-white border-t lg:border-l border-gray-200 px-2 md:px-7 lg:px-6 mt-2 lg:mt-0">
+                        <div className="col-span-10 row-span-6 lg:row-span-10 lg:col-span-4 w-screen lg:w-full h-full bg-white border-t lg:border-l border-gray-200 px-2 md:px-7 lg:px-6 mt-2 lg:mt-0 pb-68 lg:pb-0">
                             <SideController product={product} activeCard={activeCard} selectBase={selectBaseImage} selectLayer={selectLayerImage} />
                             <ViewCard isLoading={spinloading} goToFinalView={goToFinalView} />
                         </div>

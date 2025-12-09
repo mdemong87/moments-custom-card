@@ -11,7 +11,7 @@ const TrandingAddNewCardBtn = ({ addCard, Done, editmood, seteidtmood, doneloadi
                 }
 
                 {
-                    editmood ? "Done" : "Add New"
+                    editmood ? "Add New" : "Add New"
                 }
             </span>
         </button>
