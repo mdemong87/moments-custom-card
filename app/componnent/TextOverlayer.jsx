@@ -4,7 +4,7 @@ export const FrontOne = ({ cardti, carddes, name, name2, name3, acarddate }) => 
     return (
         <div className="w-full h-full relative">
 
-            <span className="text-white uppercase text-2xl font-bold absolute top-9 left-26 text-center w-[176px] z-50 tracking-widest bebas">{cardti}</span>
+            <span className="text-white uppercase text-2xl font-bold absolute top-9 left-26 text-center w-[176px] z-50 font-[GustanBlack] ">{cardti}</span>
 
             <span className="text-white text-xs font-bold absolute top-111 text-center w-[320px] left-8 w-[265px] z-50 ">{carddes}</span>
 

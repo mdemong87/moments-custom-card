@@ -153,6 +153,23 @@ const SingleProduct = () => {
     }
 
 
+
+
+
+
+
+    console.log(data);
+
+
+
+
+
+
+
+
+
+
+
     if (fetchloading) return <SingleProductSkeleton />
 
 

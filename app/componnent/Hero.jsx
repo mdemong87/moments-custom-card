@@ -71,7 +71,7 @@ const Hero = () => {
 
     return (
         <>
-            <section className="h-[95vh] lg:h-[90vh] w-screen relative bg-gray-50 py-16 overflow-hidden">
+            <section className="h-fit lg:h-[90vh] w-screen relative bg-gray-50 py-16 overflow-hidden pb-6 lg:pb-0">
                 {/* Background */}
                 <div className="absolute inset-0">
                     <div
@@ -130,7 +130,7 @@ const Hero = () => {
                 </div>
             </section>
             {/* Smooth Infinite Ticker */}
-            <div className="absolute bottom-0 left-0 overflow-hidden w-screen">
+            <div className="hidden lg:block absolute bottom-0 left-0 overflow-hidden w-screen">
                 <div className="block lg:block bg-[#3CA9FF] text-white overflow-hidden  py-3 relative cursor-grab">
                     <div
                         ref={tickerRef}

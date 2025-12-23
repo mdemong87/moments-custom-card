@@ -33,8 +33,6 @@ export default function CheckoutPage() {
   const handleCheckout = async (e) => {
     e.preventDefault();
 
-    setloading(true);
-
 
 
     const allproductImage = [];
@@ -62,6 +60,16 @@ export default function CheckoutPage() {
 
 
     if (name && email && phone && City && address) {
+
+
+
+
+      console.log(paymentPassingData);
+
+
+
+      setloading(true);
+
 
 
       // Send the form data to the server

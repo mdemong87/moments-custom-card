@@ -74,7 +74,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="bg-sky-500 text-lg text-center text-white py-2 z-20">
-                © 2025 Momento Cards. All Rights Reserved ||  Developed by<Link className="cursor-pointer text-red-300 z-20" target="blank" href={'https://sardaritbd.com'}> Sardar IT</Link>
+                © 2025 Momento Cards. All Rights Reserved
             </div>
         </footer>
     )

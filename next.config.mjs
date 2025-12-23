@@ -1,7 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["i0.wp.com", 'tony.sardaritskillshare.com', 'via.placeholder.com',], // Add your domain here
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'tony.sardaritskillshare.com',
+        pathname: '/public/storage/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i0.wp.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      },
+    ],
   },
 };
 

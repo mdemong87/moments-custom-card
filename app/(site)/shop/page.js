@@ -31,6 +31,9 @@ const About = () => {
     }, []);
 
 
+    console.log(products);
+
+
     if (loading) return <ShopCardSkeleton />;
 
     return (

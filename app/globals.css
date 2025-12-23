@@ -114,6 +114,7 @@ body {
   background: url('../public/pata.png');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center -50px;
 }
 
 
