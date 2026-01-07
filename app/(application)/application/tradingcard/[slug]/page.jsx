@@ -4,7 +4,6 @@ import TradingCardApplicationSkelaton from "@/app/componnent/TradingCardApplicat
 import TradingCardSidebar from "@/app/componnent/TradingCardSidebar";
 import useTradingFinalPreview from "@/store/useTradingFinalPreview";
 import generateUserId from "@/utilis/helper/generateUserId";
-import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import { pdfGanarator } from "@/utilis/helper/pdfGanarator";
 import MakeGet from "@/utilis/requestrespose/get";
 import Image from "next/image";
@@ -66,10 +65,11 @@ export default function ProductCustomizer() {
     const getBaseTrading = useCallback(async (slug) => {
         setfetchingDataLoading(true);
         const res = await MakeGet(`api/shop/${slug}`);
+        console.log(res);
         setfrontImages(res?.data?.customizations?.trading_fronts);
         setbackImages(res?.data?.customizations?.trading_backs);
-        setBaseFront(ImageLinkMaker(res?.data?.customizations?.trading_fronts?.[0]?.image));
-        setBaseBack(ImageLinkMaker(res?.data?.customizations?.trading_backs?.[0]?.image));
+        setBaseFront(res?.data?.customizations?.trading_fronts?.[0]?.image);
+        setBaseBack(res?.data?.customizations?.trading_backs?.[0]?.image);
         setfetchingData(res?.data);
         setfetchingDataLoading(false);
     })
@@ -419,12 +419,12 @@ export default function ProductCustomizer() {
                                         {frontImages?.map((img, idx) => (
                                             <Image
                                                 key={idx}
-                                                src={ImageLinkMaker(img?.image)}
+                                                src={img?.image}
                                                 width={1000}
                                                 height={1000}
                                                 alt={`front-${idx}`}
-                                                onClick={() => { setBaseFront(ImageLinkMaker(img?.image)); setcardfinder(idx); hanldeInputUpdater() }}
-                                                className={`w-16 h-20 cursor-pointer rounded ${baseFront === ImageLinkMaker(img?.image) ? "border-5 p-1 border-sky-400" : "border-2 border-gray-200"}`}
+                                                onClick={() => { setBaseFront(img?.image); setcardfinder(idx); hanldeInputUpdater() }}
+                                                className={`w-16 h-20 cursor-pointer rounded ${baseFront === img?.image ? "border-5 p-1 border-sky-400" : "border-2 border-gray-200"}`}
                                             />
                                         ))}
                                     </div>
@@ -443,12 +443,12 @@ export default function ProductCustomizer() {
                                         {backImages?.map((img, idx) => (
                                             <Image
                                                 key={idx}
-                                                src={ImageLinkMaker(img?.image)}
+                                                src={img?.image}
                                                 width={1000}
                                                 height={1000}
                                                 alt={`back-${idx}`}
-                                                onClick={() => setBaseBack(ImageLinkMaker(img?.image))}
-                                                className={`w-16 h-20 cursor-pointer rounded ${baseBack === ImageLinkMaker(img?.image) ? "border-5 p-1 border-sky-400" : "border-2 border-gray-200"}`}
+                                                onClick={() => setBaseBack(img?.image)}
+                                                className={`w-16 h-20 cursor-pointer rounded ${baseBack === img?.image ? "border-5 p-1 border-sky-400" : "border-2 border-gray-200"}`}
                                             />
                                         ))}
                                     </div>

@@ -1,14 +1,20 @@
 "use client";
 import Image from "next/image";
+import { useState } from "react";
 
-export default function CustomerOrders({ purchases = [] }) {
+export default function CustomerOrders({ }) {
+
+    const [purchases, setpurchases] = useState([]);
+
+    console.log(purchases.length);
+
 
     return (
         <section className="p-4">
-            <h2 className="text-2xl font-semibold mb-6 brandColor">My Purchases</h2>
+            <h2 className="text-2xl font-semibold mb-6 brandColor">My Orders</h2>
 
             {purchases.length === 0 ? (
-                <div className="text-gray-400 text-center py-10 border rounded-xl">
+                <div className="text-gray-400 text-center py-10 bg-gray-200 rounded-xl">
                     You haven’t purchased anything yet.
                 </div>
             ) : (

@@ -145,9 +145,9 @@ const SingleProduct = () => {
 
     return (
         <div className="">
-            <div className="mb-7 items-center flex justify-between sticky top-[70px] bg-white py-4 pt-0">
+            <div className="mb-7 items-center flex flex-col md:flex-row justify-between sticky top-[-200px] md:top-[70px] bg-white py-4 pt-0">
                 <span className="text-2xl font-bold ">Product Overview</span>
-                <div className="flex justify-end gap-4 mt-6">
+                <div className="flex flex-col md:flex-row justify-end gap-4 mt-6">
 
 
 
@@ -218,7 +218,7 @@ const SingleProduct = () => {
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md h-[60px] w-[80px]"
+                                                    className="rounded-md w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -240,7 +240,7 @@ const SingleProduct = () => {
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md h-[60px] w-[80px]"
+                                                    className="rounded-md w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -262,7 +262,7 @@ const SingleProduct = () => {
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md h-[60px] w-[80px]"
+                                                    className="rounded-md w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -284,7 +284,7 @@ const SingleProduct = () => {
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md w-[80px] h-fit"
+                                                    className="rounded-md w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -307,7 +307,7 @@ const SingleProduct = () => {
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md h-[60px] w-[80px]"
+                                                    className="rounded-md w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -330,7 +330,7 @@ const SingleProduct = () => {
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md h-[60px] w-[80px]"
+                                                    className="rounded-md w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -353,7 +353,7 @@ const SingleProduct = () => {
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md h-[60px] w-[80px]"
+                                                    className="rounded-md w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -377,7 +377,7 @@ const SingleProduct = () => {
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md h-[60px] w-[80px]"
+                                                    className="rounded-md w-[80px]"
                                                 />
                                             ))}
                                         </div>
@@ -401,7 +401,7 @@ const SingleProduct = () => {
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
-                                                    className="rounded-md h-[60px] w-[80px]"
+                                                    className="rounded-md w-[80px]"
                                                 />
                                             ))}
                                         </div>

@@ -58,6 +58,12 @@ const DeshboardNavigation = ({ loginUser }) => {
             sub: [],
             link: "/deshboard/profile"
         },
+        {
+            name: "Site Settings",
+            nested: false,
+            sub: [],
+            link: "/deshboard/admin/settings"
+        },
     ]
 
 
@@ -76,12 +82,12 @@ const DeshboardNavigation = ({ loginUser }) => {
             sub: [],
             link: "/deshboard/customer/orders"
         },
-        {
-            name: "Payment History",
-            nested: false,
-            sub: [],
-            link: "/deshboard/customer/payment"
-        },
+        // {
+        //     name: "Payment History",
+        //     nested: false,
+        //     sub: [],
+        //     link: "/deshboard/customer/payment"
+        // },
         {
             name: "Profile",
             nested: false,
