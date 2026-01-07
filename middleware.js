@@ -9,7 +9,6 @@ async function verifyJWT(token) {
         });
         return payload;
     } catch (err) {
-        console.log("JWT Error:", err);
         return null;
     }
 }

@@ -8,7 +8,7 @@ export default function Tradition() {
         <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
             {/* Left Content */}
             <div className="space-y-6 md:order-last md:order-first">
-                <h1 className="text-4xl md:text-3xl font-extrabold text-gray-800">
+                <h1 className="text-4xl text-center md:text-left md:text-3xl font-extrabold text-gray-800">
                     Traditional Playing Cards
                 </h1>
                 <p className="text-lg text-gray-600 leading-relaxed">
@@ -23,16 +23,16 @@ export default function Tradition() {
                     Ideal for poker nights, magic tricks, and casual gaming
                 </p>
 
-                <div className="flex gap-4">
+                <div className="flex flex-col md:flex-row text-center gap-4">
                     <Link
                         href="/shop"
-                        className="px-12 py-3 bg-[#3CA9FF] text-white font-medium rounded-md shadow hover:bg-[#FF6F3C] transform hover:scale-105 transition duration-300"
+                        className="px-3 lg:px-12 py-3 bg-[#3CA9FF] text-white font-medium rounded-md shadow hover:bg-[#FF6F3C] transform hover:scale-105 transition duration-300"
                     >
                         Start Customizing
                     </Link>
                     <Link
                         href="/shop"
-                        className="px-12 py-3 text-[#3CA9FF] border border-[#3CA9FF] font-medium rounded-md shadow hover:text-[#FF6F3C] hover:border-[#FF6F3C] transform hover:scale-105 transition duration-300"
+                        className="px-3 lg:px-12 py-3 text-[#3CA9FF] border border-[#3CA9FF] font-medium rounded-md shadow hover:text-[#FF6F3C] hover:border-[#FF6F3C] transform hover:scale-105 transition duration-300"
                     >
                         Explore Pre-Made Deck
                     </Link>

@@ -4,7 +4,7 @@ import bgCards from "../../public/club.png"; // example bg image
 
 export default function Cta() {
     return (
-        <div className="relative py-20 max-w-7xl mx-2 xl:mx-auto my-16 rounded-2xl text-center flex flex-col justify-center items-center overflow-hidden">
+        <div className="relative py-8 md:py-10 lg:py-20 max-w-7xl mx-6 xl:mx-auto my-16 rounded-2xl text-center flex flex-col justify-center items-center overflow-hidden">
             {/* Background Image */}
             <Image
                 src={bgCards}
@@ -16,7 +16,7 @@ export default function Cta() {
             <div className="absolute inset-0 bg-[#3CA9FF]/80" />
 
             {/* Content */}
-            <div className="relative z-10 px-6">
+            <div className="relative z-10 px-3 md:px-4 lg:px-6">
                 <h1 className="text-4xl md:text-5xl font-bold text-white uppercase">
                     Design your custom deck today
                 </h1>
