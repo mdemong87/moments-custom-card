@@ -1,7 +1,19 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function MyPurchases({ purchases = [] }) {
+
+    const router = useRouter();
+
+
+    setTimeout(() => {
+        router.push('/deshboard/customer/orders');
+    }, 0);
+
+
+
+
 
     return (
         <section className="p-4">

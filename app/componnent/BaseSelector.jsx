@@ -1,5 +1,4 @@
 import CardChangerTracker from "@/utilis/helper/cardChangertrancker";
-import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { GiCardAceClubs, GiCardJackClubs, GiCardJoker, GiCardKingClubs, GiCardQueenClubs } from "react-icons/gi";
@@ -17,7 +16,7 @@ const BaseSelector = ({ product, activeCard, selectBase }) => {
     async function check() {
       const filteredCards = await CardChangerTracker(product.customizations?.base_cards, editedCard);
       setactivebaseEditCard(filteredCards);
-      selectBase(ImageLinkMaker(filteredCards[0]?.image));
+      selectBase(filteredCards[0]?.image);
     }
 
     check();
@@ -50,10 +49,10 @@ const BaseSelector = ({ product, activeCard, selectBase }) => {
               width={1000}
               height={1000}
               key={idx}
-              src={ImageLinkMaker(image?.image)}
+              src={image?.image}
               alt={`Base ${idx + 1}`}
-              className={`w-[60px] h-[80px] object-cover cursor-pointer rounded-lg p-1 ${activeCard?.baseImage === ImageLinkMaker(image?.image) ? "border border-2 border-sky-500 bg-sky-200" : "border border-2 border-gray-300"}`}
-              onClick={() => selectBase(ImageLinkMaker(image?.image))}
+              className={`w-[60px] h-[80px] object-cover cursor-pointer rounded-lg p-1 ${activeCard?.baseImage === image?.image ? "border border-2 border-sky-500 bg-sky-200" : "border border-2 border-gray-300"}`}
+              onClick={() => selectBase(image?.image)}
             />
           );
         })}

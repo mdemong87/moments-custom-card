@@ -5,7 +5,6 @@ import SpinLoader from "@/app/componnent/SpingLoader";
 import ViewCart from "@/app/componnent/ViewCart";
 import useCartStore from "@/store/useCartStore";
 import generateUserId from "@/utilis/helper/generateUserId";
-import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import MakeGet from "@/utilis/requestrespose/get";
 import MakePost from "@/utilis/requestrespose/post";
 import Image from "next/image";
@@ -194,7 +193,7 @@ const SingleProduct = () => {
 
                     <div className="w-full col-span-2 flex justify-center">
                         <Image
-                            src={ImageLinkMaker(data?.image)}
+                            src={data?.image}
                             alt="Thumbnail"
                             width={250}
                             height={300}
@@ -234,7 +233,7 @@ const SingleProduct = () => {
                             <Image
                                 onClick={() => { setmodelopen(true), setCurrentIndex(idx + 1) }}
                                 key={idx}
-                                src={ImageLinkMaker(img?.url)}
+                                src={img?.url}
                                 alt={`Gallery ${idx}`}
                                 width={70}
                                 height={80}
@@ -264,7 +263,7 @@ const SingleProduct = () => {
                             currentIndex - 1 === idx && (
                                 <Image
                                     key={idx}
-                                    src={ImageLinkMaker(img?.url)}
+                                    src={img?.url}
                                     alt={`Gallery ${idx}`}
                                     width={250}
                                     height={300}

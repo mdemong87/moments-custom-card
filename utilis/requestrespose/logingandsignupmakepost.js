@@ -11,6 +11,8 @@ const logingandsignupmakepost = async (endpoint, data) => {
         });
 
 
+        console.log("API Response Status:", response);
+
         if (!response.ok) {
             console.error(`Request failed with status: ${response.status}`);
             return false;

@@ -4,7 +4,6 @@ import CheckoutAuth from '@/app/componnent/CheckoutAuth';
 import SpinLoader from '@/app/componnent/SpingLoader';
 import useCartStore from '@/store/useCartStore';
 import useLogedUserStore from '@/store/useLogedUser';
-import ImageLinkMaker from '@/utilis/helper/ImageLinkMaker';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -84,7 +83,7 @@ const MyCart = () => {
                                     className="bg-gray-100 border border-gray-200 rounded-lg p-4 mb-3 flex flex-wrap md:flex-nowrap items-center justify-between gap-4"
                                 >
                                     <Image
-                                        src={ImageLinkMaker(item?.productImage)}
+                                        src={item?.productImage}
                                         alt="Item"
                                         width={80}
                                         height={80}

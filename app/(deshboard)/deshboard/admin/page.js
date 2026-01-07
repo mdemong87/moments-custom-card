@@ -1,5 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 
@@ -8,6 +9,7 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 export default function AdminDashboard() {
     const [loading, setLoading] = useState(false);
     const [stats, setStats] = useState(null);
+    const router = useRouter();
 
     const [chartSeries, setChartSeries] = useState([
         { name: "Payments", data: [1200, 1500, 900, 1400] },
@@ -44,6 +46,8 @@ export default function AdminDashboard() {
                 const res = await fetch("/api/admin-dashboard");
                 const data = await res.json();
 
+                console.log(data);
+
                 setStats({
                     totalUsers: data.totalUsers,
                     totalOrders: data.totalOrders,
@@ -65,6 +69,13 @@ export default function AdminDashboard() {
 
         //fetchData();
     }, []);
+
+
+    setTimeout(() => {
+        router.push("/deshboard/admin/alluser");
+    }, 0);
+
+
 
     if (loading) return <DashboardSkeleton />;
 

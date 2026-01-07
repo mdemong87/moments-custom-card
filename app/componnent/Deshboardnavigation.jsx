@@ -64,12 +64,12 @@ const DeshboardNavigation = ({ loginUser }) => {
 
     /********** customer Nav items **********/
     const customerNavItems = [
-        {
-            name: "Deshboard",
-            nested: false,
-            sub: [],
-            link: "/deshboard/customer"
-        },
+        // {
+        //     name: "Deshboard",
+        //     nested: false,
+        //     sub: [],
+        //     link: "/deshboard/customer"
+        // },
         {
             name: "My Orders",
             nested: false,

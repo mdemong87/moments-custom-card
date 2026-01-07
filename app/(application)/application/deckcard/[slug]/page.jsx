@@ -4,7 +4,6 @@ import useDeckFinalPreview from "@/store/useDeckFinalPreview";
 import CaptureScreenshort from "@/utilis/helper/CaptureScreenshort";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 import generateUserId from "@/utilis/helper/generateUserId";
-import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import { pdfGanarator } from "@/utilis/helper/pdfGanarator";
 import MakeGet from "@/utilis/requestrespose/get";
 import { useParams, useRouter } from "next/navigation";
@@ -61,12 +60,12 @@ const ProductCustomizer = () => {
             }
 
             const basebar = res?.data?.customizations?.base_cards?.[0];
-            const base = ImageLinkMaker(basebar?.image);
+            const base = basebar?.image;
             const initialLayers = {};
             layers.forEach(layer => {
                 if (layer === "beards") return;
                 const items = res?.data?.customizations?.[layer];
-                if (items.length > 0) initialLayers[layer] = ImageLinkMaker(items[0]?.image);
+                if (items.length > 0) initialLayers[layer] = items[0]?.image;
             });
 
             setCards([{ baseImage: base, selectedLayers: initialLayers }]);
@@ -101,12 +100,12 @@ const ProductCustomizer = () => {
     const addNewCard = () => {
 
         const basebartwo = product?.customizations?.base_cards?.[0];
-        const baseTwo = ImageLinkMaker(basebartwo?.image);
+        const baseTwo = basebartwo?.image;
         const initialLayersTwo = {};
         layers.forEach(layer => {
             if (layer === "beards") return;
             const items = product?.customizations?.[layer];
-            if (items.length > 0) initialLayersTwo[layer] = ImageLinkMaker(items[0]?.image);
+            if (items.length > 0) initialLayersTwo[layer] = items[0]?.image;
         });
 
         setCards([...cards, { baseImage: baseTwo, selectedLayers: initialLayersTwo }]);

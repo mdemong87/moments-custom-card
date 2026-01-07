@@ -32,7 +32,6 @@ export default function ProfilePage() {
     const fetching = useCallback(async (id, token) => {
         try {
             const response = await MakeGet(`api/categories`, token);
-            console.log(response);
 
             setdata(response?.data);
 
@@ -106,7 +105,6 @@ export default function ProfilePage() {
             setfetchloading(false);
         }
     }
-
 
 
 

@@ -1,4 +1,3 @@
-import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import Image from "next/image";
 
 const layers = [
@@ -15,16 +14,16 @@ const LayerSelector = ({ product, activeCard, selectLayer }) => (
         </h3>
         <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
           {(product?.customizations?.[layer])?.map((image, idx) => {
-            const isSelected = activeCard?.selectedLayers[layer] === ImageLinkMaker(image?.image);
+            const isSelected = activeCard?.selectedLayers[layer] === image?.image;
             return (
               <Image
                 width={1000}
                 height={1000}
                 key={idx}
-                src={ImageLinkMaker(image?.image)}
+                src={image?.image}
                 alt={`${layer} ${idx + 1}`}
                 className={`w-[60px] h-[80px] aspect-[4/3] object-cover cursor-pointer rounded-lg p-1 ${isSelected ? "border border-2 border-sky-500 bg-sky-200" : "border border-2 border-gray-300"}`}
-                onClick={() => selectLayer(layer, ImageLinkMaker(image?.image))}
+                onClick={() => selectLayer(layer, image?.image)}
               />
             );
           })}

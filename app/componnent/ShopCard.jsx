@@ -1,6 +1,5 @@
 "use client";
 
-import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -45,7 +44,7 @@ export default function ShopCard({ product }) {
                         height={1000}
                         draggable={false}
                         title={product.name}
-                        src={ImageLinkMaker(product?.image)}
+                        src={product?.image}
                         alt={product.name}
                         className="h-full w-full rounded-xl object-contain transform transition-transform duration-500 ease-in-out group-hover:scale-110"
                     />

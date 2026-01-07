@@ -2,14 +2,11 @@
 import useLoadingStore from "@/store/useLoadingStore";
 import getId from "@/utilis/helper/cookie/getid";
 import getCookie from "@/utilis/helper/cookie/gettooken";
-import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
-import MakeDelete from "@/utilis/requestrespose/delete";
 import MakeGet from "@/utilis/requestrespose/get";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { MdDeleteOutline } from "react-icons/md";
 
 
 
@@ -51,25 +48,6 @@ export default function AllProducts() {
 
     if (fetchloading) return <SkeletonLoader />
 
-    console.log(data);
-
-
-
-    /*************** hanlde delect function is here ****************/
-    async function handleDelete(id) {
-        setLoading(true);
-        const response = await MakeDelete(`api/products/${id}`, token);
-        if (response?.success) {
-            router?.push('/deshboard/admin/allproducts');
-        }
-        setLoading(false);
-    }
-
-
-
-
-
-
 
 
     return (
@@ -90,16 +68,11 @@ export default function AllProducts() {
                                         className="text-center bg-gray-50 rounded-xl shadow-sm overflow-hidden hover:scale-102 transform transition duration-300 relative"
                                     >
 
-                                        <div onClick={() => { handleDelete(cat?.id) }} className="absolute top-0 right-0 text-lg rounded-full bg-red-600 text-white w-6 h-6 flex items-center justify-center z-30">
-                                            <MdDeleteOutline className="text-whtie" />
-                                        </div>
-
-
                                         <div className="relative w-full h-56 z-20">
                                             <Image
                                                 width={1000}
                                                 height={1000}
-                                                src={ImageLinkMaker(cat?.image)}
+                                                src={cat?.image}
                                                 alt={cat?.name}
                                                 className="w-full h-full object-cover z-20"
                                             />

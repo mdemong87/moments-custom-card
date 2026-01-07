@@ -2,7 +2,6 @@
 
 import SingleProductSkeleton from "@/app/componnent/skelaton/SingleProductSkeleton ";
 import getCookie from "@/utilis/helper/cookie/gettooken";
-import ImageLinkMaker from "@/utilis/helper/ImageLinkMaker";
 import MakeDelete from "@/utilis/requestrespose/delete";
 import MakeGet from "@/utilis/requestrespose/get";
 import MakePost from "@/utilis/requestrespose/post";
@@ -29,10 +28,6 @@ const SingleProduct = () => {
     const [image, setimage] = useState('');
     const [des, setdes] = useState('');
     const [data, setdata] = useState(null);
-
-
-
-    console.log(data);
 
 
 
@@ -117,8 +112,6 @@ const SingleProduct = () => {
 
 
 
-    console.log(data);
-
     const handleStatusUpdater = async (e, id, status) => {
 
 
@@ -145,7 +138,6 @@ const SingleProduct = () => {
             setfetchloading(false);
         }
     }
-
 
 
     if (fetchloading) return <SingleProductSkeleton />
@@ -195,7 +187,7 @@ const SingleProduct = () => {
                             {data?.gallery_images?.map((img, idx) => (
                                 <Image
                                     key={idx}
-                                    src={ImageLinkMaker(img?.url)}
+                                    src={img?.url}
                                     alt={`Gallery ${idx}`}
                                     width={80}
                                     height={80}
@@ -222,7 +214,7 @@ const SingleProduct = () => {
                                             {data?.customizations?.base_cards.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={ImageLinkMaker(img?.image)}
+                                                    src={img?.image}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
@@ -244,7 +236,7 @@ const SingleProduct = () => {
                                             {data?.customizations?.skin_tones.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={ImageLinkMaker(img?.image)}
+                                                    src={img?.image}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
@@ -266,7 +258,7 @@ const SingleProduct = () => {
                                             {data?.customizations?.hairs.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={ImageLinkMaker(img?.image)}
+                                                    src={img?.image}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
@@ -288,7 +280,7 @@ const SingleProduct = () => {
                                             {data?.customizations?.noses?.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={ImageLinkMaker(img?.image)}
+                                                    src={img?.image}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
@@ -311,7 +303,7 @@ const SingleProduct = () => {
                                             {data?.customizations?.eyes?.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={ImageLinkMaker(img?.image)}
+                                                    src={img?.image}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
@@ -334,7 +326,7 @@ const SingleProduct = () => {
                                             {data?.customizations?.mouths?.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={ImageLinkMaker(img?.image)}
+                                                    src={img?.image}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
@@ -357,7 +349,7 @@ const SingleProduct = () => {
                                             {data?.customizations?.dresses?.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={ImageLinkMaker(img?.image)}
+                                                    src={img?.image}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
@@ -381,7 +373,7 @@ const SingleProduct = () => {
                                             {data?.customizations?.crowns?.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={ImageLinkMaker(img?.image)}
+                                                    src={img?.image}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
@@ -405,7 +397,7 @@ const SingleProduct = () => {
                                             {data?.customizations?.beards?.map((img, idx) => (
                                                 <Image
                                                     key={idx}
-                                                    src={ImageLinkMaker(img?.image)}
+                                                    src={img?.image}
                                                     alt={`Gallery ${idx}`}
                                                     width={80}
                                                     height={80}
@@ -436,7 +428,7 @@ const SingleProduct = () => {
                     <h3 className="font-bold mb-2">Thumbnail</h3>
                     {data?.image ? (
                         <Image
-                            src={ImageLinkMaker(data?.image)}
+                            src={data?.image}
                             alt="Thumbnail"
                             width={1000}
                             height={1000}

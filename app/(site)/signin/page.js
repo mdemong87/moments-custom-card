@@ -26,6 +26,7 @@ const Signin = () => {
 
         if (email && password) {
             setLoading(true);
+
             const response = await logingandsignupmakepost("api/login", { email, password });
 
             if (response) {
