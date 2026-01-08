@@ -22,7 +22,7 @@ export default function SiteSettings() {
 
 
 
-    const fetching = useCallback(async (id, token) => {
+    const fetching = useCallback(async (token) => {
         try {
             const response = await MakeGet(`api/secrets`, token);
 
@@ -37,15 +37,15 @@ export default function SiteSettings() {
             console.error("Error fetching profile:", error);
             setfetchloading(false);
         }
-    }, [id, token]);
+    }, [token]);
 
 
     // Simulate fetching user data
     useEffect(() => {
 
-        fetching(id, token);
+        fetching(token);
 
-    }, [fetching, id, token]);
+    }, [fetching, token]);
 
 
 

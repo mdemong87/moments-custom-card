@@ -133,7 +133,7 @@ export default function ProfilePage() {
                             </div>
 
                             {/* phone */}
-                            <div>
+                            <div className="hidden">
                                 <label className="block text-gray-700 mb-1">Phone</label>
                                 <input
                                     type="tel"
@@ -146,7 +146,7 @@ export default function ProfilePage() {
                             </div>
 
                             {/* Address */}
-                            <div>
+                            <div className="hidden">
                                 <label className="block text-gray-700 mb-1">Address</label>
                                 <textarea
                                     name="address"

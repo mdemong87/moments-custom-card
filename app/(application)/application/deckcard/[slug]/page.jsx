@@ -1,5 +1,7 @@
 "use client";
 import ApplicationSkeleton from "@/app/componnent/ApplicationSkeleton";
+import BoxContentForDeckCard from "@/app/componnent/BoxPreview/BoxContentForDeckCard";
+import BoxPreview from "@/app/componnent/BoxPreview/BoxPreview";
 import useDeckFinalPreview from "@/store/useDeckFinalPreview";
 import CaptureScreenshort from "@/utilis/helper/CaptureScreenshort";
 import getCookie from "@/utilis/helper/cookie/gettooken";
@@ -192,9 +194,11 @@ const ProductCustomizer = () => {
                 </div>
                 <div className="col-span-12 row-span-10 lg:row-span-12 lg:col-span-10 h-full w-full">
                     <div className="grid grid-cols-10 grid-rows-10 h-full w-full mt-2 lg:mt-0 relative">
-                        <div className="col-span-10 row-span-9 lg:row-span-10 lg:col-span-6 flex items-center justify-center -translate-y-[150px] lg:-translate-y-[50px] w-screen lg:w-full z-40">
+                        <div className="col-span-10 row-span-9 lg:row-span-10 lg:col-span-6 flex items-center justify-center -translate-y-[150px] lg:-translate-y-[50px] w-screen lg:w-full z-40 relative">
                             <CardPreview activeCard={activeCard} previewCardNodeRef={previewCardNodeRef} />
-
+                            <BoxPreview>
+                                <BoxContentForDeckCard />
+                            </BoxPreview>
                         </div>
                         <div className={`absolute ${smallconOpen ? "top-px" : "top-2/4 sm:top-2/3"} lg:static lg:block col-span-10 row-span-1 lg:row-span-10 lg:col-span-4 w-screen lg:w-full h-full bg-white border-t border-gray-300 lg:border-l lg:border-gray-200 px-2 md:px-7 lg:px-6 mt-2 lg:mt-0 pb-68 lg:pb-0 shadow-2xl lg:shadow-sm rounded-t-4xl lg:rounded-none z-50`}>
                             <div className="w-full flex lg:hidden items-center justify-center">
