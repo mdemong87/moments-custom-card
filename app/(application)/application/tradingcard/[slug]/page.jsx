@@ -11,6 +11,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BsCreditCard2Back } from "react-icons/bs";
 import { CiCirclePlus } from "react-icons/ci";
+import { IoIosArrowDown } from "react-icons/io";
 import { Rnd } from "react-rnd";
 import { toast, ToastContainer } from "react-toastify";
 import ViewCard from "../../../../componnent/ViewCard";
@@ -24,6 +25,8 @@ export default function ProductCustomizer() {
     const { slug } = useParams();
 
     const previewCardNodeRef = useRef(null);
+
+    const [smallconOpen, setsmallconOpen] = useState(false);
 
     // replace these with real image URLs or keep as keys and map to your assets
     const [frontImages, setfrontImages] = useState(null);
@@ -278,10 +281,10 @@ export default function ProductCustomizer() {
 
             {/* Middle area (contains canvas and right-panel inside it like your original layout) */}
             <div className="col-span-12 row-span-10 lg:row-span-12 lg:col-span-10 h-full lg:h-screen w-full">
-                <div className="grid grid-cols-10 grid-rows-10 h-full w-full mt-2 lg:mt-0">
+                <div className="grid grid-cols-10 grid-rows-10 h-full w-full mt-2 lg:mt-0 relative">
                     {/* Canvas column (middle) */}
-                    <div className="col-span-10 row-span-4 lg:row-span-10 lg:col-span-6 flex items-center justify-center lg:-translate-y-[50px] w-screen lg:w-full h-full lg:h-full">
-                        <div ref={previewCardNodeRef} className="border border-gray-200 rounded-md bg-white w-[140px] md:w-[190px] lg:w-[390px] h-[200px] md:h-[300px] lg:h-[570px] relative overflow-hidden">
+                    <div className="col-span-10 row-span-9 lg:row-span-10 lg:col-span-6 flex items-center justify-center -translate-y-[65px] lg:-translate-y-[50px] w-screen lg:w-full z-40">
+                        <div ref={previewCardNodeRef} className="border border-gray-200 rounded-md bg-white w-[200px] md:w-[190px] lg:w-[390px] h-[300px] md:h-[300px] lg:h-[570px] relative overflow-hidden">
                             {/* Uploaded images (zIndex:1) - draggable & resizable */}
                             {uploads.map((img) => (
                                 <Rnd
@@ -395,7 +398,19 @@ export default function ProductCustomizer() {
                     </div>
 
                     {/* Right Controls column (inside the middle wrapper as your original) */}
-                    <div className="col-span-10 row-span-6 lg:row-span-10 lg:col-span-4 w-screen lg:w-full h-full bg-white border-t lg:border-l border-gray-200 px-2 md:px-6 lg:px-6 mt-2 lg:mt-0">
+                    <div className={`absolute ${smallconOpen ? "top-px" : "top-3/4 sm:top-2/3"} lg:static lg:block col-span-10 row-span-1 lg:row-span-10 lg:col-span-4 w-screen lg:w-full h-full bg-white border-t border-gray-300 lg:border-l lg:border-gray-200 px-2 md:px-6 lg:px-6 mt-2 lg:mt-0 shadow-2xl lg:shadow-sm rounded-t-4xl lg:rounded-none z-50`}>
+
+
+                        <div className="w-full flex lg:hidden items-center justify-center">
+                            <div onClick={() => { setsmallconOpen(!smallconOpen) }} className="w-fit p-2 rounded-full cursor-pointer">
+                                <div className="bg-sky-300 w-[100px] h-[10px] rounded-full flex items-center justify-center p-2">
+                                    <IoIosArrowDown className={`text-white ${!smallconOpen && "rotate-180"}`} />
+                                </div>
+                            </div>
+                        </div>
+
+
+
                         <div className="h-full lg:h-[83vh] overflow-y-scroll mt-2 space-y-4 pb-32 lg:pb-0">
 
                             <div className="flex items-center justify-center gap-4 bg-gray-100 rounded-md p-4 mt-4 mb-4">
@@ -518,7 +533,7 @@ export default function ProductCustomizer() {
                         </div>
 
                         {/* Bottom Button */}
-                        <ViewCard isLoading={spinloading} goToFinalView={goToFinalView} />
+                        <ViewCard smallconOpen={smallconOpen} isLoading={spinloading} goToFinalView={goToFinalView} />
                     </div>
                 </div>
             </div>

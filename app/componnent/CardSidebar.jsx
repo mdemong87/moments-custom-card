@@ -1,3 +1,4 @@
+import { CiCirclePlus } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import AddNewCardBtn from "./AddNewCardBtn";
 import CardThumbnail from "./CardThumbnail";
@@ -17,7 +18,7 @@ const CardSidebar = ({ finalCards, activeIndex, Done, setActiveIndex, addCard, r
       {finalCards.map((finalCard, idx) => (
         <div
           key={idx}
-          className={`w-[60px] h-full lg:h-fit lg:w-full relative flex items-cemter justify-center rounded-xl z-0 snap-start  border-2 border-gray-200}`}
+          className={`w-[60px] h-full lg:h-fit lg:w-full relative flex items-cemter justify-center rounded-xl z-0 snap-start  border-2 border-gray-200`}
         >
           <CardThumbnail
             finalCard={finalCard}
@@ -28,6 +29,9 @@ const CardSidebar = ({ finalCards, activeIndex, Done, setActiveIndex, addCard, r
           </button>
         </div>
       ))}
+      <div className="w-[60px] h-full lg:h-[180px] lg:w-full relative flex items-cemter justify-center rounded-xl z-0 snap-start  border-2 border-gray-200 flex items-center justify-center">
+        <CiCirclePlus className="text-gray-300 text-xl lg:text-3xl" />
+      </div>
     </div>
     <div className="w-full bg-white py-4 hidden lg:block">
       <AddNewCardBtn addCard={addCard} Done={Done} doneloading={doneloading} />
