@@ -38,7 +38,7 @@ const AllUser = () => {
 
     useEffect(() => {
         fetchingUser();
-    }, [])
+    }, [fetchingUser])
 
 
     if (loading) return <Alluserskalaton />

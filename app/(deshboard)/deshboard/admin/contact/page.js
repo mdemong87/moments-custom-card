@@ -40,7 +40,7 @@ export default function AdminContactPage() {
     useEffect(() => {
         fetching();
 
-    }, []);
+    }, [fetching]);
 
 
 
