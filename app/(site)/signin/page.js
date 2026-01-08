@@ -69,7 +69,7 @@ const Signin = () => {
     return (
         <div className="w-screen h-[60vh] flex justify-center items-center bg-gray-100">
             <div className="bg-white p-6 rounded-lg shadow-md w-80 text-center">
-                <h2 className="text-xl text-black font-bold mb-4">Sign IN</h2>
+                <h2 className="text-xl text-black font-bold mb-4">Sign In</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-4 text-gray-600">
                     <input
@@ -107,8 +107,8 @@ const Signin = () => {
                     Forget Password
                 </Link>
 
-                <span className="flex text-gray-600 items-center gap-1 pt-2 justify-center">Did not have an account ? <Link href="signup" className="text-sm text-gray-600 hover:underline text-sky-500">
-                    sign Up
+                <span className="flex text-gray-600 items-center gap-1 pt-2 justify-center">Do not have an account ? <Link href="signup" className="text-sm text-gray-600 hover:underline text-sky-500">
+                    Sign Up
                 </Link></span>
             </div>
             <ToastContainer />

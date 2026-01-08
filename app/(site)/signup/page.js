@@ -86,7 +86,7 @@ const SignUP = () => {
                 </form>
 
                 <span className="flex items-center text-gray-500 gap-1 pt-2 justify-center">Already have an Account ? <Link href="signin" className="text-sm hover:underline text-sky-500">
-                    sign In
+                    Sign In
                 </Link></span>
             </div>
         </div>
