@@ -3,7 +3,7 @@ import useLoadingStore from "@/store/useLoadingStore";
 import getId from "@/utilis/helper/cookie/getid";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 import MakeGet from "@/utilis/requestrespose/get";
-import MakePost from "@/utilis/requestrespose/post";
+import MakePut from "@/utilis/requestrespose/put";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -18,6 +18,7 @@ export default function SiteSettings() {
     const [key, setkey] = useState('');
     const [secret, setsecret] = useState('');
     const [webhooksecret, setwebhooksecret] = useState('');
+    const [credientialsID, setcredientialsID] = useState(null);
 
 
 
@@ -26,11 +27,11 @@ export default function SiteSettings() {
         try {
             const response = await MakeGet(`api/secrets`, token);
 
-            console.log(response);
 
-            setkey(response?.data?.user?.name);
-            setsecret(response?.data?.user?.email);
-            setwebhooksecret(response?.data?.user?.phone);
+            setkey(response?.data?.[0]?.stripe_publishable_key);
+            setsecret(response?.data?.[0]?.stripe_secret_key);
+            setwebhooksecret(response?.data?.[0]?.stripe_webhook_key);
+            setcredientialsID(response?.data?.[0]?.id);
 
             setfetchloading(false);
         } catch (error) {
@@ -57,12 +58,13 @@ export default function SiteSettings() {
         setLoading(true);
 
         const passdata = {
-            key,
-            secret,
-            webhooksecret,
+            stripe_publishable_key: key,
+            stripe_secret_key: secret,
+            stripe_webhook_key: webhooksecret,
         }
 
-        const response = await MakePost(`api/secrets`, passdata, token);
+
+        const response = await MakePut(`api/secrets/${'1'}`, passdata, token);
 
         if (response?.success) {
             toast.success(response?.message);
@@ -125,6 +127,7 @@ export default function SiteSettings() {
                                 <label className="block text-gray-700 mb-1">Stripe Secret</label>
                                 <input
                                     type="text"
+                                    value={secret}
                                     name="stripe-secret"
                                     disabled={!isedit}
                                     onChange={(e) => { setsecret(e.target.value) }}

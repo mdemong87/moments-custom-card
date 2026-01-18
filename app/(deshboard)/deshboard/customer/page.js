@@ -1,15 +1,51 @@
 "use client";
+import getId from "@/utilis/helper/cookie/getid";
+import getCookie from "@/utilis/helper/cookie/gettooken";
+import MakeGet from "@/utilis/requestrespose/get";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
+
 
 export default function MyPurchases({ purchases = [] }) {
 
-    const router = useRouter();
 
 
-    setTimeout(() => {
-        router.push('/deshboard/customer/orders');
-    }, 0);
+
+    const id = getId();
+    const token = getCookie();
+    const [myorder, setmyorder] = useState([]);
+    const [fetchloading, setfetchloading] = useState(true);
+
+
+
+    const fetching = useCallback(async (token) => {
+        try {
+            const response = await MakeGet(`api/secrets`, token);
+
+            console.log(response);
+
+            setmyorder(response);
+            setfetchloading(false);
+        } catch (error) {
+            console.error("Error fetching profile:", error);
+            setfetchloading(false);
+        }
+    }, [token]);
+
+
+    // Simulate fetching user data
+    useEffect(() => {
+
+        fetching(token);
+
+    }, [fetching, token]);
+
+
+
+
+    console.log(myorder);
+
+
 
 
 
