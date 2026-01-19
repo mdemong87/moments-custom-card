@@ -2,6 +2,7 @@
 
 import SpinLoader from "@/app/componnent/SpingLoader";
 import getCookie from "@/utilis/helper/cookie/gettooken";
+import MakeGet from "@/utilis/requestrespose/get";
 import { useCallback, useEffect, useState } from "react";
 
 
@@ -54,14 +55,14 @@ const AdminOrders = () => {
 
     const token = getCookie();
     const [fetchloading, setfetchloading] = useState(true);
-    const [allorders, setallorders] = useState([0]);
+    const [allorders, setallorders] = useState([]);
 
 
 
 
     const fetching = useCallback(async (token) => {
         try {
-            const response = await MakeGet(`api/allorders`, token);
+            const response = await MakeGet(`api/orders`, token);
 
             setallorders(response?.data);
 
@@ -100,6 +101,8 @@ const AdminOrders = () => {
         </div>
     )
 }
+
+
 
 export default AdminOrders;
 

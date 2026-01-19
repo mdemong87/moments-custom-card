@@ -11,7 +11,6 @@ export default function CheckoutPage() {
 
   const token = getCookie();
   const [loading, setloading] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState("cod");
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [phone, setphone] = useState("");
@@ -27,6 +26,8 @@ export default function CheckoutPage() {
     return cart.reduce((total, item) => total + item.productUnitPrice * item.productQuantity, 0);
   };
 
+
+  console.log(cart);
 
 
   // handle checkout funtionh here
@@ -46,7 +47,6 @@ export default function CheckoutPage() {
 
 
     const paymentPassingData = {
-      payment_method: paymentMethod,
       name,
       email,
       phone,
@@ -54,7 +54,8 @@ export default function CheckoutPage() {
       City,
       address,
       roundTotolPrice: calculateTotalPrice(),
-      AllProductImage: allproductImage
+      AllProductImage: allproductImage,
+      cartItems: cart,
     }
 
 
@@ -74,7 +75,7 @@ export default function CheckoutPage() {
 
       // Send the form data to the server
       // const res = await MakePost("myorders", paymentPassingData, token);
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/myorders`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/customer-orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -125,31 +126,6 @@ export default function CheckoutPage() {
           <input onChange={(e) => { setCity(e.target.value) }} type="text" placeholder="City" className={inputStyle} required />
           <textarea onChange={(e) => { setaddress(e.target.value) }} placeholder="Shipping Address" className={inputStyle} rows="3" required></textarea>
 
-
-          {/* Payment Method */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-800">Select Payment Method</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div
-                onClick={() => setPaymentMethod("cod")}
-                className={`cursor-pointer rounded-2xl border-2 p-5 flex flex-col items-center gap-3 transition 
-                  ${paymentMethod === "cod" ? "border-blue-400 bg-white/70 shadow-inner shadow-white/30" : "border-white/70 hover:border-blue-400"}`}
-              >
-                <div className="text-3xl">💵</div>
-                <h4 className="font-semibold text-gray-700">Cash on Delivery</h4>
-                <p className="text-sm text-gray-600 text-center">Pay with cash when you receive the order.</p>
-              </div>
-              <div
-                onClick={() => setPaymentMethod("stripe")}
-                className={`cursor-pointer rounded-2xl border-2 p-5 flex flex-col items-center gap-3 transition 
-                  ${paymentMethod === "stripe" ? "border-blue-400 bg-white/70 shadow-inner shadow-white/30" : "border-white/70 hover:border-blue-400"}`}
-              >
-                <div className="text-3xl">💳</div>
-                <h4 className="font-semibold text-gray-700">Credit/Debit Card</h4>
-                <p className="text-sm text-gray-600 text-center">Pay securely via Stripe with your card.</p>
-              </div>
-            </div>
-          </div>
 
           <button
             onClick={(e) => { handleCheckout(e) }}

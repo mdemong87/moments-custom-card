@@ -14,7 +14,6 @@ export default function SiteSettings() {
     const { isLoading, setLoading } = useLoadingStore();
     const [fetchloading, setfetchloading] = useState(true);
     const [isedit, setisedit] = useState(false);
-
     const [key, setkey] = useState('');
     const [secret, setsecret] = useState('');
     const [webhooksecret, setwebhooksecret] = useState('');
@@ -23,9 +22,14 @@ export default function SiteSettings() {
 
 
 
+
     const fetching = useCallback(async (token) => {
         try {
             const response = await MakeGet(`api/secrets`, token);
+
+
+            console.log("Fetched profile:", response);
+
 
 
             setkey(response?.data?.[0]?.stripe_publishable_key);
@@ -64,9 +68,9 @@ export default function SiteSettings() {
         }
 
 
-        const response = await MakePut(`api/secrets/${'1'}`, passdata, token);
+        const response = await MakePut(`api/secrets/${credientialsID}`, passdata, token);
 
-        if (response?.success) {
+        if (response) {
             toast.success(response?.message);
             setisedit(false);
             fetching(id, token);
@@ -153,7 +157,7 @@ export default function SiteSettings() {
                             <div className="w-full flex justify-end">
                                 <button
                                     type="submit"
-                                    className="w-fit px-3 bg-sky-400 text-white py-2 rounded-lg hover:bg-sky-600 transition flex items-center justify-center gap-2"
+                                    className="w-fit px-3 bg-sky-400 text-white py-2 rounded-lg hover:bg-sky-600 transition flex items-center justify-center gap-2 cursor-pointer"
                                 >
 
                                     {
@@ -161,7 +165,9 @@ export default function SiteSettings() {
                                         </div>
                                     }
 
-                                    Save
+                                    {
+                                        isLoading ? 'Saveing...' : 'Save Changes'
+                                    }
                                 </button>
                             </div>
                         </form>
