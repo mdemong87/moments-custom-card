@@ -1,6 +1,6 @@
 'use client'
 
-import SingleProductSkeleton from "@/app/componnent/skelaton/SingleProductSkeleton ";
+import SingleProductSkeleton from "@/app/componnent/skelaton/SingleProductSkeleton";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 import MakeDelete from "@/utilis/requestrespose/delete";
 import MakeGet from "@/utilis/requestrespose/get";
