@@ -16,6 +16,7 @@ import { Rnd } from "react-rnd";
 import { toast, ToastContainer } from "react-toastify";
 import ViewCard from "../../../../componnent/ViewCard";
 
+import CharactersCountComponent from "@/app/componnent/CharactersCountComponent";
 import captureNodeScreenshotForTranding from "@/utilis/helper/captureNodeScreenshotForTranding";
 const fonts = ["Arial", "Poppins", "Times New Roman", "Courier New", "Comic Sans MS"];
 
@@ -57,12 +58,24 @@ export default function ProductCustomizer() {
     //text state is here
     const [cardti, setcardti] = useState('Card Title');
     const [carddes, setcarddes] = useState('Card Description');
-    const [name, setname] = useState('Name One');
-    const [name2, setname2] = useState('Name Two');
-    const [name3, setname3] = useState('Name Three');
+    const [name, setname] = useState('Attribute One');
+    const [name2, setname2] = useState('Attribute Two');
+    const [name3, setname3] = useState('Attribute Three');
+    const [labelone, setlabelone] = useState(69);
+    const [labeltwo, setlabeltwo] = useState(55);
+    const [labelthree, setlabelthree] = useState(78);
     const [acarddate, setacarddate] = useState('CLASS OF 2025');
 
     const [cardfinder, setcardfinder] = useState(0);
+
+
+    // text inputer limite
+    const [cardtiltelimite, setcardtiltelimite] = useState(12);
+    const [carddeslimite, setcarddeslimite] = useState(95);
+    const [namelimite, setnamelimite] = useState(15);
+    const [name2limite, setname2limite] = useState(15);
+    const [name3limite, setname3limite] = useState(15);
+    const [acarddatelimite, setacarddatelimite] = useState(10);
 
 
     const getBaseTrading = useCallback(async (slug) => {
@@ -86,10 +99,19 @@ export default function ProductCustomizer() {
         if (workingcard == 'front') {
             setcardti('Card Title');
             setcarddes('Card Description');
-            setname('Name One');
-            setname2('Name Two');
-            setname3('Name Three');
+            setname('Attribute One');
+            setname2('Attribute Two');
+            setname3('Attribute Three');
             setacarddate('CLASS OF 2025');
+
+            setcardtiltelimite(12);
+            setcarddeslimite(95);
+            setnamelimite(15);
+            setname2limite(15);
+            setname3limite(15);
+            setacarddatelimite(15);
+
+
         } else {
             setcardti('Profile');
             setcarddes('This Trading Card Customization is easy to customize, if your want the Try Out. You will enjoy!');
@@ -97,6 +119,14 @@ export default function ProductCustomizer() {
             setname2('Lorem Ipsum 10, This Momento card Customization One of the best Placeform');
             setname3('Awards');
             setacarddate('Lorem Ipsum 10, This Momento card Customization One of the best Placeform');
+
+
+            setcardtiltelimite(15);
+            setcarddeslimite(95);
+            setnamelimite(15);
+            setname2limite(95);
+            setname3limite(15);
+            setacarddatelimite(95);
 
         }
     }
@@ -364,10 +394,10 @@ export default function ProductCustomizer() {
                                     {
                                         workingcard === "front" ? (
                                             <>
-                                                {cardfinder == 0 && <FrontOne cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} />}
-                                                {cardfinder == 1 && <FrontTwo cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} />}
-                                                {cardfinder == 2 && <FrontThree cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} />}
-                                                {cardfinder == 3 && <FrontFour cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} />}
+                                                {cardfinder == 0 && <FrontOne cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} labelone={labelone} labeltwo={labeltwo} labelthree={labelthree} />}
+                                                {cardfinder == 1 && <FrontTwo cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} labelone={labelone} labeltwo={labeltwo} labelthree={labelthree} />}
+                                                {cardfinder == 2 && <FrontThree cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} labelone={labelone} labeltwo={labeltwo} labelthree={labelthree} />}
+                                                {cardfinder == 3 && <FrontFour cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} labelone={labelone} labeltwo={labeltwo} labelthree={labelthree} />}
                                             </>
                                         ) : (
                                             <BackOne cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} />
@@ -429,7 +459,7 @@ export default function ProductCustomizer() {
                             {/* Front Base Card */}
                             {
                                 workingcard === "front" && <div>
-                                    <label className="block text-gray-700 mb-1">Front Base Card *</label>
+                                    <label className="block text-gray-700 mb-1">Front Base Card <span className="text-red-600 text-xl">*</span></label>
                                     <div className="flex flex-wrap gap-2">
                                         {frontImages?.map((img, idx) => (
                                             <Image
@@ -453,7 +483,7 @@ export default function ProductCustomizer() {
                             {/* Back Base Card */}
                             {
                                 workingcard === "back" && <div>
-                                    <label className="block text-gray-700 mb-1">Back Base Card *</label>
+                                    <label className="block text-gray-700 mb-1">Back Base Card <span className="text-red-600 text-xl">*</span></label>
                                     <div className="flex flex-wrap gap-2">
                                         {backImages?.map((img, idx) => (
                                             <Image
@@ -472,7 +502,7 @@ export default function ProductCustomizer() {
 
                             {/* Upload Image */}
                             <div className="my-6">
-                                <label className="block text-gray-700 mb-1">Upload Image * <span className="text-gray-500 bg-yellow-200 px-1.5 rounded-md text-xs">900 x 1300</span></label>
+                                <label className="block text-gray-700 mb-1">Upload Image <span className="text-red-600 text-xl">*</span> <span className="text-gray-500 bg-yellow-200 px-1.5 rounded-md text-xs">900 x 1300</span></label>
                                 <div className="flex gap-2 items-center">
                                     <label className="" htmlFor="uploadImage">
                                         <div className=" w-[80px] h-[80px] lg:w-[80px] lg:h-[80px] bg-gray-100 rounded-md flex items-center justify-center cursor-pointer">
@@ -493,38 +523,104 @@ export default function ProductCustomizer() {
 
                             {/* Add Text */}
                             <div>
-                                <div className="">
-                                    <label className="block text-gray-700 mb-1">Edit Text *</label>
-                                    <div className="flex items-center gap-3">
-                                        <div>
-                                            <label className="text-gray-500 mb-1 text-sm">Card Title: *</label>
-                                            <input value={cardti} onChange={(e) => { setcardti(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none w-full" />
-                                        </div>
-                                        <div>
-                                            <label className="text-gray-500 mb-1 text-sm">Card Descriptions: *</label>
-                                            <input value={carddes} onChange={(e) => { setcarddes(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none  w-full" />
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-3 my-3">
-                                        <div>
-                                            <label className="text-gray-500 mb-1 text-sm">Name One: *</label>
-                                            <input value={name} onChange={(e) => { setname(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none  w-full" />
-                                        </div>
-                                        <div>
-                                            <label className="text-gray-500 mb-1 text-sm">Name Two: *</label>
-                                            <input value={name2} onChange={(e) => { setname2(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none  w-full" />
+                                <div className="border border-gray-200 p-4 mb-4 rounded-lg">
+                                    <label className="block text-xl text-gray-700 mb-1">Text Editor </label>
+                                    <div className="w-full flex items-center gap-3 mb-3">
+                                        <div className="w-full">
+                                            <label className="text-gray-500 mb-1 text-sm">Card Title: <span className="text-red-600 text-xl">*</span>
+                                                <div className="relative">
+                                                    <CharactersCountComponent text={cardti} limit={cardtiltelimite} />
+                                                </div>
+                                            </label>
+                                            <input value={cardti} maxLength={cardtiltelimite} onChange={(e) => { setcardti(e.target.value) }} type="text" className="border border-gray-200 p-1 rounded-md text-gray-600 outline-none w-full" />
+
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-3 my-3">
-                                        <div>
-                                            <label className="text-gray-500 mb-1 text-sm">Name Three: *</label>
-                                            <input value={name3} onChange={(e) => { setname3(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none  w-full" />
-                                        </div>
-                                        <div className="">
-                                            <label className="text-gray-500 mb-1 text-sm">About Card Date: *</label>
-                                            <input value={acarddate} onChange={(e) => { setacarddate(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none" />
+                                    <div className="w-full flex items-center gap-3 mb-3">
+                                        <div className="w-full">
+                                            <label className="text-gray-500 mb-1 text-sm">Card Descriptions: <span className="text-red-600 text-xl">*</span>
+
+                                                <div className="relative">
+                                                    <CharactersCountComponent text={carddes} limit={carddeslimite} />
+                                                </div>
+
+                                            </label>
+                                            <textarea maxLength={carddeslimite} value={carddes} onChange={(e) => { setcarddes(e.target.value) }} type="text" className="border border-gray-200 p-1 rounded-md text-gray-600 outline-none  w-full h-[90px]"></textarea>
                                         </div>
                                     </div>
+                                    <div className="w-full flex items-center gap-3 mb-3">
+                                        <div className="w-full">
+                                            <label className="text-gray-500 mb-1 text-sm">Attribute One Text: <span className="text-red-600 text-xl">*</span>
+                                                <div className="relative">
+                                                    <CharactersCountComponent text={name} limit={namelimite} />
+                                                </div>
+                                            </label>
+                                            <input value={name} maxLength={namelimite} onChange={(e) => { setname(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none  w-full" />
+                                        </div>
+                                    </div>
+                                    <div className="w-full flex items-center gap-3 mb-3">
+                                        <div className="w-full">
+                                            <label className="text-gray-500 mb-1 text-sm">Attribute Two: <span className="text-red-600 text-xl">*</span>
+                                                <div className="relative">
+                                                    <CharactersCountComponent text={name2} limit={name2limite} />
+                                                </div>
+                                            </label>
+                                            <input value={name2} maxLength={name2limite} onChange={(e) => { setname2(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none  w-full" />
+                                        </div>
+                                    </div>
+                                    <div className=" w-fullflex items-center gap-3 mb-3">
+                                        <div className="w-full">
+                                            <label className="text-gray-500 mb-1 text-sm">Attribute Three: <span className="text-red-600 text-xl">*</span>
+                                                <div className="relative">
+                                                    <CharactersCountComponent text={name3} limit={name3limite} />
+                                                </div>
+                                            </label>
+                                            <input value={name3} maxLength={name3limite} onChange={(e) => { setname3(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none  w-full" />
+                                        </div>
+                                    </div>
+
+                                    <div className="w-full flex items-center mb-3">
+                                        <div className="w-full flex flex-col">
+                                            <label className="text-gray-500 mb-1 text-sm">About Card Date: <span className="text-red-600 text-xl">*</span>
+                                                <div className="relative">
+                                                    <CharactersCountComponent text={acarddate} limit={acarddatelimite} />
+                                                </div>
+                                            </label>
+                                            <input value={acarddate} maxLength={acarddatelimite} onChange={(e) => { setacarddate(e.target.value) }} type="text" className="border border-gray-300 p-1 rounded-md text-gray-600 outline-none" />
+                                        </div>
+                                    </div>
+
+
+
+                                    {
+                                        workingcard === 'front' && (
+                                            <>
+
+                                                <div className="w-full flex items-center gap-3 mb-1">
+                                                    <div className="w-full">
+                                                        <label className="text-gray-500 mb-1 text-sm">Attribute One Label: <span className="text-red-600 text-xl">*</span></label>
+                                                        <input min={1} max={100} value={labelone} onChange={(e) => { setlabelone(e.target.value) }} type="range" className="border border-gray-300 rounded-md text-gray-600 outline-none  w-full cursor-pointer" />
+                                                    </div>
+                                                </div>
+                                                <div className="w-full flex items-center gap-3 mb-1">
+                                                    <div className="w-full">
+                                                        <label className="text-gray-500 mb-1 text-sm">Attribute Two Label: <span className="text-red-600 text-xl">*</span></label>
+                                                        <input min={1} max={100} value={labeltwo} onChange={(e) => { setlabeltwo(e.target.value) }} type="range" className="border border-gray-300 rounded-md text-gray-600 outline-none  w-full cursor-pointer" />
+                                                    </div>
+                                                </div>
+                                                <div className="w-full flex items-center gap-3">
+                                                    <div className="w-full">
+                                                        <label className="text-gray-500 mb-1 text-sm">Attribute Three Label: <span className="text-red-600 text-xl">*</span></label>
+                                                        <input min={1} max={100} value={labelthree} onChange={(e) => { setlabelthree(e.target.value) }} type="range" className="border border-gray-300 rounded-md text-gray-600 outline-none  w-full cursor-pointer" />
+                                                    </div>
+                                                </div>
+                                            </>
+                                        )
+                                    }
+
+
+
+
                                 </div>
                             </div>
                             {/* text control end here */}

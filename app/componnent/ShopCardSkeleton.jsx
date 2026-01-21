@@ -7,7 +7,7 @@ export default function ShopCardSkeleton() {
             {
                 Array.from({ length: 8 }).map((_, idx) => {
                     return (
-                        <article key={idx} className="max-w-xs w-full bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse">
+                        <article key={idx} className="w-full bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse">
                             {/* Image */}
                             <div className="h-60 w-full bg-gray-200 rounded-t-2xl" />
 

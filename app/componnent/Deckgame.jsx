@@ -7,7 +7,7 @@ export default function Tradition() {
     return (
         <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
             {/* Left Content */}
-            <div className="space-y-6 md:order-last md:order-first">
+            <div className="space-y-6 order-last md:order-frist">
                 <h1 className="text-4xl text-center md:text-left md:text-3xl font-extrabold text-gray-800">
                     Traditional Playing Cards
                 </h1>
@@ -40,7 +40,7 @@ export default function Tradition() {
             </div>
 
             {/* Right Image */}
-            <div className="flex justify-center md:justify-end order-last md:order-first">
+            <div className="flex justify-center md:justify-end order-frist md:order-last">
                 <Image
                     src={deckGame}
                     alt="Tradition"

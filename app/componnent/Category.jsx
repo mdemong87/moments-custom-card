@@ -11,21 +11,23 @@ export default function Category() {
             image: TredingOne,
             href: "/shop",
         },
-        {
-            title: "Momento Game Deck",
-            description: "Tailor-made for unique gameplay, strategy, and storytelling",
-            image: TredingTwo,
-            href: "/shop",
-        },
+
         {
             title: "Momento Trading Cards",
             description: "Custom collectibles designed for creators, fans, and collectors.",
             image: TredingThree,
             href: "/shop",
         },
+
+        {
+            title: "Momento Game Deck",
+            description: "Tailor-made for unique gameplay, strategy, and storytelling",
+            image: TredingTwo,
+            href: "/shop",
+        },
     ];
     return (
-        <section className="py-16 w-screen">
+        <section className="py-16 w-full">
             <div className="text-center text-[#333333] font-bold mb-12">
                 <h2 className="text-5xl mb-3">
                     Turn Meaningful Moments <br />into Stunning Cards
@@ -34,11 +36,11 @@ export default function Category() {
                     Explore the three types of Momento Cards
                 </span>
             </div>
-            <div className="w-full max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="w-full max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
                 {categories.map((cat, idx) => (
                     <div
                         key={idx}
-                        className="text-center bg-white rounded-xl shadow-lg overflow-hidden hover:scale-102 transform transition duration-300"
+                        className="w-full text-center bg-white rounded-xl shadow-lg overflow-hidden hover:scale-102 transform transition duration-300"
                     >
                         <div className="relative w-full h-64">
                             <Image
