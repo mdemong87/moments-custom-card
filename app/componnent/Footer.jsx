@@ -11,7 +11,7 @@ const Footer = () => {
             <Image src={footerlogo} alt="footer-logo" className="hidden md:block w-screen h-[92%] opacity-5 absolute top-0 left-0 z-10" />
 
             <div className="w-full flex items-center justify-center">
-                <div className="w-full max-w-7xl px-2 md:px-7 grid grid-cols-4 items-start justify-center gap-5 my-10 z-20">
+                <div className="w-full max-w-7xl px-3 md:px-7 grid grid-cols-4 items-start justify-center gap-5 my-10 z-20">
                     <div className="w-full col-span-4 md:col-span-2 lg:col-span-1">
                         <h3 className="font-bold text-2xl text-gray-600">About</h3>
                         <p className="text-gray-500 text-md pt-5">

@@ -7,7 +7,7 @@ export default function Tradition() {
     return (
         <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
             {/* Left Content */}
-            <div className="space-y-6">
+            <div className="space-y-6 order-last md:order-frist">
                 <h1 className="text-4xl text-center md:text-left md:text-3xl font-extrabold text-gray-800 ">
                     Momento Playing Deck Cards
                 </h1>
@@ -40,7 +40,7 @@ export default function Tradition() {
             </div>
 
             {/* Right Image */}
-            <div className="flex justify-center md:justify-end">
+            <div className="flex justify-center md:justify-end order-frist md:order-last">
                 <Image
                     src={cardsTradition}
                     width={1000}

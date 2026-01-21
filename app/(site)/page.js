@@ -14,8 +14,8 @@ const Homepage = () => {
       <Category />
       <Info />
       <Tradition />
-      <Deckgame />
       <Trading />
+      <Deckgame />
       <Cta />
     </main>
   );
