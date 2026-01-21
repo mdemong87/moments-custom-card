@@ -83,8 +83,8 @@ const SingleProduct = () => {
     fetching(slug);
   }, [slug, fetching]);
 
-  /* =========================
-     ADD TO CART
+ /* =========================
+   ADD TO CART - FIXED
   ========================= */
   const handleaddToCart = (e) => {
     e.preventDefault();
@@ -93,8 +93,8 @@ const SingleProduct = () => {
     setTimeout(() => {
       if (data?.status) {
         const product = {
-          id: generateUserId(),
-          productId: data?.id,
+          id: data?.id, // ✅ Use the actual database product ID (33, 34, or 35)
+          productId: data?.id, // ✅ Also store it here for checkout
           productSlug: data?.slug,
           productName: data?.name,
           productType: data?.type,
@@ -106,7 +106,14 @@ const SingleProduct = () => {
           FinalProduct: data?.images,
         };
 
+        console.log('✅ Adding product to cart:', {
+          id: product.id,
+          productId: product.productId,
+          name: product.productName
+        });
+
         addToCart(product);
+        toast.success('Product added to cart!');
       } else {
         setSubcriptionModal(true);
       }

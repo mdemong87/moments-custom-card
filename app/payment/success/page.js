@@ -47,11 +47,11 @@ export default function PaymentSuccess() {
           You will receive a confirmation email shortly.
         </p>
 
-        {sessionId && (
+        {/* {sessionId && (
           <p className="text-sm text-gray-500 mb-6">
             Session ID: {sessionId}
           </p>
-        )}
+        )} */}
 
         <div className="space-y-4">
           <Link 

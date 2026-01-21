@@ -2,11 +2,15 @@
 
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import SpinLoader from "@/app/componnent/SpingLoader";
 import useCartStore from "@/store/useCartStore";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 
-function CheckoutPage() {
+const inputStyle =
+  "border border-gray-300 bg-white/70 text-gray-900 placeholder-gray-600 focus:border-blue-400 focus:ring-2 focus:ring-blue-400 p-3 rounded-xl w-full outline-none transition";
+
+export default function CheckoutPage() {
   const token = getCookie();
   const [loading, setloading] = useState(false);
   const [name, setname] = useState("");
@@ -19,10 +23,10 @@ function CheckoutPage() {
 
   // Calculate total price
   const calculateTotalPrice = () => {
-    return cart.reduce((total, item) => total + item.productUnitPrice * item.productQuantity, 0);
+    return cart.reduce((total, item) => total + Number(item.productUnitPrice) * Number(item.productQuantity), 0);
   };
 
-  // NEW APPROACH: Create checkout session directly (no order creation yet)
+  // Create checkout session
   const handleCheckout = async (e) => {
     e.preventDefault();
 
@@ -33,6 +37,17 @@ function CheckoutPage() {
 
     if (cart.length === 0) {
       toast.warn("Your cart is empty");
+      return;
+    }
+
+    // Validate cart items have required fields
+    const invalidItems = cart.filter(item => 
+      !item.productId || !item.productQuantity || !item.productUnitPrice
+    );
+    
+    if (invalidItems.length > 0) {
+      toast.error("Some items in your cart are invalid. Please refresh and try again.");
+      console.error("Invalid cart items:", invalidItems);
       return;
     }
 
@@ -58,30 +73,15 @@ function CheckoutPage() {
           }
 
           return {
-            product_id: item.productId,
-            quantity: item.productQuantity,
+            product_id: parseInt(item.productId), // ✅ Use productId, not id
+            qty: parseInt(item.productQuantity),
             price: parseFloat(item.productUnitPrice),
+            name: item.productName || 'Product',
             FinalProduct: item.FinalProduct || [],
             FinalPDF: pdfData ? { data: pdfData } : null,
           };
         })
       );
-
-      // Format items to match backend expectations
-      const formattedItems = cartItems.map(item => {
-        const cartItem = cart.find(c => c.productId === item.product_id);
-        return {
-          product_id: item.product_id,
-          qty: item.quantity,
-          price: item.price,
-          name: cartItem?.productName || 'Product',
-          FinalPDF: item.FinalPDF,
-          FinalProduct: item.FinalProduct,
-        };
-      });
-
-      // Debug: Log the items being sent
-      console.log("Formatted items:", formattedItems);
 
       const checkoutData = {
         name,
@@ -90,17 +90,11 @@ function CheckoutPage() {
         address,
         city: City,
         zipcode,
-        gateway: 'stripe', // Required by backend
-        items: formattedItems, // Backend expects 'items', not 'cart_items'
+        gateway: 'stripe',
+        items: cartItems,
       };
 
-      console.log("Creating checkout session...", {
-        email,
-        itemCount: formattedItems.length,
-        total: calculateTotalPrice()
-      });
-
-      // Call NEW checkout endpoint
+      // Call checkout endpoint
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/checkout`,
         {
@@ -108,7 +102,6 @@ function CheckoutPage() {
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            // Include token if user is logged in (optional - works for guests too)
             ...(token && { "Authorization": `Bearer ${token}` }),
           },
           body: JSON.stringify(checkoutData),
@@ -120,26 +113,10 @@ function CheckoutPage() {
       console.log("Checkout response:", result);
 
       if (result?.success && result?.checkout_url) {
-        // Success! Redirect to Stripe payment page
-        // Order will be created AFTER successful payment via webhook
         console.log("Redirecting to Stripe...");
         window.location.href = result.checkout_url;
       } else {
-        // Handle error
-        let errorMessage = "Failed to create checkout session";
-        
-        if (result?.message) {
-          // Check if it's a product not found error
-          if (result.message.includes('No query results for model')) {
-            const productId = result.message.match(/\d+$/)?.[0];
-            errorMessage = `Product ${productId ? `(ID: ${productId})` : ''} not found. Please remove it from cart and try again.`;
-          } else {
-            errorMessage = result.message;
-          }
-        } else if (result?.error) {
-          errorMessage = result.error;
-        }
-        
+        const errorMessage = result?.message || result?.error || "Failed to create checkout session";
         toast.error(errorMessage);
         console.error("Checkout failed:", result);
       }
@@ -219,7 +196,7 @@ function CheckoutPage() {
             onChange={(e) => setaddress(e.target.value)} 
             placeholder="Shipping Address" 
             className={inputStyle} 
-            rows="3" 
+            rows={3}
             required
           ></textarea>
 
@@ -253,7 +230,7 @@ function CheckoutPage() {
                       <span className="text-sm text-gray-600">x{item.productQuantity}</span>
                     </span>
                     <span className="font-medium">
-                      ${(item.productUnitPrice * item.productQuantity).toFixed(2)}
+                      ${(Number(item.productUnitPrice) * Number(item.productQuantity)).toFixed(2)}
                     </span>
                   </li>
                 ))}
@@ -281,9 +258,4 @@ function CheckoutPage() {
       </div>
     </section>
   );
-}
-
-export default CheckoutPage;
-
-const inputStyle =
-  "border border-gray-300 bg-white/70 text-gray-900 placeholder-gray-600 focus:border-blue-400 focus:ring-2 focus:ring-blue-400 p-3 rounded-xl w-full outline-none transition";
+};
