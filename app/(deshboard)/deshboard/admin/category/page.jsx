@@ -108,6 +108,9 @@ export default function ProfilePage() {
 
 
 
+    console.log(data);
+
+
 
     return (
         <div className="w-full">

@@ -2,7 +2,7 @@
 const GradientText = ({ text }) => {
     return (
         <svg
-            width="auto"
+            width="270"
             height="80"
             viewBox="0 0 800 80"
         >
@@ -22,7 +22,7 @@ const GradientText = ({ text }) => {
                 fontSize="98"
                 fontWeight="900"
                 //letterSpacing="-12px"
-                textTransform="uppercase"
+                texttransform="uppercase"
                 fill="url(#textGradient)"
             >
                 {text}
