@@ -4,42 +4,15 @@ import SpinLoader from "@/app/componnent/SpingLoader";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 import MakeGet from "@/utilis/requestrespose/get";
 import { useCallback, useEffect, useState } from "react";
+import RecentOrdersSkeleton from "../../../../componnent/skelaton/RecentOrdersSkeleton.jsx";
 
 
-
-
-const orders = [
-    {
-        id: "ORD-1001",
-        customer: "John Doe",
-        email: "john@example.com",
-        date: "2026-01-10",
-        total: "$120.00",
-        status: "Paid",
-    },
-    {
-        id: "ORD-1002",
-        customer: "Sarah Smith",
-        email: "sarah@example.com",
-        date: "2026-01-12",
-        total: "$75.50",
-        status: "Pending",
-    },
-    {
-        id: "ORD-1003",
-        customer: "Michael Lee",
-        email: "michael@example.com",
-        date: "2026-01-14",
-        total: "$210.00",
-        status: "Cancelled",
-    },
-];
 
 
 //******************* Beage stles is here *********************//
 const statusStyles = {
-    Paid: "bg-green-100 text-green-700",
-    Pending: "bg-yellow-100 text-yellow-700",
+    completed: "bg-green-100 text-green-700",
+    pending: "bg-yellow-100 text-yellow-700",
     Cancelled: "bg-red-100 text-red-700",
 };
 
@@ -85,12 +58,15 @@ const AdminOrders = () => {
 
 
 
+    if (fetchloading) {
+        return <RecentOrdersSkeleton />
+    }
 
 
     return (
         <div>
 
-            {allorders.length > 0 ? (
+            {allorders?.length > 0 ? (
                 <OrderTable allorders={allorders} />
             ) : (
                 <div className="text-center py-10">
@@ -146,13 +122,14 @@ function OrderTable({ allorders }) {
                             <th className="px-4 py-3">Customer</th>
                             <th className="px-4 py-3">Date</th>
                             <th className="px-4 py-3">Total</th>
+                            <th className="px-4 py-3">Is Customized</th>
                             <th className="px-4 py-3">Status</th>
                             <th className="px-4 py-3 text-right">Action</th>
                         </tr>
                     </thead>
 
                     <tbody className="divide-y divide-gray-200 border-t border-gray-200">
-                        {orders.map((order) => (
+                        {allorders?.map((order) => (
                             <tr
                                 key={order.id}
                                 className="hover:bg-gray-50 transition"
@@ -163,7 +140,7 @@ function OrderTable({ allorders }) {
 
                                 <td className="px-4 py-3">
                                     <div className="font-medium text-gray-800">
-                                        {order.customer}
+                                        {order.name}
                                     </div>
                                     <div className="text-xs text-gray-500">
                                         {order.email}
@@ -171,11 +148,15 @@ function OrderTable({ allorders }) {
                                 </td>
 
                                 <td className="px-4 py-3 text-gray-600">
-                                    {order.date}
+                                    {order.created_at}
                                 </td>
 
                                 <td className="px-4 py-3 font-semibold text-gray-800">
                                     {order.total}
+                                </td>
+
+                                <td className="px-4 py-3 font-semibold text-gray-800">
+                                    {order.is_customized ? "Customizable" : "Simple"}
                                 </td>
 
                                 <td className="px-4 py-3">
