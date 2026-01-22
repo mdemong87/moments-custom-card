@@ -1,7 +1,9 @@
 'use client'
 
+import PDFViewer from "@/app/componnent/PDFViewer.jsx";
 import SpinLoader from "@/app/componnent/SpingLoader";
 import getCookie from "@/utilis/helper/cookie/gettooken";
+import { downloadPdf } from "@/utilis/helper/pdfGenerator/downloadPdf.js";
 import MakeGet from "@/utilis/requestrespose/get";
 import { useCallback, useEffect, useState } from "react";
 import RecentOrdersSkeleton from "../../../../componnent/skelaton/RecentOrdersSkeleton.jsx";
@@ -103,8 +105,8 @@ export default AdminOrders;
 function OrderTable({ allorders }) {
 
     const [ismodalopen, setismodalopen] = useState(false);
+    const [modalinfo, setmodalinfo] = useState(null);
 
-    console.log("All Orders:", allorders);
 
     return (
         <div className="w-full bg-white relative">
@@ -168,7 +170,7 @@ function OrderTable({ allorders }) {
                                 </td>
 
                                 <td className="px-4 py-3 text-right">
-                                    <button onClick={() => { setismodalopen(true) }} className="text-blue-600 hover:underline text-sm mr-3 cursor-pointer">
+                                    <button onClick={() => { setismodalopen(true), setmodalinfo(order) }} className="text-blue-600 hover:underline text-sm mr-3 cursor-pointer">
                                         View Card
                                     </button>
                                 </td>
@@ -177,7 +179,7 @@ function OrderTable({ allorders }) {
                     </tbody>
                 </table>
             </div>
-            {ismodalopen && <TableModal ismodalopen={ismodalopen} setismodalopen={setismodalopen} />}
+            {ismodalopen && <TableModal ismodalopen={ismodalopen} setismodalopen={setismodalopen} modalinfo={modalinfo} />}
         </div>
     );
 }
@@ -191,7 +193,7 @@ function OrderTable({ allorders }) {
 
 
 //******************* Modal Component is here *********************//
-const TableModal = ({ ismodalopen, setismodalopen }) => {
+const TableModal = ({ ismodalopen, setismodalopen, modalinfo }) => {
     return (
         <div className="bg-white border border-gray-300 shadow-xl rounded-xl p-4 absolute inset-0 w-full h-fit max-h-screen">
             <div onClick={() => { setismodalopen(false) }} className="text-white bg-sky-500 w-8 h-8 flex items-center justify-center p-4 rounded-full absolute hover:rotate-180 transition duration-300 -top-4 -right-4 cursor-pointer shadow-xl">
@@ -199,7 +201,7 @@ const TableModal = ({ ismodalopen, setismodalopen }) => {
             </div>
 
 
-            <ImageDownloadInfo />
+            <ImageDownloadInfo modalinfo={modalinfo} />
 
         </div>
     )
@@ -225,21 +227,20 @@ const TableModal = ({ ismodalopen, setismodalopen }) => {
 
 
 
-function ImageDownloadInfo() {
+function ImageDownloadInfo({ modalinfo }) {
 
     const [loading, setloading] = useState(false);
 
+    console.log(modalinfo);
 
-    const hanldeDownload = (e) => {
+
+
+    const hanldeDownload = async (e) => {
         e.preventDefault();
 
-
         setloading(true);
-
-
-        setTimeout(() => {
-            setloading(false);
-        }, 3000);
+        await downloadPdf(modalinfo?.customized_file);
+        setloading(false);
 
     }
 
@@ -281,24 +282,16 @@ function ImageDownloadInfo() {
                         {
                             loading && <SpinLoader />
                         }
-                        <span className="text-md font-semibold">{loading ? "Downloading..." : "Download Card"}</span>
+                        <span className="text-md font-semibold">{loading ? "Downloading..." : "Download PDF"}</span>
                     </button>
                 </div>
             </div>
 
             <div className="mt-10 w-full flex items-center gap-4 flex-wrap">
 
-                {
-                    Array.from({ length: 5 }).map((_, i) => (
-                        <img
+                {/* PDF view seciton is here */}
 
-                            key={i}
-                            src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80"
-                            alt="Nature Landscape"
-                            className="w-[300px] h-full rounded-lg object-cover"
-                        />
-                    ))
-                }
+                <PDFViewer file={modalinfo?.customized_file} title="Customized Card" height="70vh" />
 
 
             </div>
