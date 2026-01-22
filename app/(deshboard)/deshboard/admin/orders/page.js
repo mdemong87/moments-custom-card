@@ -1,9 +1,7 @@
 'use client'
 
-import PDFViewer from "@/app/componnent/PDFViewer.jsx";
-import SpinLoader from "@/app/componnent/SpingLoader";
+import PDFViewers from "@/app/componnent/PDFViewers.jsx";
 import getCookie from "@/utilis/helper/cookie/gettooken";
-import { downloadPdf } from "@/utilis/helper/pdfGenerator/downloadPdf.js";
 import MakeGet from "@/utilis/requestrespose/get";
 import { useCallback, useEffect, useState } from "react";
 import RecentOrdersSkeleton from "../../../../componnent/skelaton/RecentOrdersSkeleton.jsx";
@@ -14,6 +12,7 @@ import RecentOrdersSkeleton from "../../../../componnent/skelaton/RecentOrdersSk
 //******************* Beage stles is here *********************//
 const statusStyles = {
     completed: "bg-green-100 text-green-700",
+    Paid: "bg-green-100 text-green-700",
     pending: "bg-yellow-100 text-yellow-700",
     Cancelled: "bg-red-100 text-red-700",
 };
@@ -108,8 +107,11 @@ function OrderTable({ allorders }) {
     const [modalinfo, setmodalinfo] = useState(null);
 
 
+    console.log(allorders);
+
+
     return (
-        <div className="w-full bg-white relative">
+        <div className="w-full bg-white">
             <div className="border-b border-gray-200">
                 <h2 className="text-lg pb-6 font-semibold text-gray-800">
                     Recent Orders
@@ -117,7 +119,7 @@ function OrderTable({ allorders }) {
             </div>
 
             <div className="overflow-x-auto">
-                <table className="w-full text-sm text-left border-l border-b border-r border-gray-200">
+                <table className="w-full text-sm text-left border-l border-b border-r border-gray-200 pb-[100px]">
                     <thead className="bg-gray-50 text-gray-600">
                         <tr>
                             <th className="px-4 py-3">Order ID</th>
@@ -125,7 +127,8 @@ function OrderTable({ allorders }) {
                             <th className="px-4 py-3">Date</th>
                             <th className="px-4 py-3">Total</th>
                             <th className="px-4 py-3">Is Customized</th>
-                            <th className="px-4 py-3">Status</th>
+                            <th className="px-4 py-3">Payment Status</th>
+                            <th className="px-4 py-3">Delivery Status</th>
                             <th className="px-4 py-3 text-right">Action</th>
                         </tr>
                     </thead>
@@ -163,15 +166,23 @@ function OrderTable({ allorders }) {
 
                                 <td className="px-4 py-3">
                                     <span
+                                        className={`px-3 py-1 rounded-full text-xs font-medium ${statusStyles[order.payment_status]}`}
+                                    >
+                                        {order.payment_status}
+                                    </span>
+                                </td>
+
+                                <td className="px-4 py-3">
+                                    <span
                                         className={`px-3 py-1 rounded-full text-xs font-medium ${statusStyles[order.status]}`}
                                     >
-                                        {order.status}
+                                        {order.status == 'completed' ? "Delivered" : order.status}
                                     </span>
                                 </td>
 
                                 <td className="px-4 py-3 text-right">
                                     <button onClick={() => { setismodalopen(true), setmodalinfo(order) }} className="text-blue-600 hover:underline text-sm mr-3 cursor-pointer">
-                                        View Card
+                                        View PDF
                                     </button>
                                 </td>
                             </tr>
@@ -195,7 +206,7 @@ function OrderTable({ allorders }) {
 //******************* Modal Component is here *********************//
 const TableModal = ({ ismodalopen, setismodalopen, modalinfo }) => {
     return (
-        <div className="bg-white border border-gray-300 shadow-xl rounded-xl p-4 absolute inset-0 w-full h-fit max-h-screen">
+        <div className="bg-white border border-gray-300 shadow-xl rounded-xl p-0 absolute inset-0 w-full h-full">
             <div onClick={() => { setismodalopen(false) }} className="text-white bg-sky-500 w-8 h-8 flex items-center justify-center p-4 rounded-full absolute hover:rotate-180 transition duration-300 -top-4 -right-4 cursor-pointer shadow-xl">
                 x
             </div>
@@ -229,69 +240,13 @@ const TableModal = ({ ismodalopen, setismodalopen, modalinfo }) => {
 
 function ImageDownloadInfo({ modalinfo }) {
 
-    const [loading, setloading] = useState(false);
-
-    console.log(modalinfo);
-
-
-
-    const hanldeDownload = async (e) => {
-        e.preventDefault();
-
-        setloading(true);
-        await downloadPdf(modalinfo?.customized_file);
-        setloading(false);
-
-    }
-
-
-
-
-
     return (
-        <div className="w-full rounded-xl bg-white">
-            <div className="flex justuify-between items-start">
-
-                {/* Information Section */}
-                <div className="w-3/4">
-                    <h2 className="text-xl font-semibold text-gray-800">
-                        Nature Landscape Image
-                    </h2>
-
-                    <p className="mt-2 text-sm text-gray-600">
-                        This is a high-quality nature landscape image suitable for
-                        websites, presentations, and marketing materials.
-                    </p>
-
-                    <div className="mt-4 space-y-2 text-sm text-gray-700">
-                        <p><span className="font-medium">Format:</span> JPG</p>
-                        <p><span className="font-medium">Resolution:</span> 3840 × 2160</p>
-                        <p><span className="font-medium">File Size:</span> 2.8 MB</p>
-                        <p><span className="font-medium">License:</span> Free for commercial use</p>
-                    </div>
-
-                </div>
-
-                {/* Image Section */}
-                <div className="w-1/4 flex justify-end">
-
-                    <button
-                        onClick={(e) => { hanldeDownload(e) }}
-                        className="mt-6 inline-flex items-center justify-center rounded-lg bg-sky-500 cursor-pointer px-3 py-3 text-sm font-medium text-white hover:bg-sky-700 transition flex gap-2 items-center shadow-xl"
-                    >
-                        {
-                            loading && <SpinLoader />
-                        }
-                        <span className="text-md font-semibold">{loading ? "Downloading..." : "Download PDF"}</span>
-                    </button>
-                </div>
-            </div>
-
-            <div className="mt-10 w-full flex items-center gap-4 flex-wrap">
+        <div className="w-full h-full rounded-xl bg-white">
+            <div className="w-full h-full flex items-center gap-4 flex-wrap">
 
                 {/* PDF view seciton is here */}
 
-                <PDFViewer file={modalinfo?.customized_file} title="Customized Card" height="70vh" />
+                <PDFViewers fulldata={modalinfo} url={modalinfo?.customized_file} />
 
 
             </div>

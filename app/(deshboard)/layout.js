@@ -75,7 +75,7 @@ const Deshboardlayout = ({ children }) => {
                     </button>
                 </div>
                 <div className="px-6 w-full h-fit pt-6 pl-6 lg:pl-[270px] min-h-screen h-fit pb-6">
-                    <div className=" bg-white rounded-2xl shadow-lg p-6 w-full max-w-full">
+                    <div className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-full relative z-40">
                         {children}
                     </div>
                 </div>
