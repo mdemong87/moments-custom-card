@@ -1,10 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Document, Page, pdfjs } from "react-pdf";
+import dynamic from "next/dynamic";
+import { useEffect, useMemo, useState } from "react";
 
-// ✅ IMPORTANT: set worker (Next.js friendly)
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+// ✅ Load react-pdf ONLY on client (prevents DOMMatrix SSR crash)
+const Document = dynamic(
+    async () => (await import("react-pdf")).Document,
+    { ssr: false }
+);
+
+const Page = dynamic(
+    async () => (await import("react-pdf")).Page,
+    { ssr: false }
+);
 
 export default function PDFViewer({
     file,
@@ -15,16 +23,37 @@ export default function PDFViewer({
     const [pageNumber, setPageNumber] = useState(1);
     const [scale, setScale] = useState(1.1);
 
+    // ✅ set worker only on client, after import is available
+    useEffect(() => {
+        let cancelled = false;
+
+        (async () => {
+            const { pdfjs } = await import("react-pdf");
+            if (cancelled) return;
+
+            pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+        })();
+
+        return () => {
+            cancelled = true;
+        };
+    }, []);
+
     useEffect(() => {
         setPageNumber(1);
     }, [file]);
 
-    const onLoadSuccess = ({ numPages }) => {
-        setNumPages(numPages);
-    };
+    const onLoadSuccess = ({ numPages }) => setNumPages(numPages);
 
     const canPrev = pageNumber > 1;
     const canNext = numPages ? pageNumber < numPages : false;
+
+    // optional: stable key when file changes
+    const docKey = useMemo(() => {
+        if (!file) return "no-file";
+        if (typeof file === "string") return file;
+        return JSON.stringify(file);
+    }, [file]);
 
     return (
         <div className="w-full rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
@@ -47,7 +76,9 @@ export default function PDFViewer({
                     </button>
 
                     <button
-                        onClick={() => setPageNumber((p) => (numPages ? Math.min(numPages, p + 1) : p))}
+                        onClick={() =>
+                            setPageNumber((p) => (numPages ? Math.min(numPages, p + 1) : p))
+                        }
                         disabled={!canNext}
                         className="rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-900 ring-1 ring-slate-200 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
                     >
@@ -77,12 +108,10 @@ export default function PDFViewer({
             </div>
 
             {/* Body */}
-            <div
-                className="overflow-auto bg-slate-50 p-4"
-                style={{ height }}
-            >
+            <div className="overflow-auto bg-slate-50 p-4" style={{ height }}>
                 <div className="mx-auto w-fit rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200">
                     <Document
+                        key={docKey}
                         file={file}
                         onLoadSuccess={onLoadSuccess}
                         loading={
