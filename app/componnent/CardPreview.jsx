@@ -12,7 +12,7 @@ const CardPreview = ({ activeCard, previewCardNodeRef }) => {
 
 
     return (
-        <div ref={previewCardNodeRef} className="flex items-center justify-center relative w-[200px] h-auto md:w-[270px] md:h-[370px] lg:w-[400px] lg:h-[600px] rounded-4xl border-2 border-gray-100">
+        <div ref={previewCardNodeRef} className="flex items-center justify-center relative w-[200px] h-auto md:w-[270px] md:h-[370px] lg:w-[400px] lg:h-[600px] rounded-4xl border-2 border-transparent">
             {activeCard?.baseImage && (
                 <Image
                     width={1000} height={1000} src={activeCard.baseImage} alt="Base Card" className=" w-full h-full object-contain"

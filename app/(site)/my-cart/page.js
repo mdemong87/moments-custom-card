@@ -52,6 +52,8 @@ const MyCart = () => {
 
 
 
+    console.log(cart);
+
 
 
     return (
