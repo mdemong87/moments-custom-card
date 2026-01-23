@@ -103,7 +103,7 @@ const DeshboardNavigation = ({ loginUser }) => {
             {
                 loginUser?.role == "Admin" ? (
 
-                    <div className="flex flex-col items-start lg:items-center gap-4 lg:gap-2 text-gray-500 mt-3 w-full">
+                    <div className="flex flex-col items-start lg:items-center gap-4 lg:gap-2 text-gray-500 mt-3 w-full z-50">
 
                         {
                             adminNavItems?.map((item, index) => {

@@ -19,7 +19,7 @@ const GradientText = ({ text }) => {
                 x="0"
                 y="80"
                 fontFamily="Brunson, sans-serif"
-                fontSize="98"
+                fontSize="90"
                 fontWeight="900"
                 //letterSpacing="-12px"
                 texttransform="uppercase"

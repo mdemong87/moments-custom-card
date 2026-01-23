@@ -36,6 +36,8 @@ const FinalCardsPage = () => {
 
     }
 
+
+
     if (deckcart[0]?.FinalProduct < 1) return <div>No cards found.</div>;
 
     return (
@@ -59,13 +61,12 @@ const FinalCardsPage = () => {
                 {
                     deckcart[0]?.FinalProduct?.map((card, idx) => (
 
-                        <div key={idx} className="w-[170px] h-[280px] lg:w-[290px] lg:h-[400px] flex items-center justify-center ">
+                        <div key={idx} className="w-[170px] h-[280px] lg:w-[216px] lg:h-[312px] flex items-center justify-center ">
                             <Image className="object-contain z-10" src={card} width={1000} height={1000} key={idx} alt="final-cards" />
                         </div>
 
                     ))
                 }
-
 
 
             </div>
