@@ -4,33 +4,33 @@ export const FrontOne = ({ cardti, carddes, name, name2, name3, acarddate, label
     return (
         <div className="w-full h-full relative">
 
-            <span className="text-white uppercase text-sm lg:text-2xl font-bold absolute top-4 left-11.5 lg:top-9 lg:left-26 text-center w-[96px] lg:w-[176px] z-50 font-[GustanBlack]">{cardti}</span>
+            <span className="text-white uppercase text-sm lg:text-2xl font-bold absolute top-5.5 left-18 lg:top-8.5 lg:left-27 text-center w-[108px] lg:w-[174px] z-50 font-[GustanBlack]">{cardti}</span>
 
-            <span className="text-white text-[10px] lg:text-xs font-bold absolute top-57 left-[6px] lg:top-111 lg:left-8 text-center w-[180px] lg:w-[320px] z-50">{carddes}</span>
+            <span className="text-white text-[10px] lg:text-xs font-bold absolute top-71 left-[24px] lg:top-111 lg:left-8 text-center w-[205px] lg:w-[320px] z-50">{carddes}</span>
 
-            <span className="text-white text-[8px] lg:text-xs font-bold absolute top-64 left-[-12px] lg:top-122 lg:left-8 text-center w-[96px] z-50">{name}</span>
+            <span className="text-white text-[8px] lg:text-xs font-bold absolute top-79.5 left-[15px] lg:top-122 lg:left-8 text-center w-[65px] lg:w-[96px] z-50">{name}</span>
 
 
-            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-66.5 left-[-12px] lg:top-126 lg:left-8 text-center w-[96px] z-50">
+            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82.5 left-[19px] lg:top-126 lg:left-8 text-center w-[55px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelone}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
             </span>
 
-            <span className="text-white text-[8px] lg:text-xs font-bold absolute top-64 left-[50px] lg:top-122 lg:left-36 text-center w-[96px] z-50">{name2}</span>
+            <span className="text-white text-[8px] lg:text-xs font-bold absolute top-79.5 left-[95px] lg:top-122 lg:left-36 text-center w-[65px] lg:w-[96px] z-50">{name2}</span>
 
 
-            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-66.5 left-[50px] lg:top-126 lg:left-36 text-center w-[96px] z-50">
+            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[100px] lg:top-126 lg:left-36 text-center w-[55px] lg:w-[96px] z-50">
                 <div style={{ width: `${labeltwo}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
             </span>
 
 
-            <span className="text-white text-[8px] lg:text-xs font-bold absolute top-64 left-[112px] lg:top-122 lg:left-65 text-center w-[96px] z-50">{name3}</span>
+            <span className="text-white text-[8px] lg:text-xs font-bold absolute top-79.5 left-[172px] lg:top-122 lg:left-65 text-center w-[65px] lg:w-[96px] z-50">{name3}</span>
 
 
-            <span className="bg-black border border-red-900 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-66.5 left-[130px] lg:top-126 lg:left-65 text-center w-[58px] lg:w-[96px] z-50">
+            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[174.5px] lg:top-126 lg:left-65 text-center w-[60px] lg:w-[58px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelthree}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
             </span>
 
-            <span className="text-[#5ba2d7] font-bold lg:font-extrabold absolute z-50 text-[10px] lg:text-md top-68.5 right-2 lg:text-lg w-[180px] lg:top-130 lg:right-26 text-center tracking-tighter">{acarddate}</span>
+            <span className="text-[#5ba2d7] font-bold lg:font-extrabold absolute z-50 text-[10px] lg:text-md lg:text-lg w-[110px] lg:w-[180px] top-85 right-18 lg:top-130 lg:right-26 text-center tracking-tighter">{acarddate}</span>
 
         </div>
     )
@@ -44,33 +44,31 @@ export const FrontTwo = ({ cardti, carddes, name, name2, name3, acarddate, label
         <div className="w-full h-full relative">
 
 
-            <div className={"uppercase text-3xl font-extrabold absolute top-[-2] left-11 lg:top-9.5 lg:left-23 z-50"}>
-                <GradientText text={cardti} />
-            </div>
+            <span className="text-white uppercase text-sm lg:text-2xl font-bold absolute top-63 left-18 lg:top-96 lg:left-27 text-center w-[108px] lg:w-[174px] z-50 font-[GustanBlack]">{cardti}</span>
 
 
-            <span className="text-white text-[11px] lg:text-xs font-bold absolute top-51 left-[-60px] lg:top-100 lg:left-8 text-center w-[320px] w-[265px] z-50 ">{carddes}</span>
+            <span className="text-white text-[10px] lg:text-xs font-bold absolute top-70 left-[24px] lg:top-108.5 lg:left-8 text-center w-[205px] lg:w-[320px] z-50">{carddes}</span>
 
-            <span className="text-white text-[10px] lg:text-xs font-bold absolute top-62 left-[-12px] lg:top-122 lg:left-8 text-center w-[96px] z-50">{name}</span>
+            <span className="text-white text-[8px] lg:text-xs font-bold absolute top-79.5 left-[15px] lg:top-122 lg:left-8 text-center w-[65px] lg:w-[96px] z-50">{name}</span>
 
-            <span className="bg-black border border-gray-50 h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-62 left-[-12px] lg:top-126 lg:left-8 text-center w-[96px] z-50">
+            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82.5 left-[19px] lg:top-126 lg:left-8 text-center w-[55px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelone}%` }} className={`h-full bg-sky-400 rounded-full`} />
             </span>
 
-            <span className="text-white text-[10px] lg:text-xs font-bold absolute top-62 left-[50px] lg:top-122 lg:left-36 text-center w-[96px] z-50">{name2}</span>
+            <span className="text-white text-[8px] lg:text-xs font-bold absolute top-79.5 left-[95px] lg:top-122 lg:left-36 text-center w-[65px] lg:w-[96px] z-50">{name2}</span>
 
-            <span className="bg-black border border-gray-50 h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-62 left-[50px] lg:top-126 lg:left-36 text-center w-[96px] z-50">
+            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[100px] lg:top-126 lg:left-36 text-center w-[55px] lg:w-[96px] z-50">
                 <div style={{ width: `${labeltwo}%` }} className={`h-full bg-sky-400 rounded-full`} />
             </span>
 
-            <span className="text-white text-[10px] lg:text-xs font-bold absolute top-62 left-[112px] lg:top-122 lg:left-65 text-center w-[96px] z-50">{name3}</span>
+            <span className="text-white text-[8px] lg:text-xs font-bold absolute top-79.5 left-[172px] lg:top-122 lg:left-65 text-center w-[65px] lg:w-[96px] z-50">{name3}</span>
 
 
-            <span className="bg-black border border-gray-50 h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-62 left-[112px] lg:top-126 lg:left-65 text-center w-[96px] z-50">
+            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[174.5px] lg:top-126 lg:left-65 text-center w-[60px] lg:w-[58px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelthree}%` }} className={`h-full bg-sky-400 rounded-full`} />
             </span>
 
-            <span className="text-[#5ba2d7] font-bold lg:font-extrabold absolute z-50 text-[10px] lg:text-md top-68.5 right-2 lg:text-lg w-[180px] lg:top-130 lg:right-26 text-center tracking-tighter">{acarddate}</span>
+            <span className="text-[#5ba2d7] font-bold lg:font-extrabold absolute z-50 text-[10px] lg:text-md lg:text-lg w-[110px] lg:w-[180px] top-85 right-18 lg:top-130 lg:right-26 text-center tracking-tighter">{acarddate}</span>
 
         </div>
     )
@@ -85,37 +83,37 @@ export const FrontThree = ({ cardti, carddes, name, name2, name3, acarddate, lab
 
         <div className="w-full h-full relative">
 
-            <div className={"uppercase text-3xl font-extrabold absolute top-[-8] left-11 lg:top-4 lg:left-21 z-50"}>
+            <div className={"uppercase font-extrabold absolute top-[-3] left-14 lg:top-4 lg:left-21 w-[130px] lg:w-[250px] z-50"}>
                 <GradientText text={cardti} />
             </div>
 
 
 
-            <span className="text-white text-xs font-bold absolute top-51 left-4 lg:top-97 lg:left-7 w-[265px] z-50 ">{carddes}</span>
+            <span className="text-white text-[10px] lg:text-xs font-bold absolute  left-5 lg:left-7 top-63 lg:top-97 w-[160px] lg:w-[265px] z-50">{carddes}</span>
 
-            <span className="text-white text-xs font-bold w-[96px] absolute top-61 left-2 lg:top-120 lg:left-4 z-50">{name}</span>
+            <span className="text-white text-[8px] lg:text-xs font-bold w-[60px] lg:w-[96px] absolute top-[311px] left-2 lg:top-120 lg:left-4 z-50">{name}</span>
 
 
-            <span className="bg-white h-[6.5px] w-[96px] rounded-full absolute top-61 left-2 lg:top-124 lg:left-4 z-50">
+            <span className="bg-white h-[5px] lg:h-[6.5px] rounded-full absolute top-[320.5px] left-2 lg:top-124 lg:left-4 w-[60px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelone}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
             </span>
 
-            <span className="text-white text-xs font-bold w-[96px] absolute top-65 left-2 lg:top-126 lg:left-4 z-50">{name2}</span>
+            <span className="text-white text-[8px] lg:text-xs font-bold w-[60px] lg:w-[96px] absolute top-[328.5px] left-2 lg:top-126.5 lg:left-4 z-50">{name2}</span>
 
 
-            <span className="bg-white h-[6.5px] w-[96px] rounded-full absolute top-65 left-2 lg:top-130 lg:left-4 z-50">
+            <span className="bg-white h-[5px] lg:h-[6.5px] rounded-full absolute top-[338px] left-2 lg:top-130.5 lg:left-4 w-[60px] lg:w-[96px] z-50">
                 <div style={{ width: `${labeltwo}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
             </span>
 
 
-            <span className="text-white text-xs font-bold w-[96px] absolute top-69 left-2 lg:top-132 lg:left-4 z-50">{name3}</span>
+            <span className="text-white text-[8px] lg:text-xs font-bold w-[60px] lg:w-[96px] absolute top-[346px] left-2 lg:top-133 lg:left-4 z-50">{name3}</span>
 
 
-            <span className="bg-white h-[6.5px] w-[96px] rounded-full absolute top-69 left-2 lg:top-136 lg:left-4 z-50">
+            <span className="bg-white h-[5px] lg:h-[6.5px] rounded-full absolute top-[355.5px] left-2 lg:top-136.5 lg:left-4 w-[60px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelthree}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
             </span>
 
-            <span className="text-white lg:font-extrabold absolute z-50 text-sm top-65 right-3 lg:text-3xl lg:top-122 lg:right-6 tracking-tighter">{acarddate}</span>
+            <span className="text-white font-semibold lg:font-extrabold text-right absolute z-50 text-lg top-65 lg:text-3xl top-[320px] right-3 lg:top-122 lg:right-6 tracking-tighter w-[150px] lg:w-[250px]">{acarddate}</span>
 
         </div >
     )
@@ -150,17 +148,17 @@ export const BackOne = ({ cardti, carddes, name, name2, name3, acarddate }) => {
     return (
         <div className="w-full h-full relative">
 
-            <span className="text-white text-md lg:text-2xl font-semibold lg:font-extrabold absolute top-6 left-5 lg:top-14 lg:left-26 text-center w-[176px] z-50 tracking-tighter">{cardti.toUpperCase()}</span>
+            <span className="text-white text-md lg:text-2xl font-semibold lg:font-extrabold absolute top-7.5 lg:top-14 left-10 lg:left-26 text-center w-[170px] lg:w-[176px] z-50 tracking-tighter">{cardti.toUpperCase()}</span>
 
-            <span className="text-white text-[8px] lg:text-xs font-semibold lg:font-bold absolute top-14 left-6 lg:top-26 lg:left-15 line-clamp-3 text-center w-[153px] lg:w-[270px] z-50 ">{carddes}</span>
+            <span className="text-white text-[8px] lg:text-xs font-semibold lg:font-bold absolute top-17 lg:top-26 left-11 lg:left-15 line-clamp-3 text-center w-[160px] lg:w-[270px] z-50">{carddes}</span>
 
-            <span className="text-white text-sm lg:text-lg font-semibold lg:font-extrabold absolute top-24 left-9 lg:top-46.5 lg:left-18 text-left w-[176px] z-50 tracking-tighter">{name.toUpperCase()}</span>
+            <span className="text-white text-sm lg:text-lg font-semibold lg:font-extrabold absolute top-30 lg:top-46.5 left-12 lg:left-18 text-left w-[176px] lg:w-[185px] z-50 tracking-tighter">{name.toUpperCase()}</span>
 
-            <span className="text-white text-[8px] lg:text-xs font-semibold lg:font-bold absolute top-30 left-6 lg:top-57 lg:left-15 line-clamp-4 text-center w-[153px] lg:w-[270px] z-50">{name2}</span>
+            <span className="text-white text-[8px] lg:text-xs font-semibold lg:font-bold absolute top-36.5 left-10 lg:top-57 lg:left-15 line-clamp-4 text-center w-[170px] lg:w-[270px] z-50">{name2}</span>
 
-            <span className="text-white text-sm lg:text-lg font-semibold lg:font-extrabold absolute top-44 -left-4 lg:top-85.5 lg:left-35 text-right w-[176px] z-50 tracking-tighter">{name3.toUpperCase()}</span>
+            <span className="text-white text-sm lg:text-lg font-semibold lg:font-extrabold absolute top-55.5 -left-4 lg:top-85.5 lg:left-35 text-right w-[176px] z-50 tracking-tighter">{name3.toUpperCase()}</span>
 
-            <span className="text-white text-[8px] lg:text-xs font-semibold lg:font-bold absolute top-50 left-6 lg:top-96 lg:left-15 text-center w-[153px] lg:w-[270px] z-50">{acarddate}</span>
+            <span className="text-white text-[8px] lg:text-xs font-semibold lg:font-bold absolute top-63 left-10 lg:top-96 lg:left-15 line-clamp-4 text-center w-[170px] lg:w-[270px] z-50">{acarddate}</span>
 
         </div>
 
