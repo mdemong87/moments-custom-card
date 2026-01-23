@@ -111,6 +111,8 @@ export default function ProductCustomizer() {
             setname3limite(15);
             setacarddatelimite(15);
 
+            setcardfinder(0);
+
 
         } else {
             setcardti('Profile');
@@ -127,6 +129,9 @@ export default function ProductCustomizer() {
             setname2limite(95);
             setname3limite(15);
             setacarddatelimite(95);
+
+
+            setcardfinder(0);
 
         }
     }
