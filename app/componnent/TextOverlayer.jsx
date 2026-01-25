@@ -11,24 +11,24 @@ export const FrontOne = ({ cardti, carddes, name, name2, name3, acarddate, label
             <span className="text-white text-[8px] lg:text-xs font-bold absolute top-79.5 left-[15px] lg:top-122 lg:left-8 text-center w-[65px] lg:w-[96px] z-50">{name}</span>
 
 
-            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82.5 left-[19px] lg:top-126 lg:left-8 text-center w-[55px] lg:w-[96px] z-50">
+            <div className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-83 left-[19px] lg:top-127 lg:left-8 text-center w-[55px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelone}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
-            </span>
+            </div>
 
             <span className="text-white text-[8px] lg:text-xs font-bold absolute top-79.5 left-[95px] lg:top-122 lg:left-36 text-center w-[65px] lg:w-[96px] z-50">{name2}</span>
 
 
-            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[100px] lg:top-126 lg:left-36 text-center w-[55px] lg:w-[96px] z-50">
+            <div className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-83 left-[100px] lg:top-127 lg:left-36 text-center w-[55px] lg:w-[96px] z-50">
                 <div style={{ width: `${labeltwo}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
-            </span>
+            </div>
 
 
             <span className="text-white text-[8px] lg:text-xs font-bold absolute top-79.5 left-[172px] lg:top-122 lg:left-65 text-center w-[65px] lg:w-[96px] z-50">{name3}</span>
 
 
-            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[174.5px] lg:top-126 lg:left-65 text-center w-[60px] lg:w-[58px] lg:w-[96px] z-50">
+            <div className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-83 left-[174.5px] lg:top-127 lg:left-65 text-center w-[60px] lg:w-[58px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelthree}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
-            </span>
+            </div>
 
             <span className="text-[#5ba2d7] font-bold lg:font-extrabold absolute z-50 text-[10px] lg:text-md lg:text-lg w-[110px] lg:w-[180px] top-85 right-18 lg:top-130 lg:right-26 text-center tracking-tighter">{acarddate}</span>
 
@@ -44,29 +44,29 @@ export const FrontTwo = ({ cardti, carddes, name, name2, name3, acarddate, label
         <div className="w-full h-full relative">
 
 
-            <span className="text-white uppercase text-sm lg:text-2xl font-bold absolute top-63 left-18 lg:top-96 lg:left-27 text-center w-[108px] lg:w-[174px] z-50 font-[GustanBlack]">{cardti}</span>
+            <span className="text-white text-stroke uppercase text-sm lg:text-2xl font-bold lg:font-extrabold absolute top-63 left-18 lg:top-96 lg:left-27 text-center w-[108px] lg:w-[174px] z-50 font-[GustanBlack]">{cardti}</span>
 
 
             <span className="text-white text-[10px] lg:text-xs font-bold absolute top-70 left-[24px] lg:top-108.5 lg:left-8 text-center w-[205px] lg:w-[320px] z-50">{carddes}</span>
 
             <span className="text-white text-[8px] lg:text-xs font-bold absolute top-79.5 left-[15px] lg:top-122 lg:left-8 text-center w-[65px] lg:w-[96px] z-50">{name}</span>
 
-            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82.5 left-[19px] lg:top-126 lg:left-8 text-center w-[55px] lg:w-[96px] z-50">
-                <div style={{ width: `${labelone}%` }} className={`h-full bg-sky-400 rounded-full`} />
-            </span>
+            <div className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82.5 left-[19px] lg:top-126 lg:left-8 text-center w-[55px] lg:w-[96px] z-50">
+                <div style={{ width: `${labelone}%` }} className={`h-full bg-[#5ba2d8] rounded-full`} />
+            </div>
 
             <span className="text-white text-[8px] lg:text-xs font-bold absolute top-79.5 left-[95px] lg:top-122 lg:left-36 text-center w-[65px] lg:w-[96px] z-50">{name2}</span>
 
-            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[100px] lg:top-126 lg:left-36 text-center w-[55px] lg:w-[96px] z-50">
-                <div style={{ width: `${labeltwo}%` }} className={`h-full bg-sky-400 rounded-full`} />
-            </span>
+            <div className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[100px] lg:top-126 lg:left-36 text-center w-[55px] lg:w-[96px] z-50">
+                <div style={{ width: `${labeltwo}%` }} className={`h-full bg-[#5ba2d8] rounded-full`} />
+            </div>
 
             <span className="text-white text-[8px] lg:text-xs font-bold absolute top-79.5 left-[172px] lg:top-122 lg:left-65 text-center w-[65px] lg:w-[96px] z-50">{name3}</span>
 
 
-            <span className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[174.5px] lg:top-126 lg:left-65 text-center w-[60px] lg:w-[58px] lg:w-[96px] z-50">
-                <div style={{ width: `${labelthree}%` }} className={`h-full bg-sky-400 rounded-full`} />
-            </span>
+            <div className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[174.5px] lg:top-126 lg:left-65 text-center w-[60px] lg:w-[58px] lg:w-[96px] z-50">
+                <div style={{ width: `${labelthree}%` }} className={`h-full bg-[#5ba2d8] rounded-full`} />
+            </div>
 
             <span className="text-[#5ba2d7] font-bold lg:font-extrabold absolute z-50 text-[10px] lg:text-md lg:text-lg w-[110px] lg:w-[180px] top-85 right-18 lg:top-130 lg:right-26 text-center tracking-tighter">{acarddate}</span>
 
@@ -94,24 +94,24 @@ export const FrontThree = ({ cardti, carddes, name, name2, name3, acarddate, lab
             <span className="text-white text-[8px] lg:text-xs font-bold w-[60px] lg:w-[96px] absolute top-[311px] left-2 lg:top-120 lg:left-4 z-50">{name}</span>
 
 
-            <span className="bg-white h-[5px] lg:h-[6.5px] rounded-full absolute top-[320.5px] left-2 lg:top-124 lg:left-4 w-[60px] lg:w-[96px] z-50">
+            <div className="bg-white h-[5px] lg:h-[6.5px] rounded-full absolute top-[320.5px] left-2 lg:top-124 lg:left-4 w-[60px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelone}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
-            </span>
+            </div>
 
             <span className="text-white text-[8px] lg:text-xs font-bold w-[60px] lg:w-[96px] absolute top-[328.5px] left-2 lg:top-126.5 lg:left-4 z-50">{name2}</span>
 
 
-            <span className="bg-white h-[5px] lg:h-[6.5px] rounded-full absolute top-[338px] left-2 lg:top-130.5 lg:left-4 w-[60px] lg:w-[96px] z-50">
+            <div className="bg-white h-[5px] lg:h-[6.5px] rounded-full absolute top-[338px] left-2 lg:top-130.5 lg:left-4 w-[60px] lg:w-[96px] z-50">
                 <div style={{ width: `${labeltwo}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
-            </span>
+            </div>
 
 
             <span className="text-white text-[8px] lg:text-xs font-bold w-[60px] lg:w-[96px] absolute top-[346px] left-2 lg:top-133 lg:left-4 z-50">{name3}</span>
 
 
-            <span className="bg-white h-[5px] lg:h-[6.5px] rounded-full absolute top-[355.5px] left-2 lg:top-136.5 lg:left-4 w-[60px] lg:w-[96px] z-50">
+            <div className="bg-white h-[5px] lg:h-[6.5px] rounded-full absolute top-[355.5px] left-2 lg:top-136.5 lg:left-4 w-[60px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelthree}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
-            </span>
+            </div>
 
             <span className="text-white font-semibold lg:font-extrabold text-right absolute z-50 text-lg top-65 lg:text-3xl top-[320px] right-3 lg:top-122 lg:right-6 tracking-tighter w-[150px] lg:w-[250px]">{acarddate}</span>
 

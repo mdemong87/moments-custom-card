@@ -473,7 +473,7 @@ export default function ProductCustomizer() {
                                                 width={1000}
                                                 height={1000}
                                                 alt={`front-${idx}`}
-                                                onClick={() => { setBaseFront(img?.image); setcardfinder(idx); hanldeInputUpdater() }}
+                                                onClick={() => { setBaseFront(img?.image); setcardfinder(idx); }}
                                                 className={`w-16 h-20 cursor-pointer rounded ${baseFront === img?.image ? "border-5 p-1 border-sky-400" : "border-2 border-gray-200"}`}
                                             />
                                         ))}
