@@ -1,16 +1,20 @@
 "use client";
 
+import SpinLoader from "@/app/componnent/SpingLoader";
+import useCartStore from "@/store/useCartStore";
+import getId from "@/utilis/helper/cookie/getid";
+import getCookie from "@/utilis/helper/cookie/gettooken";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import SpinLoader from "@/app/componnent/SpingLoader";
-import useCartStore from "@/store/useCartStore";
-import getCookie from "@/utilis/helper/cookie/gettooken";
 
 const inputStyle =
   "border border-gray-300 bg-white/70 text-gray-900 placeholder-gray-600 focus:border-blue-400 focus:ring-2 focus:ring-blue-400 p-3 rounded-xl w-full outline-none transition";
 
 export default function CheckoutPage() {
+
+  const id = getId();
+  console.log(id);
   const token = getCookie();
   const [loading, setloading] = useState(false);
   const [name, setname] = useState("");
@@ -41,10 +45,10 @@ export default function CheckoutPage() {
     }
 
     // Validate cart items have required fields
-    const invalidItems = cart.filter(item => 
+    const invalidItems = cart.filter(item =>
       !item.productId || !item.productQuantity || !item.productUnitPrice
     );
-    
+
     if (invalidItems.length > 0) {
       toast.error("Some items in your cart are invalid. Please refresh and try again.");
       console.error("Invalid cart items:", invalidItems);
@@ -92,6 +96,7 @@ export default function CheckoutPage() {
         zipcode,
         gateway: 'stripe',
         items: cartItems,
+        userID: id
       };
 
       // Call checkout endpoint
@@ -148,54 +153,54 @@ export default function CheckoutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <input 
+            <input
               value={name}
-              onChange={(e) => setname(e.target.value)} 
-              type="text" 
-              placeholder="Full Name" 
-              className={inputStyle} 
-              required 
+              onChange={(e) => setname(e.target.value)}
+              type="text"
+              placeholder="Full Name"
+              className={inputStyle}
+              required
             />
-            <input 
+            <input
               value={email}
-              onChange={(e) => setemail(e.target.value)} 
-              type="email" 
-              placeholder="Email Address" 
-              className={inputStyle} 
-              required 
+              onChange={(e) => setemail(e.target.value)}
+              type="email"
+              placeholder="Email Address"
+              className={inputStyle}
+              required
             />
-            <input 
+            <input
               value={phone}
-              onChange={(e) => setphone(e.target.value)} 
-              type="tel" 
-              placeholder="Phone Number" 
-              className={inputStyle} 
-              required 
+              onChange={(e) => setphone(e.target.value)}
+              type="tel"
+              placeholder="Phone Number"
+              className={inputStyle}
+              required
             />
-            <input 
+            <input
               value={zipcode}
-              onChange={(e) => setzipcode(e.target.value)} 
-              type="text" 
-              placeholder="Zip Code" 
-              className={inputStyle} 
-              required 
+              onChange={(e) => setzipcode(e.target.value)}
+              type="text"
+              placeholder="Zip Code"
+              className={inputStyle}
+              required
             />
           </div>
-          
-          <input 
+
+          <input
             value={City}
-            onChange={(e) => setCity(e.target.value)} 
-            type="text" 
-            placeholder="City" 
-            className={inputStyle} 
-            required 
+            onChange={(e) => setCity(e.target.value)}
+            type="text"
+            placeholder="City"
+            className={inputStyle}
+            required
           />
-          
-          <textarea 
+
+          <textarea
             value={address}
-            onChange={(e) => setaddress(e.target.value)} 
-            placeholder="Shipping Address" 
-            className={inputStyle} 
+            onChange={(e) => setaddress(e.target.value)}
+            placeholder="Shipping Address"
+            className={inputStyle}
             rows={3}
             required
           ></textarea>
@@ -217,7 +222,7 @@ export default function CheckoutPage() {
         {/* Order Summary */}
         <div className="bg-white/30 backdrop-blur-lg border border-gray-200 rounded-lg shadow-lg p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Order Summary</h2>
-          
+
           {cart.length === 0 ? (
             <p className="text-gray-600 text-center py-8">Your cart is empty</p>
           ) : (
@@ -235,9 +240,9 @@ export default function CheckoutPage() {
                   </li>
                 ))}
               </ul>
-              
+
               <hr className="my-6 border-t border-gray-300" />
-              
+
               <div className="space-y-2">
                 <div className="flex justify-between text-gray-800">
                   <span>Subtotal</span>

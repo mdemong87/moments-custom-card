@@ -14,6 +14,7 @@ const statusStyles = {
     completed: "bg-green-100 text-green-700",
     Paid: "bg-green-100 text-green-700",
     pending: "bg-yellow-100 text-yellow-700",
+    Pending: "bg-yellow-100 text-yellow-700",
     Cancelled: "bg-red-100 text-red-700",
 };
 
@@ -153,7 +154,7 @@ function OrderTable({ allorders }) {
                                 </td>
 
                                 <td className="px-4 py-3 text-gray-600">
-                                    {order.created_at}
+                                    {formatDateTime(order.created_at)}
                                 </td>
 
                                 <td className="px-4 py-3 font-semibold text-gray-800">

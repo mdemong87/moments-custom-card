@@ -43,7 +43,7 @@ async function captureNodeScreenshotForTranding(domNode, state, seterState) {
 
             // 🟦 Apply transform to ALL <span> elements ONLY in screenshot clone
             doc.querySelectorAll("span").forEach(span => {
-                span.style.transform = "translateY(-5px)";
+                span.style.transform = "translateY(-6px)";
                 span.style.display = "inline-block"; // Needed for transform to work on inline span
             });
 
