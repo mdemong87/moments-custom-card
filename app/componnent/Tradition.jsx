@@ -1,9 +1,15 @@
+'use client';
+
+import useFilterStore from "@/store/useFilterStore";
 import Image from "next/image";
 import Link from "next/link";
 import { FaRegSquareCheck } from "react-icons/fa6";
 import cardsTradition from "../../public/allcardstucture.png";
 
 export default function Tradition() {
+
+    const { settype } = useFilterStore();
+
     return (
         <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
             {/* Left Content */}
@@ -25,12 +31,14 @@ export default function Tradition() {
 
                 <div className="flex flex-col md:flex-row text-center gap-4">
                     <Link
+                        onClick={() => { settype("customizable") }}
                         href="/shop"
                         className="px-3 lg:px-12 py-3 bg-[#3CA9FF] text-white font-medium rounded-md shadow hover:bg-[#FF6F3C] transform hover:scale-105 transition duration-300"
                     >
                         Start Customizing
                     </Link>
                     <Link
+                        onClick={() => { settype("all") }}
                         href="/shop"
                         className="px-3 lg:px-12 py-3 text-[#3CA9FF] border border-[#3CA9FF] font-medium rounded-md shadow hover:text-[#FF6F3C] hover:border-[#FF6F3C] transform hover:scale-105 transition duration-300"
                     >

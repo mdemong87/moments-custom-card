@@ -17,6 +17,7 @@ const statusStyles = {
     pending: "bg-yellow-100 text-yellow-700",
     Pending: "bg-yellow-100 text-yellow-700",
     Cancelled: "bg-red-100 text-red-700",
+    Unpaid: "bg-yellow-100 text-yellow-700",
 };
 
 
@@ -113,7 +114,7 @@ function OrderTable({ allorders }) {
 
 
     return (
-        <div className="w-full bg-white">
+        <div className="w-full bg-white min-h-[83vh]">
             <div className="border-b border-gray-200">
                 <h2 className="text-lg pb-6 font-semibold text-gray-800">
                     Recent Orders
@@ -168,9 +169,9 @@ function OrderTable({ allorders }) {
 
                                 <td className="px-4 py-3">
                                     <span
-                                        className={`px-3 py-1 rounded-full text-xs font-medium ${statusStyles[order.payment_status]}`}
+                                        className={`px-3 py-1 rounded-full text-xs font-medium ${statusStyles[order.is_paid ? "Paid" : "Unpaid"]}`}
                                     >
-                                        {order.payment_status}
+                                        {order.is_paid ? "Paid" : "Unpaid"}
                                     </span>
                                 </td>
 
@@ -248,7 +249,7 @@ function ImageDownloadInfo({ modalinfo }) {
 
                 {/* PDF view seciton is here */}
 
-                <PDFViewers fulldata={modalinfo} url={modalinfo?.customized_file} />
+                <PDFViewers fulldata={modalinfo} url={modalinfo?.customized_file_url} />
 
 
             </div>
