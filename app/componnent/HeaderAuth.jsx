@@ -84,7 +84,7 @@ const HeaderAuth = ({ isOpen, setisOpen }) => {
                                             </div>
                                         </div>
 
-                                        <Link href={`${loginUser?.role === "Admin" ? "/deshboard/admin" : "/deshboard/customer"}`} className="text-gray-600 text-md font-semibold hover:bg-gray-200 rounded-md p-2 flex items-center gap-2">
+                                        <Link href={`${loginUser?.role === "Admin" ? "/deshboard/admin" : "/deshboard/customer/orders"}`} className="text-gray-600 text-md font-semibold hover:bg-gray-200 rounded-md p-2 flex items-center gap-2">
                                             <MdDashboard className="text-xl" />
                                             <span>Deshboard</span>
                                         </Link>
