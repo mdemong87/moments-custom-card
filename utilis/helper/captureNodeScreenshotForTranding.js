@@ -16,6 +16,7 @@ async function captureNodeScreenshotForTranding(domNode, state, seterState) {
     await new Promise(resolve => requestAnimationFrame(resolve));
 
     const canvas = await html2canvas(domNode, {
+        scale: 1,
         useCORS: true,
         backgroundColor: null,
 

@@ -1,15 +1,23 @@
+'use client';
+
+import useFilterStore from "@/store/useFilterStore";
 import Image from "next/image";
+import Link from "next/link";
 import TredingOne from "../../public/tranding.png";
 import TredingThree from "../../public/TredingThree.png";
 import TredingTwo from "../../public/tredingTwo.png";
 
 export default function Category() {
+
+    const { settype } = useFilterStore();
+
     const categories = [
         {
             title: "Momento Play Deck",
             description: "Classic playing cards with personalized faces and themes",
             image: TredingOne,
             href: "/shop",
+            type: "customizable"
         },
 
         {
@@ -17,6 +25,7 @@ export default function Category() {
             description: "Custom collectibles designed for creators, fans, and collectors.",
             image: TredingThree,
             href: "/shop",
+            type: "trading"
         },
 
         {
@@ -24,6 +33,7 @@ export default function Category() {
             description: "Tailor-made for unique gameplay, strategy, and storytelling",
             image: TredingTwo,
             href: "/shop",
+            type: "all"
         },
     ];
     return (
@@ -54,12 +64,13 @@ export default function Category() {
                             <p className="text-gray-600">{cat.description}</p>
                         </div>
                         <div className="p-6">
-                            <a
+                            <Link
+                                onClick={() => { settype(cat.type) }}
                                 href={cat.href}
                                 className="inline-block bg-[#3CA9FF] hover:bg-[#FF6F3C] text-white py-3 px-5 rounded-lg"
                             >
                                 Explore Cards
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 ))}

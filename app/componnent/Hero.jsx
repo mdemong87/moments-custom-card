@@ -1,4 +1,5 @@
 "use client";
+import useFilterStore from "@/store/useFilterStore";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -26,6 +27,9 @@ const Hero = () => {
     const offset = useRef(0);
     const dragging = useRef(false);
     const lastX = useRef(0);
+    const { settype } = useFilterStore();
+
+
     useEffect(() => {
         setTimeout(() => setMounted(true), 100);
     }, []);
@@ -90,7 +94,7 @@ const Hero = () => {
                             Every deck holds a purpose, every design tells a story, and every card reflects a moment.
                             Momento Cards isn’t just a game—it’s a way to preserve memories, craft experiences, and turn moments into play.
                         </p>
-                        <Link href={'/shop'} className="bg-[#3CA9FF] text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-[#FF6F3C] transition">
+                        <Link onClick={() => { settype("all") }} href={'/shop'} className="bg-[#3CA9FF] text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-[#FF6F3C] transition">
                             Explore Cards
                         </Link>
                     </div>
