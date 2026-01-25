@@ -6,8 +6,8 @@ import useLogedUserStore from "@/store/useLogedUser";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 import setCookie from "@/utilis/helper/cookie/setcookie";
 import MakePost from "@/utilis/requestrespose/post";
-import { useRouter } from "next/navigation";
-import { IoMdSettings } from "react-icons/io";
+import { usePathname, useRouter } from "next/navigation";
+import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { toast, ToastContainer } from "react-toastify";
 import DeshboardNavigation from "../componnent/Deshboardnavigation";
@@ -16,11 +16,12 @@ import SpinLoader from "../componnent/SpingLoader";
 const Deshboardlayout = ({ children }) => {
 
     const token = getCookie();
+    const pathName = usePathname();
     const router = useRouter();
     const { loginUser, setLoginUser } = useLogedUserStore();
     const { isSideberOpen, setisSideberOpen } = usedeshboardsidebercontroller();
     const { isLoading, setLoading } = useLoadingStore();
-
+   const isDeshboard = pathName.startsWith("/deshboard");
 
 
 
@@ -52,16 +53,21 @@ const Deshboardlayout = ({ children }) => {
     return (
         <div className="h-fit text-black">
             {
-                !isSideberOpen && <div onClick={() => { setisSideberOpen(true) }} className={`absolute flex lg:hidden z-50 bg-sky-400 text-white  items-center justify-center rounded-md  p-2 -translate-x-3 mt-4 cursor-pointer`}>
-                    <IoMdSettings className="animate-spin" />
+                <div className={`fixed flex lg:hidden z-50 text-balck items-center justify-center rounded-md  p-2 ml-4 -translate-y-[75px] mt-4 cursor-pointer z-90000`}>
+
+                    {
+                        isSideberOpen ? (
+                            <RxCross2 className="text-gray-700 text-3xl transition duration-300 hover:rotate-180" onClick={() => { setisSideberOpen(false) }} />
+                        ) : (
+                            <FaBars className="text-gray-700 text-3xl" onClick={() => { setisSideberOpen(true) }} />
+                        )
+                    }
+
+
                 </div>
             }
             <div className="">
-                <div className={`fixed bg-white border-r border-gray-200 w-[250px] h-screen px-3 py-4 ${isSideberOpen ? "block lg:block" : "hidden lg:block"}`}>
-
-                    <div onClick={() => { setisSideberOpen(false) }} className={`absolute w-[25px] h-[25px] right-0 top-0 bg-sky-300 rounded-sm cursor-pointer text-white flex lg:hidden items-center justify-center hover:rotate-180 transition duration-400`}>
-                        <RxCross2 className="" />
-                    </div>
+                <div className={`fixed bg-white border-r border-gray-200 w-[250px] h-screen px-3 py-4 z-50 ${isSideberOpen ? "block lg:block" : "hidden lg:block"}`}>
 
 
                     <DeshboardNavigation loginUser={loginUser} />
