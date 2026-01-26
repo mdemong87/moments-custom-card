@@ -7,7 +7,7 @@ import getCookie from "@/utilis/helper/cookie/gettooken";
 import setCookie from "@/utilis/helper/cookie/setcookie";
 import MakePost from "@/utilis/requestrespose/post";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
@@ -23,8 +23,9 @@ const HeaderAuth = ({ isOpen, setisOpen }) => {
 
 
     const router = useRouter();
+    const pathName = usePathname();
     const { loginUser, setLoginUser } = useLogedUserStore();
-
+    const isDeshboard = pathName.startsWith("/deshboard");
 
     const token = getCookie();
     const role = getRole();
@@ -55,8 +56,6 @@ const HeaderAuth = ({ isOpen, setisOpen }) => {
         } else {
             toast.error("Somethign went Wrong");
         }
-
-
     }
 
 
@@ -105,12 +104,17 @@ const HeaderAuth = ({ isOpen, setisOpen }) => {
 
 
                         {
-                            isOpen ? (
-                                <ImCross onClick={() => { setisOpen(false) }} className="block lg:hidden text-2xl ml-1 cursor-pointer hover:rotate-180 transition-all duration-300" />
-                            ) : (
-                                <FaBars onClick={() => { setisOpen(true) }} className="block lg:hidden text-3xl ml-1 cursor-pointer" />
+                            !isDeshboard && (
+
+                                isOpen ? (
+                                    <ImCross onClick={() => { setisOpen(false) }} className="block lg:hidden text-2xl ml-1 cursor-pointer hover:rotate-180 transition-all duration-300" />
+                                ) : (
+                                    <FaBars onClick={() => { setisOpen(true) }} className="block lg:hidden text-3xl ml-1 cursor-pointer" />
+                                )
+
                             )
                         }
+
                     </div>
                 ) : (
                     <div className="flex items-center gap-3">
@@ -118,10 +122,12 @@ const HeaderAuth = ({ isOpen, setisOpen }) => {
                             <Link href={'/signin'} className="bg-sky-200 px-2 py-1 rounded-md text-gray-600 font-semibold text-md cursor-pointer">Login</Link>
                         </div>
                         {
-                            isOpen ? (
-                                <ImCross onClick={() => { setisOpen(false) }} className="block lg:hidden text-2xl ml-1 cursor-pointer hover:rotate-180 transition-all duration-300 text-gray-700" />
-                            ) : (
-                                <FaBars onClick={() => { setisOpen(true) }} className="block lg:hidden text-3xl ml-1 cursor-pointer text-gray-700" />
+                            !isDeshboard && (
+                                isOpen ? (
+                                    <ImCross onClick={() => { setisOpen(false) }} className="block lg:hidden text-2xl ml-1 cursor-pointer hover:rotate-180 transition-all duration-300 text-gray-700" />
+                                ) : (
+                                    <FaBars onClick={() => { setisOpen(true) }} className="block lg:hidden text-3xl ml-1 cursor-pointer text-gray-700" />
+                                )
                             )
                         }
                     </div>
