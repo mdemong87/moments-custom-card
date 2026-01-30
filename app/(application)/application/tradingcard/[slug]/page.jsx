@@ -18,6 +18,7 @@ import ViewCard from "../../../../componnent/ViewCard";
 
 import CharactersCountComponent from "@/app/componnent/CharactersCountComponent";
 import captureNodeScreenshotForTranding from "@/utilis/helper/captureNodeScreenshotForTranding";
+import ImageResize from "@/utilis/helper/ImageResize";
 const fonts = ["Arial", "Poppins", "Times New Roman", "Courier New", "Comic Sans MS"];
 
 export default function ProductCustomizer() {
@@ -104,7 +105,7 @@ export default function ProductCustomizer() {
             setname3('Attribute Three');
             setacarddate('CLASS OF 2025');
 
-            setcardtiltelimite(12);
+            setcardtiltelimite(15);
             setcarddeslimite(95);
             setnamelimite(15);
             setname2limite(15);
@@ -151,10 +152,14 @@ export default function ProductCustomizer() {
 
 
     /******** Upload Image ********/
-    function handleUpload(e) {
-        const file = e.target.files?.[0];
+    async function handleUpload(e) {
+        const f = e.target.files?.[0];
+        const file = await ImageResize(f);
         if (!file) return;
         const url = URL.createObjectURL(file);
+
+
+
         const item = {
             id: Date.now(),
             url,
@@ -338,7 +343,7 @@ export default function ProductCustomizer() {
 
                                     key={img.id}
                                     bounds="parent"
-                                    size={{ width: img.width, height: img.height }}
+                                    size={{ width: "100%", height: "100%" }}
                                     position={{ x: img.x, y: img.y }}
                                     onDragStop={(_, d) => updateUploadPosition(img.id, d.x, d.y)}
                                     onResizeStop={(_, __, ref, ___, pos) => {
@@ -356,7 +361,7 @@ export default function ProductCustomizer() {
                                         height={1000}
                                         src={img.url}
                                         alt="upload"
-                                        className="w-full h-full object-contain rounded"
+                                        className="w-full h-full object-contain"
                                         draggable={false}
                                     />
                                 </Rnd>
@@ -507,7 +512,7 @@ export default function ProductCustomizer() {
 
                             {/* Upload Image */}
                             <div className="my-6">
-                                <label className="block text-gray-700 mb-1">Upload Image <span className="text-red-600 text-xl">*</span> <span className="text-gray-500 bg-yellow-200 px-1.5 rounded-md text-xs">900 x 1300</span></label>
+                                <label className="block text-gray-700 mb-1">Upload Image <span className="text-red-600 text-xl">*</span> <span className="text-gray-500 bg-yellow-200 px-1.5 rounded-md text-xs">Height:334px & Width: 250px</span></label>
                                 <div className="flex gap-2 items-center">
                                     <label className="" htmlFor="uploadImage">
                                         <div className=" w-[80px] h-[80px] lg:w-[80px] lg:h-[80px] bg-gray-100 rounded-md flex items-center justify-center cursor-pointer">

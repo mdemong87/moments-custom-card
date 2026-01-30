@@ -40,6 +40,9 @@ const ProductCustomizer = () => {
     const [doneloading, setdoneloading] = useState(false);
     const { addToCart, clearCart } = useDeckFinalPreview();
     const [smallconOpen, setsmallconOpen] = useState(false);
+    const [editedCard, seteditedCard] = useState('a');
+    const [activebaseEditCard, setactivebaseEditCard] = useState([]);
+    const [alreadyDone, setalreadyDone] = useState([]);
 
 
 
@@ -128,6 +131,10 @@ const ProductCustomizer = () => {
             setActiveCardIndex(newActive);
             return updated;
         });
+
+        setalreadyDone(prev =>
+            prev.filter((_, i) => i !== index)
+        );
     };
 
 
@@ -169,7 +176,14 @@ const ProductCustomizer = () => {
 
 
     const Done = async () => {
+
+        if (alreadyDone.includes(editedCard)) {
+            toast.warn(`${editedCard == "a" ? "Ace" : editedCard == "k" ? "King" : editedCard == "q" ? "Queen" : editedCard == "j" ? "Jack" : "Joker"} Card is already Customized. If you would like to Re-customize it, please remove it first.`);
+            return;
+        }
+
         setdoneloading(true);
+        setalreadyDone(prev => [...prev, editedCard]);
         await CaptureScreenshort(previewCardNodeRef, finalCards, setfinalCards);
         setTimeout(() => {
             setdoneloading(false);
@@ -208,7 +222,7 @@ const ProductCustomizer = () => {
                                     </div>
                                 </div>
                             </div>
-                            <SideController product={product} activeCard={activeCard} selectBase={selectBaseImage} selectLayer={selectLayerImage} />
+                            <SideController product={product} activeCard={activeCard} selectBase={selectBaseImage} selectLayer={selectLayerImage} editedCard={editedCard} seteditedCard={seteditedCard} activebaseEditCard={activebaseEditCard} setactivebaseEditCard={setactivebaseEditCard} />
                             <ViewCard smallconOpen={smallconOpen} isLoading={spinloading} goToFinalView={goToFinalView} />
                         </div>
                     </div>

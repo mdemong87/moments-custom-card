@@ -29,73 +29,65 @@ const Brunson = localFont({
   src: [
     {
       path: "../public/font/Brunson.ttf",
-      weight: "400",
-      style: "normal",
+      weight: "500",
+      style: "regular",
     },
   ],
   variable: "--font-Brunson",
+});
+
+const FastSpeedDemo = localFont({
+  src: [
+    {
+      path: "../public/font/FastSpeedDemo-eZROg.ttf",
+      weight: "500",
+      style: "regular",
+    },
+  ],
+  variable: "--font-FastSpeedDemo",
 });
 
 const GustanBlack = localFont({
   src: [
     {
       path: "../public/font/GustanBlack.otf",
-      weight: "400",
-      style: "normal",
+      weight: "500",
+      style: "regular",
     },
   ],
   variable: "--font-GustanBlack",
 });
 
-const AileronRegular = localFont({
+const AileronFont = localFont({
   src: [
     {
-      path: "../public/font/Aileron-Regular.otf",
-      weight: "400",
-      style: "regular",
+      path: "../public/font/Aileron-Heavy.otf",
+      weight: "700",
+      style: "heavy",
     },
-  ],
-  variable: "--font-AileronRegular",
-});
-
-
-
-const AileronSemiBold = localFont({
-  src: [
+    {
+      path: "../public/font/Aileron-Bold.otf",
+      weight: "600",
+      style: "bold",
+    },
     {
       path: "../public/font/Aileron-SemiBold.otf",
       weight: "500",
       style: "semibold",
     },
-  ],
-  variable: "--font-AileronSemiBold",
-});
-
-
-
-const AileronBold = localFont({
-  src: [
     {
-      path: "../public/font/Aileron-Bold.otf",
-      weight: "800",
-      style: "bold",
+      path: "../public/font/Aileron-Regular.otf",
+      weight: "400",
+      style: "regular",
+    },
+    {
+      path: "../public/font/Aileron-Light.otf",
+      weight: "300",
+      style: "thin",
     },
   ],
-  variable: "--font-AileronBold",
+  variable: "--font-Aileron",
 });
-
-const AileronHeavy = localFont({
-  src: [
-    {
-      path: "../public/font/Aileron-Heavy.otf",
-      weight: "900",
-      style: "heavy",
-    },
-  ],
-  variable: "--font-AileronHeavy",
-});
-
-
 
 
 
@@ -108,7 +100,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${bebas.variable} ${Brunson.variable} ${GustanBlack.variable} ${AileronRegular.variable} ${AileronSemiBold.variable} ${AileronBold.variable} ${AileronHeavy.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${bebas.variable} ${Brunson.variable} ${GustanBlack.variable} ${AileronFont.variable} ${FastSpeedDemo.variable} antialiased`}
       >
         <Header />
         <div className="pt-[75px] bg-gray-100">
