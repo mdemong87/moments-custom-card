@@ -1,4 +1,4 @@
-import { Sparkles, ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Play } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export default function Hero() {
@@ -45,7 +45,7 @@ export default function Hero() {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative container mx-auto px-6 py-20 lg:py-32">
+            <section className="relative max-w-7xl mx-auto px-6 py-20 lg:py-32">
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     {/* Left Text Section */}
                     <div className="space-y-8" style={{ animation: 'fadeInUp 0.8s ease-out' }}>

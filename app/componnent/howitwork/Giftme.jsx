@@ -1,8 +1,8 @@
-import { Gift} from 'lucide-react'
+import { Gift } from 'lucide-react'
 export default function Giftme() {
     return (
         <>
-            <section className="relative container mx-auto px-6 py-20">
+            <section className="relative max-w-7xl mx-auto px-6 py-20">
                 <div className="bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 rounded-3xl p-12 lg:p-16 text-center shadow-2xl">
                     <Gift className="w-16 h-16 text-white mx-auto mb-6 animate-bounce" />
                     <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">

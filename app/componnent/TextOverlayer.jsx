@@ -8,25 +8,25 @@ export const FrontOne = ({ cardti, carddes, name, name2, name3, acarddate, label
 
             <span className="text-white text-[10px] lg:text-xs AileronFont tracking-wider font-thin absolute top-71 left-[24px] lg:top-111 lg:left-8 text-center w-[205px] lg:w-[320px] z-50">{carddes}</span>
 
-            <span className="text-[8px] lg:text-[11px] text-gray-100 GustanBlackFont tracking-wider font-medium absolute top-79.5 left-[15px] lg:top-122 lg:left-8 text-center w-[67px] lg:w-[96px] z-50">{name}</span>
+            <span className="text-[8px] lg:text-[11px] text-[#f7f7f7] GustanBlackFont tracking-wider font-medium absolute top-79.5 left-[15px] lg:top-122 lg:left-8 text-center w-[67px] lg:w-[96px] z-50">{name}</span>
 
 
-            <div className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-83 left-[19px] lg:top-127 lg:left-8 text-center w-[55px] lg:w-[96px] z-50">
+            <div className="bg-black border border-[#f7f7f7] h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-83 left-[19px] lg:top-127 lg:left-8 text-center w-[55px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelone}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
             </div>
 
-            <span className="text-[8px] lg:text-[11px] text-gray-100 GustanBlackFont tracking-wider font-medium absolute top-79.5 left-[95px] lg:top-122 lg:left-36 text-center w-[67px] lg:w-[96px] z-50">{name2}</span>
+            <span className="text-[8px] lg:text-[11px] text-[#f7f7f7] GustanBlackFont tracking-wider font-medium absolute top-79.5 left-[95px] lg:top-122 lg:left-36 text-center w-[67px] lg:w-[96px] z-50">{name2}</span>
 
 
-            <div className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-83 left-[100px] lg:top-127 lg:left-36 text-center w-[55px] lg:w-[96px] z-50">
+            <div className="bg-black border border-[#f7f7f7] h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-83 left-[100px] lg:top-127 lg:left-36 text-center w-[55px] lg:w-[96px] z-50">
                 <div style={{ width: `${labeltwo}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
             </div>
 
 
-            <span className="text-[8px] lg:text-[11px] text-gray-100 GustanBlackFont tracking-wider font-medium absolute top-79.5 left-[169px] lg:top-122 lg:left-65 text-center w-[70px] lg:w-[96px] z-50">{name3}</span>
+            <span className="text-[8px] lg:text-[11px] text-[#f7f7f7] GustanBlackFont tracking-wider font-medium absolute top-79.5 left-[169px] lg:top-122 lg:left-65 text-center w-[70px] lg:w-[96px] z-50">{name3}</span>
 
 
-            <div className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-83 left-[174.5px] lg:top-127 lg:left-65 text-center w-[60px] lg:w-[58px] lg:w-[96px] z-50">
+            <div className="bg-black border border-[#f7f7f7] h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-83 left-[174.5px] lg:top-127 lg:left-65 text-center w-[60px] lg:w-[58px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelthree}%` }} className={`h-full bg-[#f56f41] rounded-full`} />
             </div>
 
@@ -49,22 +49,22 @@ export const FrontTwo = ({ cardti, carddes, name, name2, name3, acarddate, label
 
             <span className="text-gray-50 text-[10px] lg:text-xs AileronFont tracking-wider font-thin absolute top-70 left-[24px] lg:top-108.5 lg:left-8 text-center w-[205px] lg:w-[320px] z-50">{carddes}</span>
 
-            <span className="text-[8px] lg:text-[11px] text-gray-100 GustanBlackFont tracking-wider absolute top-79.5 left-[15px] lg:top-122 lg:left-8 text-center w-[67px] lg:w-[96px] z-50">{name}</span>
+            <span className="text-[8px] lg:text-[11px] text-[#f7f7f7] GustanBlackFont tracking-wider absolute top-79.5 left-[15px] lg:top-122 lg:left-8 text-center w-[67px] lg:w-[96px] z-50">{name}</span>
 
-            <div className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82.5 left-[19px] lg:top-126 lg:left-8 text-center w-[55px] lg:w-[96px] z-50">
+            <div className="bg-black border border-[#f7f7f7] h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82.5 left-[19px] lg:top-126 lg:left-8 text-center w-[55px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelone}%` }} className={`h-full bg-[#5ba2d8] rounded-full`} />
             </div>
 
-            <span className="text-[8px] lg:text-[11px] text-gray-100 GustanBlackFont tracking-wider absolute top-79.5 left-[95px] lg:top-122 lg:left-36 text-center w-[67px] lg:w-[96px] z-50">{name2}</span>
+            <span className="text-[8px] lg:text-[11px] text-[#f7f7f7] GustanBlackFont tracking-wider absolute top-79.5 left-[95px] lg:top-122 lg:left-36 text-center w-[67px] lg:w-[96px] z-50">{name2}</span>
 
-            <div className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[100px] lg:top-126 lg:left-36 text-center w-[55px] lg:w-[96px] z-50">
+            <div className="bg-black border border-[#f7f7f7] h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[100px] lg:top-126 lg:left-36 text-center w-[55px] lg:w-[96px] z-50">
                 <div style={{ width: `${labeltwo}%` }} className={`h-full bg-[#5ba2d8] rounded-full`} />
             </div>
 
-            <span className="text-[8px] lg:text-[11px] text-gray-100 GustanBlackFont tracking-wider absolute top-79.5 left-[169px] lg:top-122 lg:left-65 text-center w-[70px] lg:w-[96px] z-50">{name3}</span>
+            <span className="text-[8px] lg:text-[11px] text-[#f7f7f7] GustanBlackFont tracking-wider absolute top-79.5 left-[169px] lg:top-122 lg:left-65 text-center w-[70px] lg:w-[96px] z-50">{name3}</span>
 
 
-            <div className="bg-black border border-gray-50 h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[174.5px] lg:top-126 lg:left-65 text-center w-[60px] lg:w-[58px] lg:w-[96px] z-50">
+            <div className="bg-black border border-[#f7f7f7] h-[5px] lg:h-[8px] rounded-full text-[10px] lg:text-xs font-bold absolute top-82 left-[174.5px] lg:top-126 lg:left-65 text-center w-[60px] lg:w-[58px] lg:w-[96px] z-50">
                 <div style={{ width: `${labelthree}%` }} className={`h-full bg-[#5ba2d8] rounded-full`} />
             </div>
 

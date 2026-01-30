@@ -1,4 +1,4 @@
-import { Camera, Sparkles, Package, Gift, Eye, ArrowRight } from 'lucide-react';
+import { ArrowRight, Camera, Eye, Package, Sparkles } from 'lucide-react';
 
 export default function Howwork() {
 
@@ -19,7 +19,7 @@ export default function Howwork() {
 
     return (
         <>
-            <section className="relative container mx-auto px-6 py-20">
+            <section className="relative max-w-7xl mx-auto px-6 py-20">
                 <div className="text-center mb-16">
                     <h2 className="text-5xl lg:text-6xl font-black tracking-tight text-slate-900 mb-4">
                         How It Works

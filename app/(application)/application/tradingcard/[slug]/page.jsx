@@ -17,6 +17,7 @@ import { toast, ToastContainer } from "react-toastify";
 import ViewCard from "../../../../componnent/ViewCard";
 
 import CharactersCountComponent from "@/app/componnent/CharactersCountComponent";
+import useCardforTrading from "@/store/useCardforTrading";
 import captureNodeScreenshotForTranding from "@/utilis/helper/captureNodeScreenshotForTranding";
 import ImageResize from "@/utilis/helper/ImageResize";
 const fonts = ["Arial", "Poppins", "Times New Roman", "Courier New", "Comic Sans MS"];
@@ -45,7 +46,8 @@ export default function ProductCustomizer() {
     const [fetchingData, setfetchingData] = useState(null);
     const [fetchingDataLoading, setfetchingDataLoading] = useState(false);
 
-    const [cards, setCards] = useState([]);
+    // const [cards, setCards] = useState([]);
+    const { cards, setCards } = useCardforTrading();
     const [activeCardIndex, setActiveCardIndex] = useState(0);
     const [editmood, seteidtmood] = useState(true);
     const [spinloading, setspinloading] = useState(false);
@@ -235,15 +237,15 @@ export default function ProductCustomizer() {
 
     /******* Removed Card Function ********/
     const removeCard = (index) => {
-        setCards(prev => {
-            const updated = prev.filter((_, i) => i !== index);
-            let newActive = activeCardIndex;
-            if (updated.length === 0) newActive = 0;
-            else if (index < activeCardIndex) newActive -= 1;
-            else if (index === activeCardIndex) newActive = Math.min(activeCardIndex, updated.length - 1);
-            setActiveCardIndex(newActive);
-            return updated;
-        });
+
+        const updated = cards.filter((_, i) => i !== index);
+        let newActive = activeCardIndex;
+        if (updated.length === 0) newActive = 0;
+        else if (index < activeCardIndex) newActive -= 1;
+        else if (index === activeCardIndex) newActive = Math.min(activeCardIndex, updated.length - 1);
+        setActiveCardIndex(newActive);
+
+        setCards([...updated]);
     };
 
 
@@ -283,8 +285,6 @@ export default function ProductCustomizer() {
         }, 900);
     };
     // end from here
-
-
 
 
 

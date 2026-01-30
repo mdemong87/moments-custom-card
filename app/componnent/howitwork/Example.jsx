@@ -1,7 +1,7 @@
 export default function Example() {
     return (
         <>
-            <section className="relative container mx-auto px-6 py-20">
+            <section className="relative max-w-7xl mx-auto px-6 py-20">
                 <div className="text-center mb-12">
                     <h2 className="text-5xl font-black tracking-tight text-slate-900 mb-4">
                         Need Inspiration?

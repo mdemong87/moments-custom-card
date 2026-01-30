@@ -9,8 +9,6 @@
 }
 
 
-
-
 @layer utilities {
 
   /* Hide scrollbar for Chrome, Safari and Opera */
@@ -192,8 +190,6 @@ input[type=number] {
 .capture-clean-mode *::after {
   content: none !important;
 }
-
-
 
 
 

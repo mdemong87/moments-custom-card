@@ -1,10 +1,9 @@
-import React from 'react'
 
 export default function Footer() {
     return (
         <>
             {/* Footer CTA */}
-            <section className="relative container mx-auto px-6 py-20">
+            <section className="relative max-w-7xl mx-auto px-6 py-20">
                 <div className="bg-slate-900 rounded-3xl p-12 lg:p-16 text-center">
                     <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
                         Where memories become moments of play
@@ -22,12 +21,6 @@ export default function Footer() {
                     </div>
                 </div>
             </section>
-
-            {/* Footer */}
-            <footer className="relative container mx-auto px-6 py-12 text-center text-slate-600">
-                <p className="font-semibold">© 2026 Momento Cards. Turn memories into play.</p>
-            </footer>
-
         </>
     )
 }

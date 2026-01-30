@@ -2,7 +2,9 @@
 import ApplicationSkeleton from "@/app/componnent/ApplicationSkeleton";
 import BoxContentForDeckCard from "@/app/componnent/BoxPreview/BoxContentForDeckCard";
 import BoxPreview from "@/app/componnent/BoxPreview/BoxPreview";
+import usealreadyDoneStore from "@/store/usealreadyDoneStore";
 import useDeckFinalPreview from "@/store/useDeckFinalPreview";
+import usefinalCardsStore from "@/store/usefinalCardsStore";
 import CaptureScreenshort from "@/utilis/helper/CaptureScreenshort";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 import generateUserId from "@/utilis/helper/generateUserId";
@@ -32,7 +34,7 @@ const ProductCustomizer = () => {
     const previewCardNodeRef = useRef(null);
     const [product, setProduct] = useState(null);
     const [cards, setCards] = useState([]);
-    const [finalCards, setfinalCards] = useState([]);
+    //const [finalCards, setfinalCards] = useState([]);
     const [activeCardIndex, setActiveCardIndex] = useState(0);
     const router = useRouter();
     const token = getCookie();
@@ -42,7 +44,9 @@ const ProductCustomizer = () => {
     const [smallconOpen, setsmallconOpen] = useState(false);
     const [editedCard, seteditedCard] = useState('a');
     const [activebaseEditCard, setactivebaseEditCard] = useState([]);
-    const [alreadyDone, setalreadyDone] = useState([]);
+    // const [alreadyDone, setalreadyDone] = useState([]);
+    const { finalCards, setfinalCards } = usefinalCardsStore();
+    const { alreadyDone, setalreadyDone } = usealreadyDoneStore();
 
 
 
@@ -122,19 +126,18 @@ const ProductCustomizer = () => {
 
     /******* Removed Card Function ********/
     const removeCard = (index) => {
-        setfinalCards(prev => {
-            const updated = prev.filter((_, i) => i !== index);
-            let newActive = activeCardIndex;
-            if (updated.length === 0) newActive = 0;
-            else if (index < activeCardIndex) newActive -= 1;
-            else if (index === activeCardIndex) newActive = Math.min(activeCardIndex, updated.length - 1);
-            setActiveCardIndex(newActive);
-            return updated;
-        });
 
-        setalreadyDone(prev =>
-            prev.filter((_, i) => i !== index)
-        );
+        const updated = finalCards.filter((_, i) => i !== index);
+        let newActive = activeCardIndex;
+        if (updated.length === 0) newActive = 0;
+        else if (index < activeCardIndex) newActive -= 1;
+        else if (index === activeCardIndex) newActive = Math.min(activeCardIndex, updated.length - 1);
+        setActiveCardIndex(newActive);
+
+        setfinalCards([...updated]);
+
+        const alreadyDoneUpdated = alreadyDone.filter((_, i) => i !== index);
+        setalreadyDone([...alreadyDoneUpdated]);
     };
 
 
@@ -183,7 +186,7 @@ const ProductCustomizer = () => {
         }
 
         setdoneloading(true);
-        setalreadyDone(prev => [...prev, editedCard]);
+        setalreadyDone([...alreadyDone, editedCard]);
         await CaptureScreenshort(previewCardNodeRef, finalCards, setfinalCards);
         setTimeout(() => {
             setdoneloading(false);
