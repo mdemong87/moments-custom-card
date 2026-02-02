@@ -4,6 +4,7 @@ import SpinLoader from "@/app/componnent/SpingLoader";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import useLoadingStore from "../../../store/useLoadingStore";
 import logingandsignupmakepost from "../../../utilis/requestrespose/logingandsignupmakepost";
 
@@ -27,16 +28,20 @@ const SignUP = () => {
         if (name && email && password) {
             setLoading(true);
             const response = await logingandsignupmakepost("api/register", { name, email, password });
+
+            console.log(response);
+
             if (response) {
                 setres(response);
                 setLoading(false);
                 router.push('/signin');
             } else {
                 setLoading(false);
-                alert("There was a Server side Problem");
+                toast.warn("User Already Exist");
+                return;
             }
         } else {
-            alert("Required All Feilds");
+            toast.warn("Required All Feilds");
         }
 
     };
@@ -89,6 +94,7 @@ const SignUP = () => {
                     Sign In
                 </Link></span>
             </div>
+            <ToastContainer />
         </div>
     );
 };

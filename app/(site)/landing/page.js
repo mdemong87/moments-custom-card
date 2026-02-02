@@ -1,10 +1,10 @@
 'use client';
 
-import { Play } from 'lucide-react';
-import Button from '../../componnent/newlandingpage/Button';
+import Howwork from '@/app/componnent/howitwork/Howwork';
+import Image from 'next/image';
+import Link from 'next/link';
 import FinalCTA from '../../componnent/newlandingpage/FinalCTA';
 import Hero from '../../componnent/newlandingpage/Hero';
-import HowItWorks from '../../componnent/newlandingpage/HowitWork';
 import PremiumQuality from '../../componnent/newlandingpage/PremiumQuality';
 import Products from '../../componnent/newlandingpage/Product';
 import SocialProof from '../../componnent/newlandingpage/SocialProof';
@@ -12,76 +12,77 @@ import WhyMomento from '../../componnent/newlandingpage/WhyMomento';
 
 export default function Page() {
     return (
-        <main className="min-h-screen bg-gradient-to-b from-background via-background to-secondary/5">
+        <main className="min-h-screen">
             <Hero />
 
             {/* Explainer Video Section */}
-            <section className="py-20 md:py-32 px-4 bg-muted/30">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
+            <section className="py-20 md:py-24 px-4 bg-gray-50">
+                <div className="max-w-7xl mx-auto text-center">
+                    <h2 className="text-4xl md:text-5xl font-bold text-gray-700 mb-6 text-balance">
                         See How Momento Works
                     </h2>
-                    <p className="text-xl text-muted-foreground mb-4 text-balance">
+                    <p className="text-xl mb-4 text-gray-700/70 text-balance">
                         From your people to the table.
                     </p>
-                    <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto text-pretty">
+                    <p className="text-lg text-gray-700/60 mb-12 max-w-2xl mx-auto text-pretty">
                         A short explainer showing how Momento turns real people into playable cards — from customization to game night.
                     </p>
 
                     {/* Video Placeholder */}
-                    <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center border-2 border-primary/10 hover:border-primary/30 transition-colors">
+                    <div className="relative w-full aspect-video rounded-2xl overflow-hidden flex items-center justify-center transition-colors mb-12">
                         <div className="text-center">
-                            <Play className="w-16 h-16 text-primary mx-auto mb-4 fill-primary" />
-                            <p className="text-muted-foreground">Video walkthrough + real-life gameplay</p>
+                            <video
+                                src="https://res.cloudinary.com/dg83pvgls/video/upload/v1769582816/GettyImages-1279811365_daynze.mp4"
+                                autoPlay
+                                controls
+                                className="w-full h-full object-cover rounded-2xl"
+                            />
                         </div>
                     </div>
 
-                    <Button className="mt-12 bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg rounded-full">
+                    <Link href={'/shop'} className="bg-sky-400 hover:bg-primary/90 text-primary-foreground px-6 py-4 text-lg rounded-full">
                         Create Your Deck
-                    </Button>
+                    </Link>
                 </div>
             </section>
 
             {/* What is Momento */}
-            <section className="py-20 md:py-32 px-4">
-                <div className="max-w-4xl mx-auto">
+            <section className="py-20 md:py-24 px-4 bg-white">
+                <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
+                        <h2 className="text-4xl md:text-5xl font-bold text-gray-700 mb-4 text-balance">
                             What Is Momento?
                         </h2>
-                        <p className="text-xl text-primary font-semibold mb-6">
+                        <p className="text-xl text-gray-600/70 font-semibold mb-6">
                             Real people. Real cards. Real game nights.
                         </p>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <div className="space-y-6">
-                            <p className="text-lg text-foreground leading-relaxed">
+                        <div className="space-y-6 text-center md:text-left">
+                            <p className="text-lg text-gray-700/70 leading-relaxed">
                                 Momento turns the people you care about into playable cards.
                             </p>
-                            <p className="text-lg text-foreground leading-relaxed">
+                            <p className="text-lg text-gray-700/70 leading-relaxed">
                                 Design custom cards inspired by friends, family, or favorite characters — choosing their look, vibe, and personality. We professionally print and ship everything straight to your door.
                             </p>
-                            <p className="text-2xl font-bold text-primary italic">
+                            <p className="text-2xl font-bold text-gray-700/80 italic mb-8">
                                 Memories you can shuffle.
                             </p>
-                            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg rounded-full mt-8">
+                            <Link href={"/shop"} className="bg-sky-400 hover:bg-sky-400/80 text-primary-foreground px-6 py-4 text-lg rounded-full">
                                 Start Creating Your Deck
-                            </Button>
+                            </Link>
                         </div>
 
-                        <div className="relative h-96 rounded-2xl overflow-hidden bg-gradient-to-br from-secondary/50 to-accent/30 flex items-center justify-center border-2 border-primary/10">
-                            <div className="text-center">
-                                <div className="text-6xl mb-4">🂡</div>
-                                <p className="text-muted-foreground">Card close-ups • Premium finish</p>
-                            </div>
+                        <div className="relative h-96 rounded-2xl overflow-hidden bg-sky-400/10 flex items-center justify-center border-2 border-sky-200/10">
+                            <Image src="https://res.cloudinary.com/dg83pvgls/image/upload/v1770007236/one_rzpshu.png" width={1000} height={1000} alt='what is momento' />
                         </div>
                     </div>
                 </div>
             </section>
 
             <Products />
-            <HowItWorks />
+            <Howwork />
             <WhyMomento />
             <SocialProof />
             <PremiumQuality />

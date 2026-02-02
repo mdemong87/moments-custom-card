@@ -18,6 +18,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'plum-koala-349902.hostingersite.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
       }
     ],
   },

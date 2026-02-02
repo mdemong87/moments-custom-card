@@ -20,7 +20,7 @@ const benefits = [
 
 export default function WhyMomento() {
     return (
-        <section className="py-20 md:py-32 px-4 bg-sky-50 text-black">
+        <section className="py-20 md:py-24 px-4 bg-sky-50 text-black">
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold text-black mb-4 text-balance">
@@ -39,7 +39,7 @@ export default function WhyMomento() {
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                            <div className="relative bg-white rounded-2xl p-8 border-2 border-sky-400 group-hover:border-sky-500 transition-colors h-full">
+                            <div className="relative bg-white rounded-2xl p-8 border-2 border-sky-400/40 group-hover:border-sky-500 transition-colors h-full">
                                 <div className="flex items-start gap-4 mb-4">
                                     <CheckCircle2 className="w-8 h-8 text-sky-400 flex-shrink-0 mt-1" />
                                 </div>

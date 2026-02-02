@@ -1,17 +1,18 @@
 import { ArrowRight, Camera, Eye, Package, Sparkles } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Howwork() {
 
     const stepImages = [
-        "https://res.cloudinary.com/dg83pvgls/image/upload/v1769582765/momentocardgames.com_application_tradingcard_momento-trading-cards-8751_2_jkhy0a.png",
+        "https://res.cloudinary.com/dg83pvgls/image/upload/v1770007236/one_rzpshu.png",
 
-        "https://res.cloudinary.com/dg83pvgls/image/upload/v1769582765/momentocardgames.com_application_tradingcard_momento-trading-cards-8751_1_jocjrg.png",
+        'https://res.cloudinary.com/dg83pvgls/image/upload/v1770031146/2_mxc4op.png',
 
-        "https://res.cloudinary.com/dg83pvgls/image/upload/v1769582766/momentocardgames.com_application_deckcard_momento-playing-deck-cards-2383_2_nxu1lm.png",
+        "https://res.cloudinary.com/dg83pvgls/image/upload/v1770031147/3_n1epsz.png",
 
-        "https://res.cloudinary.com/dg83pvgls/image/upload/v1769582764/momentocardgames.com_application_deckcard_momento-playing-deck-cards-2383_1_fhgg2q.png",
+        "https://res.cloudinary.com/dg83pvgls/image/upload/v1770007236/one_rzpshu.png",
 
-        "https://res.cloudinary.com/dg83pvgls/image/upload/v1769582764/momentocardgames.com_application_deckcard_momento-playing-deck-cards-2383_b7cm7e.png"
+        "https://res.cloudinary.com/dg83pvgls/image/upload/v1770031147/4_dixuxi.png"
     ];
 
 
@@ -74,16 +75,16 @@ export default function Howwork() {
                                     </div>
                                 </li>
                             </ul>
-                            <button className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2">
+                            <Link href="/shop" className="w-fit px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2">
                                 Start Creating Your Cards
                                 <ArrowRight className="w-5 h-5" />
-                            </button>
+                            </Link>
                         </div>
-                        <div className="relative h-96 bg-gradient-to-br from-amber-100 to-orange-100 rounded-3xl p-8 shadow-xl">
+                        <div className="relative h-96 rounded-3xshadow-xl rounded-3xl">
                             <img
                                 src={stepImages[0]}
                                 alt="Step 1 visual"
-                                className="max-w-full mx-auto max-h-full object-contain rounded-3xl shadow-2xl"
+                                className="max-w-full mx-auto max-h-full object-cover rounded-3xl shadow-2xl"
                             />
                         </div>
                     </div>
@@ -119,20 +120,17 @@ export default function Howwork() {
                                     <span className="font-bold text-slate-900">Visual Details & Vibe</span>
                                 </div>
                             </div>
-                            <button className="px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold rounded-xl hover:from-blue-600 hover:to-indigo-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2">
+                            <Link href={'/shop'} className="w-fit px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold rounded-xl hover:from-blue-600 hover:to-indigo-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2">
                                 Build Your Character
                                 <ArrowRight className="w-5 h-5" />
-                            </button>
+                            </Link>
                         </div>
-                        <div className="lg:order-1 relative h-96 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-3xl p-8 shadow-xl flex items-center justify-center">
-                            <div className="w-56 h-80 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl shadow-2xl relative overflow-hidden">
-                                <div className="absolute inset-0 bg-white/10" />
-                                <img
-                                    src={stepImages[3]}
-                                    alt="Step 1 visual"
-                                    className="max-w-full mx-auto max-h-full object-contain rounded-3xl shadow-2xl"
-                                />
-                            </div>
+                        <div className="relative h-96 rounded-3xl flex items-center justify-center">
+                            <img
+                                src={stepImages[1]}
+                                alt="Step 1 visual"
+                                className="max-w-full mx-auto max-h-full object-conver rounded-3xl shadow-2xl"
+                            />
                         </div>
                     </div>
 
@@ -169,16 +167,16 @@ export default function Howwork() {
                                     <div className="text-sm font-bold text-slate-600">Snack Master</div>
                                 </div>
                             </div>
-                            <button className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2">
+                            <Link href={'/shop'} className="w-fit px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2">
                                 Create a Trading Card
                                 <ArrowRight className="w-5 h-5" />
-                            </button>
+                            </Link>
                         </div>
-                        <div className="relative h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl p-8 shadow-xl flex items-center justify-center">
+                        <div className="relative h-96 rounded-3xl flex items-center justify-center">
                             <img
-                                src={stepImages[1]}
+                                src={stepImages[2]}
                                 alt="Step 1 visual"
-                                className="max-w-full mx-auto max-h-full object-contain rounded-3xl shadow-2xl"
+                                className="max-w-full mx-auto max-h-full object-conver rounded-3xl shadow-2xl"
                             />
                         </div>
                     </div>
@@ -198,20 +196,18 @@ export default function Howwork() {
                             <p className="text-lg text-slate-700 leading-relaxed">
                                 See it before it's printed. As you customize, your cards update instantly. What you see on screen is exactly what gets printed — no guessing.
                             </p>
-                            <button className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl hover:from-green-600 hover:to-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2">
+                            <Link href={'/shop'} className="w-fit px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl hover:from-green-600 hover:to-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2">
                                 Preview Your Cards
                                 <Eye className="w-5 h-5" />
-                            </button>
+                            </Link>
                         </div>
-                        <div className="lg:order-1 relative h-96 bg-gradient-to-br from-green-100 to-emerald-100 rounded-3xl p-8 shadow-xl flex items-center justify-center">
+                        <div className="lg:order-1 relative h-96 rounded-3xl flex items-center justify-center">
 
                             <img
-                                src={stepImages[0]}
+                                src={stepImages[3]}
                                 alt="Step 1 visual"
-                                className="max-w-full mx-auto max-h-full object-contain rounded-3xl shadow-2xl"
+                                className="max-w-full mx-auto max-h-full object-conver rounded-3xl shadow-2xl"
                             />
-                            <div className="absolute top-4 right-4 w-4 h-4 bg-green-400 rounded-full animate-ping" />
-
                         </div>
                     </div>
 
@@ -250,18 +246,17 @@ export default function Howwork() {
                                     <span className="text-slate-700">Fast delivery to your door</span>
                                 </div>
                             </div>
-                            <button className="px-8 py-4 bg-gradient-to-r from-rose-500 to-red-500 text-white font-bold rounded-xl hover:from-rose-600 hover:to-red-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2">
+                            <Link href={'/shop'} className="w-fit px-8 py-4 bg-gradient-to-r from-rose-500 to-red-500 text-white font-bold rounded-xl hover:from-rose-600 hover:to-red-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2">
                                 Complete Your Order
                                 <Package className="w-5 h-5" />
-                            </button>
+                            </Link>
                         </div>
-                        <div className="relative h-96 bg-gradient-to-br from-rose-100 to-red-100 rounded-3xl p-8 shadow-xl flex items-center justify-center">
+                        <div className="relative h-96 rounded-3xl flex items-center justify-center">
                             <img
                                 src={stepImages[4]}
                                 alt="Step 1 visual"
-                                className="max-w-full mx-auto max-h-full object-contain rounded-3xl shadow-2xl"
+                                className="max-w-full mx-auto max-h-full object-cover rounded-3xl shadow-2xl"
                             />
-                            <Package className="w-32 h-32 text-rose-500 animate-bounce" />
                         </div>
                     </div>
                 </div>

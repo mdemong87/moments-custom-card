@@ -16,7 +16,10 @@ import { Rnd } from "react-rnd";
 import { toast, ToastContainer } from "react-toastify";
 import ViewCard from "../../../../componnent/ViewCard";
 
+import BoxContentForTradingCard from "@/app/componnent/BoxPreview/BoxContentForTradingCard";
+import BoxPreview from "@/app/componnent/BoxPreview/BoxPreview";
 import CharactersCountComponent from "@/app/componnent/CharactersCountComponent";
+import useboxcartstore from "@/store/useboxcartstore";
 import useCardforTrading from "@/store/useCardforTrading";
 import captureNodeScreenshotForTranding from "@/utilis/helper/captureNodeScreenshotForTranding";
 import ImageResize from "@/utilis/helper/ImageResize";
@@ -24,12 +27,20 @@ const fonts = ["Arial", "Poppins", "Times New Roman", "Courier New", "Comic Sans
 
 export default function ProductCustomizer() {
 
-
+    const boxref = useRef(null);
     const { slug } = useParams();
 
     const previewCardNodeRef = useRef(null);
 
     const [smallconOpen, setsmallconOpen] = useState(false);
+
+
+
+    //for trading card boxs
+    const [boxTitle, setboxTitle] = useState('Pack Title');
+    const [created, setcreated] = useState("Created For");
+
+
 
     // replace these with real image URLs or keep as keys and map to your assets
     const [frontImages, setfrontImages] = useState(null);
@@ -54,7 +65,7 @@ export default function ProductCustomizer() {
     const router = useRouter();
     const [doneloading, setdoneloading] = useState(false);
     const { addToCart, clearCart } = useTradingFinalPreview();
-
+    const { boxs, setboxs } = useboxcartstore();
 
 
 
@@ -258,6 +269,11 @@ export default function ProductCustomizer() {
             return;
         }
 
+        if (boxs.length < 1) {
+            toast.warn("Packaging Design is not Captured");
+            return;
+        }
+
 
         clearCart();
         setspinloading(true);
@@ -273,7 +289,7 @@ export default function ProductCustomizer() {
             productGalary: fetchingData?.images,
             productDescription: fetchingData?.description,
             FinalProduct: cards,
-            FinalPDf: await pdfGanarator(cards)
+            FinalPDf: await pdfGanarator(cards.concat(boxs))
         };
 
 
@@ -435,6 +451,18 @@ export default function ProductCustomizer() {
                                 <div className="absolute inset-0 flex items-center justify-center text-gray-300">Preview area</div>
                             )}
                         </div>
+
+
+
+
+
+
+                        <BoxPreview boxref={boxref} bfor="trading" boxTitle={boxTitle} setboxTitle={setboxTitle} created={created} setcreated={setcreated}>
+                            <BoxContentForTradingCard boxref={boxref} boxTitle={boxTitle} created={created} />
+                        </BoxPreview>
+
+
+
                     </div>
 
                     {/* Right Controls column (inside the middle wrapper as your original) */}
@@ -462,6 +490,7 @@ export default function ProductCustomizer() {
                                     <BsCreditCard2Back className="text-xl" />
                                     <span>Back Side</span>
                                 </button>
+
                             </div>
 
 

@@ -1,15 +1,13 @@
 import { ArrowRight, Play } from 'lucide-react';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
+
 export default function Hero() {
-    const [scrollY, setScrollY] = useState(0);
+
+
     const [activeCard, setActiveCard] = useState(0);
 
-    useEffect(() => {
-        const handleScroll = () => setScrollY(window.scrollY);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -18,29 +16,46 @@ export default function Hero() {
         return () => clearInterval(interval);
     }, []);
 
+
+
+
+
     const cardExamples = [
         {
             name: "Sarah",
             trait: "The Adventurer",
             color: "from-amber-400 to-orange-500",
-            image:
-                "https://res.cloudinary.com/dg83pvgls/image/upload/v1769582765/momentocardgames.com_application_tradingcard_momento-trading-cards-8751_2_jkhy0a.png",
+            image: "hero1.png",
         },
         {
             name: "Mike",
             trait: "Comedy King",
             color: "from-blue-400 to-indigo-500",
-            image:
-                "https://res.cloudinary.com/dg83pvgls/image/upload/v1769582765/momentocardgames.com_application_tradingcard_momento-trading-cards-8751_1_jocjrg.png",
+            image: "hero2.png",
         },
         {
             name: "Luna",
             trait: "Night Owl",
             color: "from-purple-400 to-pink-500",
-            image:
-                "https://res.cloudinary.com/dg83pvgls/image/upload/v1769582765/momentocardgames.com_application_tradingcard_momento-trading-cards-8751_umyov8.png",
+            image: "hero3.png",
+        },
+        {
+            name: "Mike",
+            trait: "Comedy King",
+            color: "from-blue-400 to-indigo-500",
+            image: "hero4.png",
+        },
+        {
+            name: "Luna",
+            trait: "Night Owl",
+            color: "from-purple-400 to-pink-500",
+            image: "hero5.png",
         },
     ];
+
+
+
+
 
     return (
         <>
@@ -68,14 +83,14 @@ export default function Hero() {
                         </p>
 
                         <div className="flex flex-wrap gap-4">
-                            <button className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl hover:from-amber-600 hover:to-orange-600 transition-all shadow-xl hover:shadow-2xl hover:scale-105 transform flex items-center gap-2 text-lg">
+                            <Link href={'/shop'} className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl hover:from-amber-600 hover:to-orange-600 transition-all shadow-xl hover:shadow-2xl hover:scale-105 transform flex items-center gap-2 text-lg">
                                 Create Your Cards
                                 <ArrowRight className="w-5 h-5" />
-                            </button>
-                            <button className="px-8 py-4 bg-white text-slate-900 font-bold rounded-xl border-2 border-slate-200 hover:border-amber-400 transition-all shadow-lg hover:shadow-xl flex items-center gap-2 text-lg">
+                            </Link>
+                            <Link href={'/howitwork#video'} className="px-8 py-4 bg-white text-slate-900 font-bold rounded-xl border-2 border-slate-200 hover:border-amber-400 transition-all shadow-lg hover:shadow-xl flex items-center gap-2 text-lg">
                                 <Play className="w-5 h-5" />
                                 Watch Demo
-                            </button>
+                            </Link>
                         </div>
                     </div>
 
@@ -105,32 +120,7 @@ export default function Hero() {
                                         className="absolute inset-0 w-full h-full object-cover"
                                     />
 
-                                    {/* Gradient Overlay */}
-                                    {/* <div
-                                        className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-40`}
-                                    /> */}
 
-                                    {/* Card Content */}
-                                    {/* <div className="relative h-full p-6 flex flex-col justify-between text-white">
-                                        <div className="flex justify-between items-start">
-                                            <div className="w-12 h-12 bg-white/30 backdrop-blur rounded-full flex items-center justify-center">
-                                                <Sparkles className="w-6 h-6" />
-                                            </div>
-                                            <div className="text-right">
-                                                <div className="text-xs font-bold uppercase tracking-wider opacity-80">Level 99</div>
-                                                <div className="text-2xl font-black">★★★</div>
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-2">
-                                            <h3 className="text-4xl font-black tracking-tight">{card.name}</h3>
-                                            <p className="text-lg font-bold opacity-90">{card.trait}</p>
-                                            <div className="flex gap-2 flex-wrap">
-                                                <span className="px-3 py-1 bg-white/30 backdrop-blur rounded-full text-xs font-bold">Creative</span>
-                                                <span className="px-3 py-1 bg-white/30 backdrop-blur rounded-full text-xs font-bold">Bold</span>
-                                            </div>
-                                        </div>
-                                    </div> */}
                                 </div>
                             </div>
                         ))}

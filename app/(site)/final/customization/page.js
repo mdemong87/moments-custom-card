@@ -1,5 +1,6 @@
 "use client";
 import SpinLoader from "@/app/componnent/SpingLoader";
+import useboxcartstore from "@/store/useboxcartstore";
 import useCartStore from "@/store/useCartStore";
 import useDeckFinalPreview from "@/store/useDeckFinalPreview";
 import Image from "next/image";
@@ -20,9 +21,9 @@ const FinalCardsPage = () => {
     const [cards, setCards] = useState([]);
     const { addToCart } = useCartStore();
     const { deckcart, removeFromCart } = useDeckFinalPreview();
+    const { boxs } = useboxcartstore();
     const [loading, setloading] = useState(false);
     const router = useRouter();
-
 
 
 
@@ -37,8 +38,6 @@ const FinalCardsPage = () => {
     }
 
 
-
-    if (deckcart[0]?.FinalProduct < 1) return <div>No cards found.</div>;
 
     return (
         <div className="text-black max-w-7xl mx-auto" style={{ padding: "2rem" }}>
@@ -68,6 +67,21 @@ const FinalCardsPage = () => {
                     ))
                 }
 
+
+            </div>
+
+            <div>
+                <h2 className="py-4 font-semibold text-gray-600">Box Preview</h2>
+
+                {
+                    boxs?.map((item, index) => {
+                        return (
+                            <div key={index} className="w-[170px] h-auto lg:w-[400px] lg:h-auto flex items-center justify-center ">
+                                <Image className="object-contain z-10" src={item} width={1000} height={1000} alt="final-cards" />
+                            </div>
+                        )
+                    })
+                }
 
             </div>
         </div>

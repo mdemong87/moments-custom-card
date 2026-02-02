@@ -1,5 +1,9 @@
 const CardChangerTracker = async (allcard, editedCard) => {
 
+
+    console.log(allcard);
+
+
     const filteredCards = allcard?.filter((card) => {
 
 

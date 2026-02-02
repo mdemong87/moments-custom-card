@@ -1,7 +1,5 @@
 'use client'
 
-import Example from "../../componnent/howitwork/Example";
-import Footer from "../../componnent/howitwork/Footer";
 import Giftme from "../../componnent/howitwork/Giftme";
 import Hero from "../../componnent/howitwork/Hero";
 import Howwork from "../../componnent/howitwork/Howwork";
@@ -13,9 +11,9 @@ const HowItWorks = () => {
             <Hero />
             <Video />
             <Howwork />
-            <Example />
+            {/* <Example /> */}
             <Giftme />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

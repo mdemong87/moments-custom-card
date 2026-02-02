@@ -1,7 +1,7 @@
 'use client';
 
 import { ArrowRight } from 'lucide-react';
-import Button from '../../componnent/newlandingpage/Button';
+import Link from 'next/link';
 
 const products = [
     {
@@ -39,13 +39,13 @@ const products = [
 
 export default function Products() {
     return (
-        <section className="py-20 md:py-32 px-4 bg-gradient-to-b from-background to-secondary/5">
+        <section className="py-20 md:py-24 px-4 bg-sky-50">
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
+                    <h2 className="text-4xl md:text-5xl font-bold text-gray-700 mb-4 text-balance">
                         Experience Momento Game Night — Three Ways
                     </h2>
-                    <p className="text-xl text-muted-foreground">
+                    <p className="text-xl text-gray-600/70">
                         Each product brings a different layer of personalization to the table.
                     </p>
                 </div>
@@ -63,42 +63,43 @@ export default function Products() {
                                 <div className="text-5xl">{product.icon}</div>
 
                                 <div className="space-y-2">
-                                    <h3 className="text-2xl font-bold text-foreground">
+                                    <h3 className="text-2xl font-bold text-gray-700">
                                         {product.title}
                                     </h3>
                                     {product.subtitle && (
-                                        <p className="text-sm text-muted-foreground italic">
+                                        <p className="text-sm text-gray-600 italic">
                                             {product.subtitle}
                                         </p>
                                     )}
                                 </div>
 
-                                <p className="text-lg text-foreground leading-relaxed">
+                                <p className="text-lg text-gray-600/80 leading-relaxed">
                                     {product.description}
                                 </p>
 
                                 <ul className="space-y-3">
                                     {product.features.map((feature, i) => (
                                         <li key={i} className="flex items-start gap-3">
-                                            <span className="text-primary font-bold mt-1">•</span>
-                                            <span className="text-muted-foreground">{feature}</span>
+                                            <span className="text-sky-400 font-bold mt-1">•</span>
+                                            <span className="text-gray-600/60">{feature}</span>
                                         </li>
                                     ))}
                                 </ul>
 
-                                <Button
+                                <Link href={'/shop'}
                                     variant="ghost"
-                                    className="text-primary hover:text-primary hover:bg-primary/5 p-0 h-auto font-semibold group/btn"
+                                    className="text-sky-400 hover:text-primary hover:bg-primary/5 p-0 h-auto font-semibold group/btn flex items-center justify-start"
                                 >
-                                    Create {product.title.split(' ')[0]} <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                                </Button>
+                                    <span>Create {product.title.split(' ')[0]}</span>
+                                    <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                                </Link>
                             </div>
                         </div>
                     ))}
                 </div>
 
-                <div className="text-center bg-secondary/50 rounded-2xl p-8 border border-primary/10">
-                    <p className="text-lg font-semibold text-foreground">
+                <div className="text-center rounded-2xl pt-3">
+                    <p className="text-lg font-semibold text-gray-600">
                         Each Momento product works on its own — and even better together.
                     </p>
                 </div>

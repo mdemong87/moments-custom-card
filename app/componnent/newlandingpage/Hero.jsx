@@ -73,6 +73,60 @@ const Hero = () => {
 
 
 
+
+
+
+
+
+
+    const [activeCard, setActiveCard] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveCard((prev) => (prev + 1) % 3);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
+
+
+
+
+
+    const cardExamples = [
+        {
+            name: "Sarah",
+            trait: "The Adventurer",
+            color: "from-amber-400 to-orange-500",
+            image: "hero1.png",
+        },
+        {
+            name: "Mike",
+            trait: "Comedy King",
+            color: "from-blue-400 to-indigo-500",
+            image: "hero2.png",
+        },
+        {
+            name: "Luna",
+            trait: "Night Owl",
+            color: "from-purple-400 to-pink-500",
+            image: "hero3.png",
+        },
+        {
+            name: "Mike",
+            trait: "Comedy King",
+            color: "from-blue-400 to-indigo-500",
+            image: "hero4.png",
+        },
+        {
+            name: "Luna",
+            trait: "Night Owl",
+            color: "from-purple-400 to-pink-500",
+            image: "hero5.png",
+        },
+    ];
+
+
+
     return (
         <>
             <section className="h-fit lg:h-[90vh] w-screen relative bg-gray-50 py-16 overflow-hidden pb-6 lg:pb-0">
@@ -86,8 +140,9 @@ const Hero = () => {
                 <div className="relative max-w-7xl mx-auto px-4 flex flex-col-reverse lg:flex-row items-center justify-center gap-10 py-16 md:py-12 translate-y-[50px] lg:translate-y-[70px]">
                     {/* Left Text */}
                     <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start space-y-6 md:space-y-4 lg:space-y-6 text-center lg:text-left">
-                        <div className="text-sky-400 border border-sky-400 px-3 py-1 rounded-full">
-                            Game night, made personal.
+                        <div className="text-sky-400 bg-white border border-sky-400/30 px-3 py-1 rounded-full flex items-center gap-2">
+                            <span className="animate-bounce">✨</span>
+                            <span>Game night, made personal.</span>
                         </div>
                         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-[50px] md:leading-[60px] lg:leading-[75px] uppercase text-[#333333]">
                             Your people  <br />
@@ -96,11 +151,11 @@ const Hero = () => {
                         <p className="text-gray-700 text-base sm:text-lg lg:text-xl max-w-xl mx-auto lg:mx-0">
                             Turn friends, family, and inside jokes into a custom playing card experience you’ll want to use again and again.
                         </p>
-                        <div className="flex items-center gap-4">
-                            <Link onClick={() => { settype("all") }} href={'/shop'} className="bg-[#3CA9FF] text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-[#FF6F3C] transition">
+                        <div className="w-full flex items-center flex-col md:flex-row justify-center md:justify-start gap-4">
+                            <Link onClick={() => { settype("all") }} href={'/shop'} className="bg-[#3CA9FF] text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-[#FF6F3C] transition w-full md:w-fit">
                                 Create Your Deck
                             </Link>
-                            <Link onClick={() => { settype("all") }} href={'/howitwork'} className="bg-white text-[#3CA9FF] border border-[#3CA9FF] px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-[#FF6F3C] transition">
+                            <Link onClick={() => { settype("all") }} href={'/howitwork'} className="bg-white text-[#3CA9FF] border border-[#3CA9FF] px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-[#FF6F3C] hover:text-white transition w-full md:w-fit">
                                 See how it works →
                             </Link>
                         </div>
