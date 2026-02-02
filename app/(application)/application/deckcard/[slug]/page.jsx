@@ -2,7 +2,10 @@
 import ApplicationSkeleton from "@/app/componnent/ApplicationSkeleton";
 import BoxContentForDeckCard from "@/app/componnent/BoxPreview/BoxContentForDeckCard";
 import BoxPreview from "@/app/componnent/BoxPreview/BoxPreview";
+import usealreadyDoneStore from "@/store/usealreadyDoneStore";
+import useboxcartstore from "@/store/useboxcartstore";
 import useDeckFinalPreview from "@/store/useDeckFinalPreview";
+import usefinalCardsStore from "@/store/usefinalCardsStore";
 import CaptureScreenshort from "@/utilis/helper/CaptureScreenshort";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 import generateUserId from "@/utilis/helper/generateUserId";
@@ -29,10 +32,11 @@ const ProductCustomizer = () => {
 
 
     const { slug } = useParams();
+    const boxref = useRef(null);
     const previewCardNodeRef = useRef(null);
     const [product, setProduct] = useState(null);
     const [cards, setCards] = useState([]);
-    const [finalCards, setfinalCards] = useState([]);
+    //const [finalCards, setfinalCards] = useState([]);
     const [activeCardIndex, setActiveCardIndex] = useState(0);
     const router = useRouter();
     const token = getCookie();
@@ -40,6 +44,17 @@ const ProductCustomizer = () => {
     const [doneloading, setdoneloading] = useState(false);
     const { addToCart, clearCart } = useDeckFinalPreview();
     const [smallconOpen, setsmallconOpen] = useState(false);
+    const [editedCard, seteditedCard] = useState('a');
+    const [activebaseEditCard, setactivebaseEditCard] = useState([]);
+    // const [alreadyDone, setalreadyDone] = useState([]);
+    const { finalCards, setfinalCards } = usefinalCardsStore();
+    const { alreadyDone, setalreadyDone } = usealreadyDoneStore();
+    const { boxs } = useboxcartstore();
+
+
+    //for deck card
+    const [boxTitle, setboxTitle] = useState('Box Title');
+    const [created, setcreated] = useState("");
 
 
 
@@ -119,15 +134,18 @@ const ProductCustomizer = () => {
 
     /******* Removed Card Function ********/
     const removeCard = (index) => {
-        setfinalCards(prev => {
-            const updated = prev.filter((_, i) => i !== index);
-            let newActive = activeCardIndex;
-            if (updated.length === 0) newActive = 0;
-            else if (index < activeCardIndex) newActive -= 1;
-            else if (index === activeCardIndex) newActive = Math.min(activeCardIndex, updated.length - 1);
-            setActiveCardIndex(newActive);
-            return updated;
-        });
+
+        const updated = finalCards.filter((_, i) => i !== index);
+        let newActive = activeCardIndex;
+        if (updated.length === 0) newActive = 0;
+        else if (index < activeCardIndex) newActive -= 1;
+        else if (index === activeCardIndex) newActive = Math.min(activeCardIndex, updated.length - 1);
+        setActiveCardIndex(newActive);
+
+        setfinalCards([...updated]);
+
+        const alreadyDoneUpdated = alreadyDone.filter((_, i) => i !== index);
+        setalreadyDone([...alreadyDoneUpdated]);
     };
 
 
@@ -140,6 +158,15 @@ const ProductCustomizer = () => {
             toast.warn('Please Customize at least one card');
             return;
         }
+
+
+
+        if (boxs.length < 1) {
+            toast.warn('Box Design is not Captured');
+            return;
+        }
+
+
 
         clearCart();
         setspinloading(true);
@@ -156,7 +183,7 @@ const ProductCustomizer = () => {
             productGalary: product?.images,
             productDescription: product?.description,
             FinalProduct: finalCards,
-            FinalPDf: await pdfGanarator(finalCards)
+            FinalPDf: await pdfGanarator(finalCards.concat(boxs))
         };
 
         addToCart(producted);
@@ -169,7 +196,14 @@ const ProductCustomizer = () => {
 
 
     const Done = async () => {
+
+        if (alreadyDone.includes(editedCard)) {
+            toast.warn(`${editedCard == "a" ? "Ace" : editedCard == "k" ? "King" : editedCard == "q" ? "Queen" : editedCard == "j" ? "Jack" : "Joker"} Card is already Customized. If you would like to Re-customize it, please remove it first.`);
+            return;
+        }
+
         setdoneloading(true);
+        setalreadyDone([...alreadyDone, editedCard]);
         await CaptureScreenshort(previewCardNodeRef, finalCards, setfinalCards);
         setTimeout(() => {
             setdoneloading(false);
@@ -196,8 +230,8 @@ const ProductCustomizer = () => {
                     <div className="grid grid-cols-10 grid-rows-10 h-full w-full mt-2 lg:mt-0 relative">
                         <div className="col-span-10 row-span-9 lg:row-span-10 lg:col-span-6 flex items-center justify-center -translate-y-[150px] lg:-translate-y-[50px] w-screen lg:w-full z-40 relative">
                             <CardPreview activeCard={activeCard} previewCardNodeRef={previewCardNodeRef} />
-                            <BoxPreview>
-                                <BoxContentForDeckCard activeCard={activeCard} />
+                            <BoxPreview bfor="deck" boxref={boxref} boxTitle={boxTitle} setboxTitle={setboxTitle} created={created} setcreated={setcreated}>
+                                <BoxContentForDeckCard activeCard={activeCard} boxref={boxref} boxTitle={boxTitle} />
                             </BoxPreview>
                         </div>
                         <div className={`absolute transition-all duration-300 ${smallconOpen ? "top-px" : "top-2/4 sm:top-2/3"} lg:static lg:block col-span-10 row-span-1 lg:row-span-10 lg:col-span-4 w-screen lg:w-full h-full bg-white border-t border-gray-300 lg:border-l lg:border-gray-200 px-2 md:px-7 lg:px-6 mt-2 lg:mt-0 pb-68 lg:pb-0 shadow-2xl lg:shadow-sm rounded-t-4xl lg:rounded-none z-50`}>
@@ -208,7 +242,7 @@ const ProductCustomizer = () => {
                                     </div>
                                 </div>
                             </div>
-                            <SideController product={product} activeCard={activeCard} selectBase={selectBaseImage} selectLayer={selectLayerImage} />
+                            <SideController product={product} activeCard={activeCard} selectBase={selectBaseImage} selectLayer={selectLayerImage} editedCard={editedCard} seteditedCard={seteditedCard} activebaseEditCard={activebaseEditCard} setactivebaseEditCard={setactivebaseEditCard} />
                             <ViewCard smallconOpen={smallconOpen} isLoading={spinloading} goToFinalView={goToFinalView} />
                         </div>
                     </div>

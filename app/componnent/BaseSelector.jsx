@@ -1,12 +1,9 @@
 import CardChangerTracker from "@/utilis/helper/cardChangertrancker";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { GiCardAceClubs, GiCardJackClubs, GiCardJoker, GiCardKingClubs, GiCardQueenClubs } from "react-icons/gi";
 
-const BaseSelector = ({ product, activeCard, selectBase }) => {
-
-  const [editedCard, seteditedCard] = useState('a');
-  const [activebaseEditCard, setactivebaseEditCard] = useState([])
+const BaseSelector = ({ product, activeCard, selectBase, editedCard, seteditedCard, activebaseEditCard, setactivebaseEditCard }) => {
 
 
 

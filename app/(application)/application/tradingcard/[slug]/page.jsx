@@ -16,18 +16,31 @@ import { Rnd } from "react-rnd";
 import { toast, ToastContainer } from "react-toastify";
 import ViewCard from "../../../../componnent/ViewCard";
 
+import BoxContentForTradingCard from "@/app/componnent/BoxPreview/BoxContentForTradingCard";
+import BoxPreview from "@/app/componnent/BoxPreview/BoxPreview";
 import CharactersCountComponent from "@/app/componnent/CharactersCountComponent";
+import useboxcartstore from "@/store/useboxcartstore";
+import useCardforTrading from "@/store/useCardforTrading";
 import captureNodeScreenshotForTranding from "@/utilis/helper/captureNodeScreenshotForTranding";
+import ImageResize from "@/utilis/helper/ImageResize";
 const fonts = ["Arial", "Poppins", "Times New Roman", "Courier New", "Comic Sans MS"];
 
 export default function ProductCustomizer() {
 
-
+    const boxref = useRef(null);
     const { slug } = useParams();
 
     const previewCardNodeRef = useRef(null);
 
     const [smallconOpen, setsmallconOpen] = useState(false);
+
+
+
+    //for trading card boxs
+    const [boxTitle, setboxTitle] = useState('Pack Title');
+    const [created, setcreated] = useState("Created For");
+
+
 
     // replace these with real image URLs or keep as keys and map to your assets
     const [frontImages, setfrontImages] = useState(null);
@@ -44,14 +57,15 @@ export default function ProductCustomizer() {
     const [fetchingData, setfetchingData] = useState(null);
     const [fetchingDataLoading, setfetchingDataLoading] = useState(false);
 
-    const [cards, setCards] = useState([]);
+    // const [cards, setCards] = useState([]);
+    const { cards, setCards } = useCardforTrading();
     const [activeCardIndex, setActiveCardIndex] = useState(0);
     const [editmood, seteidtmood] = useState(true);
     const [spinloading, setspinloading] = useState(false);
     const router = useRouter();
     const [doneloading, setdoneloading] = useState(false);
     const { addToCart, clearCart } = useTradingFinalPreview();
-
+    const { boxs, setboxs } = useboxcartstore();
 
 
 
@@ -104,7 +118,7 @@ export default function ProductCustomizer() {
             setname3('Attribute Three');
             setacarddate('CLASS OF 2025');
 
-            setcardtiltelimite(12);
+            setcardtiltelimite(15);
             setcarddeslimite(95);
             setnamelimite(15);
             setname2limite(15);
@@ -151,10 +165,14 @@ export default function ProductCustomizer() {
 
 
     /******** Upload Image ********/
-    function handleUpload(e) {
-        const file = e.target.files?.[0];
+    async function handleUpload(e) {
+        const f = e.target.files?.[0];
+        const file = await ImageResize(f);
         if (!file) return;
         const url = URL.createObjectURL(file);
+
+
+
         const item = {
             id: Date.now(),
             url,
@@ -230,15 +248,15 @@ export default function ProductCustomizer() {
 
     /******* Removed Card Function ********/
     const removeCard = (index) => {
-        setCards(prev => {
-            const updated = prev.filter((_, i) => i !== index);
-            let newActive = activeCardIndex;
-            if (updated.length === 0) newActive = 0;
-            else if (index < activeCardIndex) newActive -= 1;
-            else if (index === activeCardIndex) newActive = Math.min(activeCardIndex, updated.length - 1);
-            setActiveCardIndex(newActive);
-            return updated;
-        });
+
+        const updated = cards.filter((_, i) => i !== index);
+        let newActive = activeCardIndex;
+        if (updated.length === 0) newActive = 0;
+        else if (index < activeCardIndex) newActive -= 1;
+        else if (index === activeCardIndex) newActive = Math.min(activeCardIndex, updated.length - 1);
+        setActiveCardIndex(newActive);
+
+        setCards([...updated]);
     };
 
 
@@ -248,6 +266,11 @@ export default function ProductCustomizer() {
 
         if (cards.length < 1) {
             toast.warn('Please Customize at least one card');
+            return;
+        }
+
+        if (boxs.length < 1) {
+            toast.warn("Packaging Design is not Captured");
             return;
         }
 
@@ -266,7 +289,7 @@ export default function ProductCustomizer() {
             productGalary: fetchingData?.images,
             productDescription: fetchingData?.description,
             FinalProduct: cards,
-            FinalPDf: await pdfGanarator(cards)
+            FinalPDf: await pdfGanarator(cards.concat(boxs))
         };
 
 
@@ -278,8 +301,6 @@ export default function ProductCustomizer() {
         }, 900);
     };
     // end from here
-
-
 
 
 
@@ -338,7 +359,7 @@ export default function ProductCustomizer() {
 
                                     key={img.id}
                                     bounds="parent"
-                                    size={{ width: img.width, height: img.height }}
+                                    size={{ width: "100%", height: "100%" }}
                                     position={{ x: img.x, y: img.y }}
                                     onDragStop={(_, d) => updateUploadPosition(img.id, d.x, d.y)}
                                     onResizeStop={(_, __, ref, ___, pos) => {
@@ -356,7 +377,7 @@ export default function ProductCustomizer() {
                                         height={1000}
                                         src={img.url}
                                         alt="upload"
-                                        className="w-full h-full object-contain rounded"
+                                        className="w-full h-full object-contain"
                                         draggable={false}
                                     />
                                 </Rnd>
@@ -430,6 +451,18 @@ export default function ProductCustomizer() {
                                 <div className="absolute inset-0 flex items-center justify-center text-gray-300">Preview area</div>
                             )}
                         </div>
+
+
+
+
+
+
+                        <BoxPreview boxref={boxref} bfor="trading" boxTitle={boxTitle} setboxTitle={setboxTitle} created={created} setcreated={setcreated}>
+                            <BoxContentForTradingCard boxref={boxref} boxTitle={boxTitle} created={created} />
+                        </BoxPreview>
+
+
+
                     </div>
 
                     {/* Right Controls column (inside the middle wrapper as your original) */}
@@ -457,6 +490,7 @@ export default function ProductCustomizer() {
                                     <BsCreditCard2Back className="text-xl" />
                                     <span>Back Side</span>
                                 </button>
+
                             </div>
 
 
@@ -507,7 +541,7 @@ export default function ProductCustomizer() {
 
                             {/* Upload Image */}
                             <div className="my-6">
-                                <label className="block text-gray-700 mb-1">Upload Image <span className="text-red-600 text-xl">*</span> <span className="text-gray-500 bg-yellow-200 px-1.5 rounded-md text-xs">900 x 1300</span></label>
+                                <label className="block text-gray-700 mb-1">Upload Image <span className="text-red-600 text-xl">*</span> <span className="text-gray-500 bg-yellow-200 px-1.5 rounded-md text-xs">Height:334px & Width: 250px</span></label>
                                 <div className="flex gap-2 items-center">
                                     <label className="" htmlFor="uploadImage">
                                         <div className=" w-[80px] h-[80px] lg:w-[80px] lg:h-[80px] bg-gray-100 rounded-md flex items-center justify-center cursor-pointer">

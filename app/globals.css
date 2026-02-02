@@ -9,8 +9,6 @@
 }
 
 
-
-
 @layer utilities {
 
   /* Hide scrollbar for Chrome, Safari and Opera */
@@ -50,6 +48,11 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+
+html {
+  scroll-behavior: smooth;
 }
 
 
@@ -196,14 +199,27 @@ input[type=number] {
 
 
 
-
-
 .bebas {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 700;
 }
 
 
+.AileronFont {
+  font-family: var(--font-Aileron) !important;
+}
+
+.GustanBlackFont {
+  font-family: var(--font-GustanBlack) !important;
+}
+
+.BrunsonFont {
+  font-family: var(--font-Brunson) !important;
+}
+
+.FastSpeedDemoFont {
+  font-family: var(--font-FastSpeedDemo) !important;
+}
 
 .text-stroke {
   -webkit-text-stroke: 0.5px #000;

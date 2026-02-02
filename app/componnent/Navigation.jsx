@@ -26,6 +26,12 @@ const Navigation = ({ isOpen, setisOpen }) => {
             link: "/shop"
         },
         {
+            name: "How it Works",
+            nested: false,
+            sub: [],
+            link: "/howitwork"
+        },
+        {
             name: "Card Customization",
             nested: false,
             sub: [],

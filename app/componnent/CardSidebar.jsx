@@ -15,7 +15,7 @@ const CardSidebar = ({ finalCards, activeIndex, Done, setActiveIndex, addCard, r
       </div>
     </h3>
     <div className="w-full lg:w-full flex flex-row lg:flex-col gap-4 items-center h-[80px] p-1 lg:h-fit snap-mandatory overflow-x-scroll cursor-grab lg:overflow-y-scroll scrollbar-hide lg:max-h-[77vh] lg:min-h-[77vh] bg-gray-50 rounded-md border border-gray-100">
-      {finalCards.map((finalCard, idx) => (
+      {finalCards?.map((finalCard, idx) => (
         <div
           key={idx}
           className={`w-[60px] h-full lg:h-fit lg:w-full relative flex items-cemter justify-center rounded-xl z-0 snap-start  border-2 border-gray-200`}

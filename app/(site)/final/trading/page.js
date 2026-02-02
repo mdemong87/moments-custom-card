@@ -1,5 +1,6 @@
 "use client";
 import SpinLoader from "@/app/componnent/SpingLoader";
+import useboxcartstore from "@/store/useboxcartstore";
 import useCartStore from "@/store/useCartStore";
 import useTradingFinalPreview from "@/store/useTradingFinalPreview";
 import Image from "next/image";
@@ -13,8 +14,9 @@ import { IoCartOutline } from "react-icons/io5";
 const FinalCardsPage = () => {
 
     const [loading, setloading] = useState(false);
-    const { addToCart } = useCartStore();
+    const { addToCart, cart } = useCartStore();
     const { tradingcart } = useTradingFinalPreview();
+    const { boxs } = useboxcartstore();
     const router = useRouter();
 
     function addtocartMainCart(e) {
@@ -28,8 +30,9 @@ const FinalCardsPage = () => {
     }
 
 
-    if (tradingcart[0]?.FinalProduct < 1) return <div>No cards found.</div>;
 
+
+    console.log(tradingcart);
 
 
     return (
@@ -55,6 +58,23 @@ const FinalCardsPage = () => {
                 ))}
 
             </div>
+
+
+            <div className="mt-6">
+                <h2 className="py-4 text-gray-700 font-semibold">packaging Preview</h2>
+
+                {
+                    boxs?.map((item, index) => {
+                        return (
+                            <div key={index} className="w-[170px] h-auto lg:w-[600px] lg:h-auto flex items-center justify-center ">
+                                <Image className="object-contain z-10" src={item} width={1000} height={1000} alt="final-cards" />
+                            </div>
+                        )
+                    })
+                }
+
+            </div>
+
         </div>
     );
 };
