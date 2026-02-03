@@ -1,6 +1,5 @@
 import { Bebas_Neue, Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
-import Header from "./componnent/Header";
 import "./globals.css";
 
 
@@ -102,10 +101,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${bebas.variable} ${Brunson.variable} ${GustanBlack.variable} ${AileronFont.variable} ${FastSpeedDemo.variable} antialiased`}
       >
-        <Header />
-        <div className="pt-[75px] bg-gray-100">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );

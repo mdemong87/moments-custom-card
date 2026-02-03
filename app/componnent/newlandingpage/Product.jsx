@@ -1,11 +1,12 @@
 'use client';
 
 import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const products = [
     {
-        icon: '🂡',
+        img: 'https://res.cloudinary.com/dg83pvgls/image/upload/v1770007236/one_rzpshu.png',
         title: 'Portrait Deck',
         subtitle: '(Signature)',
         description: 'A full playing card deck — built from your people.',
@@ -16,7 +17,7 @@ const products = [
         ]
     },
     {
-        icon: '🃏',
+        img: 'https://res.cloudinary.com/dg83pvgls/image/upload/v1770031147/3_n1epsz.png',
         title: 'Momento Trading Cards',
         description: 'Capture real moments — one card at a time.',
         features: [
@@ -26,7 +27,7 @@ const products = [
         ]
     },
     {
-        icon: '⚡',
+        img: 'https://res.cloudinary.com/dg83pvgls/image/upload/v1770007236/one_rzpshu.png',
         title: 'Chaos Cards',
         description: 'Instant chaos. Real cards. Wild rules.',
         features: [
@@ -50,27 +51,26 @@ export default function Products() {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8 mb-12">
+                <div className="grid md:grid-cols-3 gap-4 lg:gap-8 mb-12">
                     {products.map((product, idx) => (
                         <div
                             key={idx}
-                            className="group relative bg-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 border border-primary/10 hover:border-primary/30"
+                            className="group relative bg-white rounded-2xl p-4 lg:p-8 border border-sky-400/20"
                         >
                             {/* Decorative accent */}
                             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
 
                             <div className="relative space-y-6">
-                                <div className="text-5xl">{product.icon}</div>
+                                <div className="text-5xl">
+                                    <div className='h-fit w-full rounded-md'>
+                                        <Image className='rounded-lg object-cover' src={product.img} alt={product.title} width={1000} height={1000} />
+                                    </div>
+                                </div>
 
                                 <div className="space-y-2">
                                     <h3 className="text-2xl font-bold text-gray-700">
                                         {product.title}
                                     </h3>
-                                    {product.subtitle && (
-                                        <p className="text-sm text-gray-600 italic">
-                                            {product.subtitle}
-                                        </p>
-                                    )}
                                 </div>
 
                                 <p className="text-lg text-gray-600/80 leading-relaxed">
@@ -88,7 +88,7 @@ export default function Products() {
 
                                 <Link href={'/shop'}
                                     variant="ghost"
-                                    className="text-sky-400 hover:text-primary hover:bg-primary/5 p-0 h-auto font-semibold group/btn flex items-center justify-start"
+                                    className="text-gray-100 bg-sky-400 hover:bg-sky-400 py-2 rounded-lg shadow-md h-auto font-semibold group/btn flex items-center justify-center"
                                 >
                                     <span>Create {product.title.split(' ')[0]}</span>
                                     <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />

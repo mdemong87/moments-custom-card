@@ -129,7 +129,7 @@ const Hero = () => {
 
     return (
         <>
-            <section className="h-fit lg:h-[90vh] w-screen relative bg-gray-50 py-16 overflow-hidden pb-6 lg:pb-0">
+            <section className="h-fit lg:h-[100vh] w-screen relative bg-gray-50 py-6 overflow-hidden pb-6 lg:pb-0">
                 {/* Background */}
                 <div className="absolute inset-0">
                     <div
@@ -137,31 +137,31 @@ const Hero = () => {
                     />
                 </div>
                 {/* Content */}
-                <div className="relative max-w-7xl mx-auto px-4 flex flex-col-reverse lg:flex-row items-center justify-center gap-10 py-16 md:py-12 translate-y-[50px] lg:translate-y-[70px]">
+                <div className="relative max-w-6xl mx-auto px-4 flex flex-col-reverse lg:flex-col-reverse items-center justify-center gap-10">
                     {/* Left Text */}
-                    <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start space-y-6 md:space-y-4 lg:space-y-6 text-center lg:text-left">
+                    <div className="w-full lg:w-2/2 flex flex-col items-center lg:items-center space-y-6 md:space-y-4 lg:space-y-6 text-center lg:text-left">
                         <div className="text-sky-400 bg-white border border-sky-400/30 px-3 py-1 rounded-full flex items-center gap-2">
                             <span className="animate-bounce">✨</span>
                             <span>Game night, made personal.</span>
                         </div>
-                        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-[50px] md:leading-[60px] lg:leading-[75px] uppercase text-[#333333]">
+                        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-[50px] md:leading-[60px] lg:leading-[75px] uppercase text-[#333333] text-center">
                             Your people  <br />
                             <span className="text-[#3CA9FF]">Your deck</span> <br /> Your game
                         </h1>
                         <p className="text-gray-700 text-base sm:text-lg lg:text-xl max-w-xl mx-auto lg:mx-0">
                             Turn friends, family, and inside jokes into a custom playing card experience you’ll want to use again and again.
                         </p>
-                        <div className="w-full flex items-center flex-col md:flex-row justify-center md:justify-start gap-4">
+                        <div className="w-full flex items-center flex-col md:flex-row justify-center md:justify-cener gap-4">
                             <Link onClick={() => { settype("all") }} href={'/shop'} className="bg-[#3CA9FF] text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-[#FF6F3C] transition w-full md:w-fit">
                                 Create Your Deck
                             </Link>
-                            <Link onClick={() => { settype("all") }} href={'/howitwork'} className="bg-white text-[#3CA9FF] border border-[#3CA9FF] px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-[#FF6F3C] hover:text-white transition w-full md:w-fit">
+                            <Link onClick={() => { settype("all") }} href={'/landing#how-it-works'} className="bg-white text-[#3CA9FF] border border-[#3CA9FF] px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-[#FF6F3C] hover:text-white transition w-full md:w-fit">
                                 See how it works →
                             </Link>
                         </div>
                     </div>
                     {/* Right Cards */}
-                    <div className="w-full lg:w-1/2 flex justify-center items-center relative h-[40vw] md:h-[25vw] lg:h-[420px]">
+                    <div className="w-fit flex justify-center items-center relative h-[150px] md:h-[220px] lg:h-[370px] translate-x-[65px] lg:translate-x-[100px]">
                         {cards.map((src, index) => {
                             const isLast = index === cards.length - 1;
                             const targetRotate = isLast ? 0 : -(cards.length - 1 - index) * 13;
@@ -171,7 +171,7 @@ const Hero = () => {
                             return (
                                 <div
                                     key={index}
-                                    className="absolute bottom-5 left-[65%] lg:left-[70%] xl:left-[75%] lg:bottom-0 transition-transform duration-700 ease-out"
+                                    className="absolute h-full -bottom-8 lg:bottom-5 left-[65%] lg:left-[70%] xl:left-[75%] transition-transform duration-700 ease-out"
                                     style={{
                                         transformOrigin: "bottom left",
                                         transform: mounted
@@ -180,12 +180,12 @@ const Hero = () => {
                                         zIndex: index,
                                     }}
                                 >
-                                    <div className="relative w-[35vw] sm:w-[25vw] lg:w-[300px] aspect-[3/4]">
+                                    <div className="relative h-full w-[35vw] sm:w-[25vw] lg:w-[200px] aspect-[3/4]">
                                         <Image
                                             src={src}
                                             alt={`Card ${index + 1}`}
                                             fill
-                                            className="rounded-xl object-contain"
+                                            className="rounded-xl object-contain full"
                                             unoptimized
                                         />
                                     </div>
@@ -195,23 +195,6 @@ const Hero = () => {
                     </div>
                 </div>
             </section>
-            {/* Smooth Infinite Ticker */}
-            <div className="hidden lg:block absolute bottom-0 left-0 overflow-hidden w-screen">
-                <div className="block lg:block bg-[#3CA9FF] text-white overflow-hidden  py-3 relative cursor-grab">
-                    <div
-                        ref={tickerRef}
-                        className="flex whitespace-nowrap select-none"
-                        style={{ transform: "translateX(0)" }}
-                    >
-                        {/* Duplicate content to enable smooth infinite scroll */}
-                        {[...tickerItems, ...tickerItems].map((text, i) => (
-                            <span key={i} className="mx-8 text-lg sm:text-xl lg:text-2xl">
-                                {text}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            </div>
         </>
     )
 }

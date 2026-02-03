@@ -20,7 +20,7 @@ export default function Howwork() {
 
     return (
         <>
-            <section className="relative max-w-7xl mx-auto px-6 py-20">
+            <section id="how-it-works" className="relative max-w-7xl mx-auto px-6 py-20">
                 <div className="text-center mb-16">
                     <h2 className="text-5xl lg:text-6xl font-black tracking-tight text-slate-900 mb-4">
                         How It Works
@@ -33,7 +33,7 @@ export default function Howwork() {
                 <div className="space-y-32">
                     {/* Step 1 */}
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div className="space-y-6" style={{ animation: 'fadeInLeft 0.8s ease-out' }}>
+                        <div className="order-2 lg:order-1 space-y-6" style={{ animation: 'fadeInLeft 0.8s ease-out' }}>
                             <div className="inline-flex items-center gap-3">
                                 <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
                                     <span className="text-white font-black text-xl">1</span>
@@ -80,11 +80,11 @@ export default function Howwork() {
                                 <ArrowRight className="w-5 h-5" />
                             </Link>
                         </div>
-                        <div className="relative h-96 rounded-3xshadow-xl rounded-3xl">
+                        <div className="order-1 lg:order-2 relative h-fit rounded-3x w-full">
                             <img
                                 src={stepImages[0]}
                                 alt="Step 1 visual"
-                                className="max-w-full mx-auto max-h-full object-cover rounded-3xl shadow-2xl"
+                                className="w-full h-full object-cover rounded-3xl shadow-2xl"
                             />
                         </div>
                     </div>
@@ -93,7 +93,7 @@ export default function Howwork() {
 
                     {/* Step 2 */}
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div className="lg:order-2 space-y-6" style={{ animation: 'fadeInRight 0.8s ease-out' }}>
+                        <div className="order-2 lg:order-2 space-y-6" style={{ animation: 'fadeInRight 0.8s ease-out' }}>
                             <div className="inline-flex items-center gap-3">
                                 <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg">
                                     <span className="text-white font-black text-xl">2</span>
@@ -125,18 +125,18 @@ export default function Howwork() {
                                 <ArrowRight className="w-5 h-5" />
                             </Link>
                         </div>
-                        <div className="relative h-96 rounded-3xl flex items-center justify-center">
+                        <div className="order-1 lg:order-1 relative w-full h-fit rounded-3xl flex items-center justify-center">
                             <img
                                 src={stepImages[1]}
                                 alt="Step 1 visual"
-                                className="max-w-full mx-auto max-h-full object-conver rounded-3xl shadow-2xl"
+                                className="w-full h-full object-cover rounded-3xl shadow-2xl"
                             />
                         </div>
                     </div>
 
                     {/* Step 3 */}
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div className="space-y-6" style={{ animation: 'fadeInLeft 0.8s ease-out' }}>
+                        <div className="order-2 lg:order-1 space-y-6" style={{ animation: 'fadeInLeft 0.8s ease-out' }}>
                             <div className="inline-flex items-center gap-3">
                                 <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
                                     <span className="text-white font-black text-xl">3</span>
@@ -172,18 +172,18 @@ export default function Howwork() {
                                 <ArrowRight className="w-5 h-5" />
                             </Link>
                         </div>
-                        <div className="relative h-96 rounded-3xl flex items-center justify-center">
+                        <div className="order-1 lg:order-2 relative h-fit w-full rounded-3xl flex items-center justify-center">
                             <img
                                 src={stepImages[2]}
                                 alt="Step 1 visual"
-                                className="max-w-full mx-auto max-h-full object-conver rounded-3xl shadow-2xl"
+                                className="w-full h-full object-cover rounded-3xl shadow-2xl"
                             />
                         </div>
                     </div>
 
                     {/* Step 4 */}
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div className="lg:order-2 space-y-6" style={{ animation: 'fadeInRight 0.8s ease-out' }}>
+                        <div className="order-2 lg:order-2 space-y-6" style={{ animation: 'fadeInRight 0.8s ease-out' }}>
                             <div className="inline-flex items-center gap-3">
                                 <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg">
                                     <span className="text-white font-black text-xl">4</span>
@@ -201,19 +201,19 @@ export default function Howwork() {
                                 <Eye className="w-5 h-5" />
                             </Link>
                         </div>
-                        <div className="lg:order-1 relative h-96 rounded-3xl flex items-center justify-center">
+                        <div className="order-1 lg:order-1 relative h-fit rounded-3xl w-full flex items-center justify-center">
 
                             <img
                                 src={stepImages[3]}
                                 alt="Step 1 visual"
-                                className="max-w-full mx-auto max-h-full object-conver rounded-3xl shadow-2xl"
+                                className="w-full h-full object-cover rounded-3xl shadow-2xl"
                             />
                         </div>
                     </div>
 
                     {/* Step 5 */}
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div className="space-y-6" style={{ animation: 'fadeInLeft 0.8s ease-out' }}>
+                        <div className="order-2 lg:order-1 space-y-6" style={{ animation: 'fadeInLeft 0.8s ease-out' }}>
                             <div className="inline-flex items-center gap-3">
                                 <div className="w-12 h-12 bg-gradient-to-br from-rose-400 to-red-500 rounded-xl flex items-center justify-center shadow-lg">
                                     <span className="text-white font-black text-xl">5</span>
@@ -251,11 +251,11 @@ export default function Howwork() {
                                 <Package className="w-5 h-5" />
                             </Link>
                         </div>
-                        <div className="relative h-96 rounded-3xl flex items-center justify-center">
+                        <div className="order-1 lg:order-2 relative h-fit w-full rounded-3xl flex items-center justify-center">
                             <img
                                 src={stepImages[4]}
                                 alt="Step 1 visual"
-                                className="max-w-full mx-auto max-h-full object-cover rounded-3xl shadow-2xl"
+                                className="w-full h-full object-cover rounded-3xl shadow-2xl"
                             />
                         </div>
                     </div>
