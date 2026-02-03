@@ -1,8 +1,8 @@
 'use client'
 
 import { useRouter } from "next/navigation";
-import useLoadingStore from "../../../store/useLoadingStore";
-import logingandsignupmakepost from "../../../utilis/requestrespose/logingandsignupmakepost";
+import useLoadingStore from "../../../../store/useLoadingStore";
+import logingandsignupmakepost from "../../../../utilis/requestrespose/logingandsignupmakepost";
 
 import useLogedUserStore from "@/store/useLogedUser";
 import { useState } from "react";

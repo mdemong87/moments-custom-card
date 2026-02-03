@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import useLoadingStore from "../../../store/useLoadingStore";
-import logingandsignupmakepost from "../../../utilis/requestrespose/logingandsignupmakepost";
+import useLoadingStore from "../../../../store/useLoadingStore";
+import logingandsignupmakepost from "../../../../utilis/requestrespose/logingandsignupmakepost";
 
 
 const SignUP = () => {
