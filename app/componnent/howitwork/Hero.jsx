@@ -63,7 +63,7 @@ export default function Hero() {
             <section className="relative max-w-7xl mx-auto px-6 py-20 lg:py-32">
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     {/* Left Text Section */}
-                    <div className="space-y-8" style={{ animation: 'fadeInUp 0.8s ease-out' }}>
+                    <div className="space-y-8 text-center lg:text-left" style={{ animation: 'fadeInUp 0.8s ease-out' }}>
                         <div className="inline-block px-4 py-2 bg-amber-100 rounded-full border-2 border-amber-300">
                             <span className="text-amber-800 font-bold text-sm tracking-wide uppercase">
                                 ✨ Turn Memories Into Cards
@@ -83,11 +83,11 @@ export default function Hero() {
                         </p>
 
                         <div className="flex flex-wrap gap-4">
-                            <Link href={'/shop'} className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl hover:from-amber-600 hover:to-orange-600 transition-all shadow-xl hover:shadow-2xl hover:scale-105 transform flex items-center gap-2 text-lg">
+                            <Link href={'/shop'} className="w-full lg:w-fit text-center flex items-center justify-center px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl hover:from-amber-600 hover:to-orange-600 transition-all shadow-xl hover:shadow-2xl hover:scale-105 transform flex items-center gap-2 text-lg">
                                 Create Your Cards
                                 <ArrowRight className="w-5 h-5" />
                             </Link>
-                            <Link href={'/howitwork#video'} className="px-8 py-4 bg-white text-slate-900 font-bold rounded-xl border-2 border-slate-200 hover:border-amber-400 transition-all shadow-lg hover:shadow-xl flex items-center gap-2 text-lg">
+                            <Link href={'/howitwork#video'} className="w-full lg:w-fit text-center flex items-center justify-center px-8 py-4 bg-white text-slate-900 font-bold rounded-xl border-2 border-slate-200 hover:border-amber-400 transition-all shadow-lg hover:shadow-xl flex items-center gap-2 text-lg">
                                 <Play className="w-5 h-5" />
                                 Watch Demo
                             </Link>
@@ -95,7 +95,7 @@ export default function Hero() {
                     </div>
 
                     {/* Animated Card Stack */}
-                    <div className="relative h-[600px] flex items-center justify-center" style={{ animation: 'fadeInUp 0.8s ease-out 0.2s backwards' }}>
+                    <div className="hidden lg:flex relative h-[600px] items-center justify-center" style={{ animation: 'fadeInUp 0.8s ease-out 0.2s backwards' }}>
                         {cardExamples.map((card, index) => (
                             <div
                                 key={index}

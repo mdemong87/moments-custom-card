@@ -4,7 +4,7 @@ import ShopCardSkeleton from "@/app/componnent/ShopCardSkeleton";
 import useFilterStore from "@/store/useFilterStore";
 import MakeGet from "@/utilis/requestrespose/get";
 import { useEffect, useState } from "react";
-import ShopCard from "../../componnent/ShopCard";
+import ShopCard from "../../../componnent/ShopCard";
 
 const About = () => {
 

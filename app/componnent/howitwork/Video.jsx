@@ -5,7 +5,7 @@ export default function Video() {
     const [playing, setPlaying] = useState(false);
 
     return (
-        <section id="video" className="relative container mx-auto px-6 py-20 mt-20">
+        <section id="video" className="relative container mx-auto px-6 py-20  mt-0 lg:mt-20">
             <div className="max-w-5xl mx-auto">
                 <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-2 shadow-2xl">
                     <div className="bg-slate-950 rounded-2xl aspect-video relative overflow-hidden group">

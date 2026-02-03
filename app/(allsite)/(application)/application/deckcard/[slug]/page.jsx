@@ -15,10 +15,10 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { toast, ToastContainer } from "react-toastify";
-import CardPreview from "../../../../componnent/CardPreview";
-import CardSidebar from "../../../../componnent/CardSidebar";
-import SideController from "../../../../componnent/SideController";
-import ViewCard from "../../../../componnent/ViewCard";
+import CardPreview from "../../../../../componnent/CardPreview";
+import CardSidebar from "../../../../../componnent/CardSidebar";
+import SideController from "../../../../../componnent/SideController";
+import ViewCard from "../../../../../componnent/ViewCard";
 
 const layers = [
     "dresses", "skin_tones", "hairs", "crowns",

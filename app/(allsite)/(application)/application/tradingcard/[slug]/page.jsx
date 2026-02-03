@@ -14,7 +14,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import { IoIosArrowDown } from "react-icons/io";
 import { Rnd } from "react-rnd";
 import { toast, ToastContainer } from "react-toastify";
-import ViewCard from "../../../../componnent/ViewCard";
+import ViewCard from "../../../../../componnent/ViewCard";
 
 import BoxContentForTradingCard from "@/app/componnent/BoxPreview/BoxContentForTradingCard";
 import BoxPreview from "@/app/componnent/BoxPreview/BoxPreview";

@@ -10,8 +10,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { toast, ToastContainer } from "react-toastify";
-import DeshboardNavigation from "../componnent/Deshboardnavigation";
-import SpinLoader from "../componnent/SpingLoader";
+import DeshboardNavigation from "../../componnent/Deshboardnavigation";
+import SpinLoader from "../../componnent/SpingLoader";
 
 const Deshboardlayout = ({ children }) => {
 
@@ -21,7 +21,7 @@ const Deshboardlayout = ({ children }) => {
     const { loginUser, setLoginUser } = useLogedUserStore();
     const { isSideberOpen, setisSideberOpen } = usedeshboardsidebercontroller();
     const { isLoading, setLoading } = useLoadingStore();
-   const isDeshboard = pathName.startsWith("/deshboard");
+    const isDeshboard = pathName.startsWith("/deshboard");
 
 
 

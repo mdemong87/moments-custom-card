@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import useLoadingStore from "../../../store/useLoadingStore";
-import setCookie from "../../../utilis/helper/cookie/setcookie";
-import logingandsignupmakepost from "../../../utilis/requestrespose/logingandsignupmakepost";
+import useLoadingStore from "../../../../store/useLoadingStore";
+import setCookie from "../../../../utilis/helper/cookie/setcookie";
+import logingandsignupmakepost from "../../../../utilis/requestrespose/logingandsignupmakepost";
 
 import SpinLoader from "@/app/componnent/SpingLoader";
 import useLogedUserStore from "@/store/useLogedUser";

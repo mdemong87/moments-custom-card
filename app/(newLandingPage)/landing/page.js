@@ -1,6 +1,7 @@
 'use client';
 
 import Howwork from '@/app/componnent/howitwork/Howwork';
+import Customzaizer from '@/app/componnent/newlandingpage/Customaizer';
 import Image from 'next/image';
 import Link from 'next/link';
 import FinalCTA from '../../componnent/newlandingpage/FinalCTA';
@@ -13,11 +14,12 @@ import WhyMomento from '../../componnent/newlandingpage/WhyMomento';
 export default function Page() {
     return (
         <main className="min-h-screen">
+
             <Hero />
 
             {/* Explainer Video Section */}
-            <section className="py-20 md:py-24 px-4 bg-gray-50">
-                <div className="max-w-7xl mx-auto text-center">
+            <section className="py-20 md:py-24 px-4 bg-sky-50">
+                <div className="max-w-6xl mx-auto text-center">
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-700 mb-6 text-balance">
                         See How Momento Works
                     </h2>
@@ -48,7 +50,7 @@ export default function Page() {
 
             {/* What is Momento */}
             <section className="py-20 md:py-24 px-4 bg-white">
-                <div className="max-w-7xl mx-auto">
+                <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-4xl md:text-5xl font-bold text-gray-700 mb-4 text-balance">
                             What Is Momento?
@@ -59,7 +61,7 @@ export default function Page() {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <div className="space-y-6 text-center md:text-left">
+                        <div className="order-2 md:order-1 space-y-6 text-center md:text-left">
                             <p className="text-lg text-gray-700/70 leading-relaxed">
                                 Momento turns the people you care about into playable cards.
                             </p>
@@ -74,7 +76,7 @@ export default function Page() {
                             </Link>
                         </div>
 
-                        <div className="relative h-96 rounded-2xl overflow-hidden bg-sky-400/10 flex items-center justify-center border-2 border-sky-200/10">
+                        <div className="order-1 md:order-2 relative h-fit rounded-2xl overflow-hidden bg-sky-400/10 flex items-center justify-center border-2 border-sky-200/10">
                             <Image src="https://res.cloudinary.com/dg83pvgls/image/upload/v1770007236/one_rzpshu.png" width={1000} height={1000} alt='what is momento' />
                         </div>
                     </div>
@@ -82,11 +84,21 @@ export default function Page() {
             </section>
 
             <Products />
-            <Howwork />
+
+            <Customzaizer />
+
+
+            <div className='bg-sky-50'>
+                <div className='w-full max-w-6xl mx-auto'>
+                    <Howwork />
+                </div>
+            </div>
+
             <WhyMomento />
             <SocialProof />
             <PremiumQuality />
             <FinalCTA />
+
         </main>
     );
 }

@@ -1,5 +1,5 @@
-import FixedcartToolbar from "../componnent/FixedCartToolbar";
-import Footer from "../componnent/Footer";
+import FixedcartToolbar from "../../componnent/FixedCartToolbar";
+import Footer from "../../componnent/Footer";
 
 
 

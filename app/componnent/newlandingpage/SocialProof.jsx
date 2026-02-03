@@ -7,23 +7,23 @@ import { useState } from 'react';
 const testimonials = [
     {
         quote: 'We ended up playing way longer than usual because everyone kept pulling cards with themselves on them.',
-        author: 'Happy Customer'
+        author: 'Amor Young'
     },
     {
         quote: 'I thought it would be a funny gift, but it became our go-to deck.',
-        author: 'Game Night Host'
+        author: 'Michelle Wadowski'
     },
     {
         quote: 'Watching everyone react was the best part.',
-        author: 'Gift Giver'
+        author: 'Jose Martinez'
     },
     {
         quote: 'The quality is incredible. These cards feel premium and look amazing.',
-        author: 'Card Collector'
+        author: 'Issac Barker'
     },
     {
         quote: 'Best gift I\'ve ever given. Everyone talks about it.',
-        author: 'Thoughtful Gifter'
+        author: 'Brianna Gilligan'
     }
 ];
 
