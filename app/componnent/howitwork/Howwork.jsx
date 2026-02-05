@@ -6,9 +6,9 @@ export default function Howwork() {
     const stepImages = [
         "https://res.cloudinary.com/dg83pvgls/image/upload/v1770007236/one_rzpshu.png",
 
-        'https://res.cloudinary.com/dg83pvgls/image/upload/v1770031146/2_mxc4op.png',
+        'https://res.cloudinary.com/dg83pvgls/image/upload/v1770290393/all_fota_ko7a57.png',
 
-        "https://res.cloudinary.com/dg83pvgls/image/upload/v1770031147/3_n1epsz.png",
+        "https://res.cloudinary.com/dg83pvgls/image/upload/v1770289864/image_26_rt1gtr.png",
 
         "https://res.cloudinary.com/dg83pvgls/image/upload/v1770007236/one_rzpshu.png",
 

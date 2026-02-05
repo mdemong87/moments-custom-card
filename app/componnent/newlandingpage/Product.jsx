@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const products = [
     {
-        img: 'https://res.cloudinary.com/dg83pvgls/image/upload/v1770007236/one_rzpshu.png',
+        img: 'https://res.cloudinary.com/dg83pvgls/image/upload/v1770290393/all_fota_ko7a57.png',
         title: 'Portrait Deck',
         subtitle: '(Signature)',
         description: 'A full playing card deck — built from your people.',
@@ -17,7 +17,7 @@ const products = [
         ]
     },
     {
-        img: 'https://res.cloudinary.com/dg83pvgls/image/upload/v1770031147/3_n1epsz.png',
+        img: 'https://res.cloudinary.com/dg83pvgls/image/upload/v1770289864/image_26_rt1gtr.png',
         title: 'Momento Trading Cards',
         description: 'Capture real moments — one card at a time.',
         features: [
@@ -27,7 +27,7 @@ const products = [
         ]
     },
     {
-        img: 'https://res.cloudinary.com/dg83pvgls/image/upload/v1770007236/one_rzpshu.png',
+        img: 'https://res.cloudinary.com/dg83pvgls/image/upload/v1770294032/chaos_ll5mbl.png',
         title: 'Chaos Cards',
         description: 'Instant chaos. Real cards. Wild rules.',
         features: [
