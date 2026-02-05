@@ -377,7 +377,7 @@ export default function ProductCustomizer() {
                                         height={1000}
                                         src={img.url}
                                         alt="upload"
-                                        className="w-full h-full object-contain"
+                                        className="w-full h-full object-cover"
                                         draggable={false}
                                     />
                                 </Rnd>
