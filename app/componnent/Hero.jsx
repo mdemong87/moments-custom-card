@@ -15,7 +15,7 @@ const cards = [
     hero2,
     hero1,
 ];
-const tickerItems = ["Free Delivery", "Premium Quality", "Long Lasting", "Easily Customizable"];
+const tickerItems = ["Designed to Be Remembered", "Fully Custom, Down to the Detail", "Premium Print Quality",];
 
 
 
@@ -137,13 +137,13 @@ const Hero = () => {
             <div className="hidden lg:block absolute bottom-0 left-0 overflow-hidden w-screen">
                 <div className="block lg:block bg-[#3CA9FF] text-white overflow-hidden  py-3 relative cursor-grab">
                     <div
-                        ref={tickerRef}
-                        className="flex whitespace-nowrap select-none"
-                        style={{ transform: "translateX(0)" }}
+                        //ref={tickerRef}
+                        className="flex whitespace-nowrap select-none gap-2 lg:gap-18 justify-center items-center"
+                    // style={{ transform: "translateX(0)" }}
                     >
                         {/* Duplicate content to enable smooth infinite scroll */}
-                        {[...tickerItems, ...tickerItems].map((text, i) => (
-                            <span key={i} className="mx-8 text-lg sm:text-xl lg:text-2xl">
+                        {[...tickerItems].map((text, i) => (
+                            <span key={i} className="text-lg sm:text-xl lg:text-2xl">
                                 {text}
                             </span>
                         ))}

@@ -57,6 +57,10 @@ const ProductCustomizer = () => {
     const [created, setcreated] = useState("");
 
 
+    // for box preview open
+    const [BoxPreviewOpen, setboxPreviewOpen] = useState(false);
+
+
 
     /************** Fetch product & load saved cards **************/
     useEffect(() => {
@@ -155,14 +159,15 @@ const ProductCustomizer = () => {
 
 
         if (finalCards.length < 1) {
-            toast.warn('Please Customize at least one card');
+            toast.warn('Click ‘Add Card’ to continue.');
             return;
         }
 
 
 
         if (boxs.length < 1) {
-            toast.warn('Box Design is not Captured');
+            toast.warn('Box Design should be Captured');
+            setboxPreviewOpen(true);
             return;
         }
 
@@ -230,7 +235,7 @@ const ProductCustomizer = () => {
                     <div className="grid grid-cols-10 grid-rows-10 h-full w-full mt-2 lg:mt-0 relative">
                         <div className="col-span-10 row-span-9 lg:row-span-10 lg:col-span-6 flex items-center justify-center -translate-y-[150px] lg:-translate-y-[50px] w-screen lg:w-full z-40 relative">
                             <CardPreview activeCard={activeCard} previewCardNodeRef={previewCardNodeRef} />
-                            <BoxPreview bfor="deck" boxref={boxref} boxTitle={boxTitle} setboxTitle={setboxTitle} created={created} setcreated={setcreated}>
+                            <BoxPreview bfor="deck" boxref={boxref} boxTitle={boxTitle} setboxTitle={setboxTitle} created={created} setcreated={setcreated} BoxPreviewOpen={BoxPreviewOpen} setboxPreviewOpen={setboxPreviewOpen}>
                                 <BoxContentForDeckCard activeCard={activeCard} boxref={boxref} boxTitle={boxTitle} />
                             </BoxPreview>
                         </div>

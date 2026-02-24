@@ -31,12 +31,12 @@ const Navigation = ({ isOpen, setisOpen }) => {
             sub: [],
             link: "/howitwork"
         },
-        {
-            name: "Card Customization",
-            nested: false,
-            sub: [],
-            link: "/card-customization"
-        },
+        // {
+        //     name: "Card Customization",
+        //     nested: false,
+        //     sub: [],
+        //     link: "/card-customization"
+        // },
         {
             name: "Inspirations",
             nested: false,

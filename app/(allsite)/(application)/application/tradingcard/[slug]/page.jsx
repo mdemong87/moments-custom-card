@@ -12,6 +12,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { BsCreditCard2Back } from "react-icons/bs";
 import { CiCirclePlus } from "react-icons/ci";
 import { IoIosArrowDown } from "react-icons/io";
+import { TiTick } from "react-icons/ti";
 import { Rnd } from "react-rnd";
 import { toast, ToastContainer } from "react-toastify";
 import ViewCard from "../../../../../componnent/ViewCard";
@@ -90,6 +91,13 @@ export default function ProductCustomizer() {
     const [name2limite, setname2limite] = useState(15);
     const [name3limite, setname3limite] = useState(15);
     const [acarddatelimite, setacarddatelimite] = useState(10);
+
+
+    // for box preview open
+    const [BoxPreviewOpen, setboxPreviewOpen] = useState(false);
+
+    // color state
+    const [isblack, setisblack] = useState(false);
 
 
     const getBaseTrading = useCallback(async (slug) => {
@@ -265,12 +273,13 @@ export default function ProductCustomizer() {
 
 
         if (cards.length < 1) {
-            toast.warn('Please Customize at least one card');
+            toast.warn('Click ‘Add Card’ to continue.');
             return;
         }
 
         if (boxs.length < 1) {
-            toast.warn("Packaging Design is not Captured");
+            toast.warn('Box Design should be Captured');
+            setboxPreviewOpen(true);
             return;
         }
 
@@ -426,7 +435,7 @@ export default function ProductCustomizer() {
                                                 {cardfinder == 3 && <FrontFour cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} labelone={labelone} labeltwo={labeltwo} labelthree={labelthree} />}
                                             </>
                                         ) : (
-                                            <BackOne cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} />
+                                            <BackOne cardti={cardti} carddes={carddes} name={name} name2={name2} name3={name3} acarddate={acarddate} isblack={isblack} />
                                         )
                                     }
 
@@ -457,7 +466,7 @@ export default function ProductCustomizer() {
 
 
 
-                        <BoxPreview boxref={boxref} bfor="trading" boxTitle={boxTitle} setboxTitle={setboxTitle} created={created} setcreated={setcreated}>
+                        <BoxPreview boxref={boxref} bfor="trading" boxTitle={boxTitle} setboxTitle={setboxTitle} created={created} setcreated={setcreated} BoxPreviewOpen={BoxPreviewOpen} setboxPreviewOpen={setboxPreviewOpen}>
                             <BoxContentForTradingCard boxref={boxref} boxTitle={boxTitle} created={created} />
                         </BoxPreview>
 
@@ -564,6 +573,26 @@ export default function ProductCustomizer() {
                             <div>
                                 <div className="border border-gray-200 p-4 mb-4 rounded-lg">
                                     <label className="block text-xl text-gray-700 mb-1">Text Editor </label>
+
+                                    {
+                                        workingcard == "back" && (
+                                            <div className="my-3">
+                                                <h3 className="text-gray-800">Text Color:</h3>
+                                                <div className="flex items-center gap-3 mt-2">
+                                                    <div onClick={() => { setisblack(false) }} className={`h-8 w-8 bg-gray-100 cursor-pointer flex items-center justify-center ${isblack ? "border border-gray-200" : "border-2 border-sky-400 "}`}>
+                                                        {!isblack && <TiTick className="text-sky-400 text-2xl" />}
+                                                    </div>
+                                                    <div onClick={() => { setisblack(true) }} className={`h-8 w-8 bg-black cursor-pointer flex items-center justify-center ${isblack ? "border-2 border-sky-400" : "border border-gray-200"}`}>
+                                                        {isblack && <TiTick className="text-white text-2xl" />}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        )
+                                    }
+
+
+
                                     <div className="w-full flex items-center gap-3 mb-3">
                                         <div className="w-full">
                                             <label className="text-gray-500 mb-1 text-sm">Card Title: <span className="text-red-600 text-xl">*</span>

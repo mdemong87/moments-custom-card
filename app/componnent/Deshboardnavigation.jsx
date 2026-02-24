@@ -11,7 +11,7 @@ const DeshboardNavigation = ({ loginUser }) => {
     /********** admin Nav items **********/
     const adminNavItems = [
         {
-            name: "Deshboard",
+            name: "Dashboard",
             nested: false,
             sub: [],
             link: "/deshboard/admin"
