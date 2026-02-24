@@ -4,7 +4,7 @@ import PDFViewers from "@/app/componnent/PDFViewers.jsx";
 import SpinLoader from "@/app/componnent/SpingLoader.jsx";
 import getCookie from "@/utilis/helper/cookie/gettooken";
 import formatDateTime from "@/utilis/helper/formatDateTime.js";
-import pdfToPngDownload from "@/utilis/helper/pdfToPngDownload.js";
+//import pdfToPngDownload from "@/utilis/helper/pdfToPngDownload.js";
 import MakeGet from "@/utilis/requestrespose/get";
 import { useCallback, useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -241,7 +241,7 @@ function OrderTable({ allorders, token, fetching }) {
                                     <button onClick={() => { setismodalopen(true), setmodalinfo(order) }} className="text-blue-600 hover:underline text-sm mr-3 cursor-pointer">
                                         View PDF
                                     </button>
-                                    <button onClick={() => { pdfToPngDownload(order?.customized_file_url) }} className="text-blue-600 hover:underline text-sm mr-3 cursor-pointer">
+                                    <button onClick={() => { setismodalopen(true), setmodalinfo(order) }} className="text-blue-600 hover:underline text-sm mr-3 cursor-pointer">
                                         View PNG
                                     </button>
                                 </td>
