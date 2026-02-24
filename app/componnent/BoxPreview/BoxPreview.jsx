@@ -9,10 +9,10 @@ import CharactersCountComponent from "../CharactersCountComponent";
 import SpinLoader from "../SpingLoader";
 
 
-const BoxPreview = ({ bfor, boxref, boxTitle, setboxTitle, created, setcreated, children }) => {
+const BoxPreview = ({ bfor, boxref, boxTitle, setboxTitle, created, setcreated, BoxPreviewOpen, setboxPreviewOpen, children }) => {
 
 
-    const [BoxPreviewOpen, setboxPreviewOpen] = useState(false);
+
     const [isloading, setisloading] = useState(false);
     const { boxs, setboxs } = useboxcartstore();
 

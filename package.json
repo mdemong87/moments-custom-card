@@ -18,6 +18,7 @@
     "next": "15.5.9",
     "npm": "^11.6.1",
     "pdf-lib": "^1.17.1",
+    "pdf-to-png-converter": "^3.11.0",
     "react": "19.1.0",
     "react-apexcharts": "^1.7.0",
     "react-colorful": "^5.6.1",

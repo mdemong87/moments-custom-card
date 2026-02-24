@@ -144,21 +144,21 @@ export const FrontFour = ({ cardti, carddes, name, name2, name3, acarddate }) =>
 
 
 
-export const BackOne = ({ cardti, carddes, name, name2, name3, acarddate }) => {
+export const BackOne = ({ cardti, carddes, name, name2, name3, acarddate, isblack }) => {
     return (
         <div className="w-full h-full relative">
 
-            <span className="text-white text-md lg:text-2xl font-semibold lg:font-extrabold absolute top-7.5 lg:top-14 left-10 lg:left-26 text-center w-[170px] lg:w-[176px] z-50 tracking-tighter">{cardti.toUpperCase()}</span>
+            <span className={`${isblack ? "text-black" : "text-white"} text-md lg:text-2xl font-semibold lg:font-extrabold absolute top-7.5 lg:top-14 left-10 lg:left-26 text-center w-[170px] lg:w-[176px] z-50 tracking-tighter`}>{cardti.toUpperCase()}</span>
 
-            <span className="text-white text-[8px] lg:text-xs AileronFont tracking-wider font-thin absolute top-17 lg:top-26 left-11 lg:left-15 line-clamp-3 text-center w-[160px] lg:w-[270px] z-50">{carddes}</span>
+            <span className={`${isblack ? "text-black" : "text-white"} text-[8px] lg:text-xs AileronFont tracking-wider font-thin absolute top-17 lg:top-26 left-11 lg:left-15 line-clamp-3 text-center w-[160px] lg:w-[270px] z-50`}>{carddes}</span>
 
-            <span className="text-white text-sm lg:text-lg font-semibold lg:font-extrabold absolute top-30 lg:top-46.5 left-12 lg:left-18 text-left w-[176px] lg:w-[185px] z-50 tracking-tighter">{name.toUpperCase()}</span>
+            <span className={`${isblack ? "text-black" : "text-white"} text-sm lg:text-lg font-semibold lg:font-extrabold absolute top-30 lg:top-46.5 left-12 lg:left-18 text-left w-[176px] lg:w-[185px] z-50 tracking-tighter`}>{name.toUpperCase()}</span>
 
-            <span className="text-white text-[8px] lg:text-xs AileronFont tracking-wider font-thin absolute top-36.5 left-10 lg:top-57 lg:left-15 line-clamp-4 text-center w-[170px] lg:w-[270px] z-50">{name2}</span>
+            <span className={`${isblack ? "text-black" : "text-white"} text-[8px] lg:text-xs AileronFont tracking-wider font-thin absolute top-36.5 left-10 lg:top-57 lg:left-15 line-clamp-4 text-center w-[170px] lg:w-[270px] z-50`}>{name2}</span>
 
-            <span className="text-white text-sm lg:text-lg font-semibold lg:font-extrabold absolute top-55.5 -left-4 lg:top-85.5 lg:left-35 text-right w-[176px] z-50 tracking-tighter">{name3.toUpperCase()}</span>
+            <span className={`${isblack ? "text-black" : "text-white"} text-sm lg:text-lg font-semibold lg:font-extrabold absolute top-55.5 -left-4 lg:top-85.5 lg:left-35 text-right w-[176px] z-50 tracking-tighter`}>{name3.toUpperCase()}</span>
 
-            <span className="text-white text-[8px] lg:text-xs AileronFont tracking-wider font-thin absolute top-63 left-10 lg:top-96 lg:left-15 line-clamp-4 text-center w-[170px] lg:w-[270px] z-50">{acarddate}</span>
+            <span className={`${isblack ? "text-black" : "text-white"} text-[8px] lg:text-xs AileronFont tracking-wider font-thin absolute top-63 left-10 lg:top-96 lg:left-15 line-clamp-4 text-center w-[170px] lg:w-[270px] z-50`}>{acarddate}</span>
 
         </div>
 

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import Twos from "../../public/twos.png";
 
 export default function Two() {
     return (
@@ -9,7 +8,7 @@ export default function Two() {
                 {/* left */}
                 <div className="flex items-center justify-center group overflow-hidden rounded-lg">
                     <Image
-                        src={Twos}
+                        src={'https://res.cloudinary.com/dg83pvgls/image/upload/v1771836881/Baby-image_nabrpt.png'}
                         alt="Two"
                         width={500}
                         height={500}
@@ -20,14 +19,24 @@ export default function Two() {
                 {/* right */}
                 <div className="max-w-lg">
                     <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-snug">
-                        <span className="text-sky-500">More Than</span> Just a Card Game
+                        Where It Started
                     </h1>
                     <p className="mt-6 text-xl text-gray-700">
-                        At Momento Cards, we believe the best memories aren’t just made—they’re shared. Whether it’s a family game night, a team challenge, or a milestone celebration, our cards bring people together through fun, creativity, and connection.
+                        Momento began in a pediatric waiting room in New York City.
+                    </p>
+                    <p className="mt-6 text-xl text-gray-700">
+                        My newborn son, dressed in a teddy bear suit — a moment that felt too iconic to live only in a photo.
+                    </p>
+                    <p className="mt-6 text-xl text-gray-700">
+                        <b>That moment sparked a simple realization:</b> If trading cards can celebrate athletes and celebrities, why not the people who matter most to us?
+
+                    </p>
+                    <p className="mt-6 text-xl text-gray-700">
+                        Momento began in a pediatric waiting room in New York City.
                     </p>
                     <div className="mt-8">
                         <Link href={"/shop"} className="inline-block px-6 py-3 bg-sky-500 text-white font-semibold rounded-sm shadow-md hover:brightness-110 transition">
-                            Shop Now
+                            START CUSTOMIZING
                         </Link>
                     </div>
                 </div>

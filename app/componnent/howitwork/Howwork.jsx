@@ -48,7 +48,7 @@ export default function Howwork() {
                             </p>
                             <ul className="space-y-3">
                                 <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <div className="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                                         <span className="text-white text-xs font-bold">✓</span>
                                     </div>
                                     <div>
@@ -57,7 +57,7 @@ export default function Howwork() {
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <div className="w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                                         <span className="text-white text-xs font-bold">✓</span>
                                     </div>
                                     <div>
@@ -66,7 +66,7 @@ export default function Howwork() {
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 bg-rose-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <div className="w-6 h-6 bg-neutral-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                                         <span className="text-white text-xs font-bold">✓</span>
                                     </div>
                                     <div>
@@ -228,20 +228,20 @@ export default function Howwork() {
                             </p>
                             <div className="bg-white rounded-2xl p-6 shadow-lg space-y-3">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center">
-                                        <span className="text-rose-600 font-bold">✓</span>
+                                    <div className="w-7 h-7 bg-neutral-400 rounded-full flex items-center justify-center">
+                                        <span className="text-white font-bold">✓</span>
                                     </div>
                                     <span className="text-slate-700">Premium card stock</span>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center">
-                                        <span className="text-rose-600 font-bold">✓</span>
+                                    <div className="w-7 h-7 bg-green-400 rounded-full flex items-center justify-center">
+                                        <span className="text-white font-bold">✓</span>
                                     </div>
                                     <span className="text-slate-700">Sharp, vibrant printing</span>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center">
-                                        <span className="text-rose-600 font-bold">✓</span>
+                                    <div className="w-7 h-7 bg-blue-400 rounded-full flex items-center justify-center">
+                                        <span className="text-white font-bold">✓</span>
                                     </div>
                                     <span className="text-slate-700">Fast delivery to your door</span>
                                 </div>

@@ -204,7 +204,7 @@ const SingleProduct = () => {
 
                     <div className="space-y-4 col-span-3">
                         <p><strong>Name:</strong> {data?.name}</p>
-                        <p><strong>Type:</strong> {data?.type}</p>
+                        <p><strong>Type:</strong> {data?.type === "trading" && "Trading Card"} {data?.type === "customizable" && "Customizable Card"} {data?.type === "simple" && "Simple Card"}</p>
                         <p><strong>Price:</strong> ${data?.price}</p>
                         <p><strong>Offer Price:</strong> ${data?.offer_price}</p>
                         <p><strong>Status:</strong> {data?.status ? "Published" : "Draft"}</p>
