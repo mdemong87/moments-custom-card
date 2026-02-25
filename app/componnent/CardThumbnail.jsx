@@ -5,22 +5,35 @@ const layers = [
   "beards", "eyes", "mouths", "noses"
 ];
 
-const CardThumbnail = ({ finalCard, onClick }) => {
+const CardThumbnail = ({ finalCard }) => {
 
   return (
     <div
-      className="w-[50px] h-full md:h-auto lg:w-full lg:h-[180px] xl:h-[200px] relative rounded-lg cursor-pointer"
-      onClick={onClick}
-    >
-
+      className="w-[50px] h-full md:h-auto lg:w-full lg:h-[180px] xl:h-[200px] relative rounded-lg cursor-pointer">
       <Image
-        width={1000}
-        height={1000}
-        src={finalCard}
-        alt="base"
-        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "contain" }}
+        width={1000} height={1000} src={finalCard?.baseImage} alt="Base Card" className=" w-full h-full object-contain"
       />
 
+      {layers.map(layer =>
+        finalCard?.selectedLayers[layer] && (
+          <div key={layer}>
+            <Image
+              width={1000}
+              height={1000}
+              src={finalCard?.selectedLayers[layer]}
+              alt={layer}
+              className="absolute top-[98px] left-1/2 -translate-x-1/2 w-[60%] h-[40%] object-contain rotate-180"
+            />
+            <Image
+              width={1000}
+              height={1000}
+              src={finalCard?.selectedLayers[layer]}
+              alt={`${layer}-mirrored`}
+              className="absolute bottom-[98px] left-1/2 -translate-x-1/2 w-[60%] h-[40%] object-contain"
+            />
+          </div>
+        )
+      )}
     </div>
   )
 };

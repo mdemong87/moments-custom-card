@@ -91,14 +91,21 @@ const ProductCustomizer = () => {
                 if (items.length > 0) initialLayers[layer] = items[0]?.image;
             });
 
-            setCards([{ baseImage: base, selectedLayers: initialLayers }]);
+            setCards([{ editedCard: editedCard, baseImage: base, selectedLayers: initialLayers }]);
             setActiveCardIndex(0);
         };
         fetchProduct(slug);
     }, [slug]);
 
 
+
+    console.log(cards);
+
+
+
     if (!product) return <ApplicationSkeleton />;
+
+
     const activeCard = cards[activeCardIndex];
 
     /******* Selected Layer Image Function ********/
@@ -139,19 +146,17 @@ const ProductCustomizer = () => {
     /******* Removed Card Function ********/
     const removeCard = (index) => {
 
-        const updated = finalCards.filter((_, i) => i !== index);
+        const updated = cards.filter((_, i) => i !== index);
         let newActive = activeCardIndex;
         if (updated.length === 0) newActive = 0;
         else if (index < activeCardIndex) newActive -= 1;
         else if (index === activeCardIndex) newActive = Math.min(activeCardIndex, updated.length - 1);
         setActiveCardIndex(newActive);
-
-        setfinalCards([...updated]);
+        setCards([...updated]);
 
         const alreadyDoneUpdated = alreadyDone.filter((_, i) => i !== index);
         setalreadyDone([...alreadyDoneUpdated]);
     };
-
 
 
     /******* Selected Layer Image Function ********/
@@ -210,12 +215,11 @@ const ProductCustomizer = () => {
         setdoneloading(true);
         setalreadyDone([...alreadyDone, editedCard]);
         await CaptureScreenshort(previewCardNodeRef, finalCards, setfinalCards);
+        addNewCard();
         setTimeout(() => {
             setdoneloading(false);
         }, [600])
     }
-
-
 
 
     return (
@@ -223,6 +227,7 @@ const ProductCustomizer = () => {
             <div className="grid grid-cols-12 grid-rows-12 gap-2 min-h-screen w-screen fixed bg-gray-100">
                 <div className="col-span-12 row-span-2 lg:row-span-12 lg:col-span-2 w-full h-full z-50">
                     <CardSidebar
+                        cards={cards}
                         finalCards={finalCards} Done={Done}
                         activeIndex={activeCardIndex}
                         setActiveIndex={setActiveCardIndex}
