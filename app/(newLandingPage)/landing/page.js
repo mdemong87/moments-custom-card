@@ -18,7 +18,7 @@ export default function Page() {
             <Hero />
 
             {/* Explainer Video Section */}
-            <section className="py-20 md:py-24 px-4 bg-sky-50">
+            {/* <section className="py-20 md:py-24 px-4 bg-sky-50">
                 <div className="max-w-6xl mx-auto text-center">
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-700 mb-6 text-balance">
                         See How Momento Works
@@ -30,7 +30,7 @@ export default function Page() {
                         A short explainer showing how Momento turns real people into playable cards — from customization to game night.
                     </p>
 
-                    {/* Video Placeholder */}
+                    
                     <div className="relative w-full aspect-video rounded-2xl overflow-hidden flex items-center justify-center transition-colors mb-12">
                         <div className="text-center">
                             <video
@@ -46,7 +46,9 @@ export default function Page() {
                         Create Your Deck
                     </Link>
                 </div>
-            </section>
+            </section> */}
+
+            <Customzaizer />
 
             {/* What is Momento */}
             <section className="py-20 md:py-24 px-4 bg-white">
@@ -85,7 +87,7 @@ export default function Page() {
 
             <Products />
 
-            <Customzaizer />
+
 
 
             <div className='bg-sky-50'>

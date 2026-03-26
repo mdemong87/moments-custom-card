@@ -2,7 +2,6 @@
 import ApplicationSkeleton from "@/app/componnent/ApplicationSkeleton";
 import BoxContentForDeckCard from "@/app/componnent/BoxPreview/BoxContentForDeckCard";
 import BoxPreview from "@/app/componnent/BoxPreview/BoxPreview";
-import usealreadyDoneStore from "@/store/usealreadyDoneStore";
 import useboxcartstore from "@/store/useboxcartstore";
 import useDeckFinalPreview from "@/store/useDeckFinalPreview";
 import usefinalCardsStore from "@/store/usefinalCardsStore";
@@ -44,11 +43,11 @@ const ProductCustomizer = () => {
     const [doneloading, setdoneloading] = useState(false);
     const { addToCart, clearCart } = useDeckFinalPreview();
     const [smallconOpen, setsmallconOpen] = useState(false);
-    const [editedCard, seteditedCard] = useState('a');
+    const [editedCard, seteditedCard] = useState('Ace_Card');
     const [activebaseEditCard, setactivebaseEditCard] = useState([]);
-    // const [alreadyDone, setalreadyDone] = useState([]);
     const { finalCards, setfinalCards } = usefinalCardsStore();
-    const { alreadyDone, setalreadyDone } = usealreadyDoneStore();
+    const [RegainType, setRegainType] = useState('Ace_Card');
+
     const { boxs } = useboxcartstore();
 
 
@@ -82,7 +81,7 @@ const ProductCustomizer = () => {
                 return;
             }
 
-            const basebar = res?.data?.customizations?.base_cards?.[0];
+            const basebar = res?.data?.customizations?.custom_sets?.[0];
             const base = basebar?.image;
             const initialLayers = {};
             layers.forEach(layer => {
@@ -91,14 +90,24 @@ const ProductCustomizer = () => {
                 if (items.length > 0) initialLayers[layer] = items[0]?.image;
             });
 
-            setCards([{ baseImage: base, selectedLayers: initialLayers }]);
+            setCards([{ editedCard: editedCard, baseImage: base, selectedLayers: initialLayers }]);
             setActiveCardIndex(0);
         };
         fetchProduct(slug);
     }, [slug]);
 
 
+
+    // console.log(product);
+
+    console.log(RegainType);
+    // console.log(cards);
+
+
+
     if (!product) return <ApplicationSkeleton />;
+
+
     const activeCard = cards[activeCardIndex];
 
     /******* Selected Layer Image Function ********/
@@ -115,14 +124,17 @@ const ProductCustomizer = () => {
     };
 
     /******* Select Base Image Function ********/
-    const selectBaseImage = (url) => {
-        setCards(prev => prev.map((card, i) => i === activeCardIndex ? { ...card, baseImage: url } : card));
+    const selectBaseImage = (url, type) => {
+        setCards(prev => prev.map((card, i) => i === activeCardIndex ? { ...card, editedCard: type, baseImage: url } : card));
     };
+
+
+
 
     /******* Add New Card Function ********/
     const addNewCard = () => {
 
-        const basebartwo = product?.customizations?.base_cards?.[0];
+        const basebartwo = product?.customizations?.custom_sets?.[0];
         const baseTwo = basebartwo?.image;
         const initialLayersTwo = {};
         layers.forEach(layer => {
@@ -131,7 +143,7 @@ const ProductCustomizer = () => {
             if (items.length > 0) initialLayersTwo[layer] = items[0]?.image;
         });
 
-        setCards([...cards, { baseImage: baseTwo, selectedLayers: initialLayersTwo }]);
+        setCards([...cards, { editedCard: editedCard, baseImage: baseTwo, selectedLayers: initialLayersTwo }]);
         setActiveCardIndex(cards.length);
 
     };
@@ -139,19 +151,14 @@ const ProductCustomizer = () => {
     /******* Removed Card Function ********/
     const removeCard = (index) => {
 
-        const updated = finalCards.filter((_, i) => i !== index);
+        const updated = cards.filter((_, i) => i !== index);
         let newActive = activeCardIndex;
         if (updated.length === 0) newActive = 0;
         else if (index < activeCardIndex) newActive -= 1;
         else if (index === activeCardIndex) newActive = Math.min(activeCardIndex, updated.length - 1);
         setActiveCardIndex(newActive);
-
-        setfinalCards([...updated]);
-
-        const alreadyDoneUpdated = alreadyDone.filter((_, i) => i !== index);
-        setalreadyDone([...alreadyDoneUpdated]);
+        setCards([...updated]);
     };
-
 
 
     /******* Selected Layer Image Function ********/
@@ -201,21 +208,14 @@ const ProductCustomizer = () => {
 
 
     const Done = async () => {
-
-        if (alreadyDone.includes(editedCard)) {
-            toast.warn(`${editedCard == "a" ? "Ace" : editedCard == "k" ? "King" : editedCard == "q" ? "Queen" : editedCard == "j" ? "Jack" : "Joker"} Card is already Customized. If you would like to Re-customize it, please remove it first.`);
-            return;
-        }
-
         setdoneloading(true);
-        setalreadyDone([...alreadyDone, editedCard]);
         await CaptureScreenshort(previewCardNodeRef, finalCards, setfinalCards);
+        setRegainType("Ace_Card");
+        addNewCard();
         setTimeout(() => {
             setdoneloading(false);
         }, [600])
     }
-
-
 
 
     return (
@@ -223,11 +223,13 @@ const ProductCustomizer = () => {
             <div className="grid grid-cols-12 grid-rows-12 gap-2 min-h-screen w-screen fixed bg-gray-100">
                 <div className="col-span-12 row-span-2 lg:row-span-12 lg:col-span-2 w-full h-full z-50">
                     <CardSidebar
+                        cards={cards}
                         finalCards={finalCards} Done={Done}
                         activeIndex={activeCardIndex}
                         setActiveIndex={setActiveCardIndex}
                         addCard={addNewCard}
                         removeCard={removeCard}
+                        setRegainType={setRegainType}
                         doneloading={doneloading}
                     />
                 </div>
@@ -247,7 +249,7 @@ const ProductCustomizer = () => {
                                     </div>
                                 </div>
                             </div>
-                            <SideController product={product} activeCard={activeCard} selectBase={selectBaseImage} selectLayer={selectLayerImage} editedCard={editedCard} seteditedCard={seteditedCard} activebaseEditCard={activebaseEditCard} setactivebaseEditCard={setactivebaseEditCard} />
+                            <SideController product={product} activeCard={activeCard} selectBase={selectBaseImage} selectLayer={selectLayerImage} editedCard={editedCard} seteditedCard={seteditedCard} activebaseEditCard={activebaseEditCard} setactivebaseEditCard={setactivebaseEditCard} RegainType={RegainType} />
                             <ViewCard smallconOpen={smallconOpen} isLoading={spinloading} goToFinalView={goToFinalView} />
                         </div>
                     </div>
