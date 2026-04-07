@@ -97,12 +97,6 @@ const ProductCustomizer = () => {
 
 
 
-    // console.log(product);
-
-    console.log(RegainType);
-    // console.log(cards);
-
-
 
     if (!product) return <ApplicationSkeleton />;
 
@@ -208,10 +202,53 @@ const ProductCustomizer = () => {
     };
 
 
+
+
     const Done = async () => {
         setdoneloading(true);
         await CaptureScreenshort(previewCardNodeRef, finalCards, setfinalCards);
-        setRegainType("Ace_Card");
+
+
+
+
+        // step by step flow maintain  code her
+        let temparr = [];
+
+        cards?.map((item, index) => {
+            temparr.push(item?.editedCard);
+        })
+
+        if (
+            temparr.includes("Ace_Card") &&
+            temparr.includes("king_Card") &&
+            temparr.includes("Queen_Card") &&
+            temparr.includes("Jeck_Card")
+        ) {
+            setRegainType("Joker_Card");
+
+        } else if (
+            temparr.includes("Ace_Card") &&
+            temparr.includes("king_Card") &&
+            temparr.includes("Queen_Card")
+        ) {
+            setRegainType("Jeck_Card");
+
+        } else if (
+            temparr.includes("Ace_Card") &&
+            temparr.includes("king_Card")
+        ) {
+            setRegainType("Queen_Card");
+
+        } else if (temparr.includes("Ace_Card")) {
+            setRegainType("king_Card");
+        }
+
+
+
+
+
+
+
         addNewCard();
         setTimeout(() => {
             setdoneloading(false);
@@ -225,7 +262,7 @@ const ProductCustomizer = () => {
                 <div className="col-span-12 row-span-2 lg:row-span-12 lg:col-span-2 w-full h-full z-50">
                     <CardSidebar
                         cards={cards}
-                        finalCards={finalCards} Done={Done}
+                        Done={Done}
                         activeIndex={activeCardIndex}
                         setActiveIndex={setActiveCardIndex}
                         addCard={addNewCard}
@@ -250,7 +287,7 @@ const ProductCustomizer = () => {
                                     </div>
                                 </div>
                             </div>
-                            <SideController product={product} activeCard={activeCard} selectBase={selectBaseImage} selectLayer={selectLayerImage} editedCard={editedCard} seteditedCard={seteditedCard} activebaseEditCard={activebaseEditCard} setactivebaseEditCard={setactivebaseEditCard} RegainType={RegainType} />
+                            <SideController product={product} activeCard={activeCard} selectBase={selectBaseImage} selectLayer={selectLayerImage} editedCard={editedCard} seteditedCard={seteditedCard} activebaseEditCard={activebaseEditCard} setactivebaseEditCard={setactivebaseEditCard} RegainType={RegainType} cards={cards} />
                             <ViewCard smallconOpen={smallconOpen} isLoading={spinloading} goToFinalView={goToFinalView} />
                         </div>
                     </div>

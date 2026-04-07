@@ -1,10 +1,11 @@
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { GiCardAceClubs, GiCardJackClubs, GiCardJoker, GiCardKingClubs, GiCardQueenClubs } from "react-icons/gi";
 
-const BaseSelector = ({ product, activeCard, selectBase, editedCard, seteditedCard, activebaseEditCard, setactivebaseEditCard, RegainType }) => {
+const BaseSelector = ({ product, activeCard, selectBase, editedCard, seteditedCard, activebaseEditCard, setactivebaseEditCard, RegainType, cards }) => {
 
 
+  const [hasCardType, sethasCardType] = useState([]);
 
   useEffect(() => {
 
@@ -12,7 +13,6 @@ const BaseSelector = ({ product, activeCard, selectBase, editedCard, seteditedCa
       seteditedCard(RegainType);
     }
   }, [RegainType])
-
 
 
   useEffect(() => {
@@ -27,12 +27,29 @@ const BaseSelector = ({ product, activeCard, selectBase, editedCard, seteditedCa
         }
       })
       setactivebaseEditCard(filteredCards);
-      selectBase(filteredCards[0]?.image, editedCard);
+
+
+      // step by step flow maintain  code her
+      let temparr = [];
+
+      cards?.map((item, index) => {
+        temparr.push(item?.editedCard);
+      })
+
+      console.log(temparr);
+
+      if (temparr.includes(editedCard)) {
+        selectBase(activeCard?.baseImage, editedCard);
+      } else {
+        selectBase(filteredCards[0]?.image, editedCard);
+      }
+
     }
 
     check();
 
   }, [editedCard]);
+
 
 
 
