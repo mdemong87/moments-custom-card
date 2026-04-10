@@ -14,6 +14,7 @@ const BaseSelector = ({ product, cards, activeCard, selectBase, editedCard, sete
   );
 
 
+  const [hasCardType, sethasCardType] = useState([]);
 
   useEffect(() => {
     const activeType = activeCard?.editedCard;
@@ -59,6 +60,7 @@ const BaseSelector = ({ product, cards, activeCard, selectBase, editedCard, sete
     seteditedCard(cardType);
     selectBase(selectedBaseForActiveCard || filteredCards?.[0]?.image, cardType);
   };
+
 
 
 
